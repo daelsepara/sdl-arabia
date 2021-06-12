@@ -960,8 +960,6 @@ public:
 
         Character::GAIN_LIFE(player, -3);
 
-        Character::LOSE_ALL(player);
-
         if (player.Life > 0)
         {
             PreText += "\n\nMasrur thunders with rage at not having killed you with one blow. You do not wait around to give him another chance. Clutching your bleeding shoulder, you dash out onto the landing.";
@@ -1295,6 +1293,242 @@ public:
     int Continue(Character::Base &player) { return 174; }
 };
 
+class Story040 : public Story::Base
+{
+public:
+    Story040()
+    {
+        ID = 40;
+
+        Text = "The riders are close behind. You scramble up a bank of loose earth, buying yourself a little time. Pushing through a thicket of mauve ferns, you arrive at a deep ravine whose depths are filled with haze. The ravine is spanned by a great glass column. You place a foot down to test it, finding it very slippery.\n\nThe thunder of hoofbeats warns you that the riders are searching for a way to follow.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Risk crossing the glass column", 63));
+        Choices.push_back(Choice::Base("Stand and wait to confront them here, with your back to the sheer drop", 86));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story041 : public Story::Base
+{
+public:
+    Story041()
+    {
+        ID = 41;
+
+        Text = "His eyes widen as he notices the bundle of rope over your shoulder. \"I travelled far and wide in my youth,\" he says. \"Now, don't tell me -- let me guess. That's Indian hemp, isn't it? I saw some bizarre little conjuring tricks that used a coil of rope just like that, during my time in the east.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Tell him about the Indian rope trick", 110));
+        Choices.push_back(Choice::Base("Remain silent", 61));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story042 : public Story::Base
+{
+public:
+    Story042()
+    {
+        ID = 42;
+
+        Text = "You travel on until you come to the sea. Walking along the shore, you approach a fishing village where men squat on the sand mending their nets. You are about to go up and greet them when you notice a slender young fellow crouching beside an overturned boat. He has only one hand, the other arm ending in a bandaged stump, and he is crying.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stop to talk to him", 135));
+        Choices.push_back(Choice::Base("Walk past", 492));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story043 : public Story::Base
+{
+public:
+    Story043()
+    {
+        ID = 43;
+
+        Text = "Your jinni utters a last forlorn cry which echoes in the air as he fades into wisps of torn vapour. The  RING is useless now that the jinni has been destroyed.\n\nAzenomei leans back gasping against the wall. Now, while he is still stunned from the fight with the jinni, you have a chance to act.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Attack him", 423));
+        Choices.push_back(Choice::Base("Run for it", 445));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::RING});
+    }
+};
+
+class Story044 : public Story::Base
+{
+public:
+    Story044()
+    {
+        ID = 44;
+
+        Text = "This far down the slope, you are in no immediate danger from lava. The deadly hot gases spewed out of the volcano are another matter. They move faster than a cheetah can run, and that dark cloud you can see would bake the flesh off your bones in seconds.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 90; }
+};
+
+class Story045 : public Story::Base
+{
+public:
+    Story045()
+    {
+        ID = 45;
+
+        Text = "Using the magic lamp to turn invisible, you sneak right under the noses of the sentries, along a gallery lined with officials and slaves, past the Caliph's bodyguard, and into the throne room where Harun al-Rashid sits dining on delicate morsels of food. Nearby stands Jafar, an attentive smile masking his thoughts of treachery.\n\nExtinguishing the light, you suddenly become visible. Harun leaps up with a start. \"God protect me from evil magic!\" he cries.\n\n\"Wait, O Prince of the Faith,\" you say, bowing to kiss the floor in front of him. \"I am no jinni, but your loyal subject. Hear my words.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 477; }
+};
+
+class Story046 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story046()
+    {
+        ID = 46;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The demon pursues you into the covered passage. It realizes its mistake when you leap on it. Here it cannot retreat into the air every few seconds to recuperate from its wounds. \"Bad move, devil,\" you snarl as you pound it with heavy blows, \"now you've got to fight fair.\"\n\nThe demon's talons scrape you to the bone, but you give two blows for every one that it inflicts.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        {
+            DAMAGE = -1;
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                PreText += "[SWORDPLAY] ";
+            }
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+            {
+                PreText += "[WRESTLING] ";
+            }
+        }
+        
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 275; }
+};
+
+class Story047 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story047()
+    {
+        ID = 47;
+
+        Bye = "You at last reach the stairway and rush off into the safety of the night.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The Palace guards are upon you like a pack of wolves. Their standard trick is to get in close and buffet a foe with their shields, using their swords only when there is no danger of striking one another. Knowing this, you drop low and let the first guard sweep his shield over your head, immediately straightening up and using the force of your legs to propel him off the balcony. He gives a shriek as he tumbles to the floor of the hall below. But now the next two guards have reached you -- and you cannot fool them all with the same trick.\n\nJafar stands behind the guards with his flabby hands balled into fists. He is spitting with fury as he orders them to rush you, but they are in no hurry to throw their lives away.\n\nYou beat a retreat along the landing, fighting for your life every step of the way. You take several nasty wounds.\n\n";
+
+        auto DAMAGE = -5;
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        {
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                DAMAGE = -2;
+
+                PreText += "[SWORDPLAY] ";
+            }
+            else
+            {
+                DAMAGE = -3;
+
+                PreText += "[WRESTLING] ";
+            }
+        }
+        
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 383; }
+};
+
+class Story048 : public Story::Base
+{
+public:
+    Story048()
+    {
+        ID = 48;
+
+        Text = "The barque takes shape out of the darkness. You feel like one who, sunk in slumber, witnesses the vivid colours of a dream. The sails of the barque have a satin sheen as though woven of silver. Jewels sparkle around the lamps set at her prow, and her rail is decorated with inlays of polished ivory. At the stern is a small pavilion curtained with sequined silks. As the breeze stirs the drapes and gutters the lantern-light inside, you see a woman reclining there on a cushioned divan.\n\nDo you wish to speak with her?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Swim out to the mysterious barque", 94));
+        Choices.push_back(Choice::Base("Go to fetch the captain", 26));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story049 : public Story::Base
+{
+public:
+    Story049()
+    {
+        ID = 49;
+
+        Image = "images/filler4.png";
+
+        Text = "The guards burst into the room, only to find a dead body slumped on the cold marble floor. Shrugging, they sheathe their swords. Jafar pushes his way to the front and demands to know what is going on.\n\n\"The intruder committed suicide, it seems, lord,\" says the captain of the guard, indicating the trickle of poison on your lips.\n\nJafar hisses between his teeth. \"A pity. I\"d have liked to oversee the interrogation of this one.\"\n\nThe captain hides a flicker of disgust at Jafar's open cruelty. Turning away sharply, he says to the guards, \"Take this corpse to the burial-ground.\"\n\nYou are taken to the edge of the city and left in a small brick building beside the cemetery, there to await burial in the morning. When the guards have left, the jinni breathes the gust of life back into your lungs. Rubbing your stiff limbs, you get up and fix him with a sour frown. \"Why did you make them think I was dead?\"\n\nHe smiles -- at least, you think it's a smile. \"They\"re not going to kill you twice, are they?\"\n\n\"But why didn't you turn their swords to snakes? Or fill the room with choking fog? Or whisk me away to safety on a flying cloud?\"\n\n\"Oh, what are you complaining about?\" snaps the jinni. \"I got you out safely, didn't I?\" He becomes a twist of vapour that slowly flows back into your ring.\n\nAs you walk back from the graveyard, you consider that it might be wise to quit Baghdad for a while. The wild corners of the world are full of mystery and promise, and adventurers of olden times often returned from their travels laden with riches. If you could do the same, then you would be a better position to bring Jafar to justice. It only remains to decide your route.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go by sea", 160));
+        Choices.push_back(Choice::Base("Go by land", 183));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -1335,6 +1569,16 @@ auto story036 = Story036();
 auto story037 = Story037();
 auto story038 = Story038();
 auto story039 = Story039();
+auto story040 = Story040();
+auto story041 = Story041();
+auto story042 = Story042();
+auto story043 = Story043();
+auto story044 = Story044();
+auto story045 = Story045();
+auto story046 = Story046();
+auto story047 = Story047();
+auto story048 = Story048();
+auto story049 = Story049();
 
 void InitializeStories()
 {
@@ -1342,7 +1586,8 @@ void InitializeStories()
         &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
-        &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039};
+        &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039,
+        &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049};
 }
 
 #endif
