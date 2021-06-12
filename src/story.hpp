@@ -2381,6 +2381,8 @@ public:
     {
         ID = 77;
 
+        Image = "images/filler1.png";
+
         Text = "As the echo of that ghastly whispering voice dies on the air, the cowled figures sag like puppets left to dangle on a hook. This appears to signal the end of the meeting. The islanders rise from the floor and stalk forward to bind your poor captain. He is too numb with shock to resist.\n\nYou sneak off before anyone spots you. Back at the ship, the crew listen with mounting horror as you tell your tale. \"These islanders are said to worship the corpses of their ancestors,\" mutters Sayid the helmsman. \"By heaven, it seems they are ruled by them as well.\"\n\nThe looks of fear are plain on all their faces, but one man at least has the courage to speak out on behalf of loyalty. Jumail the cook says, \"We can't leave Captain Ibrahim to die at the hands of infidels.\" He turns to you. \"If you want to try to rescue him, you can count me in.\"";
 
         Choices.clear();
