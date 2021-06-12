@@ -5418,7 +5418,7 @@ bool mainScreen(SDL_Window *window, SDL_Renderer *renderer, int storyID)
 {
     auto font_size = 20;
 
-    auto *introduction = "You have made a deadly enemy. Jafar, advisor to the Caliph, plans a coup that will put him on the throne of Baghdad. You are the only one who can warn the Caliph, but who will listen to a penniless adventurer? Especially as Jafar's assassins are scouring the city to find you.\n\nYou go in search of the fame and fortune that will give you the means to expose Jafar's treachery. Your travels take you to ghoul-haunted oases, magical palaces, lost cities of gold, and uncharted isles full of mystery and dange. Threatened by bandits, fire wizards, thieves and fearsome creatures, you must risk all in your determined quest to save the kingom.";
+    auto *introduction = "You have made a deadly enemy. Jafar, advisor to the Caliph, plans a coup that will put him on the throne of Baghdad. You are the only one who can warn the Caliph, but who will listen to a penniless adventurer? Especially as Jafar's assassins are scouring the city to find you.\n\nYou go in search of the fame and fortune that will give you the means to expose Jafar's treachery. Your travels take you to ghoul-haunted oases, magical palaces, lost cities of gold, and uncharted isles full of mystery and danger. Threatened by bandits, fire wizards, thieves and fearsome creatures, you must risk all in your determined quest to save the kingom.";
 
     auto splash = createImage("images/oata.png");
 
