@@ -551,7 +551,7 @@ public:
     {
         ID = 3;
 
-        Text = "\"Perhaps this tale is true, perhaps not. Only God knows all,\" begins the old storyteller. \"It concerns a young prince who, while travelling in the wilderness, came to a hut of mud bricks. Drawing water from the well, he was taken unawares by two strong brothers who came upon him from behind. They carried him to their mother, an aged crone with a face as withered as a rotten gourd. Her teeth were like broken pebbles, her eyes filmy with rheum. And the prince knew from their white skin that these were not mortals, but a family of ghouls. Then he feared for his life, but even in his terror his wits did not entirely desert him. 'Am I to die without a chance to save myself?' he asked as they stoked the fire.\n\n\"The ancient she-ghoul leered as she sprinkled the seasoning. 'What chance would you have?' she asked. 'In any contest, my sons are superior to a mortal man.'\n\n'I have no skill with weapons,' replied the prince. 'But in my own land I am famous as an athlete. Why not set me free with a head start? Then, if your sons are fleet of foot, they can try to hunt me down. They will return with good appetites, and no scraps at the table will go to waste.'\"\n\nThe captain has come over and heard part of this tale. Butting in, he turns to you and says, \"Why waste your time on this foolishness? This is a tale for the witless. Does this old man think us as credulous as any village peasant?\"";
+        Text = "\"Perhaps this tale is true, perhaps not. Only God knows all,\" begins the old storyteller. \"It concerns a young prince who, while travelling in the wilderness, came to a hut of mud bricks. Drawing water from the well, he was taken unawares by two strong brothers who came upon him from behind. They carried him to their mother, an aged crone with a face as withered as a rotten gourd. Her teeth were like broken pebbles, her eyes filmy with rheum. And the prince knew from their white skin that these were not mortals, but a family of ghouls. Then he feared for his life, but even in his terror his wits did not entirely desert him. ''Am I to die without a chance to save myself?'' he asked as they stoked the fire.\n\nThe ancient she-ghoul leered as she sprinkled the seasoning. ''What chance would you have?'' she asked. ''In any contest, my sons are superior to a mortal man.''\n\n''I have no skill with weapons,'' replied the prince. ''But in my own land I am famous as an athlete. Why not set me free with a head start? Then, if your sons are fleet of foot, they can try to hunt me down. They will return with good appetites, and no scraps at the table will go to waste.''\"\n\nThe captain has come over and heard part of this tale. Butting in, he turns to you and says, \"Why waste your time on this foolishness? This is a tale for the witless. Does this old man think us as credulous as any village peasant?\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Agree with the captain", 375));
@@ -2092,7 +2092,7 @@ public:
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
-        
+
         PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
 
         Text = PreText.c_str();
@@ -2155,6 +2155,272 @@ public:
         Choices.push_back(Choice::Base("Talk to the sailor who just left", 475));
         Choices.push_back(Choice::Base("Talk to the storyteller sitting on the plaza nearby", 23));
         Choices.push_back(Choice::Base("Go on your way", 92));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story070 : public Story::Base
+{
+public:
+    Story070()
+    {
+        ID = 70;
+
+        Text = "You weave to one side, then jump back as Masrur's mighty blade comes chopping down. The blow misses you by inches, striking the floor where you were standing just a second ago. There is a harsh ringing sound as the tip of the blade snaps off, followed by Masrur's scream of scarlet rage.\n\nIf he wasn't in a killing mood before, he is now. Dodging past, you race out onto the landing. Jafar follows, clapping his hands to summon the guards. Sure enough, a band of swordsmen come pouring through an arch at the end of the landing and rush towards you. You will have to act fast.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::ARCHERY))
+        {
+            Choices.push_back(Choice::Base("Fight", 47));
+            Choices.push_back(Choice::Base("Make a run for it", 253));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 230; }
+};
+
+class Story071 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story071()
+    {
+        ID = 71;
+
+        Bye = "You eventually see a swaying patch of greenery ahead and give a parched croak of joy when you realize it is the edge of the desert.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "It feels as though you have no strength left in your body. You are simply stumbling on, each step a miracle in itself. Sometimes you half faint, tumbling down a dune only to pick yourself up and somehow find the will to carry on.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        {
+            DAMAGE = -1;
+
+            PreText += "[Item: WATER BOTTLE]";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 113; }
+};
+
+class Story072 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story072()
+    {
+        ID = 72;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The guards burst into the room. You jump up onto the parapet and leap, landing with bent knees and rolling to absorb the shock of the fall. Even so, the wind is knocked out of your lungs and for a moment you lie motionless while taking stock of your injuries.\n\n";
+
+        auto DAMAGE = -5;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            DAMAGE = -1;
+
+            PreText += "[AGILITY] ";
+        }
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            DAMAGE = -1;
+
+            PreText += "[LUCK] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou look up to see the guards glaring from the balcony. You drag yourself to your feet despite the pain, as it will not take them long to raise the alarm. Hobbling off towards the gate, you are met by a sentry who has heard the commotion. Peering past your shoulder, he demands: \"What's going on?\"\n\n\"A thief broke into the Caliph's bedchamber and stole his fruit bowl,\" you say, adopting a hangdog expression. \"Don't suppose I'll be getting any handouts now, what with all the fuss. Got any alms for a poor cripple, guv'nor?\"\n\nHe gives you a contemptuous glance and shoves you aside. \"Begone, you wretch,\" he cries, drawing his sword and running past you into the palace.\n\nYou smile as you watch him go. \"Thanks, I will,\" you say under your breath.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 383; }
+};
+
+class Story073 : public Story::Base
+{
+public:
+    Story073()
+    {
+        ID = 73;
+
+        Text = "The steps have been made slimy by dripping water. Your foot skids out from under you and the next moment you are plummeting through space.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            return 119;
+        }
+        else
+        {
+            return 491;
+        }
+    }
+};
+
+class Story074 : public Story::Base
+{
+public:
+    Story074()
+    {
+        ID = 74;
+
+        Text = "The storyteller continues, ignoring the captain's derisive scowl. ''The she-ghoul was not impressed by the prince's proposal, but her sons' pride was pricked. They insisted on proving they could outrun any mortal. ''As babes we were suckled on blood, and human flesh has always been our meat,'' they said to the prince. ''Go. You'll have five minutes' head start.''\n\nThe prince raced away, but as soon as he was out of sight of the ghouls he hid himself in a thorn bush. Soon -- much sooner than they'd promised -- the brothers came looking for him. ''He's got further than I thought,'' he heard one say. ''It's true,'' said the other, peering into the distance, ''but we'll catch him.''\n\nOnce they had run off, the prince doubled back to the hut. Now, in infancy his nurse had told him many old stories like this one. He knew that steel is of no use in killing a ghoul. Only strong wood will do the trick. He crept in to see the crone stirring the cooking-pot, and taking up a stick from beside the door he clouted her smartly -- \" The storyteller slaps his hands together, producing such a loud noise that several small children jump back in alarm.\n\nThen he grins and shakes his head sadly. \"Ah, if only he'd listened more carefully to his old nurse. For you see, he forgot that one hard blow can kill a ghoul, but a second blow will only bring it back to life stronger than before. He gave the old crone two blows for good measure -- and up she leapt, full of terrible vigour, and, seizing the prince, stuffed him into the cooking-pot.\"\n\nHe stops and looks around. \"And that is the end of the prince's tale.\"\n\n\"What drivel,\" storms the captain. \"And not even a happy ending! Come, it's time to set sail.\"\n\nYou gained the codeword CONCH.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::CONCH});
+    }
+
+    int Continue(Character::Base &player) { return 375; }
+};
+
+class Story075 : public Story::Base
+{
+public:
+    Story075()
+    {
+        ID = 75;
+
+        Image = "images/warriors.png";
+
+        Text = "Venturing ashore, you find a flat grass-covered plain almost devoid of trees. Captain Ibrahim points out a white tower near the middle of the island. Facing it at a distance of three hundred paces or so is a large mound of white stones. \"People must have lived here once,\" infers the captain.\n\n\"Perhaps not people,\" says a voice.\n\nStartled, you whirl around to see a strange group standing just beside you. There are seven strong warriors with grey skin, whose long snouts and serried teeth make them look like sharks. In their midst is a dwarf with a rotund belly and small plump features. He wears a copper crown stamped with a mask-like face, and so tall is this crown that at first you did not realize he was a dwarf at all -- you thought the face on the crown was his real face.\n\nCaptain Ibrahim soon recovers from his surprise. \"You have a weird look about you,\" he blusters. \"I warn you not to molest us. We carry swords!\"\n\nMost of the sailors are white with fear. The dwarf smiles and says, \"Be calm. The only matter I must decide is how long you'll stay here as my guests. You see the tower there? It may interest you to know that I built it myself in a single night. Now, if you can duplicate the feat, building a second tower from that heap of white stones, I'll let you sail away in the morning.\"\n\n\"And if not?\" you ask.\n\nHe yawns as if the question is too obvious to merit an answer. With a magic gesture, he causes a large satin cushion to appear. \"I'll take a nap,\" he says, removing his crown and lying down. To the seven shark-like warriors he says: \"Do not let them depart. Wake me in the morning.\"\n\nWith that, he closes his pudgy little eyes and immediately begins to snore.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::FOLKLORE, Skill::Type::SEAFARING}))
+        {
+            return 283;
+        }
+        else
+        {
+            return 311;
+        }
+    }
+};
+
+class Story076 : public Story::Base
+{
+public:
+    Story076()
+    {
+        ID = 76;
+
+        Text = "\"At first I was amazed that any mortal could reach this city,\" says the gryphon, \"but now I see that you bear the magic bloom that allows you to walk across the clouds.\"\n\nYou glance down at the FLOWER the captain handed to you. You had forgotten you were still holding it.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::JASMINE_FLOWER});
+    }
+
+    int Continue(Character::Base &player) { return 98; }
+};
+
+class Story077 : public Story::Base
+{
+public:
+    Story077()
+    {
+        ID = 77;
+
+        Text = "As the echo of that ghastly whispering voice dies on the air, the cowled figures sag like puppets left to dangle on a hook. This appears to signal the end of the meeting. The islanders rise from the floor and stalk forward to bind your poor captain. He is too numb with shock to resist.\n\nYou sneak off before anyone spots you. Back at the ship, the crew listen with mounting horror as you tell your tale. \"These islanders are said to worship the corpses of their ancestors,\" mutters Sayid the helmsman. \"By heaven, it seems they are ruled by them as well.\"\n\nThe looks of fear are plain on all their faces, but one man at least has the courage to speak out on behalf of loyalty. Jumail the cook says, \"We can't leave Captain Ibrahim to die at the hands of infidels.\" He turns to you. \"If you want to try to rescue him, you can count me in.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Mount a rescue attempt", 167));
+        Choices.push_back(Choice::Base("Wait for the tide and then sail at once", 258));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story078 : public Story::Base
+{
+public:
+    Story078()
+    {
+        ID = 78;
+
+        Text = "The captain emerges from his cabin in a sour mood and announces to the assembled crew that you will not be sailing on into the Red Sea. \"I cannot risk it,\" he says. \"Instead, we'll sell our cargo here and then return to Suhar.\"\n\nSeveral of the sailors give a groan. They had been promised a share of the voyage's profits. The rest are quite cheered by the news, since it means they will be home again sooner than they thought.\n\nYou cannot go back yet. When you set sail it was to seek adventure, and you have yet to find it. Old Madan, the ship's carpenter, sees you packing your belongings. \"So, you're disembarking here?\"\n\nYou pull the strings of your pack tight. \"What choice is there?\"\n\nHe scratches his beard and says, \"Well, I have heard tales of the Scarlet Isle to the far south. It is said to be a place of fabulous riches in gold and ivory. Why not suggest that the captain tries his luck there?\"\n\n\"Why should he listen to me?\" you ask.\n\n\"You have hidden talents. He values your opinion.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Suggest the captain sails for the Scarlet Isle", 456));
+        Choices.push_back(Choice::Base("Leave and make your own way from here on", 11));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story079 : public Story::Base
+{
+public:
+    Story079()
+    {
+        ID = 79;
+
+        Text = "You are found, dragged from behind the bush, and thrown on your face in front of the Sultan. \"I'll slay this coward, too!\" snarls one of the knights, raising his spear.\n\n\"Hold,\" says the Sultan simply. The knight waits as though frozen, spear poised above you.\n\nYou scrabble to your feet. \"Why spare me, when you slaughtered all these others?\"\n\nPerhaps he smiles behind his mask. \"I have not spared you, only suspended your sentence of death. You intrigue me. I see with the eye that has looked on Paradise, and I see that destiny swirls about you like smoke.\"\n\nYour mind is racing. Plainly you will not get another chance.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use [CUNNING]", 379, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Fight them", 17));
+        Choices.push_back(Choice::Base("Make a break for it", 40));
 
         Controls = Story::Controls::STANDARD;
     }
@@ -2230,6 +2496,16 @@ auto story066 = Story066();
 auto story067 = Story067();
 auto story068 = Story068();
 auto story069 = Story069();
+auto story070 = Story070();
+auto story071 = Story071();
+auto story072 = Story072();
+auto story073 = Story073();
+auto story074 = Story074();
+auto story075 = Story075();
+auto story076 = Story076();
+auto story077 = Story077();
+auto story078 = Story078();
+auto story079 = Story079();
 
 void InitializeStories()
 {
@@ -2240,7 +2516,8 @@ void InitializeStories()
         &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039,
         &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049,
         &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059,
-        &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069};
+        &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069,
+        &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079};
 }
 
 #endif
