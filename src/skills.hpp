@@ -60,7 +60,7 @@ namespace Skill
     auto STREETWISE = Skill::Base("ROGUERY", "With this skill you are never at a loss in towns and cities. What others see as the squalor and menace of narrow alleys is home to you.", Skill::Type::STREETWISE);
     auto SWORDPLAY = Skill::Base("SWORDPLAY", "The best fighting skill, but to use it you must possess a SWORD.", Skill::Type::SWORDPLAY, Item::Type::SWORD);
     auto WILDERNESS_LORE = Skill::Base("WILDERNESS LORE", "A talent for survival in the wild -- whether forest, desert, swamp or mountain peak.", Skill::Type::WILDERNESS_LORE);
-    auto WRESTLING = Skill::Base("WRESTLING", "You know how to handle yourself in a brawl, winning ​ victory with armlocks, holds, leg sweeps and forearm jabs. You need no weapons -- your own body is the weapon.", Skill::Type::WRESTLING);
+    auto WRESTLING = Skill::Base("WRESTLING", "You know how to handle yourself in a brawl, winning victory with armlocks, holds, leg sweeps and forearm jabs. You need no weapons -- your own body is the weapon.", Skill::Type::WRESTLING);
     
     std::vector<Skill::Base> ALL = {Skill::ARCHERY, Skill::AGILITY, Skill::CUNNING, Skill::FOLKLORE, Skill::LUCK, Skill::MAGIC, Skill::ROGUERY, Skill::SEAFARING, Skill::STREETWISE, Skill::SWORDPLAY, Skill::WRESTLING};
 

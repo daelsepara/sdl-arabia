@@ -609,7 +609,7 @@ bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
         auto marginw = Margin * SCREEN_WIDTH;
         auto marginh = Margin * SCREEN_HEIGHT / 2;
 
-        auto headerw = 0.8 * splashw;
+        auto headerw = splashw;
         auto headerh = 0.07 * SCREEN_HEIGHT;
         auto space = 8;
         auto font_size = 18;
