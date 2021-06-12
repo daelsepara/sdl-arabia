@@ -627,7 +627,7 @@ public:
     {
         ID = 9;
 
-        Text = "There is indeed a tingle of recuperative energy as you taste the delicious crisp FRUIT on your tongue.\n\nThe merchant was as good as his word -- almost as great a miracle in itself as the magic healing. You gaze longingly at his stock of apples. These are a prize worth more than gold to a daring adventurer like yourself.\n\n\"You'd like to buy more?\" he asks.\n\nYou try not to appear too eager. \"At five dinars each? Recovery from one serious sword-blow would require enough fruit to pauper me!\"\n\n\"Perhaps we can barter,\" he suggests.";
+        Text = "There is indeed a tingle of recuperative energy as you taste the delicious crisp FRUIT on your tongue.\n\nThe merchant was as good as his word -- almost as great a miracle in itself as the magic healing. You gaze longingly at his stock of APPLEs. These are a prize worth more than gold to a daring adventurer like yourself.\n\n\"You'd like to buy more?\" he asks.\n\nYou try not to appear too eager. \"At five dinars each? Recovery from one serious sword-blow would require enough fruit to pauper me!\"\n\n\"Perhaps we can barter,\" he suggests.";
 
         Choices.clear();
     }
@@ -713,6 +713,8 @@ public:
     Story012()
     {
         ID = 12;
+
+        Image = "images/filler2.png";
 
         Text = "The braziers burn low while you see to your silent work. At last, with everything ready, you summon your marines ashore and together you set up a great shout which reverberates off the roof of the dome. The pirates rouse themselves to find that you have bound them all tightly with torn strips of silk.\n\n\"What devil's work's this?\" demands the pirate chief. \"How did you truss us like so many geese without waking us up?\"\n\n\"Too much wine made you sleep as quiet as babies,\" you reply, \"and I am a skilful thief. But in all honesty, I'll admit to one mistake.\" You tilt your head towards a single pirate who lies stretched out stiffly with a jewelled dagger in his chest. \"He had the bad luck to wake up. Now he sleeps the soundest sleep of all.\"";
 
@@ -876,7 +878,7 @@ public:
     {
         ID = 20;
 
-        Text = "Now that the danger is over, you find you are trembling in shock. You sit on the end of Ayisha\"s couch while you recover. \"Where did you learn sorcery?\"\n\n\"My old nurse taught me,\" she replies, smiling. \"Alas, she never told me any spell to undo these enchanted chains.\"\n\n\"There must be a key.\"\n\nAyisha nods. \"There is. It is in the nest of the giant bird known as the rokh. If you\"d agree to try and get it, I could send you there with another spell I know.\" She pauses and adds hesitantly, \"It would be dangerous, of course.\"";
+        Text = "Now that the danger is over, you find you are trembling in shock. You sit on the end of Ayisha's couch while you recover. \"Where did you learn sorcery?\"\n\n\"My old nurse taught me,\" she replies, smiling. \"Alas, she never told me any spell to undo these enchanted chains.\"\n\n\"There must be a key.\"\n\nAyisha nods. \"There is. It is in the nest of the giant bird known as the rokh. If you\"d agree to try and get it, I could send you there with another spell I know.\" She pauses and adds hesitantly, \"It would be dangerous, of course.\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Agree to try", 114));
@@ -893,7 +895,7 @@ public:
     {
         ID = 21;
 
-        Text = "The Isle of Palms is a wild windswept place off the southern tip of India. Putting into a cove, you wade ashore. \"We'll wait here,\" says Umar, the sailor in charge of the boat. \"If you\"re not back by daybreak tomorrow then, er, well...\"\n\nYou nod. \"I'll be back.\"\n\nThe interior of the island consists of grassy slopes surrounding a high pinnacle of rock whose peak is hidden in the clouds. Seeing sheep grazing in a valley nearby, you saunter over and find a shepherd who tells you, \"Yes, the rokh's nest is atop that pinnacle. Have you come to slay it?\"\n\nYou give an astonished laugh. \"Hardly. From what I\"ve heard, that would take an army.\"\n\nThe shepherd shrugs. \"Pity. It\"s forever stealing my sheep -- swoops down, grabs one, then carries it back to its nest.\"\n\n\"Maybe you should go and live elsewhere.\"\n\n\"Preposterous! The grass here is the richest to be found in all the world. See how plump my sheep are, the quality of their wool.\"\n\nThanking the shepherd for his help, you head towards the pinnacle.";
+        Text = "The Isle of Palms is a wild windswept place off the southern tip of India. Putting into a cove, you wade ashore. \"We'll wait here,\" says Umar, the sailor in charge of the boat. \"If you're not back by daybreak tomorrow then, er, well...\"\n\nYou nod. \"I'll be back.\"\n\nThe interior of the island consists of grassy slopes surrounding a high pinnacle of rock whose peak is hidden in the clouds. Seeing sheep grazing in a valley nearby, you saunter over and find a shepherd who tells you, \"Yes, the rokh's nest is atop that pinnacle. Have you come to slay it?\"\n\nYou give an astonished laugh. \"Hardly. From what I've heard, that would take an army.\"\n\nThe shepherd shrugs. \"Pity. It's forever stealing my sheep -- swoops down, grabs one, then carries it back to its nest.\"\n\n\"Maybe you should go and live elsewhere.\"\n\n\"Preposterous! The grass here is the richest to be found in all the world. See how plump my sheep are, the quality of their wool.\"\n\nThanking the shepherd for his help, you head towards the pinnacle.";
 
         Choices.clear();
 
@@ -978,6 +980,8 @@ public:
     {
         ID = 25;
 
+        Image = "images/bedouin-chieftain.png";
+
         Text = "The man who stands before you is as lean and muscular as a leopard. He wears the garb of a splendid Bedouin chieftain. His burnoose is clasped by a golden scorpion sting, and his silver belt is patterned like snakeskin. The pommel of his long curved sword is an ivory vulture's head. He looks down at you with a thunderhead gaze and says, \"Direct your prayers to me, mortal. Not that I care a whit for them.\"\n\nDespite your chattering teeth, you manage to ask his name.\n\n\"I am the Lord of the Desert. I have ruled this desolate region since the beginning of time. I am as merciful as the sun and as comforting as the rocks, as truthful as a mirage and as temperate as a sandstorm.\"\n\nWhile he proudly declaims all this, you are careful to avert your eyes so that you can look around the chamber. It is a grand treasure-hall, with tall jars of spices and perfumed oils, rugs and drapes of lushly coloured silk, as well as gold and silver coins that shimmer like rain droplets in the lamplight.\n\nThere are only two possible exits. One is a flight of steps leading up to a locked door banded with iron. The other is a curtained alcove with a strange glyph stamped into the keystone above it.";
 
         Choices.clear();
@@ -1022,7 +1026,7 @@ public:
     {
         ID = 27;
 
-        Text = "In his hurry to get away, Yussuf stumbles into you and the taper falls to the floor. You try to shove him away so that you can retrieve it, but it gets trodden underfoot. Darkness descends like a raven\"s wing.\n\nOut of the dreadful heart-stopping silence, the only sound to be heard is the ragged rasp of Yussuf\"s sobbing. \"Merciful God, spare your unworthy servant,\" he pleads. \"Never will I thieve nor cheat at dice again. No drop of wine will touch my lips--\"\n\n\"Yussuf, listen!\" You reach out a hand and shake him until he gathers his wits.\n\n\"There's nothing ...\" he says in a voice of budding hope. \"What happened to the monsters?\"\n\nStepping forward to look for the taper, you tread on something which squelches under your heel. As Yussuf picks up and relights the taper, you see that you have crushed a swarm of beetles.\n\n\"There are the monsters.\"\n\nYussuf gasps in wonder. \"Tiny insects! But the things we saw were huge.\"\n\n\"Magical mirages. The terrors of our own minds were almost turned against us.\" You peer into the gloom ahead. \"We must be on our guard, my friend. This is a place of dark sorcery.\"";
+        Text = "In his hurry to get away, Yussuf stumbles into you and the taper falls to the floor. You try to shove him away so that you can retrieve it, but it gets trodden underfoot. Darkness descends like a raven'S wing.\n\nOut of the dreadful heart-stopping silence, the only sound to be heard is the ragged rasp of Yussuf's sobbing. \"Merciful God, spare your unworthy servant,\" he pleads. \"Never will I thieve nor cheat at dice again. No drop of wine will touch my lips--\"\n\n\"Yussuf, listen!\" You reach out a hand and shake him until he gathers his wits.\n\n\"There's nothing ...\" he says in a voice of budding hope. \"What happened to the monsters?\"\n\nStepping forward to look for the taper, you tread on something which squelches under your heel. As Yussuf picks up and relights the taper, you see that you have crushed a swarm of beetles.\n\n\"There are the monsters.\"\n\nYussuf gasps in wonder. \"Tiny insects! But the things we saw were huge.\"\n\n\"Magical mirages. The terrors of our own minds were almost turned against us.\" You peer into the gloom ahead. \"We must be on our guard, my friend. This is a place of dark sorcery.\"";
 
         Choices.clear();
 
@@ -1099,6 +1103,198 @@ public:
     int Continue(Character::Base &player) { return 402; }
 };
 
+class Story031 : public Story::Base
+{
+public:
+    Story031()
+    {
+        ID = 31;
+
+        Text = "Hurriedly tipping the grisly remains out of into the street, you roll yourself up inside the rug. The slimy residue left on the fabric has a sepulchral stench, but you try not to think about it. As the two men pick you up, you hear one of them whisper, \"The one in here must be Remorak, Lord of the Razana. Better not drop him!\"\n\nYou are carried into the next room and sat on a wooden bench. The flap of the rug falls open like a cowl, allowing you to see with one eye as the men who brought you in go scurrying over to join the other islanders cringing on the floor. The room is heady with the aromatic smoke of sputtering resin torches.\n\nYou look along the bench. Other figures, also wrapped in rugs, sit along the wall. You catch a glimpse of a thin dirt-caked hand, a skeletal gleam of a face within the cowl beside you. It is a council of the dead.\n\nCaptain Ibrahim steps forward. \"Why have I been treated like this?\" he demands as he looks along the row of silent rug-draped forms. He is pale despite his show of bravado.\n\nIs it your imagination, or does one of the forms stir slightly? You barely hear a whispering crackle of a voice: \"You came to steal the rokh's diamond egg from its nest above the Nile.\"\n\nThe captain jerks back his head in denial. \"The rokh? The giant bird of legend? Stuff and nonsense. How can I feed my family on imaginary wealth? I came here for honest trade.\"\n\nSome of the cowled figures sway together like long stalks of grass after the rain. You cannot tell if they are really moving or whether it is a trick of the shimmering smoke-hazed light. Nor do you want to know if you really can hear that soft susurration of tomb-cold voices. The villagers are still prostrate on the floor with their faces pressed to the wooden boards. It's time you did something.\n\n\"The foreign sailor is lying,\" you say in your best attempt at a corpse's voice. \"I, Remorak, will prove it will my magic. All avert your eyes! Raise your voices in prayer to your ancestors!\"\n\nThey commence a chant that drowns out any other sounds as you shrug off the musty rug and hurriedly lead your amazed captain to the door.\n\nYou gained the codeword KISMET.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
+    }
+
+    int Continue(Character::Base &player) { return 145; }
+};
+
+class Story032 : public Story::Base
+{
+public:
+    Story032()
+    {
+        ID = 32;
+
+        Text = "Each of the GOLDEN APPLEs will heal 1 lost Life Point when eaten. You cannot eat APPLEs to bring you back from the dead, of course -- if you go below zero Life Points at any stage of the adventure then you are dead, regardless of whether you may have magic APPLEs still uneaten in your backpack.";
+
+        Bye = "Thanking the fruit seller, you head back to the ship.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 78; }
+};
+
+class Story033 : public Story::Base
+{
+public:
+    Story033()
+    {
+        ID = 33;
+
+        Text = "Your blow splits the ghoul's head like a gourd. Whatever spills out is not like any human brain: a quivering black mass that reminds you of a dead octopus. Retching, you cast the wooden stick aside and hastily search the hut for anything worth taking. You find 15 dinars in a jar over the hearth -- money no doubt stolen from the poor souls the ghouls waylaid and ate.\n\nYou also take a thick woollen CLOAK. You have no desire to spend the night here, and you will need something to keep warm while sheltering amid the rocks. The CLOAK is crawling with lice, but you hold it over the fire for a few minutes so that the smoke drives most of them out.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 15);
+
+        Take = {Item::CLOAK};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 80; }
+};
+
+class Story034 : public Story::Base
+{
+public:
+    Story034()
+    {
+        ID = 34;
+
+        Text = "The ghoul dam looks up with bulging eyes as the door splinters under your kick. \"What have you done to my sons?\" she screeches before lunging towards a meat cleaver hanging on the wall.\n\nA worm-eaten old stick rests beside the door.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Grab it and attack her", 435));
+        Choices.push_back(Choice::Base("Use a SWORD", 391, Choice::Type::ANY_ITEM, {Item::SWORD, Item::JEWELLED_SWORD}));
+        Choices.push_back(Choice::Base("Rely on your bare hands", 413));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story035 : public Story::Base
+{
+public:
+    Story035()
+    {
+        ID = 35;
+
+        Text = "You go and shelter in a cave, after first checking that it isn't already occupied. A raw wind howls outside, but you are snug inside your woollen cloak. Even so, you get very little sleep after your horrific experience. Rising with the first silver light of the predawn, you head down out of the hills to join the others.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 289; }
+};
+
+class Story036 : public Story::Base
+{
+public:
+    Story036()
+    {
+        ID = 36;
+
+        Text = "It feels as though the wind is blasting your skin dry. You wrap your turban across your face and stumble on, barely able to see. There is no way you could hear the others even if they shouted. The tug of the other camels on the ropes is the only reassurance that you are not entirely alone in this ordeal.\n\nYou LOSE 1 Life Point.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Head straight into the storm", 105));
+        Choices.push_back(Choice::Base("Veer off to the left", 82));
+        Choices.push_back(Choice::Base("Veer off to the right", 59));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+};
+
+class Story037 : public Story::Base
+{
+public:
+    Story037()
+    {
+        ID = 37;
+
+        Text = "His blade whips around, carving a livid streak across your breastbone. Your own blow had no effect on him.\n\nYou LOSE 2 Life Points.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try to close in for a desperate full-strength attack", 148));
+        Choices.push_back(Choice::Base("Lunge at him from arm's length", 106));
+        Choices.push_back(Choice::Base("Retreat while parrying", 60));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -2);
+    }
+};
+
+class Story038 : public Story::Base
+{
+public:
+    Story038()
+    {
+        ID = 38;
+
+        Text = "You explain to the old man that there has been a mistake. You are not the one who stole the Sultan'S ruby.\n\nSurprisingly, his answer to this is a thin wheeze of laughter. \"Not the Shadow, eh? I thought not. I doubt they'll ever catch that one.\"\n\n\"Who is the Shadow?\"\n\n\"The most daring of knaves. The rogue who purloined the jinn ring of Ala al-Din and the flying rug once owned by the Emir of Cordoba, as well as the crown of the infidel ruler Shah al Ma'in. He -- or she, for the Shadow is a figure veiled in mystery -- has vowed next to steal the diamond egg of the rokh.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::KISMET}))
+        {
+            return 64;
+        }
+        else
+        {
+            return 470;
+        }
+    }
+};
+
+class Story039 : public Story::Base
+{
+public:
+    Story039()
+    {
+        ID = 39;
+
+        Text = "You drank the poisoned water soon after coming aboard. Assuming the hawser was cut soon after, and judging the time now to be midmorning, you have been drifting for about fourteen hours. Allowing for the breeze and ocean current, you quickly estimate how far the ship has covered in that period.\n\nIt is hard work raising the sails on your own, but you have the advantage of long nautical experience. Bringing the ship around, you steer towards your best guess of where the other ship would have reached by dawn. You know that your friends will sail back looking for you once they find you've been set adrift. Not out of sentiment, of course. It's just that nothing would stop Captain Ibrahim from retrieving a free cargo of glass and porcelain.\n\nUnless he and the crew have already been poisoned themselves, that is.\n\nYou keep on searching the horizon as the sun reaches its zenith, then sinks down the sky. Finally your persistence is rewarded by the sight of your own ship plunging through the waves towards you. As she comes alongside, you leap across to a great cheer from the crew.\n\nOnce you've warned the captain that he probably has a stowaway on board, he orders the ship thoroughly searched. Soon there are shouts from the hold, and a small plump man in a long robe is dragged on deck. \"He was hiding behind one of the crates,\" says the first mate. \n\nThe stowaway fixes you with a resentful stare. \"Curse you! How did you sail that ship back on your own? If not for you, I'd have poisoned the water tonight and made myself master of the vessel.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 174; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -1130,14 +1326,23 @@ auto story027 = Story027();
 auto story028 = Story028();
 auto story029 = Story029();
 auto story030 = Story030();
+auto story031 = Story031();
+auto story032 = Story032();
+auto story033 = Story033();
+auto story034 = Story034();
+auto story035 = Story035();
+auto story036 = Story036();
+auto story037 = Story037();
+auto story038 = Story038();
+auto story039 = Story039();
 
 void InitializeStories()
 {
     Stories = {
-        &prologue,
-        &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009, &story010,
-        &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019, &story020,
-        &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029, &story030};
+        &prologue, &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009,
+        &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
+        &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
+        &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039};
 }
 
 #endif

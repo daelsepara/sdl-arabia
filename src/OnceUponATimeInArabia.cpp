@@ -1140,6 +1140,36 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                         {
                             bool used_up = false;
 
+                            if (item.Type == Item::Type::GOLDEN_APPLE)
+                            {
+                                if (player.Life == player.MAX_LIFE_LIMIT)
+                                {
+                                    flash_message = true;
+
+                                    message = "You are not INJURED!";
+
+                                    flash_color = intRD;
+
+                                    start_ticks = SDL_GetTicks();
+
+                                    flash_message = true;
+                                }
+                                else
+                                {
+                                    Character::GAIN_LIFE(player, 1);
+
+                                    message = "Your Life Points are RESTORED!";
+
+                                    flash_color = intLG;
+
+                                    start_ticks = SDL_GetTicks();
+
+                                    flash_message = true;
+
+                                    used_up = true;
+                                }
+                            }
+
                             if (used_up)
                             {
                                 if (Items.size() > 0)
