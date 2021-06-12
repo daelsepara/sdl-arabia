@@ -11,8 +11,13 @@ namespace Item
         BOW,
         RING,
         SWORD,
+        CLOAK,
+        JEWELLED_SWORD,
+        BLACK_JEWEL,
+        HAWK,
+        GOLDEN_APPLE,
         First = BOW,
-        Last = SWORD
+        Last = GOLDEN_APPLE
     };
 
     class Base
@@ -49,6 +54,11 @@ namespace Item
     auto BOW = Item::Base("BOW", "BOW", Item::Type::BOW);
     auto RING = Item::Base("RING", "RING", Item::Type::RING);
     auto SWORD = Item::Base("SWORD", "SWORD", Item::Type::SWORD);
+    auto CLOAK = Item::Base("CLOAK", "CLOAK", Item::Type::CLOAK);
+    auto JEWELLED_SWORD = Item::Base("JEWELLED SWORD", "JEWELLED SWORD", Item::Type::JEWELLED_SWORD);
+    auto BLACK_JEWEL = Item::Base("BLACK JEWEL", "BLACK JEWEL", Item::Type::BLACK_JEWEL);
+    auto HAWK = Item::Base("BLACK JEWEL", "BLACK JEWEL", Item::Type::HAWK);
+    auto GOLDEN_APPLE = Item::Base("GOLDEN APPLE", "GOLDEN APPLE", Item::Type::GOLDEN_APPLE);
 
     std::vector<Item::Type> UniqueItems = {};
 

@@ -436,12 +436,269 @@ public:
     int Continue(Character::Base &player) { return 1; }
 };
 
+class Story001 : public Story::Base
+{
+public:
+    Story001()
+    {
+        ID = 1;
+
+        Text = "Nightfall finds you walking aimlessly through the narrow back streets of the city. From off in the main plaza you can hear the hubbub of street entertainers and night-time revellers. Torchlight flares from braziers set up for the festival. Here the street is hushed and dimly lit. You shrink back into the shadows, preferring to be alone with your bitter thoughts.\n\nA beggar sits in a doorway, unnoticed by the few passers-by. He is an old dervish with a streaked grey beard. He reaches out his tin cup, startling you, and you flinch at the sight of his scabrous hands. Then you see the green turban that marks him as a hajji -- one who has made the arduous pilgrimage to Mecca.\n\n\"Alms for the love of God,\" he mutters.\n\nAshamed at the feeling of loathing that swept across your face at first, you fish in your pocket and GIVE him a dinar. It rattles in his cup and for a moment he peers at it as though it were a wondrous vision. He gestures up at the heavens and says, \"You have only to lift your head: there is a sight to banish misfortune. Under the wide sky, God sees all and guides the worthy to a just reward.\"\n\nThe remark seems filled with portent. You gaze up past the rooftops at the stars: a thousand lights sharp as jewels on the cloth of the night. A feeling of awe at their beauty takes the breath from your body. By the time you look back, the dervish is shuffling away.\n\nYou follow him to the end of the alley, but lose sight of him as he slips through a crowd of people who are gathered to hear a storyteller. As the storyteller finishes his tale, the crowd begins to break up. Some move off towards a troupe of acrobats from distant Cathay whose oiled flesh gleams like amber in the flaring torchlight. Others go to buy sweetmeats from stalls around the plaza. The storyteller sits back on his mat, beaming at the mound of coins he has earned.\n\nYou are standing outside an astrologer's shop. A man emerges, brushing past you, nodding with a smile as he catches your eye. The tattoo on his chest suggests he is a sailor.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Enter the astrologer's shop", 69));
+        Choices.push_back(Choice::Base("Talk to the sailor", 475));
+        Choices.push_back(Choice::Base("Go over to the storyteller", 23));
+        Choices.push_back(Choice::Base("Go in search of the elusive dervish", 92));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story002 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story002()
+    {
+        ID = 2;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "There is a clang as your sword strikes the floor, followed by an ominous hush as Masrur steps forward smiling and pins your arms behind your back. You are taken to the dungeons, stripped of everything you own, then hung in chains and tortured for several days.\n\nYou LOSE 2 Life Points.";
+
+        Character::GAIN_LIFE(player, -2);
+
+        Character::LOSE_ALL(player);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou are finally released and half-dragged to the docks by a captain of the Palace Guard. \"As you value your life, wretch, take ship from Baghdad on this very hour,\" he snarls. \"Jafar won't be so lenient the next time.\"\nHe turns on his heel and walks away, leaving you clutching a stanchion for support. He is right. You must leave Baghdad -- at least until your regain your strength. Then you can come back for revenge.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 160; }
+};
+
+class Story003 : public Story::Base
+{
+public:
+    Story003()
+    {
+        ID = 3;
+
+        Text = "\"Perhaps this tale is true, perhaps not. Only God knows all,\" begins the old storyteller. \"It concerns a young prince who, while travelling in the wilderness, came to a hut of mud bricks. Drawing water from the well, he was taken unawares by two strong brothers who came upon him from behind. They carried him to their mother, an aged crone with a face as withered as a rotten gourd. Her teeth were like broken pebbles, her eyes filmy with rheum. And the prince knew from their white skin that these were not mortals, but a family of ghouls. Then he feared for his life, but even in his terror his wits did not entirely desert him. 'Am I to die without a chance to save myself?' he asked as they stoked the fire.\n\n\"The ancient she-ghoul leered as she sprinkled the seasoning. 'What chance would you have?' she asked. 'In any contest, my sons are superior to a mortal man.'\n\n'I have no skill with weapons,' replied the prince. 'But in my own land I am famous as an athlete. Why not set me free with a head start? Then, if your sons are fleet of foot, they can try to hunt me down. They will return with good appetites, and no scraps at the table will go to waste.'\"\n\nThe captain has come over and heard part of this tale. Butting in, he turns to you and says, \"Why waste your time on this foolishness? This is a tale for the witless. Does this old man think us as credulous as any village peasant?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Agree with the captain", 375));
+        Choices.push_back(Choice::Base("Hear the rest of the story", 74));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story004 : public Story::Base
+{
+public:
+    Story004()
+    {
+        ID = 4;
+
+        Text = "If not for Ayisha's magic, Jafar would have achieved a last act of villainy from beyond the grave, for the venom on his knife was lethal and even an antidote would not save any ordinary man. But, weaving her fingers over the wound, she calls the poison out in the form of green vapour which the Caliph's servants catch in a bottle.\n\nThe Caliph sits up, amazed to be alive.\n\n\"As long as the bottle remains stoppered, father, you are safe.\"\n\n\"Then place it in our deepest vaults,\" he commands the captain of the guard. \"God is merciful to return my daughter to me, and surely it is by His hand that she saved my life.\"\n\nAyisha glances at you. \"I had help, O my father.\"\n\nThe Caliph nods and beckons you closer.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 120; }
+};
+
+class Story005 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story005()
+    {
+        ID = 5;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Take advantage of the momentary respite to retreat to the top of the steps and flee into the tunnel", 408));
+        Choices.push_back(Choice::Base("Extinguish the taper", 449));
+        Choices.push_back(Choice::Base("Try racing for the bottom of the steps", 73));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The creatures swoop down. They are like giant moths with the faces of dead men, and their wings have the smell of grave shrouds. The first of them reaches you. You can see lice writhing in its coarse dusty fur. It lands on your shoulder and bites, tearing your flesh.\n\nYou LOSE 2 Life Points.";
+
+        Character::GAIN_LIFE(player, -2);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou give a cry of disgust and swat it away, your punch shattering the sequin-like facets of its eye. It spirals down into the depths, but the others are not far away.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story006 : public Story::Base
+{
+public:
+    Story006()
+    {
+        ID = 6;
+
+        Text = "Yussuf finds you wandering along the harbour front. \"I thought you must have set sail without me,\" you say, grinning with relief.\n\n\"Not at all!\" he declares. \"But I must confess, I am surprised to see you here in the north docks. Did you forget that we are moored over yonder, in the south docks?\"\n\nYou rub your face to hide a rueful grimace. Your career as a sailor has not got off to a very promising start.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go back to the ship with Yussuf", 431));
+        Choices.push_back(Choice::Base("Decide that a life at sea is not for you after all", 81));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story007 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story007()
+    {
+        ID = 7;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Agree", 53));
+        Choices.push_back(Choice::Base("Run for your life", 30));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You give a gasp of pain as the gryphon rips out your left eye.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nSuddenly filled with renewed strength, the gryphon goes bounding across the hall and claws the monstrous goat to the floor. When its foe stops twitching, it looks up and seems about to speak, only to look around as a third foe emerges from the inner recesses of the palace. This is a great snake as long as a ship, with venom running like stagnant water from its fangs. Its eyes burn red as the fires of Iblis the Despairer, lord of all evil spirits.\n\nYou look at the wounded gryphon. \"What now?\" you ask with a groan.\n\n\"Now,\" it says wearily, \"the only way I can hope for victory is to drink the marrow of a human thigh-bone.\"\n\nHorror of horrors!";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story008 : public Story::Base
+{
+public:
+    Story008()
+    {
+        ID = 8;
+
+        Text = "You step into the next room. The shutters are all closed and the only light comes from resinous torches. The haze of pungent smoke makes your eyes water. Blinking as your vision adjusts to the shadows, you see the natives crouching with heads bowed towards the far end of this long room. Your captain stands there as though on trial -- his judges, two rows of silent figures draped in rugs, which they wear like heavy robes.\n\n\"What's this farce?\" you thunder. \"Release my captain or suffer the consequences, you worthless heathen dogs.\"\n\nThat seems to goad them into action. They leap up with flashing eyes and bear down on you armed with spears and knives. You back into the doorway and get ready for a fight.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 54; }
+};
+
+class Story009 : public Story::Base
+{
+public:
+    Story009()
+    {
+        ID = 9;
+
+        Text = "There is indeed a tingle of recuperative energy as you taste the delicious crisp FRUIT on your tongue.\n\nThe merchant was as good as his word -- almost as great a miracle in itself as the magic healing. You gaze longingly at his stock of apples. These are a prize worth more than gold to a daring adventurer like yourself.\n\n\"You'd like to buy more?\" he asks.\n\nYou try not to appear too eager. \"At five dinars each? Recovery from one serious sword-blow would require enough fruit to pauper me!\"\n\n\"Perhaps we can barter,\" he suggests.";
+
+        Choices.clear();
+    }
+
+    void Event(Character::Base &player)
+    {
+        Shop.clear();
+
+        if (Character::VERIFY_ITEMS_ANY(player, {Item::CLOAK, Item::JEWELLED_SWORD, Item::BLACK_JEWEL, Item::HAWK}))
+        {
+            Controls = Story::Controls::STANDARD;
+        }
+        else
+        {
+            Shop = {{Item::GOLDEN_APPLE, 5}};
+
+            Controls = Story::Controls::SHOP;
+        }
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS_ANY(player, {Item::CLOAK, Item::JEWELLED_SWORD, Item::BLACK_JEWEL, Item::HAWK}))
+        {
+            return 55;
+        }
+        else
+        {
+            return 32;
+        }
+    }
+};
+
+class Story010 : public Story::Base
+{
+public:
+    Story010()
+    {
+        ID = 10;
+
+        Text = "You have not forgotten the tale you heard from the old storyteller in the village.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::CONCH);
+    }
+
+    int Continue(Character::Base &player) { return 469; }
+};
+
 auto prologue = Prologue();
+auto story001 = Story001();
+auto story002 = Story002();
+auto story003 = Story003();
+auto story004 = Story004();
+auto story005 = Story005();
+auto story006 = Story006();
+auto story007 = Story007();
+auto story008 = Story008();
+auto story009 = Story009();
+auto story010 = Story010();
 
 void InitializeStories()
 {
     Stories = {
-        &prologue};
+        &prologue,
+        &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009, &story010};
 }
 
 #endif
