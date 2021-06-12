@@ -11,6 +11,24 @@ This is an implementation of the **Once Upon a Time in Arabia** game book (Criti
 - Sound
 - Multiplatform Linux/Windows/OSX (**PARTIAL**)
 
+# Current Progress (Screenshots)
+
+**Title screen**
+
+![Title Screen](/screenshots/title-screen.png)
+
+**About screen**
+
+![About Screen](/screenshots/about-screen.png)
+
+**Create Character**
+
+![Create Character](/screenshots/create-character.png)
+
+**Story screen (Main interface)**
+
+![Story Screen](/screenshots/story-screen.png)
+
 # Copyright Information 
 
 ```
