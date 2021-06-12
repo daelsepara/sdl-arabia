@@ -3891,7 +3891,8 @@ bool mapScreen(SDL_Window *window, SDL_Renderer *renderer)
                         clipValue(dst.x, buttonw / 4, SCREEN_WIDTH - buttonw / 4 - zoomw);
                         clipValue(dst.y, buttonh / 4, SCREEN_HEIGHT - buttonh / 4 - zoomh);
 
-                        SDL_RenderCopy(renderer, texture, &src, &dst);
+                        // Render rotated image
+                        SDL_RenderCopyEx(renderer, texture, &src, &dst, 90.0, NULL, SDL_FLIP_NONE);
 
                         drawRect(renderer, dst.w, dst.h, dst.x, dst.y, intBK);
                     }
