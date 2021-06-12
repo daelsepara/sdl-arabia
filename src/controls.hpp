@@ -40,7 +40,8 @@ namespace Control
         YES,
         NO,
         BUY,
-        SELL
+        SELL,
+        BARTER
     };
 
     class Base

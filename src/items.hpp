@@ -18,8 +18,9 @@ namespace Item
         GOLDEN_APPLE,
         WATER_BOTTLE,
         MAGIC_SLIPPERS,
+        JASMINE_FLOWER,
         First = BOW,
-        Last = GOLDEN_APPLE
+        Last = JASMINE_FLOWER
     };
 
     class Base
@@ -59,10 +60,11 @@ namespace Item
     auto CLOAK = Item::Base("CLOAK", "CLOAK", Item::Type::CLOAK);
     auto JEWELLED_SWORD = Item::Base("JEWELLED SWORD", "JEWELLED SWORD", Item::Type::JEWELLED_SWORD);
     auto BLACK_JEWEL = Item::Base("BLACK JEWEL", "BLACK JEWEL", Item::Type::BLACK_JEWEL);
-    auto HAWK = Item::Base("BLACK JEWEL", "BLACK JEWEL", Item::Type::HAWK);
+    auto HAWK = Item::Base("HAWK", "HAWK", Item::Type::HAWK);
     auto GOLDEN_APPLE = Item::Base("GOLDEN APPLE", "GOLDEN APPLE", Item::Type::GOLDEN_APPLE);
     auto WATER_BOTTLE = Item::Base("WATER BOTTLE", "WATER BOTTLE", Item::Type::WATER_BOTTLE);
     auto MAGIC_SLIPPERS = Item::Base("MAGIC SLIPPERS", "MAGIC SLIPPERS", Item::Type::MAGIC_SLIPPERS);
+    auto JASMINE_FLOWER = Item::Base("JASMINE FLOWER", "JASMINE FLOWER", Item::Type::JASMINE_FLOWER);
 
     std::vector<Item::Type> UniqueItems = {};
 

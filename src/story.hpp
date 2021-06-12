@@ -38,7 +38,8 @@ namespace Choice
         BRIBE,
         TAKE,
         PAY_WITH,
-        SELL
+        SELL,
+        BARTER
     };
 
     class Base
@@ -165,7 +166,9 @@ namespace Story
         SHOP,
         BUY_AND_SELL,
         SELL,
-        TRADE
+        TRADE,
+        BARTER,
+        BARTER_AND_SHOP
     };
 
     class Base
@@ -189,6 +192,7 @@ namespace Story
         std::vector<std::pair<Item::Base, int>> Sell = std::vector<std::pair<Item::Base, int>>();
 
         std::pair<Item::Base, Item::Base> Trade;
+        std::vector<std::pair<Item::Base, std::vector<Item::Base>>> Barter = std::vector<std::pair<Item::Base, std::vector<Item::Base>>>();
 
         // Player selects items to take up to a certain limit
         std::vector<Item::Base> Take = std::vector<Item::Base>();
@@ -355,6 +359,57 @@ namespace Story
         controls.push_back(Button(idx + 4, "icons/next.png", idx + 3, idx + 5, compact ? idx + 4 : 1, idx + 4, startx + 4 * gridsize, buttony, Control::Type::NEXT));
         controls.push_back(Button(idx + 5, "icons/shop.png", idx + 4, idx + 6, compact ? idx + 5 : 1, idx + 5, startx + 5 * gridsize, buttony, Control::Type::TRADE));
         controls.push_back(Button(idx + 6, "icons/exit.png", idx + 5, idx + 6, compact ? idx + 6 : 1, idx + 6, (1.0 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK));
+
+        return controls;
+    }
+
+    std::vector<Button> BarterControls(bool compact = false)
+    {
+        auto idx = 0;
+
+        auto controls = std::vector<Button>();
+
+        if (!compact)
+        {
+            controls.push_back(Button(0, "icons/up-arrow.png", 0, 1, 0, 1, (1.0 - Margin) * SCREEN_WIDTH - arrow_size, texty + border_space, Control::Type::SCROLL_UP));
+            controls.push_back(Button(1, "icons/down-arrow.png", 0, 2, 0, 2, (1.0 - Margin) * SCREEN_WIDTH - arrow_size, texty + text_bounds - arrow_size - border_space, Control::Type::SCROLL_DOWN));
+
+            idx = 2;
+        }
+
+        controls.push_back(Button(idx, "icons/map.png", idx, idx + 1, compact ? idx : 1, idx, startx, buttony, Control::Type::MAP));
+        controls.push_back(Button(idx + 1, "icons/disk.png", idx, idx + 2, compact ? idx + 1 : 1, idx + 1, startx + gridsize, buttony, Control::Type::GAME));
+        controls.push_back(Button(idx + 2, "icons/user.png", idx + 1, idx + 3, compact ? idx + 2 : 1, idx + 2, startx + 2 * gridsize, buttony, Control::Type::CHARACTER));
+        controls.push_back(Button(idx + 3, "icons/items.png", idx + 2, idx + 4, compact ? idx + 3 : 1, idx + 3, startx + 3 * gridsize, buttony, Control::Type::USE));
+        controls.push_back(Button(idx + 4, "icons/next.png", idx + 3, idx + 5, compact ? idx + 4 : 1, idx + 4, startx + 4 * gridsize, buttony, Control::Type::NEXT));
+        controls.push_back(Button(idx + 5, "icons/exhange.png", idx + 4, idx + 6, compact ? idx + 5 : 1, idx + 5, startx + 5 * gridsize, buttony, Control::Type::BARTER));
+        controls.push_back(Button(idx + 6, "icons/exit.png", idx + 5, idx + 6, compact ? idx + 6 : 1, idx + 6, (1.0 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK));
+
+        return controls;
+    }
+
+    std::vector<Button> BarterAndShopControls(bool compact = false)
+    {
+        auto idx = 0;
+
+        auto controls = std::vector<Button>();
+
+        if (!compact)
+        {
+            controls.push_back(Button(0, "icons/up-arrow.png", 0, 1, 0, 1, (1.0 - Margin) * SCREEN_WIDTH - arrow_size, texty + border_space, Control::Type::SCROLL_UP));
+            controls.push_back(Button(1, "icons/down-arrow.png", 0, 2, 0, 2, (1.0 - Margin) * SCREEN_WIDTH - arrow_size, texty + text_bounds - arrow_size - border_space, Control::Type::SCROLL_DOWN));
+
+            idx = 2;
+        }
+
+        controls.push_back(Button(idx, "icons/map.png", idx, idx + 1, compact ? idx : 1, idx, startx, buttony, Control::Type::MAP));
+        controls.push_back(Button(idx + 1, "icons/disk.png", idx, idx + 2, compact ? idx + 1 : 1, idx + 1, startx + gridsize, buttony, Control::Type::GAME));
+        controls.push_back(Button(idx + 2, "icons/user.png", idx + 1, idx + 3, compact ? idx + 2 : 1, idx + 2, startx + 2 * gridsize, buttony, Control::Type::CHARACTER));
+        controls.push_back(Button(idx + 3, "icons/items.png", idx + 2, idx + 4, compact ? idx + 3 : 1, idx + 3, startx + 3 * gridsize, buttony, Control::Type::USE));
+        controls.push_back(Button(idx + 4, "icons/next.png", idx + 3, idx + 5, compact ? idx + 4 : 1, idx + 4, startx + 4 * gridsize, buttony, Control::Type::NEXT));
+        controls.push_back(Button(idx + 5, "icons/shop.png", idx + 4, idx + 6, compact ? idx + 5 : 1, idx + 5, startx + 5 * gridsize, buttony, Control::Type::SHOP));
+        controls.push_back(Button(idx + 6, "icons/exchange.png", idx + 5, idx + 7, compact ? idx + 6 : 1, idx + 6, startx + 6 * gridsize, buttony, Control::Type::BARTER));
+        controls.push_back(Button(idx + 7, "icons/exit.png", idx + 6, idx + 7, compact ? idx + 7 : 1, idx + 7, (1.0 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK));
 
         return controls;
     }
@@ -1434,7 +1489,7 @@ public:
                 PreText += "[WRESTLING] ";
             }
         }
-        
+
         Character::GAIN_LIFE(player, DAMAGE);
 
         PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
@@ -1467,22 +1522,19 @@ public:
 
         auto DAMAGE = -5;
 
-        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
         {
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
-            {
-                DAMAGE = -2;
+            DAMAGE = -2;
 
-                PreText += "[SWORDPLAY] ";
-            }
-            else
-            {
-                DAMAGE = -3;
-
-                PreText += "[WRESTLING] ";
-            }
+            PreText += "[SWORDPLAY] ";
         }
-        
+        else
+        {
+            DAMAGE = -3;
+
+            PreText += "[WRESTLING] ";
+        }
+
         Character::GAIN_LIFE(player, DAMAGE);
 
         PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
@@ -1526,6 +1578,314 @@ public:
         Choices.push_back(Choice::Base("Go by land", 183));
 
         Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story050 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story050()
+    {
+        ID = 50;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "\"Come,\" says the gryphon. It leads you to a vestibule where you see a table of platinum that glints with a liquid sheen. On the table rest two objects: a sapphire the size of an eye, and a whole leg of burnished gold. Pressing the sapphire to your empty socket, you discover that you can see as well through it as you could with the eye you lost. The leg, too, knits to your flesh. It is as strong as your former limb.\n\nYou RECOVER 5 Life Points.";
+
+        Character::GAIN_LIFE(player, 5);
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            player.SKILLS_LIMIT++;
+
+            player.Skills.push_back(Skill::LUCK);
+
+            PreText += "\n\nYou have acquired the LUCK skill.";
+        }
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            player.SKILLS_LIMIT++;
+
+            player.Skills.push_back(Skill::AGILITY);
+
+            PreText += "\n\nYou have acquired the AGILITY skill.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::JASMINE_FLOWER}))
+        {
+            return 98;
+        }
+        else
+        {
+            return 76;
+        }
+    }
+};
+
+class Story051 : public Story::Base
+{
+public:
+    Story051()
+    {
+        ID = 51;
+
+        Text = "You have crept, clambered and crawled through many places that were danker and darker than this. Your sharpened senses do not need light. You turn around to face the steps and continue the descent backwards, like a climber, moving sure-footedly until you feel the firm expanse of rock that marks the bottom of the staircase.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 96; }
+};
+
+class Story052 : public Story::Base
+{
+public:
+    Story052()
+    {
+        ID = 52;
+
+        Text = "You press on along the tunnel. The taper gives only a smouldering glow which is barely enough to see beyond arm's length. After several minutes, you begin to feel a slight breeze. \"It might be the way out,\" says Yussuf hopefully, quickening his step.\n\nYou doubt it. The air still has a stale subterranean reek. Yussuf stops abruptly with a small groan, and you hurry to join him. The tunnel has emerged at the top of a narrow stone staircase, barely two feet wide. The steps look dank and slippery. On either side is a sheer drop into darkness. You can sense an immense cavern, but the walls and ceiling and floor are too far away for the feeble light of the taper to reach. All you can see is that alarmingly narrow staircase stretching into the unseen depths below.\n\nYussuf finds a pebble and drops it off the side of the top step. Seven heartbeats later you hear it hit the floor of the cavern. He looks at you. \"We have to go down?\".";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Turn back", 408));
+        Choices.push_back(Choice::Base("Start down the staircase", 430));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story053 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story053()
+    {
+        ID = 53;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The great beak descends, cracking open your leg. You give a great shriek of agony and sink back with a groan.\n\nYou LOSE 3 Life Points.";
+
+        Character::GAIN_LIFE(player, -3);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou are barely conscious enough to witness the battle. It seems to your watery gaze as though the two monstrous adversaries are submerged in a red haze. With thundering howls and hissing war-cries, they twine and writhe in a battle that shakes the very walls around you. At last the gryphon is victorious. It comes padding across the golden tiles to your side.\n\n\"That was the last,\" it says. \"They slew my masters, who once dwelt here, but now I have avenged them.\"\n\n\"At what a cost!\" you wail. \"See me -- blinded, disfigured and crippled. Oh, merciful God, what have I done to merit such a fate?\"";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 50; }
+};
+
+class Story054 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story054()
+    {
+        ID = 54;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Fight on and try to rescue him", 122));
+        Choices.push_back(Choice::Base("Flee while you still can", 145));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The islanders launch themselves on you with shrieks of fury. \"Kill the foreign devil!\" you hear the headman cry. \"It is not permitted for an outsider to gaze upon the Council of Retired Elders and live!\"\n\nTheir rage works in your favour. They are all so anxious to kill you that their attacks are too fast and too wildly aimed. Weapons clash together, or lodge in the wooden pillars, more often than they find their mark in your flesh. Even so, you are injured.\n\n";
+
+        auto DAMAGE = -3;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -1;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else
+        {
+            DAMAGE = -2;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou glance up past the throng of angry faces to see your captain standing dumbstruck against the wall. The haze of blue resin-scented smoke makes him look like a ghost in his white tunic.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story055 : public Story::Base
+{
+public:
+    Story055()
+    {
+        ID = 55;
+
+        Text = "The fruit seller will give you two GOLDEN APPLEs in exchange for each of the following items: a JEWELLED SWORD, a CLOAK, a HAWK, or a BLACK JEWEL. You can get up to eight APPLEs if you have all these items and are prepared to part with them.\n\nYou can also buy additional GOLDEN APPLEs at 5 dinars each if you have any money left.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::BARTER_AND_SHOP;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Shop = {{Item::GOLDEN_APPLE, 5}};
+
+        Barter = {
+            {Item::JEWELLED_SWORD, {Item::GOLDEN_APPLE, Item::GOLDEN_APPLE}},
+            {Item::CLOAK, {Item::GOLDEN_APPLE, Item::GOLDEN_APPLE}},
+            {Item::HAWK, {Item::GOLDEN_APPLE, Item::GOLDEN_APPLE}},
+            {Item::BLACK_JEWEL, {Item::GOLDEN_APPLE, Item::GOLDEN_APPLE}}};
+    }
+
+    int Continue(Character::Base &player) { return 32; }
+};
+
+class Story056 : public Story::Base
+{
+public:
+    Story056()
+    {
+        ID = 56;
+
+        Text = "You remember the tale of a man who was captured by a family of ghouls. To save his life, he challenged the two sons to a race. Securing a head start, he hid himself in a thorn bush until they ran past and then doubled back to the hut where their mother was preparing supper. He knew he had to kill her, otherwise her sorcery would find him wherever he ran. Luckily he also knew that steel cannot kill a ghoul witch; only a wooden weapon will do. Taking up a stick, he gave her a single good clout that dashed out her brains. And it was good for him that his first blow was decisive, because although a ghoul can be hurt with one blow, a second blow will only heal its wounds.";
+
+        Bye = "Armed with this knowledge...";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 469; }
+};
+
+class Story057 : public Story::Base
+{
+public:
+    Story057()
+    {
+        ID = 57;
+
+        Text = "An ominous cough breaks the silence of the night. You whirl around. Your heart sinks when you see the ghoulish witch and her sons standing right behind you. She is pointing a divining rod in your direction, saying through gritted teeth: \"There's your supper. Don't lose it again!\"\n\nShe clouts you across the face with the rod. Lose 1 Life Point. If you still live, you are gripped firmly by the arms and led back to the hut. They shove you into the pantry and the mother starts looking at the jars along the shelves. \"Let's see... a bit of pepper and some garlic ought to set off the flavours nicely.\"\n\nThis is your last chance.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use [MAGIC]", 327, Skill::Type::MAGIC));
+        Choices.push_back(Choice::Base("Go down fighting", 305));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            Choices[1].Destination = 370;
+        }
+        else
+        {
+            Choices[1].Destination = 305;
+        }
+    }
+};
+
+class Story058 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story058()
+    {
+        ID = 58;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "You pick your way between the sleeping pirates, open-mouthed at the wealth carelessly scattered all around. In your amazement you fail to notice their ship's cat curled up on a pile of velvet cushions. You tread on its tail and there is a howl that rises to the high domed roof. In seconds the pirates are on their feet, staring around in shock and fury.\n\nBefore you have a chance to call out to your marines, one of the pirates raises an earthenware jug and sloshes its oily contents all over you. On contact with the air, the oil bursts into flame. You are engulfed in Greek fire -- the sticky chemical used in sea battles. If you can't put it out quickly, you'll be burned alive.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nEven diving into the water will not save you -- you are charred to a blackened crisp in seconds, and that is the end of your adventure.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 488; }
+};
+
+class Story059 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story059()
+    {
+        ID = 59;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go straight into the teeth of the storm", 105));
+        Choices.push_back(Choice::Base("Head right", 128));
+        Choices.push_back(Choice::Base("Head left", 82));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Weak, deafened by the shriek of the wind and blinded by the driven sand, you stumble onwards. Desperation drives you to keep going. If you fell, you know that you would soon be buried beneath the dunes.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou still have the strength to press on.";
+        }
+
+        Text = PreText.c_str();
     }
 };
 
@@ -1579,6 +1939,16 @@ auto story046 = Story046();
 auto story047 = Story047();
 auto story048 = Story048();
 auto story049 = Story049();
+auto story050 = Story050();
+auto story051 = Story051();
+auto story052 = Story052();
+auto story053 = Story053();
+auto story054 = Story054();
+auto story055 = Story055();
+auto story056 = Story056();
+auto story057 = Story057();
+auto story058 = Story058();
+auto story059 = Story059();
 
 void InitializeStories()
 {
@@ -1587,7 +1957,8 @@ void InitializeStories()
         &story010, &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019,
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
         &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039,
-        &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049};
+        &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049,
+        &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059};
 }
 
 #endif

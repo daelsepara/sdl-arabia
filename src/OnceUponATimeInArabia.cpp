@@ -44,6 +44,7 @@ namespace fs = std::filesystem;
 
 // forward declarations
 bool aboutScreen(SDL_Window *window, SDL_Renderer *renderer);
+bool barterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story, std::vector<std::pair<Item::Base, std::vector<Item::Base>>> Barter);
 bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story);
 bool glossaryScreen(SDL_Window *window, SDL_Renderer *renderer, std::vector<Skill::Base> Skills);
 bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story, std::vector<Item::Base> &Items, Control::Type mode, int limit);
@@ -3568,13 +3569,217 @@ bool shopScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
                         }
                     }
                 }
-                else if (controls[current].Type == Control::Type::CHARACTER && !hold)
+                else if (controls[current].Type == Control::Type::USE && !hold)
                 {
-                    characterScreen(window, renderer, player, story);
+                    inventoryScreen(window, renderer, player, story, player.Items, Control::Type::USE, 0);
 
                     current = -1;
 
                     selected = false;
+                }
+                else if (controls[current].Type == Control::Type::BACK && !hold)
+                {
+                    done = true;
+
+                    break;
+                }
+            }
+        }
+
+        if (font)
+        {
+            TTF_CloseFont(font);
+
+            font = NULL;
+        }
+
+        TTF_Quit();
+    }
+
+    return false;
+}
+
+bool barterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story, std::vector<std::pair<Item::Base, std::vector<Item::Base>>> Barter)
+{
+    if (Barter.size() > 0)
+    {
+        std::string message;
+
+        auto error = false;
+        auto bartered = false;
+
+        Uint32 start_ticks = 0;
+        Uint32 duration = 3000;
+
+        auto done = false;
+        auto controls = std::vector<Button>();
+        auto font_size = 20;
+        auto text_space = 8;
+        auto textwidth = ((1 - Margin) * SCREEN_WIDTH) - (textx + arrow_size + button_space) - 2 * text_space;
+
+        auto idx = 0;
+
+        for (auto i = Barter.begin(); i != Barter.end(); i++)
+        {
+            auto item = i->first;
+            auto trade = i->second;
+
+            std::string choice = item.Name;
+
+            auto text = createText(choice.c_str(), FONT_FILE, 16, clrBK, textwidth + button_space, TTF_STYLE_NORMAL);
+
+            auto y = (idx > 0 ? controls[idx - 1].Y + controls[idx - 1].H + 3 * text_space : texty + 2 * text_space);
+
+            controls.push_back(Button(idx, text, idx, idx, (idx > 0 ? idx - 1 : idx), (idx < Barter.size() ? idx + 1 : idx), textx + 2 * text_space, y, Control::Type::ACTION));
+
+            controls[idx].W = textwidth + button_space;
+
+            controls[idx].H = text->h;
+
+            idx++;
+        }
+
+        controls.push_back(Button(idx, "icons/items.png", idx - 1, idx + 1, idx - 1, idx + 1, startx, buttony, Control::Type::USE));
+        controls.push_back(Button(idx + 1, "icons/back-button.png", idx, idx + 1, idx - 1, idx + 1, (1 - Margin) * SCREEN_WIDTH - buttonw, buttony, Control::Type::BACK));
+
+        TTF_Init();
+
+        auto font = TTF_OpenFont(FONT_FILE, font_size);
+
+        auto selected = false;
+        auto current = -1;
+        auto quit = false;
+        auto scrollUp = false;
+        auto scrollDown = false;
+        auto hold = false;
+
+        auto boxh = 0.125 * SCREEN_HEIGHT;
+        auto infoh = 0.07 * SCREEN_HEIGHT;
+        auto box_space = 10;
+
+        while (!done)
+        {
+            SDL_SetWindowTitle(window, "Once Upon a Time in Arabia: Barter");
+
+            fillWindow(renderer, intWH);
+
+            if (error)
+            {
+                if ((SDL_GetTicks() - start_ticks) < duration)
+                {
+                    putText(renderer, message.c_str(), font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
+                }
+                else
+                {
+                    error = false;
+                }
+            }
+            else if (bartered)
+            {
+                if ((SDL_GetTicks() - start_ticks) < duration)
+                {
+                    putText(renderer, message.c_str(), font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
+                }
+                else
+                {
+                    bartered = false;
+                }
+            }
+
+            if (!error && !bartered)
+            {
+                putText(renderer, "Select an item to barter", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
+            }
+
+            putText(renderer, "Possessions", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (boxh + infoh));
+            putText(renderer, (std::to_string(player.Items.size()) + std::string(" item(s)")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
+
+            putText(renderer, "Exchange for", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
+            
+            if (current >= 0 && current < Barter.size())
+            {
+                std::string goods = "";
+
+                for (auto j = 0; j < Barter[current].second.size(); j++)
+                {
+                    if (j > 0)
+                    {
+                        goods += ", ";
+                    }
+
+                    goods += Barter[current].second[j].Name;
+                }
+
+                putText(renderer, goods.c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+            }
+            else
+            {
+                fillRect(renderer, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space), intBE);
+            }
+
+            fillRect(renderer, textwidth + arrow_size + button_space, text_bounds, textx, texty, intBE);
+
+            renderButtons(renderer, controls, current, intYW, text_space, text_space / 2);
+
+            for (auto i = 0; i < Barter.size(); i++)
+            {
+                if (i != current)
+                {
+                    drawRect(renderer, controls[i].W + 2 * text_space, controls[i].H + 2 * text_space, controls[i].X - text_space, controls[i].Y - text_space, intBK);
+                }
+            }
+
+            done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
+
+            if (selected)
+            {
+                if (controls[current].Type == Control::Type::ACTION && !hold)
+                {
+                    if (current >= 0 && current < Barter.size())
+                    {
+                        auto element = Barter.at(current);
+                        auto item = element.first;
+                        auto goods = element.second;
+
+                        auto result = Item::FIND_TYPE(player.Items, item.Type);
+
+                        if (result >= 0)
+                        {
+                            message = std::string(item.Name) + " BARTERED.";
+
+                            start_ticks = SDL_GetTicks();
+
+                            bartered = true;
+
+                            error = false;
+
+                            if (Item::COUNT_TYPES(player.Items, item.Type) > 1)
+                            {
+                                auto least = Item::FIND_LEAST(player.Items, item.Type);
+
+                                if (least >= 0)
+                                {
+                                    player.Items.erase(player.Items.begin() + least);
+                                }
+                            }
+                            else
+                            {
+                                Character::LOSE_ITEMS(player, {item.Type});
+                            }
+
+                            Character::GET_ITEMS(player, goods);
+                        }
+                        else
+                        {
+                            message = "You do not have that item!";
+
+                            start_ticks = SDL_GetTicks();
+
+                            bartered = false;
+
+                            error = true;
+                        }
+                    }
                 }
                 else if (controls[current].Type == Control::Type::USE && !hold)
                 {
@@ -4782,6 +4987,14 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
         {
             controls = Story::TradeControls(compact);
         }
+        else if (story->Controls == Story::Controls::BARTER_AND_SHOP)
+        {
+            controls = Story::BarterAndShopControls(compact);
+        }
+        else if (story->Controls == Story::Controls::BARTER)
+        {
+            controls = Story::BarterControls(compact);
+        }
         else
         {
             controls = Story::ExitControls(compact);
@@ -4920,7 +5133,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
 
                 if (story->Type == Story::Type::DOOM)
                 {
-                    putText(renderer, "The adventure is over. The Forest of Arden is doomed.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
+                    putText(renderer, "The adventure is over.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
                 }
                 else if (player.Life <= 0)
                 {
@@ -5014,6 +5227,14 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                     else if (controls[current].Type == Control::Type::TRADE && !hold)
                     {
                         tradeScreen(window, renderer, player, story->Trade.first, story->Trade.second);
+
+                        current = -1;
+
+                        selected = false;
+                    }
+                    else if (controls[current].Type == Control::Type::BARTER && !hold)
+                    {
+                        barterScreen(window, renderer, player, story, story->Barter);
 
                         current = -1;
 
