@@ -154,6 +154,7 @@ namespace Story
     {
         NORMAL = 0,
         GOOD,
+        SORROW,
         DOOM
     };
 
@@ -633,6 +634,8 @@ public:
 
     void Event(Character::Base &player)
     {
+        Character::GAIN_LIFE(player, 1);
+
         Shop.clear();
 
         if (Character::VERIFY_ITEMS_ANY(player, {Item::CLOAK, Item::JEWELLED_SWORD, Item::BLACK_JEWEL, Item::HAWK}))
@@ -682,6 +685,208 @@ public:
     int Continue(Character::Base &player) { return 469; }
 };
 
+class Story011 : public Story::Base
+{
+public:
+    Story011()
+    {
+        ID = 11;
+
+        Text = "You fall in with a merchant caravan that is heading north along the coast of the Red Sea. The owner is pleased to have a fellow traveller who can help guard his camels.\n\n\"Pirates are the main threat to trade,\" he says, \"but even on the pilgrim routes close to Mecca there is still the danger of bandits. They ride out of the desert to prey on honest traders like myself.\"\n\nDespite his fears, the first couple of weeks pass without incident. You get used to the disdainful snorting of the camels as they are roused each morning, struggling resentfully to their feet and slowly filing out along the coast road. To the right lies a range of mountains of dull velvet hue, to the left is the glassy glint of the sea. You RECOVER 2 Life Points.\n\nOn the sixteenth day you come in sight of the walls of Mecca, the holy city, birthplace of the Prophet. Pilgrims flock from all over the civilized world as a sign of their devotion. But the merchant, Hakim, is reluctant to stop here.\n\n\"Another time I will show my respect,\" he says. \"Indeed, perhaps I will visit Mecca on my return journey. But for now, look at my camels -- they are heavily laden with goods that I am anxious to sell in Cairo. I cannot afford the ten days it would take to complete all the proper rituals here.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Urge him to stop at Mecca", 101));
+        Choices.push_back(Choice::Base("You can see his point", 123));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 2);
+    }
+};
+
+class Story012 : public Story::Base
+{
+public:
+    Story012()
+    {
+        ID = 12;
+
+        Text = "The braziers burn low while you see to your silent work. At last, with everything ready, you summon your marines ashore and together you set up a great shout which reverberates off the roof of the dome. The pirates rouse themselves to find that you have bound them all tightly with torn strips of silk.\n\n\"What devil's work's this?\" demands the pirate chief. \"How did you truss us like so many geese without waking us up?\"\n\n\"Too much wine made you sleep as quiet as babies,\" you reply, \"and I am a skilful thief. But in all honesty, I'll admit to one mistake.\" You tilt your head towards a single pirate who lies stretched out stiffly with a jewelled dagger in his chest. \"He had the bad luck to wake up. Now he sleeps the soundest sleep of all.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 372; }
+};
+
+class Story013 : public Story::Base
+{
+public:
+    Story013()
+    {
+        ID = 13;
+
+        Text = "You decide on your options.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Lunge at him with all your strength", 148));
+        Choices.push_back(Choice::Base("Dive to one side as he attacks and just attempt a light slash in return", 37));
+        Choices.push_back(Choice::Base("Concentrate on parrying", 60));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story014 : public Story::Base
+{
+public:
+    Story014()
+    {
+        ID = 14;
+
+        Text = "Fate smiles on you. An old acquaintance from Baghdad recognizes you among the crowd of pilgrims and hastens to greet you. Hakim is astonished and not a little put out when he learns that you are a devout believer. It means that he will have to free you from bondage. Also, it means that you too can enter the holy city for the ceremonies.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::MORDANT);
+    }
+
+    int Continue(Character::Base &player) { return 146; }
+};
+
+class Story015 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story015()
+    {
+        ID = 15;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Another few days brings you to Zeila, a medium-sized port on the west coast of the Gulf of Adan. The journey has been arduous, and it has been a long time since you had a drink of water.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        {
+            Character::GAIN_LIFE(player, -1);
+
+            PreText += "\n\nYou LOSE 1 Life Point.";
+        }
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nRefreshing yourself at a fountain by the city gates, where you can refill any bottles you are carrying, you hear a sublimely beautiful song wafting through the dusk. It is the call to prayer from the high minaret you can see above the rooftops. Kneeling where you are, you give thanks to heaven for seeing you safely through the desert.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 149; }
+};
+
+class Story016 : public Story::Base
+{
+public:
+    Story016()
+    {
+        ID = 16;
+
+        Text = "The storm hits like a black fist, stretching the sails to bursting point. Rain lances down in a suffocating icy torrent. Waves surge up over the rail until you could almost believe it was the world's end, and you had plunged into unending watery oblivion.\n\nBy dint of every trick and ploy you've learned in your long career at sea, you weather the storm. The next morning finds you drifting on water as flat as a silver mirror. The silence of extreme fatigue hangs over the whole ship's company. The sails hang in ragged tatters and the mizzen has split, but at least no one was lost during the night.\n\nYou report to the captain that there is a chance of hitting more squalls if you continue on your present course.\n\n\"You're recommending we turn back?\" he asks listlessly.\n\nYou shrug. \"That may or may not be safer. You're the captain.\" He laughs bitterly. His pride has taken a knock. \"Compared to you, I'm as green as any street urchin! You decide our course.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Head on to the Indies", 197));
+        Choices.push_back(Choice::Base("Turn west towards Egypt", 176));
+        Choices.push_back(Choice::Base("Strike out south in search of the Scarlet Isle", 234));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story017 : public Story::Base
+{
+public:
+    Story017()
+    {
+        ID = 17;
+
+        Text = "You vow that you will kill them if they do not leave you in peace. \"You have the claws of a cat, youngster,\" says the Sultan, his voice half-mocking, \"but the voice of a lion. Choose: will you fight my three Arab knights, or face me alone?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Accept a duel with the Sultan himself", 222));
+        Choices.push_back(Choice::Base("Square off against his knights", 245));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story018 : public Story::Base
+{
+public:
+    Story018()
+    {
+        ID = 18;
+
+        Text = "The old man studies your slippers intently. \"Such intricate embroidery,\" he says. \"I don't think I have ever seen finer workmanship. Surely these slippers are no ordinary footwear?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Tell him about the MAGIC SLIPPERS", 87, {Item::MAGIC_SLIPPERS}));
+        Choices.push_back(Choice::Base("Do not tell him", 61));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story019 : public Story::Base
+{
+public:
+    Story019()
+    {
+        ID = 19;
+
+        Text = "You return to the throne room to find a scene of deep sorrow. The Caliph's wives are weeping over his body. Even from beyond the grave, Jafar managed a last act of treachery when the poison on his knife reached the Caliph's heart.\n\nThe royal court is in chaos. No one knows who is in charge. In circumstances like this people often look for a scapegoat, so you do not wait around in the hope of a reward. Slipping off in the confusion, you fetch your horse and leave Baghdad that very night. No doubt there are other adventures awaiting you in the far corners of the world.";
+
+        Type = Story::Type::SORROW;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story020 : public Story::Base
+{
+public:
+    Story020()
+    {
+        ID = 20;
+
+        Text = "Now that the danger is over, you find you are trembling in shock. You sit on the end of Ayisha\"s couch while you recover. \"Where did you learn sorcery?\"\n\n\"My old nurse taught me,\" she replies, smiling. \"Alas, she never told me any spell to undo these enchanted chains.\"\n\n\"There must be a key.\"\n\nAyisha nods. \"There is. It is in the nest of the giant bird known as the rokh. If you\"d agree to try and get it, I could send you there with another spell I know.\" She pauses and adds hesitantly, \"It would be dangerous, of course.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Agree to try", 114));
+        Choices.push_back(Choice::Base("You must bid farewell to Ayisha", 66));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -693,12 +898,23 @@ auto story007 = Story007();
 auto story008 = Story008();
 auto story009 = Story009();
 auto story010 = Story010();
+auto story011 = Story011();
+auto story012 = Story012();
+auto story013 = Story013();
+auto story014 = Story014();
+auto story015 = Story015();
+auto story016 = Story016();
+auto story017 = Story017();
+auto story018 = Story018();
+auto story019 = Story019();
+auto story020 = Story020();
 
 void InitializeStories()
 {
     Stories = {
         &prologue,
-        &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009, &story010};
+        &story001, &story002, &story003, &story004, &story005, &story006, &story007, &story008, &story009, &story010,
+        &story011, &story012, &story013, &story014, &story015, &story016, &story017, &story018, &story019, &story020};
 }
 
 #endif

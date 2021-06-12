@@ -3792,7 +3792,7 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
 
             if (!splash || (splash && splash_h < (text_bounds - (boxh + infoh))))
             {
-                putText(renderer, "Life", font, text_space, clrWH, (player.Life > 0 && story->Type != Story::Type::DOOM) ? intYW : intRD, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (boxh + infoh));
+                putText(renderer, "Life", font, text_space, clrWH, player.Life > 0 ? intYW : intRD, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (boxh + infoh));
                 putText(renderer, (std::to_string(player.Life)).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
             }
 
@@ -4895,6 +4895,10 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 else if (player.Life <= 0)
                 {
                     putText(renderer, "You have died. This adventure is over.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
+                }
+                else if (story->Type == Story::Type::SORROW)
+                {
+                    putText(renderer, "The Caliph is dead. Perhaps other adventures await you in the far corners of the world.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
                 }
                 else if (story->Type == Story::Type::GOOD)
                 {
