@@ -849,6 +849,8 @@ public:
         if (player.Life > 0)
         {
             PreText += "\n\nRefreshing yourself at a fountain by the city gates, where you can refill any bottles you are carrying, you hear a sublimely beautiful song wafting through the dusk. It is the call to prayer from the high minaret you can see above the rooftops. Kneeling where you are, you give thanks to heaven for seeing you safely through the desert.";
+
+            Character::REFILL(player, Item::Type::WATER_BOTTLE);
         }
 
         Text = PreText.c_str();
@@ -1375,7 +1377,7 @@ public:
         Text = "His eyes widen as he notices the bundle of rope over your shoulder. \"I travelled far and wide in my youth,\" he says. \"Now, don't tell me -- let me guess. That's Indian hemp, isn't it? I saw some bizarre little conjuring tricks that used a coil of rope just like that, during my time in the east.\"";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("Tell him about the Indian rope trick", 110));
+        Choices.push_back(Choice::Base("Tell him about the INDIAN ROPE trick", 110));
         Choices.push_back(Choice::Base("Remain silent", 61));
 
         Controls = Story::Controls::STANDARD;
@@ -1889,6 +1891,275 @@ public:
     }
 };
 
+class Story060 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story060()
+    {
+        ID = 60;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Parry his next blow", 129));
+        Choices.push_back(Choice::Base("Try for a long-reach stab at his wrist", 37));
+        Choices.push_back(Choice::Base("Drive in close for a desperate attack", 83));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Your blades clash with a deathly knell that resounds off the marble walls. His strength is incredible. Your parry is knocked aside and you are nicked painfully on the shoulder.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou fight on.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story061 : public Story::Base
+{
+public:
+    Story061()
+    {
+        ID = 61;
+
+        Text = "The oubliette is a bell-shaped chamber lined with muck and straw. There are several other prisoners here. Seeing you pacing around, one of them sighs and points to the grille in the middle of the ceiling. \"Some of us have been here for years,\" he says. \"Food is thrown down every day or so, if we're lucky. Other than that we're forgotten here. There's no escape.\"\n\n\"What about water?\"\n\n\"You must lick what you can off the walls.\" He shows you his tongue -- black and covered with sores.\n\nYou position yourself directly below the grille and stare up. A distance of almost twenty feet. The walls funnel in towards it, so there is no chance of climbing up.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a MAGIC SLIPPERS or an INDIAN ROPE", 133, Choice::Type::ANY_ITEM, {Item::MAGIC_SLIPPERS, Item::INDIAN_ROPE}));
+        Choices.push_back(Choice::Base("Try something else", 155));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story062 : public Story::Base
+{
+public:
+    Story062()
+    {
+        ID = 62;
+
+        Text = "The discovery of a small keg of date wine in the hold saves you from the threat of dehydration, but you are still in desperate straits. You cannot sail the ship alone. Borne on by the current, you drift for days until you see a hazy stretch of land. On getting closer, it turns out to be a region of mangrove swamps: gnarled trees with their roots surrounded by swirling salt water. You peer inland. The swamps continue as far as the eye can see.\n\nAs the ship drifts sluggishly along the shoreline, a host of hairless little monkeys come gibbering through the mangrove roots. Their skins are as smooth and blotchy as old bananas. They leap and splash through the waves towards the ship. Scrambling over the side in a crash of surf, they pilfer the lockers. You rush around trying to stop them but they are too quick. Clutching their plunder, they drop overboard and swim rapidly away.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::MAGIC))
+        {
+            return 220;
+        }
+        else
+        {
+            return 243;
+        }
+    }
+};
+
+class Story063 : public Story::Base
+{
+public:
+    Story063()
+    {
+        ID = 63;
+
+        Text = "Your foot slips on the glass surface and you plunge to your doom in the chasm far below.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 109;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::CUNNING))
+        {
+            return 132;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+};
+
+class Story064 : public Story::Base
+{
+public:
+    Story064()
+    {
+        ID = 64;
+
+        Text = "\"The egg of the rokh!\" you say with a far-away look in your eye. \"I've heard its nest lies just below the clouds, atop a pinnacle overlooking the headwaters of the Nile.\"\n\n\"No doubt it is high above the ground,\" retorts the old man, \"but as for being at the head of the Nile -- nonsense! I myself was born in a village at the head of the Nile. If there had been any high peak nearby on which the rokh nested, I would surely know about it. The truth is that the rokh is to be found on the Isle of Palms, far to the east.\"\n\nYou gained the codeword FABRIC.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::KISMET);
+
+        Character::GET_CODEWORDS(player, {Codeword::Type::FABRIC});
+    }
+
+    int Continue(Character::Base &player) { return 470; }
+};
+
+class Story065 : public Story::Base
+{
+public:
+    Story065()
+    {
+        ID = 65;
+
+        Text = "Drawing a deep breath just before the smoke cloud reaches you, you stumble blindly forward to the middle of the room. The hubble-bubble pipe is still there. Pushing the tube into your mouth, you draw air into your lungs. You guessed right. The noxious smoke, in passing through the water of the pipe, is rendered harmless.\n\nThe three sorcerers are calling to each other, but they cannot see what's happening because of the cloud of smoke. You scoop up the chart they were looking at and tuck the hubble-bubble pipe under your arm, then grope your way to the back of the room. There you find a doorway that leads out of the citadel, and you make your escape.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::CHART, Item::HUBBLE_BUBBLE_PIPE};
+
+        Limit = 2;
+    }
+
+    int Continue(Character::Base &player) { return 42; }
+};
+
+class Story066 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story066()
+    {
+        ID = 66;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::HAREM);
+
+        PreText = "You start back across the baking desert sands. Billows of heat rise off the ground, making the horizon tremble. Rocks and dust lie in all directions as far as the eye can see.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        {
+            DAMAGE = -1;
+
+            PreText += "Your WATER BOTTLE has been EMPTIED. ";
+
+            Character::EMPTY(player, Item::Type::WATER_BOTTLE);
+        }
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            DAMAGE++;
+
+            PreText += "[WILDERNESS LORE] ";
+        }
+
+        if (DAMAGE > 0)
+        {
+            DAMAGE = 0;
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+        
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 454; }
+};
+
+class Story067 : public Story::Base
+{
+public:
+    Story067()
+    {
+        ID = 67;
+
+        Text = "Hakim spends the next few hours sunk in silence as you travel on. He seems to be weighing something in his conscience. At last he comes to you and, with a solemn expression, produces a key with which he unlocks your slave collar. \"God would not forgive me if I kept in bondage one to whom I owe my life,\" he says.\n\n\"Cheer up,\" you say, enjoying the feel of the dry desert air against skin chafed for so long by the iron collar. \"Don't think of it as losing a slave, more as gaining a friend.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::MORDANT);
+    }
+
+    int Continue(Character::Base &player) { return 218; }
+};
+
+class Story068 : public Story::Base
+{
+public:
+    Story068()
+    {
+        ID = 68;
+
+        Text = "You come up with several plans.\n\nFirst, you could try to get to see the Caliph. You know that this would involve giving the chamberlain a gift of more than 1000 dinars to prove you're a person of high rank.\n\nSecond, you could approach someone who works at the palace and get them to take you to the Caliph in person. You know several palace employees, but you cannot be sure which of them are loyal to the Caliph himself and which are in the pay of Jafar the Vizier.\n\nThird, you know that the Caliph sometimes travels around the city in disguise at night. It ought to be possible for you to tail him and perhaps get close enough to tell him your story -- as long as his bodyguard, Masrur, doesn't kill you first.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try the first approach", 22));
+        Choices.push_back(Choice::Base("Risk the second approach", 361));
+        Choices.push_back(Choice::Base("Try the third approach", 182));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story069 : public Story::Base
+{
+public:
+    Story069()
+    {
+        ID = 69;
+
+        Text = "The astrologer emerges from his shop and stands gazing out across the plaza. The festival seems not to interest him. The crowds of merry-makers might as well be the flitting shadows of puppets. His gaze is fixed firmly on the sky, where the moon shows as a thin sliver of ivory above the spires of the city.\n\nYou step up beside him. \"Barely moments ago, a dervish spoke significantly to me of the sky's portents,\" you say. \"What can you see amid the stars?\"\n\nHe turns to look at you. His gaze is misty with secret lore. He sweeps his arm up, taking in the constellations spread out above, then ends the gesture by pointing at the door of his shop. \"The stars are the key to all mysteries, but yonder is the portal,\" he tells you. \"One dinar will oil the lock, and then you may step into your future.\"\n\nThe sudden talk of money banishes all fancies. \"Are you a sage, old man, or the father of all merchants? Have you so little heart for the beauty of the night that you must sully it with talk of money?\"\n\nHe strokes his beard. \"A dinar only! Will you balk at such a paltry price, when you have the chance to learn what the future holds?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Pay him one dinar", 115, Choice::Type::LOSE_MONEY, 1));
+        Choices.push_back(Choice::Base("Talk to the sailor who just left", 475));
+        Choices.push_back(Choice::Base("Talk to the storyteller sitting on the plaza nearby", 23));
+        Choices.push_back(Choice::Base("Go on your way", 92));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -1949,6 +2220,16 @@ auto story056 = Story056();
 auto story057 = Story057();
 auto story058 = Story058();
 auto story059 = Story059();
+auto story060 = Story060();
+auto story061 = Story061();
+auto story062 = Story062();
+auto story063 = Story063();
+auto story064 = Story064();
+auto story065 = Story065();
+auto story066 = Story066();
+auto story067 = Story067();
+auto story068 = Story068();
+auto story069 = Story069();
 
 void InitializeStories()
 {
@@ -1958,7 +2239,8 @@ void InitializeStories()
         &story020, &story021, &story022, &story023, &story024, &story025, &story026, &story027, &story028, &story029,
         &story030, &story031, &story032, &story033, &story034, &story035, &story036, &story037, &story038, &story039,
         &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049,
-        &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059};
+        &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059,
+        &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069};
 }
 
 #endif

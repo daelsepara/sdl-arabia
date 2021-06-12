@@ -1050,20 +1050,9 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
 
                             std::string description = item.Name;
 
-                            if (item.Charge >= 0)
-                            {
-                                description += " (";
-
-                                if (item.Charge > 0)
-                                {
-                                    description += std::to_string(item.Charge) + " bullets";
-                                }
-                                else
-                                {
-                                    description += "empty";
-                                }
-
-                                description += ")";
+                            if (item.Charge == 0)
+                            { 
+                                description += " (empty)";
                             }
 
                             temp_message = description + " DROPPED!";

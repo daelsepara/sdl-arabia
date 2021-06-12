@@ -19,8 +19,11 @@ namespace Item
         WATER_BOTTLE,
         MAGIC_SLIPPERS,
         JASMINE_FLOWER,
+        INDIAN_ROPE,
+        CHART,
+        HUBBLE_BUBBLE_PIPE,
         First = BOW,
-        Last = JASMINE_FLOWER
+        Last = HUBBLE_BUBBLE_PIPE
     };
 
     class Base
@@ -65,6 +68,9 @@ namespace Item
     auto WATER_BOTTLE = Item::Base("WATER BOTTLE", "WATER BOTTLE", Item::Type::WATER_BOTTLE);
     auto MAGIC_SLIPPERS = Item::Base("MAGIC SLIPPERS", "MAGIC SLIPPERS", Item::Type::MAGIC_SLIPPERS);
     auto JASMINE_FLOWER = Item::Base("JASMINE FLOWER", "JASMINE FLOWER", Item::Type::JASMINE_FLOWER);
+    auto INDIAN_ROPE = Item::Base("INDIAN ROPE", "INDIAN ROPE", Item::Type::INDIAN_ROPE);
+    auto CHART = Item::Base("CHART", "CHART", Item::Type::CHART);
+    auto HUBBLE_BUBBLE_PIPE = Item::Base("HUBBLE BUBBLE PIPE", "HUBBLE BUBBLE PIPE", Item::Type::HUBBLE_BUBBLE_PIPE);
 
     std::vector<Item::Type> UniqueItems = {};
 

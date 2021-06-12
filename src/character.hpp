@@ -505,6 +505,30 @@ namespace Character
         Character::LOSE_POSSESSIONS(player);
     }
 
+    void REFILL(Character::Base &player, Item::Type type)
+    {
+        for (auto i = 0; i < player.Items.size(); i++)
+        {
+            if (player.Items[i].Type == type)
+            {
+                player.Items[i].Charge = -1;
+            }
+        }
+    }
+
+    void EMPTY(Character::Base &player, Item::Type type)
+    {
+        for (auto i = 0; i < player.Items.size(); i++)
+        {
+            if (player.Items[i].Type == type && player.Items[i].Charge == -1)
+            {
+                player.Items[i].Charge = 0;
+
+                break;
+            }
+        }
+    }
+
 } // namespace Character
 
 #endif
