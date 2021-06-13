@@ -1886,11 +1886,7 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
         {
             possessions += " (";
 
-            if (player.Items[i].Charge > 0)
-            {
-                possessions += std::to_string(player.Items[i].Charge) + " bullets";
-            }
-            else
+            if (player.Items[i].Charge == 0)
             {
                 possessions += "empty";
             }
@@ -1900,6 +1896,18 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
     }
 
     auto name_string = player.Name;
+
+    if (gender == Character::Gender::NONE)
+    {
+        if (player.Gender == Character::Gender::MALE)
+        {
+            name_string += " (Male)";
+        }
+        else
+        {
+            name_string += " (Female)";
+        }
+    }
 
     // Fill the surface with background color
     fillWindow(renderer, intWH);
