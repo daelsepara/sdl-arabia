@@ -1377,7 +1377,7 @@ public:
         Text = "His eyes widen as he notices the bundle of ROPE over your shoulder. \"I travelled far and wide in my youth,\" he says. \"Now, don't tell me -- let me guess. That's Indian hemp, isn't it? I saw some bizarre little conjuring tricks that used a coil of ROPE just like that, during my time in the east.\"";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("Tell him about the INDIAN ROPE trick", 110));
+        Choices.push_back(Choice::Base("Tell him about the INDIAN ROPE trick", 110, {Item::INDIAN_ROPE}));
         Choices.push_back(Choice::Base("Remain silent", 61));
 
         Controls = Story::Controls::STANDARD;
@@ -3121,6 +3121,248 @@ public:
     int Continue(Character::Base &player) { return 177; }
 };
 
+class Story110 : public Story::Base
+{
+public:
+    Story110()
+    {
+        ID = 110;
+
+        Text = "You can escape at any time, so there seems no need for haste. Making a mattress out of handfuls of grimy straw, you lie down to get some rest. At the top of the oubliette, beyond the grille, the last silvery gleam of daylight is fading from the sky. You yawn, dimly aware of your eyelids fluttering closed...\n\nYou wake up abruptly in a cold sweat. It is pitch dark. You were dreaming of being carried to the graveyard outside Baghdad. In the dream, you were alive but unable to move. You could not tell anyone you were still alive.\n\nYou reach out a hand towards your belongings. The INDIAN ROPE is gone! As your eyes adjust to the gloom, you see the old man is no longer beside you. He stole your ROPE and used it to escape.\n\nYou notice that the old man has left his LONG-TAILED CAT behind.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::INDIAN_ROPE});
+
+        Take = {Item::LONG_TAILED_CAT};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 61; }
+};
+
+class Story111 : public Story::Base
+{
+public:
+    Story111()
+    {
+        ID = 111;
+
+        Text = "A rope drops from the balcony above and a figure comes sliding down to land beside you. It is Azenomei. \"Put this across your mouth,\" he urges, handing you a piece of silk soaked in vinegar.\n\nYou are in no position to argue. While you wind the silk around your face, Azenomei daringly rushes forward into the bank of green fog. One of the sorcerers tries to grab him, but only gets a hard buffet across the chin for his trouble. Snatching up the CHART, Azenomei throws it to you and then leads the way back up the rope to the balcony. At the end is a window, and another rope takes you to safety outside the citadel.\n\n\"You see,\" says Azenomei as the two of you race off down the hillside, \"you do need me.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Agree to help Azenomei rescue his sister", 270));
+        Choices.push_back(Choice::Base("Refuse to accompany him across the desert", 179));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::NOOSE);
+
+        Take = {Item::CHART};
+
+        Limit = 1;
+    }
+};
+
+class Story112 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story112()
+    {
+        ID = 112;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Azenomei's golden eyes flash with eagerness for the kill. Pulling his sword from his belt, he leaps forward to match you blow for blow. Both of you suffer dreadful wounds, and red human blood soon mingles underfoot with the black ichor of jinni's veins. You feel yourself weakening, but you are determined to make this a fight to the bitter end.\n\n";
+
+        auto DAMAGE = -6;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -2;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -4;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 89; }
+};
+
+class Story113 : public Story::Base
+{
+public:
+    Story113()
+    {
+        ID = 113;
+
+        Text = "Falling in with a group of travellers, you return at last to Baghdad.\n\nYou RECOVER 4 Life Points.\n\nAlmost a year has passed since you left, and a lot has changed in that time. Soldiers patrol the streets and a curfew forces everyone off the streets after evening prayers. The City of Peace has become a city of fear. Whenever you ask the reason, people compress their lips and warn you to keep silent, until finally a blind old woman tells you: \"The Caliph believes the city is on the brink of revolt.\"\n\n\"And is it?\"\n\nShe shakes her head. \"Not to start with -- but the more he tightens his grip, the more likely it becomes.\"\n\n\"This is Jafar's doing.\"\n\n\"Perhaps.\" She tilts her head at the sound of the muezzin's echoing chant. \"The curfew. I must find a place to shelter for the night.\"\n\nAs she hobbles off, you consider your options.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 4);
+
+        Choices.clear();
+
+        if (!Character::VERIFY_CODEWORDS(player, {Codeword::Type::ZEBRA}))
+        {
+            Choices.push_back(Choice::Base("Use the LAMP of Antar", 45, {Item::LAMP_OF_ANTAR}));
+            Choices.push_back(Choice::Base("Use a DIAMOND", 194, {Item::DIAMOND}));
+            Choices.push_back(Choice::Base("Otherwise", 251));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 205; }
+};
+
+class Story114 : public Story::Base
+{
+public:
+    Story114()
+    {
+        ID = 114;
+
+        Text = "Ayisha first casts a spell of healing.\n\nYour Life Points are restore to their original score.\n\nShe follows this with another, more powerful enchantment. A dark whirlwind springs up around you. You feel yourself being flung across vast distances. For a moment you taste rain, and see the flash of lightning behind a leaden cloud. Then there is sun on your face, and you are dropping towards a verdant island set in a sparkling blue sea.\n\nYou land with a thump and the whirlwind swirls away. Picking yourself up, you look around. You are beside a sheer pinnacle of rock that rises from the centre of the island. You cannot see the top because of the clouds above.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        player.Life = player.MAX_LIFE_LIMIT;
+    }
+
+    int Continue(Character::Base &player) { return 136; }
+};
+
+class Story115 : public Story::Base
+{
+public:
+    Story115()
+    {
+        ID = 115;
+
+        Image = "images/filler5.png";
+
+        Text = "The astrologer leads you up a winding staircase to a tower room at the top of his house. An archway opens onto the night, giving a crystal-clear view of the sky. While you settle yourself down on a pile of velvet cushions, he brings a wooden table on which he sets up a brass astrolabe. For several minutes he takes sightings of the stars, every so often giving a grunt and jotting something down on the chart at his elbow. At last he turns and says, \"I see a thief among thieves, a most daring knave, bold and lucky as an alley cat.\"\n\n\"Is it me? Or is this someone I shall meet? Where will it happen?\"\n\nHe holds up a hand to stem your flood of questions. \"The future is like a page from a book seen in a dream. The words are not written in the clearest hand, nor in the sharpest of inks. All I know is that a great journey lies ahead. Beware, then, as a journey can mean death! Treachery awaits you with a plain mark on his face. Sages and sorcerers may help or hinder you. In a place of many doors you will find your destiny...\"\n\nHis voice trails off. In a less ominous tone he adds, \"These things I have described are but the myriad possibilities of your future. You stand as at a crossroads. Choose your destiny.\"\n\nThanking him, you leave more baffled than when you came in.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 92; }
+};
+
+class Story116 : public Story::Base
+{
+public:
+    Story116()
+    {
+        ID = 116;
+
+        Text = "Masrur's SWORD slices the air, only to catch in the drapes just above your head. There is a ripping of velvet fabric as he yanks it free and stares around. But by this time you have already dodged past and run to the doorway.\n\nUttering a scornful oath, Jafar pushes the burly warrior aside and takes a step forward. \"Guards!\" he yells as he claps his hands imperiously. \"Guards! A thief is at large in the palace!\"\n\nYou turn your head in time to see a band of swordsmen come rushing towards you through an arch at the end of the landing. You will have to act fast.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::ARCHERY))
+        {
+            Choices.push_back(Choice::Base("Fight", 47));
+            Choices.push_back(Choice::Base("Make a run for it", 253));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 230; }
+};
+
+class Story117 : public Story::Base
+{
+public:
+    Story117()
+    {
+        ID = 117;
+
+        Text = "You seize the rail and haul yourself dripping onto the deck. The guards leap up with angry expressions. Lamplight flares on naked steel as they draw their swords. \"Begone!\" cries the nearest guard. \"We'll slay anyone who tries to take the lady from us.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Meekly return to your own ship", 375));
+        Choices.push_back(Choice::Base("Decide to fight", 185));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story118 : public Story::Base
+{
+public:
+    Story118()
+    {
+        ID = 118;
+
+        Text = "You turn to run, but behind you there is only a slab of unyielding rock. You join Yussuf in hammering against it, shouting for help as the monstrous horde draws closer. Their noxious breath makes you choke. Turning, you look straight into the pitiless cyclopean faces.\n\nA taloned limb rises, throwing a jag-edged shadow on the cave roof.\n\nYou open your mouth to scream.\n\nThe talon falls, silencing you for ever.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story119 : public Story::Base
+{
+public:
+    Story119()
+    {
+        ID = 119;
+
+        Image = "images/filler2.png";
+
+        Text = "You drop only a few feet, hitting the floor of the cavern with a painful thud. You were almost at the bottom of the staircase already, only you didn't realise it. You will have a nasty bruise to show for it, but at least you are alive -- for now.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 96; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -3231,6 +3473,16 @@ auto story106 = Story106();
 auto story107 = Story107();
 auto story108 = Story108();
 auto story109 = Story109();
+auto story110 = Story110();
+auto story111 = Story111();
+auto story112 = Story112();
+auto story113 = Story113();
+auto story114 = Story114();
+auto story115 = Story115();
+auto story116 = Story116();
+auto story117 = Story117();
+auto story118 = Story118();
+auto story119 = Story119();
 
 void InitializeStories()
 {
@@ -3245,7 +3497,8 @@ void InitializeStories()
         &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079,
         &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089,
         &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099,
-        &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109};
+        &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109,
+        &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119};
 }
 
 #endif
