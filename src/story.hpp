@@ -5060,6 +5060,217 @@ public:
     }
 };
 
+class Story190 : public Story::Base
+{
+public:
+    Story190()
+    {
+        ID = 190;
+
+        Text = "You wait until the dead of night, when both guards are deep in contented slumber. A glance to right and left confirms the streets are deserted. Sliding through the darkness, you creep up to the door of the hut. It only takes you seconds to spring the lock.\n\nThe captain looks up as the bar of moonlight strikes his face. Though startled, he has the sense to keep quiet as you lead him silently back towards the jetty.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 346; }
+};
+
+class Story191 : public Story::Base
+{
+public:
+    Story191()
+    {
+        ID = 191;
+
+        Text = "Hakim selects a man to scout ahead. This is Al-Shammar, a rangy Bedouin who carries an ivory bow with which you have seen him bring down wheeling gulls above the coastal road. He must be afraid to be sent on alone, but he counts it a point of pride to laugh and say, \"I shall see if there are indeed bandits in the pass -- and if there are, by my ancestors, I'll spit them each with an arrow.\"\n\nDespite these brave words, you never see Al-Shammar again. By the middle of the following morning, Hakim decides to risk pressing on. The cliffs rise up on each side and you all have the feeling of walking into the gates of a cursed city. The camels seem to sense the unease of their drivers. They lower their heads and growl at the ground like beaten dogs.\n\nYou scan the hills for bandits, but there is nothing. In the timid silence, the only sound to be heard is the desolate sigh of the wind in the rocks.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 289; }
+};
+
+class Story192 : public Story::Base
+{
+public:
+    Story192()
+    {
+        ID = 192;
+
+        Text = "Hakim sells you to a Frankish captain who is sailing with a hold full of lions and elephants to the court of an infidel king called Shah al-Ma'in. You adopt a surly scowl as you are led aboard his ship, but the truth is that your heart is brimming with hope. If you had run off before, your owner being a true believer, your only destiny would have been a painful death. But there is no penalty for slaves who run away from infidel owners. All you have to do, then, is come up with a plan of escape.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use [SEAFARING]", 238, Skill::Type::SEAFARING));
+        Choices.push_back(Choice::Base("Use [ROGUERY]", 261, Skill::Type::ROGUERY));
+        Choices.push_back(Choice::Base("Use [CUNNING]", 482, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("You have none of those skills", 103));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story193 : public Story::Base
+{
+public:
+    Story193()
+    {
+        ID = 193;
+
+        Text = "The Sultan decides to let you try your luck in catching the pirates. He has nothing to lose, after all. You are taken to a small port at the foot of Mount Sinai where you are entrusted with a vessel and a crew of thirty marines.\n\nYou put out to sea and sail around the coast for several days without seeing so much as a fishing boat. Your patience is finally rewarded one morning when the lookout calls out, \"Sails on the horizon!\"\n\nThe other vessel hoves into view. It turns out not to be the pirates, but a cumbrous merchant ship laden with wine barrels. Its captain obviously decided to risk passage across the Red Sea. You have a feeling his ship will make a choice target for the pirates.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Move in and hail the merchant ship", 239));
+        Choices.push_back(Choice::Base("Keep it in sight without getting close", 476));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story194 : public Story::Base
+{
+public:
+    Story194()
+    {
+        ID = 194;
+
+        Text = "You find a jeweller who is willing to pay you thirty thousand dinars for the diamond.\n\n\"I thought it would be worth more.\"\n\nHe leans back, stroking his beard. \"Another may pay you twice as much, but such a one is not here. I offer a king's ransom that you can have today. Let wisdom guide you rather than greed, my friend.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::SELL;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Sell = {{Item::DIAMOND, 30000}};
+    }
+
+    int Continue(Character::Base &player) { return 251; }
+};
+
+class Story195 : public Story::Base
+{
+public:
+    Story195()
+    {
+        ID = 195;
+
+        Text = "Hakim is unsure what to do, and turns to you for advice.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("You should press on in spite of the flag", 240));
+        Choices.push_back(Choice::Base("Dig to see what it is marking", 263));
+        Choices.push_back(Choice::Base("Agree with the scout that the group should head south-west", 286));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story196 : public Story::Base
+{
+public:
+    Story196()
+    {
+        ID = 196;
+
+        Image = "images/filler5.png";
+
+        Text = "The jinni lays a finger along his nose and gives a sly wink. \"Remember the story of Mount Safa and the Prophet? When commanded to come to him, the mountain did not move. But the Prophet knew that if it had it would have brought disaster, so he set out to go to it.\"\n\n\"Your parable is too oblique for me,\" you say, shaking your head. He booms out a laugh that sends blue sparks flying through the rigging. \"Then watch and learn!\"\n\nDissolving into a cloud of pungent gas, the jinni floats down into the water. A thick dark patch of bubbling miasma goes snaking through the depths. A faint tinge of ammonia pervades the air.\n\nMinutes pass. Suddenly the stone door grates open and the pirates come swimming out, gasping and coughing. A strong stench billows after them. Even at this distance it is enough to make you dizzy. As the pirates are taken aboard and put in irons, the jinni leaps back into your ring in the form of a black fish.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 372; }
+};
+
+class Story197 : public Story::Base
+{
+public:
+    Story197()
+    {
+        ID = 197;
+
+        Text = "The remainder of the voyage is uneventful, and at last you reach the port of Daibul, which straddles a wide dun-coloured river beyond a region of mangrove swamps.\n\nThe captain goes ashore, returning quite soon with a broad smile on his face. \"I have sold all the cargo to a wealthy nobleman from Nishapur,\" he announces. \"Make ready. We sail on the tide.\"\n\nThe crew are surprised to be returning so quickly. They had expected that the captain\"s business would take at least a week. As the ship hoves out of port, you feel a sense of disappointment. \"Where is the adventure I longed for?\" you say with a sigh.\n\n\"Beware of wishing, so they say, lest you get what you wish for!\" replies the helmsman. \"See that dark scudding cloud across our bows? We're running into a storm.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 131; }
+};
+
+class Story198 : public Story::Base
+{
+public:
+    Story198()
+    {
+        ID = 198;
+
+        Text = "The jinni labours all night, piling stone on stone until he has built a tower as tall as the first. He slides the last block in place on the dome of the roof just as the sun thrusts up a splash of gold in the east. Flitting back to you, he wipes away the sweat covering his broad brow. \"I've done my part of the bargain, now do yours. Give me my freedom.\"";
+
+        Bye = "Sunlight streaks the grass. One of the shark men steps forward and shakes his master awake. Opening his eyes, the dwarf gives a sour grunt of disappointment. \"So you did it.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Free him: throw the ring into the sea", 441, Choice::Type::LOSE_ITEMS, {Item::RING}));
+        Choices.push_back(Choice::Base("Break your promise", 441, Choice::Type::GET_CODEWORD, {Codeword::Type::TRUCE}));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story199 : public Story::Base
+{
+public:
+    Story199()
+    {
+        ID = 199;
+
+        Text = "The horses pound up the path, rearing to a halt at the brink of the glass bridge. The four riders do not see you hiding in a thicket nearby because their attention is focussed on the jinni who, having taken your appearance, is standing in the middle of the bridge.\n\n\"Come and face me, dogs, if you dare!\" he screams. \"I yearn to spill your blood and crack the bones of your limbs between my teeth!\" \n\nYou wince. You might suggest he makes his performance a little less intense next time. But it seems to have done the trick. The first of the knights, goaded by his comrades, advances out onto the bridge. He slips and falls to his doom almost at once. The second knight fares better, getting halfway to the jinni before he too tumbles off. The third must be quite nimble -- he actually reaches the jinni and only slips because his sword-stroke costs him his balance.\n\nFrom your hiding-place, you hear the masked Sultan breathe a curse. His sword slithers from its sheath and he starts out along the bridge. Seven swift steps bring him to the jinni, who waits until the sword is in motion before dissolving into a cloud of vapour. The Sultan's lunge sweeps through empty air, and he spends an instant poised on the brink of eternity before following his knights down into the chasm.\n\nThe jinni returns to the ring beaming with satisfaction. \"I enjoyed that!\"\n\n\"All very well, but how am I going to get across?\" you ask.\n\n\"Just walk along the clifftop,\" he says, pointing. \"There's a perfectly safe footbridge after a mile or so.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story200 : public Story::Base
+{
+public:
+    Story200()
+    {
+        ID = 200;
+
+        Image = "images/creatures.png";
+
+        Text = "The creatures facing you each have a single eye that rolls like a blister of pus in the centre of a face covered with bristles and scales. Their arms are raised like executioners' axes, each ending in a long curved blade of chitin. As they draw nearer you catch their breath, as fetid as an open drain. Slimy spittle runs from the writhing mandibles at the base of those repulsive insectoid heads.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            Choices.push_back(Choice::Base("Try to escape", 118));
+            Choices.push_back(Choice::Base("Fight your way through them", 141));
+            Choices.push_back(Choice::Base("Douse the light", 163));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 27; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -5250,6 +5461,17 @@ auto story186 = Story186();
 auto story187 = Story187();
 auto story188 = Story188();
 auto story189 = Story189();
+auto story190 = Story190();
+auto story191 = Story191();
+auto story192 = Story192();
+auto story193 = Story193();
+auto story194 = Story194();
+auto story195 = Story195();
+auto story196 = Story196();
+auto story197 = Story197();
+auto story198 = Story198();
+auto story199 = Story199();
+auto story200 = Story200();
 
 void InitializeStories()
 {
@@ -5272,7 +5494,9 @@ void InitializeStories()
         &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159,
         &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169,
         &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179,
-        &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189};
+        &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189,
+        &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199,
+        &story200};
 }
 
 #endif
