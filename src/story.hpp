@@ -1374,7 +1374,7 @@ public:
     {
         ID = 41;
 
-        Text = "His eyes widen as he notices the bundle of rope over your shoulder. \"I travelled far and wide in my youth,\" he says. \"Now, don't tell me -- let me guess. That's Indian hemp, isn't it? I saw some bizarre little conjuring tricks that used a coil of rope just like that, during my time in the east.\"";
+        Text = "His eyes widen as he notices the bundle of ROPE over your shoulder. \"I travelled far and wide in my youth,\" he says. \"Now, don't tell me -- let me guess. That's Indian hemp, isn't it? I saw some bizarre little conjuring tricks that used a coil of ROPE just like that, during my time in the east.\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Tell him about the INDIAN ROPE trick", 110));
@@ -2703,6 +2703,202 @@ public:
     }
 };
 
+class Story090 : public Story::Base
+{
+public:
+    Story090()
+    {
+        ID = 90;
+
+        Text = "You dive into the stream, forcing yourself deep under the clear cool water while the cloud of lethal hot gas rolls past overhead. At last you can hold your breath no longer. Rising with a gasp, you discover that the first wave of gas has passed. The air is filled with a reek like the fires of Hell. You hurry back down the mountain before the advancing ooze of lava cuts you off.\n\nAfter several more days of searching, you are certain that the legends are wrong. If the rokh really does exist, its nest is not in this part of the world.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try travelling to the east", 180));
+        Choices.push_back(Choice::Base("Abandon the search and go home to Baghdad", 113));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story091 : public Story::Base
+{
+public:
+    Story091()
+    {
+        ID = 91;
+
+        Text = "You show her the fragment of diamond. \"Sorry,\" you say, abashed. \"I got this instead.\"\n\nShe looks at you as though she suspects you are a blockhead. At least she doesn't accuse you of deliberate treachery. \"Well,\" she says after drawing several deep breaths, \"at least tell my father where I am, will you?\"\n\n\"If I see him,\" you assure her. \"I don't exactly rub shoulders with the Caliph every day, you know.\"";
+
+        Bye = "You bow and retreat from the room before she decides to turn you into a worm.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 66; }
+};
+
+class Story092 : public Story::Base
+{
+public:
+    Story092()
+    {
+        ID = 92;
+
+        Text = "You walk down by the river, where the moon's reflection lies like a sunken scimitar in the black depths. Some distance off, whispering couples glide between the trees. Blinkered by love, they take no notice of the brooding figure on the river bank.\n\nYou contemplate your future. The life of a beggar promises nothing but misery, hardship, sickness and an early death. You burn with outrage at the way Jafar treated you as beneath contempt because of your humble birth. The Caliph himself, you believe, is a good man who should be warned of his Vizier's evil plot. But an ordinary subject like yourself can hardly demand an audience with the ruler of the civilized world. It would be different if you were wealthy. \"The scales of justice are balanced by a little gold,\" as the saying goes.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go straight to the Caliph's palace", 206));
+        Choices.push_back(Choice::Base("Set out in search of adventure and riches: go by sea", 160));
+        Choices.push_back(Choice::Base("Join a merchant caravan heading overland", 183));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story093 : public Story::Base
+{
+public:
+    Story093()
+    {
+        ID = 93;
+
+        Image = "images/filler5.png";
+
+        Text = "Tiptoeing to the further doorway, you see Jafar talking to a slave girl. You jump back out of sight just in time to avoid being seen as he turns. \"Tonight you seem radiant with satisfaction, my lord,\" purrs the slave girl, handing him a goblet of wine. \"Might it be that my company pleases you?\"\n\nJafar sneers and lifts the cup to his lips. \"You? You're a bony milk- skinned snippet I bought off a Christian. I'd get more pleasure from the company of the lice that inhabit a poor man's clothes!\" As the slave starts to weep, Jafar grins unpleasantly and says, \"I'm pleased for two reasons. The first is because today I duped a fool out of a great prize -- a stallion of unsurpassed beauty which I presented as a gift to the Caliph. Now he has given me this Robe of Honour and a palace of my own on the banks of the Tigris.\"\n\n\"And what, O mighty master, is the other reason?\" asks the slave, intrigued despite herself.\n\nYou have little hope of retrieving the stallion now that Jafar has given it to the Caliph.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stay to eavesdrop on what Jafar is saying", 362));
+        Choices.push_back(Choice::Base("It would be wiser to leave the palace now rather than press your luck", 183));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story094 : public Story::Base
+{
+public:
+    Story094()
+    {
+        ID = 94;
+
+        Text = "Sliding into the oil-black water, you swim over to the barque. As you draw level with the rail, you see a half-dozen guards crouched around a dice game on the foredeck. Inside her curtained kiosk, the woman sighs forlornly as she gazes at the moths skittering in the light of the lamps.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::STREETWISE))
+        {
+            Choices.push_back(Choice::Base("Show yourself to the guards", 117));
+            Choices.push_back(Choice::Base("Approach the woman stealthily", 140));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 162; }
+};
+
+class Story095 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story095()
+    {
+        ID = 95;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The guards burst into the room in time to see you lowering yourself gingerly over the balcony. Running forward, they start to shower all manner of missiles down on your head: lamps, helmets, shields, even the splintered door-frame.\n\nSomething heavy hits your shoulder. You don't see what it is, but your grip is torn from the vine and you are falling. There is a split-second of sickening terror as the air rushes past. Then you hit the ground and a jolt of pain stabs up your body.\n\nYou LOSE 6 Life Points.";
+
+        Character::GAIN_LIFE(player, -6);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nIf you survive, you hear the guards\" shouts from above. You cannot lie flopping in agony on the ground. You must rise and flee for your life before they catch you.\n\nLimping painfully towards the gate you are intercepted by a sentry. Your heart sinks, but then you realise that he does not know what the commotion is all about. He stares past you at the soldiers rushing across the courtyard. \"What's going on?\" he asks.\n\n\"There\"s an assassin in the palace,\" you gasp through gritted teeth.\n\nThe sentry rushes off across the courtyard. Moving with all the speed your twisted ankle will allow, you slip out of the gate and duck into the shadows of a side street. Glancing back, you see the soldiers who were chasing you run out of the gate. They look around, confused, but none saw where you went. You have given them the slip.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 383; }
+};
+
+class Story096 : public Story::Base
+{
+public:
+    Story096()
+    {
+        ID = 96;
+
+        Text = "Sparkling light appears from no obvious source. You see crystal pillars forming an alcove in the wall ahead of you. The old man whom you met on the ledge is here, dressed now in the white robes of a king of Old Persia. A black jewel shimmers at his throat. You stand in awe of the unknown as Yussuf slowly pads down the steps to join you.\n\n\"You have done well to come this far, and now you shall claim your reward,\" says the old man. \"Here are four treasures.\" He reaches into a gold-banded treasure chest and brings out a COPPER LAMP. \"This is the enchanted LAMP used by the hero Antar when he crept unseen through the harem of Sakhur the Jinni.\"\n\n\"How does it work?\" asks Yussuf.\n\n\"Merely light it, and while you hold it in your hands no-one can see you. But there is only a little of the magic oil left. Enough for a few minutes of invisibility at best.\" He puts the LAMP down and produces a coil of ROPE. \"This second treasure is a ROPE of distant India. On command it will rise straight into the air of its own accord -- a marvellous treasure for a rogue!\" He puts the ROPE aside and draws a TRUMPET out of the chest. \"And this is the horn which levelled the walls of Jericho in ancient times. Be warned, however, that to unleash its destructive force is perilous.\"\n\nHe stands with folded arms while you gaze on the treasures. \"How many can we take?\" asks Yussuf. \"Just one?\"\n\n\"One each!\" declares the old man.\n\nYussuf leaves it to you to decide.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Choose the LAMP and the ROPE", 164));
+        Choices.push_back(Choice::Base("Choose the ROPE and the TRUMPET", 187));
+        Choices.push_back(Choice::Base("Choose the LAMP and the TRUMPET", 210));
+        Choices.push_back(Choice::Base("Reject all those choices", 233));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story097 : public Story::Base
+{
+public:
+    Story097()
+    {
+        ID = 97;
+
+        Text = "Azenomei lunges forward, starting to utter the syllables of a new spell, but his foot catches on a rug and he stumbles. A wave of unearthly energy flows past your shoulder and crumples a bronze shield on the wall as though it were made of parchment.\n\nYou don't hang around to give him another chance. Racing pell-mell along the winding, maze-like corridors of the palace, you emerge at last in open air.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 66; }
+};
+
+class Story098 : public Story::Base
+{
+public:
+    Story098()
+    {
+        ID = 98;
+
+        Text = "The gryphon returns with you to where the ship is still stuck in the boughs of the violet-blossomed tree. The sailors loosen their swords and one man brings out a bow and arrow, but you call out to them that the creature is your friend.\n\n\"What harm can you do us now?\" says the captain in a despairing voice. \"Has your devilish sorcery not brought us enough misfortune?\" The gryphon assures him that it intends no harm. \"Let me take the mast of your vessel in my beak. I am strong enough to bear both ship and crew safely down to the waves.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Urge the captain to accept its offer of help", 121));
+        Choices.push_back(Choice::Base("You think you would be better of trying a different plan", 144));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story099 : public Story::Base
+{
+public:
+    Story099()
+    {
+        ID = 99;
+
+        Text = "The heads of the cowled figures slump wearily to their chests. It is the signal that the meeting is over. The cowering islanders rise to their feet, and several dart forward along the room to seize Captain Ibrahim. You realize it is time to get out of here, but shock at what you've witnessed makes you hesitate just a moment too long. As you tiptoe towards the door, an islander turns and spots you. A great shriek rings out, and the others are on you in an instant.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 54; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -2793,6 +2989,16 @@ auto story086 = Story086();
 auto story087 = Story087();
 auto story088 = Story088();
 auto story089 = Story089();
+auto story090 = Story090();
+auto story091 = Story091();
+auto story092 = Story092();
+auto story093 = Story093();
+auto story094 = Story094();
+auto story095 = Story095();
+auto story096 = Story096();
+auto story097 = Story097();
+auto story098 = Story098();
+auto story099 = Story099();
 
 void InitializeStories()
 {
@@ -2805,7 +3011,8 @@ void InitializeStories()
         &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059,
         &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069,
         &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079,
-        &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089};
+        &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089,
+        &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099};
 }
 
 #endif
