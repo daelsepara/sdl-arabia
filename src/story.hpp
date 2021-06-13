@@ -4028,7 +4028,7 @@ public:
     {
         ID = 146;
 
-        Text = "This is no carefree jaunt for the half-hearted. The rituals are rigorous and take many days. First you visit the Great Mosque, where the looming black block of the sacred Kaaba stands like the very fingerprint of God against the sky. Circling this seven times, as tradition demands, is wearying in the intense desert heat. You are soon soaked in sweat and coughing because of the dust thrown up by hundreds of feet.\n\nAfter kissing the black stone, you drink and wash in the sacred well, Zamzam. Then there is an arduous run to and fro between two mountains just outside the city walls. You see an old man falter and drop to his knees. By now you are suffused with understanding of the Prophet’s teachings and you stop to help him even though you, too, are close to fainting.\n\nYour kindness is repaid. The old man helps you with your prayers in the days that follow. On the eighth day, you listen to a sermon preached at the same spot where the Prophet last spoke to his people in this life. Then, as the sun pulls streamers of red fire out of the sky to the west, you must walk to the Pillars of Mena where you spend the next day collecting pebbles. When you wonder at the meaning of this, the old man is on hand to instruct you. It seems that when Ismail was tempted by the Devil to disobey his father, Abraham, he drove the Devil away by throwing stones at him.\n\nOn the last day you sacrifice a sheep and distribute the meat to the poor. This symbolizes the sheep that Abraham sacrificed to God in place of his son Ismail.\n\nThe rituals are over. You are now a hajji, a pilgrim, and may wear a green turban to show this.\n\nYou gained the codeword HAJJI.";
+        Text = "This is no carefree jaunt for the half-hearted. The rituals are rigorous and take many days. First you visit the Great Mosque, where the looming black block of the sacred Kaaba stands like the very fingerprint of God against the sky. Circling this seven times, as tradition demands, is wearying in the intense desert heat. You are soon soaked in sweat and coughing because of the dust thrown up by hundreds of feet.\n\nAfter kissing the black stone, you drink and wash in the sacred well, Zamzam. Then there is an arduous run to and fro between two mountains just outside the city walls. You see an old man falter and drop to his knees. By now you are suffused with understanding of the Prophet's teachings and you stop to help him even though you, too, are close to fainting.\n\nYour kindness is repaid. The old man helps you with your prayers in the days that follow. On the eighth day, you listen to a sermon preached at the same spot where the Prophet last spoke to his people in this life. Then, as the sun pulls streamers of red fire out of the sky to the west, you must walk to the Pillars of Mena where you spend the next day collecting pebbles. When you wonder at the meaning of this, the old man is on hand to instruct you. It seems that when Ismail was tempted by the Devil to disobey his father, Abraham, he drove the Devil away by throwing stones at him.\n\nOn the last day you sacrifice a sheep and distribute the meat to the poor. This symbolizes the sheep that Abraham sacrificed to God in place of his son Ismail.\n\nThe rituals are over. You are now a hajji, a pilgrim, and may wear a green turban to show this.\n\nYou gained the codeword HAJJI.";
 
         Bye = "The next morning you awaken invigorated after your first good restful sleep in many days.\n\nYou RECOVER 2 Life Points.";
 
@@ -4135,6 +4135,267 @@ public:
     }
 
     int Continue(Character::Base &player) { return 250; }
+};
+
+class Story150 : public Story::Base
+{
+public:
+    Story150()
+    {
+        ID = 150;
+
+        Image = "images/sorcerers.png";
+
+        Text = "You draw back further out of sight, but in your anxiety to avoid being spotted you fail to notice a shield fixed to the wall behind you. It falls with a clang. The three sorcerers whirl.\n\n\"Stop!\" cries the leader.\n\n\"You have been chosen for a glorious destiny!\"\n\nYou don't intend to wait and see what that 'glorious destiny' entails. However, as you turn to flee, the three raise their hands and begin an eerie magical chant.\n\nSmoke as thick and green as pond scum billows out of their sleeves and rolls across the room towards you.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::NOOSE}))
+        {
+            return 111;
+        }
+        else
+        {
+            return 134;
+        }
+    }
+};
+
+class Story151 : public Story::Base
+{
+public:
+    Story151()
+    {
+        ID = 151;
+
+        Text = "The storm passes at last. You watch it swirl off into the north, a smudge of dust against the sharp line of the horizon.\n\nHakim gathers everyone together. After so many hours with the wind's roar filling your ears, you have to strain to make out his words. \"We have lost two camels...\" he is saying.\n\nYou glance around, finding one face missing. The young lad who gave the camels their fodder each evening. \"What about Hasib?\"\n\nA search is mounted, but there is no sign of Hasib. He is lost beneath the dunes that the storm left piled up in its wake. After stopping to pray, you head on until you see an oasis whose cool green shadows defy the desert's harsh golden dusk. Among the palm trees there are tents and even the turrets of an old fort. \"Do we dare approach?\" says Hakim. \"They might be hostile.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Counsel him to enter the oasis", 416));
+        Choices.push_back(Choice::Base("You think it would be wiser to pass by", 438));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story152 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story152()
+    {
+        ID = 152;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Approach the oasis", 416));
+        Choices.push_back(Choice::Base("Avoid the oasis", 438));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Your next sensation is of being shaken awake. Your clothing is filled with sand and the others are leaning over you. \"You're alive!\" gasps Hakim. \"It's a miracle. You were under the quicksand for minutes on end, then you bobbed up to the surface.\"\n\nYou start to tell him about your strange adventure, then think better of it. It would sound as if you were raving mad. Passing your hand in front of your face, you realize that the experience has changed you. You have conquered the dread spirit of death that dwells in the desert's fastnesses. Now you can deal confidently with any threat the desert can throw at you.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            PreText += "\n\nYou have acquired the [WILDERNESS LORE] skill.";
+
+            player.SKILLS_LIMIT++;
+
+            player.Skills.push_back(Skill::WILDERNESS_LORE);
+        }
+        else
+        {
+            PreText += "\n\n[WILDERNESS LORE] You have gained 2 Life Points permanently.";
+
+            player.MAX_LIFE_LIMIT += 2;
+
+            Character::GAIN_LIFE(player, 2);
+        }
+
+        PreText += "\n\nGiving the quicksand a wide berth, you travel on until you see an oasis glittering like a green jewel in the hot golden haze of dusk. Among the trees you see people camped, and behind them is the outline of an old stone fort.";
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story153 : public Story::Base
+{
+public:
+    Story153()
+    {
+        ID = 153;
+
+        Text = "You wake up feeling sick and lethargic. The sun is beating down on the planks of the deck, and the stink of festering corpses hangs heavy in the air.\n\nYou sit up, wincing, and look around. Your heart sinks as you realize that your own ship has gone. You are alone on a ship of dead men, drifting on the open ocean. Staggering over to inspect the hawser, you find it has been cut. Did your friends cast you adrift? It seems unbelievable -- but, if not, then who did?\n\nYou tip the corpses over the side. It is hard, unpleasant work that makes the thudding behind your eyes feel even worse. You are just dipping a cup into the freshwater barrel to slake your thirst when you remember that you did the same thing last night. In fact, it is the last thing you remember doing. You sniff the water, and now you can detect a faint flowery scent. It is poisoned. You are lucky to be alive.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 39;
+        }
+        else
+        {
+            return 62;
+        }
+    }
+};
+
+class Story154 : public Story::Base
+{
+public:
+    Story154()
+    {
+        ID = 154;
+
+        Text = "You retreat slowly, pulling the foliage around you like a cloak. The eye-slits of the mask turn in your direction, pause, then scan the rest of the glade. \"None remain,\" declares the noble voice.\n\nThe Sultan rides off, followed by his horsemen. You emerge from hiding, taking a last sad glance at your dead friends before moving off alone.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story155 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story155()
+    {
+        ID = 155;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a pair of MAGIC SLIPPERS", 336, {Item::MAGIC_SLIPPERS}));
+        Choices.push_back(Choice::Base("Try a coil of INDIAN ROPE", 292, {Item::INDIAN_ROPE}));
+        Choices.push_back(Choice::Base("You have a LONG TAILED CAT", 292, {Item::LONG_TAILED_CAT}));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "A week later, the grille is hauled up and another prisoner is lowered into the oubliette. \"Here is the real Shadow!\" calls down a guard. \"Now you worthless wretches have got some distinguished company for a change.\"\n\nThe grille drops back into place with a clang. \"What about me?\" you shout up. \"If you\"ve got the real Shadow, you must know I'm innocent!\"\n\nThe guard's face reappears at the top. He has a broad smirk as he says, \"Innocent? You can\"t be innocent if you're in gaol, can you? So maybe you didn't steal the Sultan's ruby -- who cares? No doubt there's some other crime we can mark down to you.\"\n\n\"This is rank injustice!\" you call back, but he has gone.\n\nThe newcomer places a hand on your shoulder. \"I too am the victim of injustice, my friend, for I am not the Shadow. I thought you were. In fact, I got myself caught in order to meet you. My name is Azenomei.\" You turn and look at him: a handsome beardless young man with sparkling gaze. He has a small scar across the bridge of his nose.\n\n\"In that case, you\"re in for a big disappointment. And why are you smiling? Don't you know we'll probably stay here till we die?\"\n\nHis grin grows all the wider as he brings out a huge bunch of keys. \"Here I have the answer to nine hundred and ninety-nine locks. All we need is a way to reach the grille.\"";
+
+        if (!Character::VERIFY_ITEMS_ANY(player, {Item::MAGIC_SLIPPERS, Item::INDIAN_ROPE, Item::LONG_TAILED_CAT}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nLacking any of those (MAGIC SLIPPERS, INDIAN ROPE, LONG TAILED CAT), you have no way of reaching the grille and you really will end your days in this miserable pit.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story156 : public Story::Base
+{
+public:
+    Story156()
+    {
+        ID = 156;
+
+        Image = "images/filler3.png";
+
+        Text = "To your own amazement as much as that of the evil sorcerers, the cloud of green gas is absorbed by the black jewel you are carrying. You waste no time wondering about it, but launch yourself forward and snatch up the chart before racing from the room.\n\nThe sorcerers come tottering after you, but they are old and you soon outdistance them. Retrieving your belongings, you find the door and hurry down the hillside away from the fearful citadel.\n\nThe BLACK JEWEL has LOST its power.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::BLACK_JEWEL});
+
+        Take = {Item::CHART};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 42; }
+};
+
+class Story157 : public Story::Base
+{
+public:
+    Story157()
+    {
+        ID = 157;
+
+        Text = "Losing your grip, you fall with a scream only for your shirt to catch on a spur of rock that juts out from the rock face. You are suspended above a sheer drop and you can hear the fabric starting to tear, but in front of you is a crevice that was previously hidden by the overhang.\n\nScrambling inside, you find a narrow fissure up through the pinnacle. It is a tight squeeze but, by bracing yourself against the sides, you are able to ascend all the way to the top.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 325; }
+};
+
+class Story158 : public Story::Base
+{
+public:
+    Story158()
+    {
+        ID = 158;
+
+        Text = "The rokh's beady gaze scours the land all around, but it does not notice you creeping over and taking hold of its tail feathers. With a sharp caw it launches itself into the sky and you are carried up and up until finally you reach the nest on the top of the pinnacle.\n\nThe LAMP of Antar is LOST. Its magic oil is now used up.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::LAMP_OF_ANTAR});
+    }
+
+    int Continue(Character::Base &player) { return 325; }
+};
+
+class Story159 : public Story::Base
+{
+public:
+    Story159()
+    {
+        ID = 159;
+
+        Text = "There is a sudden gust of occult wind, and you are sucked back in a dark spiral which conveys you to the Citadel of Bronze. Ayisha awaits you. She is still chained to the gold couch, but whereas before her pose was languid and resigned, now she is sitting forward eagerly.\n\n\"Did you get it?\" she asks. \"Did you get the key?\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::JEWELLED_KEY}))
+        {
+            return 424;
+        }
+        else
+        {
+            return 91;
+        }
+    }
 };
 
 auto prologue = Prologue();
@@ -4287,6 +4548,16 @@ auto story146 = Story146();
 auto story147 = Story147();
 auto story148 = Story148();
 auto story149 = Story149();
+auto story150 = Story150();
+auto story151 = Story151();
+auto story152 = Story152();
+auto story153 = Story153();
+auto story154 = Story154();
+auto story155 = Story155();
+auto story156 = Story156();
+auto story157 = Story157();
+auto story158 = Story158();
+auto story159 = Story159();
 
 void InitializeStories()
 {
@@ -4305,7 +4576,8 @@ void InitializeStories()
         &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119,
         &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129,
         &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139,
-        &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149};
+        &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149,
+        &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159};
 }
 
 #endif
