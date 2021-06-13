@@ -3629,6 +3629,227 @@ public:
     int Continue(Character::Base &player) { return 152; }
 };
 
+class Story130 : public Story::Base
+{
+public:
+    Story130()
+    {
+        ID = 130;
+
+        Text = "Only poison could have killed these people so quickly. The obvious source would have to be the freshwater barrel in the middle of the deck. It might have become tainted by accident, but you doubt it. More likely that one of these bodies lying around the vessel is rather friskier than anyone suspects.\n\nThere is an easy way to find out. You pretend to take a drink of water and then fall back limp on the deck. Watching with squinted eyes, you see one of the 'corpses' rise to its feet and creep over to search your belongings. Giving vent to a fierce yell that would curdle the blood of a cannibal, you leap up and seize the crafty poisoner.\n\nJubilantly you hail your fellow sailors on the other ship, telling them to come across at once.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 174; }
+};
+
+class Story131 : public Story::Base
+{
+public:
+    Story131()
+    {
+        ID = 131;
+
+        Text = "The ship is tossed far out to sea. You can hardly see the others through the deluge of black bone-chilling rain. You hear a scream, drowned out by the storm's roar, as the helmsman is pinned against the rail and crushed by the tiller.\"She's breaking apart!\" you hear someone screech as the mainmast splits and falls ponderously like a great tree. It brings the ragged sails with it. You are flung back as the ship gives a lurch, plunged into water which seems strangely warm after the icy rails of rain. It is like being submerged in blood. The muffled sounds of the undersea thunder in your ears. Your fingers find a plank of broken wood. You break to the surface with a gasp and look around, but there is nothing to see but the crashing waves. The ship has gone.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 280; }
+};
+
+class Story132 : public Story::Base
+{
+public:
+    Story132()
+    {
+        ID = 132;
+
+        Text = "Tapping the glass column, you discover it is hollow. Perhaps a bizarre aqueduct left by an ancient civilization? You dig madly at the earth of the bank into which it is set until you clear a space large enough to squeeze through. Inside the pipe, suspended above a dizzying drop, you crawl on hands and knees to the far end, where you dig up to the surface.\n\nYou look back to see the Sultan and his horsemen milling about on the lip of the chasm. They saw how you got across, but cannot follow for fear of being picked off as they emerge.\n\nThe Sultan's laughter rolls like a waterfall off the high rocks. \"Clever rogue, you've won your freedom. Return, and I'll reward you for amusing me.\"\n\n\"Keep your reward, I prefer a long life,\" you reply before turning and vanishing into the undergrowth.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story133 : public Story::Base
+{
+public:
+    Story133()
+    {
+        ID = 133;
+
+        Text = "When everyone is asleep, you ascend to the grille. It is fastened shut by a large bronze padlock.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[ROGUERY] Pick the lock", 178, Skill::Type::ROGUERY));
+        Choices.push_back(Choice::Base("Try using [MAGIC]", 246, Skill::Type::MAGIC));
+        Choices.push_back(Choice::Base("Try using a HAWK", 201, {Item::HAWK}));
+        Choices.push_back(Choice::Base("You may as well give up any thought of escaping for now", 155));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story134 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story134()
+    {
+        ID = 134;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use [CUNNING]", 65, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Try using [AGILITY]", 88, Skill::Type::AGILITY));
+        Choices.push_back(Choice::Base("Try using a BLACK JEWEL", 156, {Item::BLACK_JEWEL}));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "The cloud of poisonous fog spreads rapidly to fill the room.";
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::CUNNING, Skill::Type::AGILITY}) && !Character::VERIFY_ITEMS(player, {Item::Type::BLACK_JEWEL}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nThe smoke envelops you and you fall senseless to the floor, never to recover.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story135 : public Story::Base
+{
+public:
+    Story135()
+    {
+        ID = 135;
+
+        Text = "You ask him the cause of his sorrow. \"Is it because you lost your hand?\" He nods, still weeping. \"What irony! What a vicious twist of fate! I am Shazir, and only a week ago I was the greatest thief in the world. Jafar of Baghdad hired me to steal a fragment of the rokh's diamond egg for him.\"\n\n\"What happened?\" you ask. \"Did the rokh bite off your hand?\" He gives a bitter scowl. \"I never got that far. The first stage was to acquire a boat, so I came to this very village, which is the place where I was born. It amused me to think that here was I, the renowned Shazir, returning to the village where I had last been seen fifteen years ago. When I left I was just a scrawny young ragamuffin with a mop of unruly hair, so how could I imagine anyone would recognize me?\"\n\n\"But someone did?\"\n\n\"Old Muluk, from whom I once stole two fishes,\" replies Shazir, nodding. \"He had me seized, they summoned the local judge, and my hand was cut off. Oh, to cut off my hand just for two fishes! I, who have stolen from the treasuries of kings!\"\n\n\"Certainly the loss of your hand will handicap your illustrious career.\"\n\n\"More than that: my life is forfeit! I have already spent the money Jafar gave me. When I fail to turn up with the eggshell, he'll have his spies hunt me down.\"\n\n\"Possibly not.\" His story has given you an idea. \"Why not swap clothes with me? I'll sail off and get the eggshell and take it to Jafar, pretending to be you.\"\n\nShazir shakes his head. \"Absurd. You look nothing like me.\"\n\n\"In dim light I might pass. If he questions me, I'll say I'm your cousin.\" Seeing Shazir hesitate, you add, \"Isn't it better than certain death?\"\n\nFinally he agrees. He gives you his clothes and introduces you to the fishermen who were going to take him to the rokh's island.\n\nYou gained the codeword ZEBRA.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::ZEBRA});
+    }
+
+    int Continue(Character::Base &player) { return 203; }
+};
+
+class Story136 : public Story::Base
+{
+public:
+    Story136()
+    {
+        ID = 136;
+
+        Text = "As you stand gazing up the daunting pinnacle, a great black blot comes dropping through the cloud towards you. At first you feel a stab of terror because you think it is a dislodged boulder. You step back, fearing you'll be crushed, but then the shape opens its wings and goes swooping out across the island.\n\nYou can only stand dumbstruck. It is the rokh. None of the tales prepared you for the true sight of it: a great soaring raptor whose shrieks rattle the rocks around you, and whose claws are big enough to carry off an elephant.\n\nThe rokh settles on a sheep, pressing the terrified animal down with a lazy sweep of its talons. One peck is enough to end the sheep's life. The bloody flesh drips from the rokh's beak -- no more than a morsel for such a giant creature.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::ROGUERY) && !Character::VERIFY_ITEMS(player, {Item::Type::LAMP_OF_ANTAR}))
+        {
+            Choices.push_back(Choice::Base("Start to climb", 181));
+            Choices.push_back(Choice::Base("Look through your possessions", 204));
+            Choices.push_back(Choice::Base("The sight of the rokh has given you second thoughts: you are ready to give up and go home", 142));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 158; }
+};
+
+class Story137 : public Story::Base
+{
+public:
+    Story137()
+    {
+        ID = 137;
+
+        Text = "Consider the following points in turn.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("You have a CHART", 203, {Item::CHART}));
+        Choices.push_back(Choice::Base("You have the codeword FABRIC", 203, {Codeword::Type::FABRIC}));
+        Choices.push_back(Choice::Base("Try using [FOLKLORE]", 226, Skill::Type::FOLKLORE));
+        Choices.push_back(Choice::Base("Try using [SEAFARING]", 226, Skill::Type::SEAFARING));
+        Choices.push_back(Choice::Base("You have the codeword KISMET", 271, {Codeword::Type::KISMET}));
+        Choices.push_back(Choice::Base("You have none of those", 248));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story138 : public Story::Base
+{
+public:
+    Story138()
+    {
+        ID = 138;
+
+        Text = "The sailor speaks with rapture of the joys of seafaring. \"The salt spray has a scent more lovely than the spices of Ceylon,\" he says. \"And what jewel ever shone as bright as the setting sun, smouldering like a ruby above the languid gold of the ocean?\"\n\nAs you approach the docks, however, his mood becomes more practical. \"You'll first sail downriver to Basra,\" he says. \"From Basra on to the open sea of the Gulf. Once past the Straits of Hormuz, I'd counsel you to stay close to shore if you wish to avoid a hazardous adventure. Somewhere in the Indian Ocean lies the island of a malevolent dwarf. He has deep knowledge of dire sorcery. It's said that he does not welcome visitors, but nor does he hurry to see them leave again once they\"ve found his isle. His seven sentinels have as much mercy as sharks.\"\n\nYou nod, glancing away to hide your sceptical smile. \"I'm grateful for this advice. Are there other dangers of the deep I should watch out for?\"\n\nHe spreads his hands as if at an embarrassment of riches. \"The giant fish called the dendan, which swallows ships. The people of the Scarlet Isle, who are ruled by dead kings. The evil fire wizards whom the Prophet cast out from this land two centuries ago. And sundry ghosts, ifrits and cannibal pirates, of course...\"\n\nYou raise your eyebrows. \"Are you sure that going to sea is a good idea?\"\n\n\"Now I come to think,\" says the sailor, pulling thoughtfully at his beard, \"it is a perilous life at best. But consider the great rewards, my friend, if you should survive to reach one of those fabulous ports where silks and spices are as plentiful as the plums of the Caliph\"s garden.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("You are resolved to seek adventure at sea", 160));
+        Choices.push_back(Choice::Base("You think it would be better to join a merchant expedition heading overland", 183));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story139 : public Story::Base
+{
+public:
+    Story139()
+    {
+        ID = 139;
+
+        Image = "images/filler2.png";
+
+        Text = "Pulling off the HAWK's hood, you thrust the bird into Masrur's face. It is just as surprised as he is, beating the air with its wings and thrusting its talons out by instinct. You see a livid red weal appear across\n\nMasrur's heavy jowels and he flings his sword aside, clutching at the painful gash. The HAWK flutters over to settle on Jafar's arm.\n\nYou run back to the doorway. But the Palace guards have heard the commotion, and even now a band of swordsmen are rushing at you from one end of the landing. Glancing back, you see Jafar stroll unhurriedly forward with a look of triumph on his pudgy face.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::HAWK});
+
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::ARCHERY))
+        {
+            Choices.push_back(Choice::Base("Stand your ground and fight", 47));
+            Choices.push_back(Choice::Base("Run for your life", 253));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 230; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -3759,6 +3980,16 @@ auto story126 = Story126();
 auto story127 = Story127();
 auto story128 = Story128();
 auto story129 = Story129();
+auto story130 = Story130();
+auto story131 = Story131();
+auto story132 = Story132();
+auto story133 = Story133();
+auto story134 = Story134();
+auto story135 = Story135();
+auto story136 = Story136();
+auto story137 = Story137();
+auto story138 = Story138();
+auto story139 = Story139();
 
 void InitializeStories()
 {
@@ -3775,7 +4006,8 @@ void InitializeStories()
         &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099,
         &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109,
         &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119,
-        &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129};
+        &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129,
+        &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139};
 }
 
 #endif

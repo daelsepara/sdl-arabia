@@ -1148,7 +1148,7 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                                 {
                                     Character::GAIN_LIFE(player, 1);
 
-                                    message = "Your Life Points are RESTORED!";
+                                    message = "Your RECOVER 1 Life Point!";
 
                                     flash_color = intLG;
 
