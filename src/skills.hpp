@@ -57,7 +57,7 @@ namespace Skill
     auto MAGIC = Skill::Base("MAGIC", "The ability to summon a jinni to do your bidding. You must possess a RING to use this skill.", Skill::Type::MAGIC, Item::Type::RING);
     auto ROGUERY = Skill::Base("ROGUERY", "The traditional repertoire of thief's tricks: picking pockets, opening locks, and skulking unseen in the shadows.", Skill::Type::ROGUERY);
     auto SEAFARING = Skill::Base("SEAFARING", "Knowing all about life at sea, including the ability to handle anything from a rowboat right up to a large sailing boat.", Skill::Type::SEAFARING);
-    auto STREETWISE = Skill::Base("ROGUERY", "With this skill you are never at a loss in towns and cities. What others see as the squalor and menace of narrow alleys is home to you.", Skill::Type::STREETWISE);
+    auto STREETWISE = Skill::Base("STREETWISE", "With this skill you are never at a loss in towns and cities. What others see as the squalor and menace of narrow alleys is home to you.", Skill::Type::STREETWISE);
     auto SWORDPLAY = Skill::Base("SWORDPLAY", "The best fighting skill, but to use it you must possess a SWORD.", Skill::Type::SWORDPLAY, Item::Type::SWORD);
     auto WILDERNESS_LORE = Skill::Base("WILDERNESS LORE", "A talent for survival in the wild -- whether forest, desert, swamp or mountain peak.", Skill::Type::WILDERNESS_LORE);
     auto WRESTLING = Skill::Base("WRESTLING", "You know how to handle yourself in a brawl, winning victory with armlocks, holds, leg sweeps and forearm jabs. You need no weapons -- your own body is the weapon.", Skill::Type::WRESTLING);

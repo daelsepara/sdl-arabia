@@ -2428,6 +2428,281 @@ public:
     }
 };
 
+class Story080 : public Story::Base
+{
+public:
+    Story080()
+    {
+        ID = 80;
+
+        Choices.clear();
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::CLOAK}))
+        {
+            return 35;
+        }
+        else
+        {
+            return 260;
+        }
+    }
+};
+
+class Story081 : public Story::Base
+{
+public:
+    Story081()
+    {
+        ID = 81;
+
+        Text = "After bidding Yussuf a tearful farewell, you make your way to the caravanserai. There you find a merchant called Hakim who is heading across the desert to Cairo. He will pay you 3 dinars to come along and guard his wares. Another merchant, by the name of Abdullah, wishes to travel east through the Peaks of the Slayers and is prepared to pay 5 dinars. The rates of pay give you an idea as to how dangerous the respective journeys are likely to be.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Join Hakim's expedition", 400, Choice::Type::GAIN_MONEY, 3));
+        Choices.push_back(Choice::Base("Go with Abdullah", 296, Choice::Type::GAIN_MONEY, 5));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story082 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story082()
+    {
+        ID = 82;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go straight ahead", 151));
+        Choices.push_back(Choice::Base("Go to the left", 36));
+        Choices.push_back(Choice::Base("Go to the right", 59));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The wind carries choking clouds of sand as fine as mill-dust. It clogs your throat and scours your eyes raw.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nCoughing, half-blinded, deafened by the dreary shriek of the wind -- you trudge doggedly on towards your destiny..";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story083 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story083()
+    {
+        ID = 83;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try the same tactic again", 148));
+        Choices.push_back(Choice::Base("Dodge while attempting a less decisive blow", 37));
+        Choices.push_back(Choice::Base("Concentrate on parrying his attacks", 60));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Your blow is perfectly judged, but you may as well have struck him with a stalk of grass for all the effect it has. Laughing wildly, he dives forward and slices deep into your side.\n\nYou LOSE 4 Life Points.";
+
+        Character::GAIN_LIFE(player, -4);
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story084 : public Story::Base
+{
+public:
+    Story084()
+    {
+        ID = 84;
+
+        Text = "The mysterious island drops astern and is lost to sight. For a day or so afterwards, the captain takes to stamping around the deck fretfully. \"I should have surveyed the isle, at least,\" he admits to you. \"It might have been one of those places spoken of in the old tales.\"\n\n\"Which tales are those?\"\n\n\"You know the ones! I\"ve heard tell of islands where the fruit is solid gold, where the streams give eternal life and the womenfolk are --\"\n\n\"Ah, I thought you meant the other tales.\" You take a sip of water from the barrel to conceal a smile. \"Stories of Sindbad's voyages -- islands inhabited by murderous cannibals, insane wizards, bloated giants and the like.\"\n\n\"Yes...\" says the captain thoughtfully. \"I expect I made the right decision, after all.\"\n\nA sailor breaks in on your conversation to point out a ship drifting ahead. Her sails are furled and there is no reply to your shouts. As you come alongside, you see the reason. The deck is strewn with corpses.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 356; }
+};
+
+class Story085 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story085()
+    {
+        ID = 85;
+
+        Bye = "You rouse yourself to see a city on the river ahead. With your last reserves of strength, you paddle your little raft to the bank and crawl ashore.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The tangled morass of waterlogged vegetation makes for hard going. You might wade for a few minutes, but there are long stretches where the only way on is to haul yourself up and climb between the trees. You are constantly plucking leeches off your legs, and more than once you hide in the treetops when you see a crocodile lazily drifting past. There is nothing you can do about the blinding swarms of insects.\n\nAt low tide you gather a few shellfish off the mangrove roots and eat them raw. After a few days you manage to collect enough wood to make a simple raft, and on this you travel swiftly until you reach a river channel. By now you are limp with fever and so thirsty that you happily lap up the stinking river water.\n\n";
+
+        auto DAMAGE = -5;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            DAMAGE = -2;
+
+            PreText += "[WILDERNESS LORE] ";
+        }
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        {
+            DAMAGE++;
+
+            PreText += "[Item: WATER BOTTLE] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 442; }
+};
+
+class Story086 : public Story::Base
+{
+public:
+    Story086()
+    {
+        ID = 86;
+
+        Text = "You wait until they ride into view.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::MAGIC))
+        {
+            return 199;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    int Continue(Character::Base &player) { return 17; }
+};
+
+class Story087 : public Story::Base
+{
+public:
+    Story087()
+    {
+        ID = 87;
+
+        Text = "You decide to get some rest. Your opportunity to escape will come later. Pulling together a mattress of grimy straw, you doze off as the last streamers of daylight fade from the sky above the grille.\n\nYou wake up abruptly in the dead of night. A dream fades into wisps at the back of your memory. You recall being carried to the graveyard outside Baghdad. In the dream, you were alive and aware, but unable to move. Cold sweat soaks your clothing.\n\nYou reach out a hand towards your belongings. The SLIPPERS are gone! The dim moonlight lets you see well enough to tell that the old man is not here.\n\nYou notice that the old man has left his LONG-TAILED CAT behind.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::MAGIC_SLIPPERS});
+
+        Take = {Item::LONG_TAILED_CAT};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 61; }
+};
+
+class Story088 : public Story::Base
+{
+public:
+    Story088()
+    {
+        ID = 88;
+
+        Text = "A bank of green vapour conceals you from the three sorcerers. Darting forward, you snatch up the chart they were discussing. Your eyes begin to sting, but you grope your way to one wall and climb up one of the long tapestries until you reach the balcony above. You glance down to see the sorcerers standing in the midst of the green murk. It does not have any effect on them, although you are in no doubt that it would have poisoned you in seconds.\n\nThey don't think to look up. You make your way to the end of the balcony and find a window to the outside. Climbing down, you hurry off down the hillside to safety.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::CHART});
+    }
+
+    int Continue(Character::Base &player) { return 42; }
+};
+
+class Story089 : public Story::Base
+{
+public:
+    Story089()
+    {
+        ID = 89;
+
+        Text = "Azenomei lies motionless at your feet. Slowly he begins to dissolve into a thick black miasma. A stench like burning sulphur fills the room. When his body has completely vanished, the only thing left is his SWORD.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::SWORD};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAREM}))
+        {
+            return 20;
+        }
+        else
+        {
+            return 66;
+        }
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -2508,6 +2783,16 @@ auto story076 = Story076();
 auto story077 = Story077();
 auto story078 = Story078();
 auto story079 = Story079();
+auto story080 = Story080();
+auto story081 = Story081();
+auto story082 = Story082();
+auto story083 = Story083();
+auto story084 = Story084();
+auto story085 = Story085();
+auto story086 = Story086();
+auto story087 = Story087();
+auto story088 = Story088();
+auto story089 = Story089();
 
 void InitializeStories()
 {
@@ -2519,7 +2804,8 @@ void InitializeStories()
         &story040, &story041, &story042, &story043, &story044, &story045, &story046, &story047, &story048, &story049,
         &story050, &story051, &story052, &story053, &story054, &story055, &story056, &story057, &story058, &story059,
         &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069,
-        &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079};
+        &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079,
+        &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089};
 }
 
 #endif

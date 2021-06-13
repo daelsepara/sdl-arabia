@@ -1051,7 +1051,7 @@ bool inventoryScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                             std::string description = item.Name;
 
                             if (item.Charge == 0)
-                            { 
+                            {
                                 description += " (empty)";
                             }
 
@@ -1356,8 +1356,6 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
             fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);
 
-            renderButtons(renderer, controls, current, intYW, text_space, text_space / 2);
-
             if (last - offset > 0)
             {
                 for (auto i = 0; i < last - offset; i++)
@@ -1368,6 +1366,8 @@ bool takeScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
                     }
                 }
             }
+
+            renderButtons(renderer, controls, current, intYW, text_space, text_space / 2);
 
             done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
@@ -1643,8 +1643,6 @@ bool loseItems(SDL_Window *window, SDL_Renderer *renderer, Character::Base &play
 
             fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);
 
-            renderButtons(renderer, controls, current, intYW, text_space, text_space / 2);
-
             if (last - offset > 0)
             {
                 for (auto i = 0; i < last - offset; i++)
@@ -1655,6 +1653,8 @@ bool loseItems(SDL_Window *window, SDL_Renderer *renderer, Character::Base &play
                     }
                 }
             }
+
+            renderButtons(renderer, controls, current, intYW, text_space, text_space / 2);
 
             done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
@@ -2077,8 +2077,6 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
                 text = NULL;
             }
 
-            renderButtons(renderer, controls, current, intYW, 8, 4);
-
             if (last - offset > 0)
             {
                 for (auto i = 0; i < last - offset; i++)
@@ -2106,6 +2104,8 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
             {
                 putText(renderer, "SELECT 4 Skills for your character.", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
             }
+
+            renderButtons(renderer, controls, current, intYW, 8, 4);
 
             Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
@@ -2970,8 +2970,6 @@ Control::Type gameScreen(SDL_Window *window, SDL_Renderer *renderer, Character::
 
             fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);
 
-            renderButtons(renderer, controls, current, intYW, border_space, border_pts);
-
             putText(renderer, "Selected", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * boxh + infoh));
 
             if (selected_file >= 0 && selected_file < entries.size())
@@ -3031,6 +3029,8 @@ Control::Type gameScreen(SDL_Window *window, SDL_Renderer *renderer, Character::
                     }
                 }
             }
+
+            renderButtons(renderer, controls, current, intYW, border_space, border_pts);
 
             done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
@@ -3684,7 +3684,7 @@ bool barterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
             putText(renderer, (std::to_string(player.Items.size()) + std::string(" item(s)")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
 
             putText(renderer, "Exchange for", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
-            
+
             if (current >= 0 && current < Barter.size())
             {
                 std::string goods = "";
@@ -3953,20 +3953,20 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
 
         auto font_size = 20;
         auto text_space = 8;
-        auto textwidth = ((1 - Margin) * SCREEN_WIDTH) - (textx + arrow_size + button_space) - 2 * text_space;
+        auto textwidth = ((1 - Margin) * SCREEN_WIDTH) - (textx + arrow_size + button_space);
         auto boxh = 0.125 * SCREEN_HEIGHT;
         auto infoh = 0.07 * SCREEN_HEIGHT;
         auto box_space = 10;
 
         for (int i = 0; i < choices.size(); i++)
         {
-            auto text = createText(choices[i].Text, FONT_FILE, font_size, clrBK, textwidth + button_space, TTF_STYLE_NORMAL);
+            auto text = createText(choices[i].Text, FONT_FILE, font_size, clrBK, textwidth - (4 * text_space), TTF_STYLE_NORMAL);
 
             auto y = (i > 0 ? controls[i - 1].Y + controls[i - 1].H + 3 * text_space : texty + 2 * text_space);
 
             controls.push_back(Button(i, text, i, i, (i > 0 ? i - 1 : i), (i < choices.size() ? i + 1 : i), textx + 2 * text_space, y, Control::Type::ACTION));
 
-            controls[i].W = textwidth + button_space;
+            controls[i].W = textwidth - (4 * text_space);
 
             controls[i].H = text->h;
         }
@@ -4039,7 +4039,7 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                 }
             }
 
-            fillRect(renderer, textwidth + arrow_size + button_space, text_bounds, textx, texty, intBE);
+            fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);
 
             renderButtons(renderer, controls, current, intYW, text_space, text_space / 2);
 
@@ -4755,8 +4755,6 @@ bool loseSkills(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
 
             fillRect(renderer, textwidth + arrow_size + button_space, text_bounds, textx, texty, intBE);
 
-            renderButtons(renderer, controls, current, intYW, text_space, text_space / 2);
-
             for (auto i = 0; i < player.Skills.size(); i++)
             {
                 if (Skill::VERIFY(selection, player.Skills[i]))
@@ -4764,6 +4762,8 @@ bool loseSkills(SDL_Window *window, SDL_Renderer *renderer, Character::Base &pla
                     drawRect(renderer, controls[i].W + 2 * text_space, controls[i].H + 2 * text_space, controls[i].X - text_space, controls[i].Y - text_space, intBK);
                 }
             }
+
+            renderButtons(renderer, controls, current, intYW, text_space, text_space / 2);
 
             done = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
@@ -5066,8 +5066,6 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 bool scrollUp = false;
                 bool scrollDown = false;
 
-                renderButtons(renderer, controls, current, intYW, border_space, border_pts);
-
                 if (splash)
                 {
                     auto mousex = 0;
@@ -5137,6 +5135,8 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 {
                     putText(renderer, "Further adventure awaits!", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
                 }
+
+                renderButtons(renderer, controls, current, intYW, border_space, border_pts);
 
                 quit = Input::GetInput(renderer, controls, current, selected, scrollUp, scrollDown, hold);
 
