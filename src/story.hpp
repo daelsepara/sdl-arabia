@@ -2899,6 +2899,228 @@ public:
     int Continue(Character::Base &player) { return 54; }
 };
 
+class Story100 : public Story::Base
+{
+public:
+    Story100()
+    {
+        ID = 100;
+
+        Image = "images/pirates-asleep.png";
+
+        Text = "You give orders for the merchantman's sailors to take your ship back to port, while your own crew come aboard and man their vessel. Along with a hand-picked band of your best marines, you hide inside some empty barrels in the hold. You do not have to wait long before the cry goes out from the look-out, warning of black sails on the horizon.\n\nGrappling hooks wrench the ships together and there is the desultory clash of steel. Your sailors put up a token resistance just to prevent the pirates getting suspicious, surrendering before anyone is killed. Listening from inside the barrel, you hear the tramp of feet on the deck above. Harsh commands are given and the barrels are loaded aboard the pirate ship. The slow rolling of the heavy merchantman gives way to the swift grace of the pirates\" warship.\n\nHours pass before you feel the ship jolt against the side of a dock. The pirates start to unload the barrels. You get ready to spring out on them, but then someone says, \"Let's broach this keg and have a party. We can unload the rest tomorrow.\"\n\nEven better. You wait until the noise of drunken carousing settles down into rhythmic snores, then you ease the top off your barrel and climb out. You emerge from the hold to find yourself in an underground lagoon covered by a vast stone dome. There are bronze braziers all along the shore of the lagoon, and the scene they illuminate is one of opulent luxury. The shore is covered with scattered gold, gems, ivory, pearls -- along with jars of oil and perfume, flasks of cool green wine and bolts of rich red cloth. The pirates lie asleep, limbs flung out like starfish in their wine-soaked contentment. Here you see a scar-faced villain clutching a necklace of dripping sapphires. Beside him lies a snoring red-faced ruffian hugging a blanket of lustrous silk.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Rely on [ROGUERY]", 12, Skill::Type::ROGUERY));
+        Choices.push_back(Choice::Base("Use the LAMP of Antar", 485, {Item::LAMP_OF_ANTAR}));
+        Choices.push_back(Choice::Base("You have neither of those", 58));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story101 : public Story::Base
+{
+public:
+    Story101()
+    {
+        ID = 101;
+
+        Text = "\"What you say is full of pragmatic wisdom,\" you say to Hakim. He nods and smiles, thinking you agree, but then you go on, \"However, it reminds me of the sad story of the man who passed Mecca every year with his camels. Each time he would pause, and bow, and say, \"Next year I will make the pilgrimage.\"\n\n\"And what happened to him?\"\n\n\"His excuses outlasted the years God had allotted to him. Whether or not he entered the gates of Paradise, I cannot say. God alone is all-knowing. But what do you think?\"\n\nHakim turns from you to the holy city with a look of concern. \"Even the most foolish of men knows the value of prudence,\" he mutters at last. \"And surely I can spare ten days of my life for He who has given me everything I possess.\"\n\nHe gives the orders for the caravan to halt.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::MORDANT}))
+        {
+            return 493;
+        }
+        else
+        {
+            return 146;
+        }
+    }
+};
+
+class Story102 : public Story::Base
+{
+public:
+    Story102()
+    {
+        ID = 102;
+
+        Text = "You give the signal. The ghoul brothers go racing off without a backward glance, chortling because they think they will soon leave you far behind. So they do, but you are not worried. Instead of racing along the path, which curves around the hillside, you climb straight up and over the ridge, dropping back onto the path before they come around the bend. The two brothers give croaks of dismay when they see your heels kicking up dust in the moonlight far in front of them. They put on a burst of desperate speed, charging like a couple of enraged bull elephants, but you still manage to just beat them back to the hut.\n\nThe old she-ghoul is dumbfounded when she learns that her sons mean to honour their agreement with you. \"Then I've been slaving away over this pot for nothing!\" she grumbles. \"Why couldn't you just cheat like your old father used to?\"\n\n\"But we lost fair and square, Ma,\" protests the elder brother, putting his hand across your shoulder. You try not to squirm. You spend the night with the ghoul family -- as bizarre a group of hosts as you've ever known. This is a story to enthral the passers-by in the bazaar in Baghdad. Unfortunately you are still no closer to fame and riches. Or are you? The next morning you bid farewell to the ghouls and set off out of the hills to join your friends.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 289; }
+};
+
+class Story103 : public Story::Base
+{
+public:
+    Story103()
+    {
+        ID = 103;
+
+        Text = "All your plotting comes to nothing. The ship sets sail the next day before you have time to formulate a plan, let alone put it into action. You are chained to the oars, and you have nothing to look forward to but the short harsh life of a galley slave. Your adventure is at an end.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story104 : public Story::Base
+{
+public:
+    Story104()
+    {
+        ID = 104;
+
+        Image = "images/filler2.png";
+
+        Text = "The law of hospitality means that you must accept. The Bedouin would rather starve than lose face by failing to feed you.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 127; }
+};
+
+class Story105 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story105()
+    {
+        ID = 105;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Enter the circle of columns", 172));
+        Choices.push_back(Choice::Base("Turn away", 82));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The outline of ruins shows as a darker blot against the charcoal-coloured sky. You have arrived at a place of basalt columns that have been uncovered by the storm. You lean against them, gasping raggedly for breath in the suffocating dry dust.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou see a feeble splinter of sunlight find a crack in the swirling sand-clouds. It lasts long enough to bathe the columns in the purple colours of dream. Then the storm eclipses it again.\n\nThe place seems draped in mystery.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story106 : public Story::Base
+{
+public:
+    Story106()
+    {
+        ID = 106;
+
+        Text = "His SWORD cuts a bloody gash across your neck. Blinded for an instant by tears of pain, you fail to strike him in return.\n\nYou LOSE 2 Life Points.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Get close and attack with all your might", 148));
+        Choices.push_back(Choice::Base("Make a well-aimed but weaker strike", 37));
+        Choices.push_back(Choice::Base("Back away while parrying", 60));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -2);
+    }
+};
+
+class Story107 : public Story::Base
+{
+public:
+    Story107()
+    {
+        ID = 107;
+
+        Text = "In the dead of night, the rocking of the ship rouses you from a light doze. You have a raging thirst. As you stumble sleepily towards the freshwater barrel in the middle of the deck, you almost tread on your ship's cat. It must have been brought across by one of the others when they first explored this ship, only to get left behind in the hurry to leave. It mews piteously and rubs against your legs, so you give it a saucer of water.\n\nYou are just on the point of draining your own cup when you hear a soft thud. The ship's cat has keeled over. It wheezes a last breath and then lies still. The water... it must be poisoned! Flinging the cup away, you softly pace across the deck, giving each corpse a kick in the guts. The sixth 'corpse' you do this to gives a yelp of pain and jumps up. You have found the poisoner.\n\nHearing your shouts, the crew come across from the other ship.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 174; }
+};
+
+class Story108 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story108()
+    {
+        ID = 108;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The seven warriors give barracuda grins and silently launch themselves into battle. You see the captain sliced instantly in two. Another of your companions turns to run, but one of the warriors grabs him by the shoulders and sinks his wide fang-rimmed mouth entirely around his head. A single bite ends the poor wretch's life.\n\nYou groan as you are chopped across the thighs, then sent flying by an arm that felt stronger than a swinging jib.\n\n";
+
+        auto DAMAGE = -6;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -4;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nIf you survive, you see that you have no chance of defeating the shark men. You cannot even save your friends. Hating yourself, but knowing you have no choice, you crawl away while the shark men are distracted by the carnage. Splashing back to the ship, you raise the anchor and let the current carry you away from the island. No one else got away. You are alone.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 266; }
+};
+
+class Story109 : public Story::Base
+{
+public:
+    Story109()
+    {
+        ID = 109;
+
+        Text = "Holding your arms out to either side, you stride along the glass column at a rapid but measured pace. Shouts from behind tell you that the Sultan and his knights have reached the brink. You ignore them. The Sultan's marvellous voice booms off the walls of the chasm, but you disregard his words. After a moment a spear whistles past your ear. You do not let it distract you.\n\nYou reach the far side. They do not dare come after you. Taunting them by bowing, you disappear into the undergrowth.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -2999,6 +3221,16 @@ auto story096 = Story096();
 auto story097 = Story097();
 auto story098 = Story098();
 auto story099 = Story099();
+auto story100 = Story100();
+auto story101 = Story101();
+auto story102 = Story102();
+auto story103 = Story103();
+auto story104 = Story104();
+auto story105 = Story105();
+auto story106 = Story106();
+auto story107 = Story107();
+auto story108 = Story108();
+auto story109 = Story109();
 
 void InitializeStories()
 {
@@ -3012,7 +3244,8 @@ void InitializeStories()
         &story060, &story061, &story062, &story063, &story064, &story065, &story066, &story067, &story068, &story069,
         &story070, &story071, &story072, &story073, &story074, &story075, &story076, &story077, &story078, &story079,
         &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089,
-        &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099};
+        &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099,
+        &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109};
 }
 
 #endif

@@ -23,8 +23,9 @@ namespace Item
         CHART,
         HUBBLE_BUBBLE_PIPE,
         LONG_TAILED_CAT,
+        LAMP_OF_ANTAR,
         First = BOW,
-        Last = HUBBLE_BUBBLE_PIPE
+        Last = LAMP_OF_ANTAR
     };
 
     class Base
@@ -73,8 +74,9 @@ namespace Item
     auto CHART = Item::Base("CHART", "CHART", Item::Type::CHART);
     auto HUBBLE_BUBBLE_PIPE = Item::Base("HUBBLE BUBBLE PIPE", "HUBBLE BUBBLE PIPE", Item::Type::HUBBLE_BUBBLE_PIPE);
     auto LONG_TAILED_CAT = Item::Base("LONG TAILED CAT", "LONG TAILED CAT", Item::Type::LONG_TAILED_CAT);
+    auto LAMP_OF_ANTAR = Item::Base("LAMP of Antar", "LAMP of Antar", Item::Type::LAMP_OF_ANTAR);
 
-    std::vector<Item::Type> UniqueItems = {Item::Type::LONG_TAILED_CAT};
+    std::vector<Item::Type> UniqueItems = {Item::Type::LONG_TAILED_CAT, Item::Type::LAMP_OF_ANTAR};
 
     bool IsUnique(Item::Type item)
     {
