@@ -2840,7 +2840,7 @@ public:
     {
         ID = 96;
 
-        Text = "Sparkling light appears from no obvious source. You see crystal pillars forming an alcove in the wall ahead of you. The old man whom you met on the ledge is here, dressed now in the white robes of a king of Old Persia. A black jewel shimmers at his throat. You stand in awe of the unknown as Yussuf slowly pads down the steps to join you.\n\n\"You have done well to come this far, and now you shall claim your reward,\" says the old man. \"Here are four treasures.\" He reaches into a gold-banded treasure chest and brings out a COPPER LAMP. \"This is the enchanted LAMP used by the hero Antar when he crept unseen through the harem of Sakhur the Jinni.\"\n\n\"How does it work?\" asks Yussuf.\n\n\"Merely light it, and while you hold it in your hands no-one can see you. But there is only a little of the magic oil left. Enough for a few minutes of invisibility at best.\" He puts the LAMP down and produces a coil of ROPE. \"This second treasure is a ROPE of distant India. On command it will rise straight into the air of its own accord -- a marvellous treasure for a rogue!\" He puts the ROPE aside and draws a TRUMPET out of the chest. \"And this is the horn which levelled the walls of Jericho in ancient times. Be warned, however, that to unleash its destructive force is perilous.\"\n\nHe stands with folded arms while you gaze on the treasures. \"How many can we take?\" asks Yussuf. \"Just one?\"\n\n\"One each!\" declares the old man.\n\nYussuf leaves it to you to decide.";
+        Text = "Sparkling light appears from no obvious source. You see crystal pillars forming an alcove in the wall ahead of you. The old man whom you met on the ledge is here, dressed now in the white robes of a king of Old Persia. A black jewel shimmers at his throat. You stand in awe of the unknown as Yussuf slowly pads down the steps to join you.\n\n\"You have done well to come this far, and now you shall claim your reward,\" says the old man. \"Here are four treasures.\" He reaches into a gold-banded treasure chest and brings out a COPPER LAMP. \"This is the enchanted LAMP used by the hero Antar when he crept unseen through the harem of Sakhur the Jinni.\"\n\n\"How does it work?\" asks Yussuf.\n\n\"Merely light it, and while you hold it in your hands no-one can see you. But there is only a little of the magic oil left. Enough for a few minutes of invisibility at best.\" He puts the LAMP down and produces a coil of ROPE. \"This second treasure is a ROPE of distant India. On command it will rise straight into the air of its own accord -- a marvellous treasure for a rogue!\" He puts the ROPE aside and draws a TRUMPET out of the chest. \"And this is the HORN which levelled the walls of Jericho in ancient times. Be warned, however, that to unleash its destructive force is perilous.\"\n\nHe stands with folded arms while you gaze on the treasures. \"How many can we take?\" asks Yussuf. \"Just one?\"\n\n\"One each!\" declares the old man.\n\nYussuf leaves it to you to decide.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Choose the LAMP and the ROPE", 164));
@@ -4850,6 +4850,216 @@ public:
     int Continue(Character::Base &player) { return 202; }
 };
 
+class Story180 : public Story::Base
+{
+public:
+    Story180()
+    {
+        ID = 180;
+
+        Text = "It takes months, but at last, while sitting in a fisherman's shack on the fringe of the mangrove swamps outside Daibul, you hear confirmation of the legend.\n\n\"Indeed, I have seen the rokh,\" claims the fisherman. \"Its wingspan is so wide as to blot out the sun, and each claw could enfold a ship. Its beak is longer and sharper than -- \"\n\nYou give a cough. \"The important thing is, does it really lay diamond eggs?\"\n\nHe cackles wildly. \"I don\"t know, do I? I never visited the Isle of Palms myself, much less climbed to the rokh's eyrie.\"\n\n\"The Isle of Palms?\" you enquire. Suddenly, success seems within your reach.\n\n\"That's where it nests. If you want, I'll take you there tomorrow.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 21; }
+};
+
+class Story181 : public Story::Base
+{
+public:
+    Story181()
+    {
+        ID = 181;
+
+        Text = "At first the rocks are rough enough for you to climb quickly. As you get higher, though, you have to search more carefully for each handhold. Also the cliff is covered with patches of slippery moss, and twice you nearly lose your grip.\n\nYou look up. You don't seem to have got more than a third of the way, if that. You have no particular wish to look down and check.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Press on", 227));
+        Choices.push_back(Choice::Base("Give up and return to the ground", 249));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story182 : public Story::Base
+{
+public:
+    Story182()
+    {
+        ID = 182;
+
+        Text = "Few people dare to venture outside after dark because of the curfew, so it is easy to spot the Caliph. He is wrapped in a dark cloak and accompanied by his hulking bodyguard, Masrur. You shadow them until they return to the palace, which they enter by means of a concealed tunnel. Following, you emerge from the darkness of the tunnel just as the Caliph is throwing off his disguise.\n\n\"An assassin!\" roars Masrur, stepping forward and raising his sword.\n\n\"Wait!\" you say to the Caliph, raising your hands to show they are empty. \"I have not come to harm you, O Prince of the Faith, but to warn you against treachery.\"\n\nThe Caliph considers for a moment, then nods and leads you to the end of the corridor. \"I'll hear what you have to say.\"\n\nYou follow him into the throne room, where you come face to face with your enemy Jafar. You see hatred blaze behind his eyes, but he quickly masks it with a laugh and says, \"Why, O Caliph, do you waste your time on the prattle of a guttersnipe such as this?\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 477; }
+};
+
+class Story183 : public Story::Base
+{
+public:
+    Story183()
+    {
+        ID = 183;
+
+        Text = "Arriving at the market in early morning, you see two teams of camels loaded for long journeys. Porters rush along the line, checking the wares are securely strapped. The camels growl like consumptive old men and glower disdainfully at their handlers, rising to their feet reluctantly as the first caravan moves off.\n\nA merchant approaches you and asks if you will hire on as a caravan guard. \"I will pay you ten dinars. Come, be quick about your answer -- those are my camels you see traipsing towards the eastern gate.\"\n\n\"Ten dinars to brave the blades of a thousand bandits!\" scoffs another man who has overheard this. He takes your arm and points to the other caravan, now making ready to set off. \"Why weigh your lifeblood against a pouch of gold? Come with us to Egypt. It's a safer route by far than this slave-driver takes.\"\n\nThe first merchant stares at him in express amazement. \"Safe, you claim? Your tongue is more wretched than a dog's tail! Is it safe to fling one's life at the mercy of the desert sun?\" He turns to you. \"Let this rogue pay you in water. You will need it more than my gold, if you take the route to Egypt.\"\n\nDecide.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Join the first caravan, heading east through the Peaks of the Slayers, for the sum of 10 dinars", 296, Choice::Type::GAIN_MONEY, 10));
+        Choices.push_back(Choice::Base("Join the second caravan across the desert to Egypt for the sum of 6 dinars", 400, Choice::Type::GAIN_MONEY, 6));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story184 : public Story::Base
+{
+public:
+    Story184()
+    {
+        ID = 184;
+
+        Text = "You can hear murmuring and the rustling of silks as Jafar changes his robe in the next room. Since he is boasting loudly to the timid slave about his plans, it's unlikely he will hear you. Even so, you are careful to pad as quietly as a cat over to the table where the chart lies. Scanning it quickly, you see that the rokh\"s nest is marked close to the source of the Nile river.\n\nYou gained the codeword KISMET.\n\n\"These green slippers will not do!\" you hear Jafar hissing at his slave. \"Have you no sense at all, you curd-faced girl? Fetch the red pair from the other room.\"\n\nYou glance down. The red slippers are beside the table. You see the slave girl's swaying silhouette as she approaches the curtained archway. You must get away fast, or she will raise the alarm. Hastily you retrace your steps.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            return 383;
+        }
+        else
+        {
+            return 207;
+        }
+    }
+};
+
+class Story185 : public Story::Base
+{
+public:
+    Story185()
+    {
+        ID = 185;
+
+        Text = "You draw back to the stern, where the posts supporting the kiosk roof prevent the guards from coming at you all at once. Hearing the affray, the woman peeks out from behind the silk drapes and gives a shriek of dismay.\n\n\"Fear not, my lady!\" calls one of the guards. \"We'll soon despatch this rogue.\"\n\nThey might at that. You duck as the nearest guard swings his blade towards you. The steel hisses over your head and strikes the wooden rail with a dull thunk. As your opponent swears and twists at the sword to free it, you stamp on his foot and follow through with a desperate blow to his stomach. The others crowd in behind him, keen to try their mettle against you.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::JEWELLED_SWORD}))
+        {
+            return 208;
+        }
+        else
+        {
+            return 231;
+        }
+    }
+};
+
+class Story186 : public Story::Base
+{
+public:
+    Story186()
+    {
+        ID = 186;
+
+        Text = "A single narrow passage slopes off from this cavern. You descend, steadying yourselves against the rock walls, until the flickering light of your taper reveals a room of worked stone just ahead. You see faded murals which show warriors in battle, fighting and dying to protect the idols of their false gods.\n\n\"These are scenes from a time before the light of truth was brought to mankind by the Prophet -- may all blessings be upon him,\" says Yussuf. He points to part of the mural. \"See these cloaked swordsmen with masks of iron. They are the fanatics of the god Mithra, who gave his followers great strength and courage in battle. Or so I have heard, but God alone is all knowing.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            return 232;
+        }
+        else
+        {
+            return 255;
+        }
+    }
+};
+
+class Story187 : public Story::Base
+{
+public:
+    Story187()
+    {
+        ID = 187;
+
+        Text = "No sooner have you made your choice than the old man claps his hands. At once the mysterious light flares up, dazzling you. When your eyes clear, you are back on the ledge overlooking the river. There is no sign of the old man, nor any trace that his charcoal fire was ever here.\n\n\"How very strange it all was,\" says Yussuf. \"A dream? Surely not, for how then can we account for these two treasures?\"\n\n\"Best we say nothing of this to the others. They would think us mad.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::INDIAN_ROPE, Item::JERICHO_HORN});
+    }
+
+    int Continue(Character::Base &player) { return 256; }
+};
+
+class Story188 : public Story::Base
+{
+public:
+    Story188()
+    {
+        ID = 188;
+
+        Text = "A thick vapour, darker than the mist, pours from your ring and congeals into a broad figure with eyes like hissing coals. The sailors fall flat on the deck in terror. Captain Ibrahim draws his sword and takes a step forward, but you place your hand on his wrist. \"Be calm. This grotesque ogre is my servant.\"\n\nThe jinni eyes you blackly. \"What service may I perform for you, O fount of one thousand virtues?\" he grates.\n\n\"Fill our sails with wind,\" you tell him. \"Carry us far out of this fog bank.\"\n\n\"I exist only to do your bidding,\" he replies, but you do not like the vicious smile on his gnarled features as he says this. Your worries are confirmed a moment later when, blowing hard into the lank sails, he propels the ship directly upwards out of the water. The sailors cling on to the rail for dear life. It is a miracle that no one falls to his death.\n\nComing to rest with a soft jolt, you think that the ordeal is over. You have landed, indeed -- but not back on the waves. Beneath you is a swirling mass of white. Your ship is suspended in the clouds!\n\nThe jinni swirls back into your ring. You exert your magic, brandishing the ring and sternly crying out, \"Jinni! I summon you to reappear!\"\n\n\"There is no jinni here,\" says a sullen voice from the ring. \"Just a grotesque ogre.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 175; }
+};
+
+class Story189 : public Story::Base
+{
+public:
+    Story189()
+    {
+        ID = 189;
+
+        Text = "The sun buries itself in a dry red haze over the western hills. Velvet darkness slides down to cover the landscape. From the headman's house you see a blaze of lights, but elsewhere the town is shrouded in darkness.\n\nThe stars emerge. As a chill breeze gusts along the river, Jumail the cook pulls his jerkin around his shoulders and says, \"I don't like it. What's happened to the captain? He ought to have got back by now.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go ashore to look for him", 235));
+        Choices.push_back(Choice::Base("Stay aboard", 258));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -5030,6 +5240,16 @@ auto story176 = Story176();
 auto story177 = Story177();
 auto story178 = Story178();
 auto story179 = Story179();
+auto story180 = Story180();
+auto story181 = Story181();
+auto story182 = Story182();
+auto story183 = Story183();
+auto story184 = Story184();
+auto story185 = Story185();
+auto story186 = Story186();
+auto story187 = Story187();
+auto story188 = Story188();
+auto story189 = Story189();
 
 void InitializeStories()
 {
@@ -5051,7 +5271,8 @@ void InitializeStories()
         &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149,
         &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159,
         &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169,
-        &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179};
+        &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179,
+        &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189};
 }
 
 #endif

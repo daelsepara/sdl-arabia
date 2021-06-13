@@ -28,8 +28,9 @@ namespace Item
         PRAYER_MAT,
         JEWELLED_KEY,
         ANTIDOTE,
+        JERICHO_HORN,
         First = BOW,
-        Last = ANTIDOTE
+        Last = JERICHO_HORN
     };
 
     class Base
@@ -83,8 +84,12 @@ namespace Item
     auto PRAYER_MAT = Item::Base("PRAYER-MAT", "PRAYER-MAT", Item::Type::PRAYER_MAT);
     auto JEWELLED_KEY = Item::Base("JEWELLED KEY", "JEWELLED KEY", Item::Type::JEWELLED_KEY);
     auto ANTIDOTE = Item::Base("ANTIDOTE", "ANTIDOTE", Item::Type::ANTIDOTE);
+    auto JERICHO_HORN = Item::Base("Jericho HORN", "Jericho HORN", Item::Type::JERICHO_HORN);
 
-    std::vector<Item::Type> UniqueItems = {Item::Type::LONG_TAILED_CAT, Item::Type::LAMP_OF_ANTAR};
+    std::vector<Item::Type> UniqueItems = {
+        Item::Type::LONG_TAILED_CAT,
+        Item::Type::LAMP_OF_ANTAR,
+        Item::Type::JERICHO_HORN};
 
     bool IsUnique(Item::Type item)
     {
