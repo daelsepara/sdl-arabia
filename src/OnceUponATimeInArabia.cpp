@@ -66,7 +66,7 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
 Story::Base *renderChoices(SDL_Window *window, SDL_Renderer *renderer, Character::Base &player, Story::Base *story);
 
 void clipValue(int &val, int min, int max);
-void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font, Character::Base &player);
+void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font, Character::Base &player, Character::Gender gender);
 
 SDL_Surface *createImage(const char *image)
 {
@@ -449,7 +449,7 @@ std::vector<TextButton> createHTextButtons(const char **choices, int num, int te
         auto margin2 = (2.0 * Margin);
         auto marginleft = (1.0 - margin2);
 
-        auto pixels = (int)(SCREEN_WIDTH * Margin);
+        auto pixels = (int)(SCREEN_WIDTH * Margin) / 2;
         auto width = (int)(SCREEN_WIDTH * marginleft);
 
         auto text_spacew = width / num;
@@ -652,7 +652,7 @@ bool characterScreen(SDL_Window *window, SDL_Renderer *renderer, Character::Base
                 // Fill the surface with background color
                 fillWindow(renderer, intWH);
 
-                renderAdventurer(window, renderer, font, player);
+                renderAdventurer(window, renderer, font, player, Character::Gender::NONE);
 
                 if (player.Codewords.size() > 0 && codewords.length() > 0)
                 {
@@ -1844,7 +1844,7 @@ bool loseItems(SDL_Window *window, SDL_Renderer *renderer, Character::Base &play
     return done;
 }
 
-void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font, Character::Base &player)
+void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font, Character::Base &player, Character::Gender gender)
 {
     const int profilew = SCREEN_WIDTH * (1.0 - 2.0 * Margin);
     const int profileh = 0.12 * SCREEN_HEIGHT;
@@ -1918,6 +1918,25 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
 
     putText(renderer, "Possessions", font, space, clrWH, intYW, TTF_STYLE_NORMAL, headerw, headerh, startx, starty + profileh + 3 * headerh + 3 * marginh + 2 * boxh);
     putText(renderer, player.Items.size() > 0 ? possessions.c_str() : "(None)", font, space, clrBK, intBE, TTF_STYLE_NORMAL, profilew, profileh, startx, starty + profileh + 4 * headerh + 3 * marginh + 2 * boxh);
+
+    if (gender != Character::Gender::NONE)
+    {
+        auto genderx = (int)(SCREEN_WIDTH * (1.0 - 2.0 * Margin) / 2) + startx;
+        auto genderh = (int)(0.07 * SCREEN_HEIGHT) - space;
+        auto genderw = splashw / 2;
+
+        putText(renderer, "MALE", font, 8, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, genderx, starty);
+        putText(renderer, "FEMALE", font, 8, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, genderx + genderw + 2 * space, starty);
+
+        if (gender == Character::Gender::MALE)
+        {
+            drawRect(renderer, genderw, genderh, genderx, starty, intBK);
+        }
+        else
+        {
+            drawRect(renderer, genderw, genderh, genderx + genderw + 2 * space, starty, intBK);
+        }
+    }
 }
 
 std::vector<Button> skillsList(SDL_Window *window, SDL_Renderer *renderer, int start, int last, int limit)
@@ -1970,9 +1989,10 @@ std::vector<Button> skillsList(SDL_Window *window, SDL_Renderer *renderer, int s
     auto button_space = 25;
     auto button_height = 48;
 
-    controls.push_back(Button(idx, createHeaderButton(window, "Glossary", clrWH, intBK, button_width, button_height, -1), idx - 1, idx + 1, idx - 1, idx, startx, buttony, Control::Type::GLOSSARY));
-    controls.push_back(Button(idx + 1, createHeaderButton(window, "Start", clrWH, intBK, button_width, button_height, -1), idx, idx + 2, idx - 1, idx + 1, startx + button_width + button_space, buttony, Control::Type::NEW));
-    controls.push_back(Button(idx + 2, createHeaderButton(window, "Back", clrWH, intBK, button_width, button_height, -1), idx + 1, idx + 2, idx - 1, idx + 2, startx + 2 * (button_width + button_space), buttony, Control::Type::BACK));
+    controls.push_back(Button(idx, createHeaderButton(window, "Gender", clrWH, intBK, button_width, button_height, -1), idx - 1, idx + 1, idx - 1, idx, startx, buttony, Control::Type::GENDER));
+    controls.push_back(Button(idx + 1, createHeaderButton(window, "Glossary", clrWH, intBK, button_width, button_height, -1), idx, idx + 2, idx - 1, idx + 1, startx + button_width + button_space, buttony, Control::Type::GLOSSARY));
+    controls.push_back(Button(idx + 2, createHeaderButton(window, "Start", clrWH, intBK, button_width, button_height, -1), idx + 1, idx + 3, idx - 1, idx + 2, startx + 2 * (button_width + button_space), buttony, Control::Type::NEW));
+    controls.push_back(Button(idx + 3, createHeaderButton(window, "Back", clrWH, intBK, button_width, button_height, -1), idx + 3, idx + 2, idx - 1, idx + 3, startx + 3 * (button_width + button_space), buttony, Control::Type::BACK));
 
     return controls;
 }
@@ -1984,6 +2004,8 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
     auto done = false;
 
     Character::Base player = Character::Base();
+
+    auto gender = Character::Gender::MALE;
 
     // Render the image
     if (window && renderer)
@@ -2027,6 +2049,9 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
         auto infoh = 0.07 * SCREEN_HEIGHT;
         auto boxh = 0.150 * SCREEN_HEIGHT;
         auto box_space = 10;
+
+        auto genderh = infoh;
+        auto genderw = splashw;
 
         while (!done)
         {
@@ -2103,6 +2128,18 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
             if (!flash_message)
             {
                 putText(renderer, "SELECT 4 Skills for your character.", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
+            }
+
+            putText(renderer, "MALE", font, 8, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, startx, starty + boxh + box_space);
+            putText(renderer, "FEMALE", font, 8, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, startx, starty + boxh + box_space + genderh + text_space);
+
+            if (gender == Character::Gender::MALE)
+            {
+                drawRect(renderer, genderw, genderh, startx, starty + boxh + box_space, intBK);
+            }
+            else
+            {
+                drawRect(renderer, genderw, genderh, startx, starty + boxh + box_space + genderh + text_space, intBK);
             }
 
             renderButtons(renderer, controls, current, intYW, 8, 4);
@@ -2234,6 +2271,7 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
 
                         Character::CUSTOM.Money = 12;
                         Character::CUSTOM.Life = 10;
+                        Character::CUSTOM.Gender = gender;
 
                         player = Character::CUSTOM;
 
@@ -2265,6 +2303,19 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
                     glossaryScreen(window, renderer, Skill::ALL);
 
                     current = -1;
+
+                    selected = false;
+                }
+                else if (controls[current].Type == Control::Type::GENDER)
+                {
+                    if (gender == Character::Gender::MALE)
+                    {
+                        gender = Character::Gender::FEMALE;
+                    }
+                    else
+                    {
+                        gender = Character::Gender::MALE;
+                    }
 
                     selected = false;
                 }
@@ -2313,17 +2364,19 @@ Character::Base selectCharacter(SDL_Window *window, SDL_Renderer *renderer)
         auto main_buttonh = 48;
         auto font_size = 18;
         auto font20 = 20;
+        auto gender = Character::Gender::MALE;
 
-        const char *choices[6] = {"Previous", "Next", "Glossary", "Custom", "Start", "Back"};
+        const char *choices[7] = {"Previous", "Next", "Gender", "Glossary", "Custom", "Start", "Back"};
 
-        auto controls = createHTextButtons(choices, 6, main_buttonh, startx, SCREEN_HEIGHT * (1.0 - Margin) - main_buttonh);
+        auto controls = createHTextButtons(choices, 7, main_buttonh, startx, SCREEN_HEIGHT * (1.0 - Margin) - main_buttonh);
 
         controls[0].Type = Control::Type::BACK;
         controls[1].Type = Control::Type::NEXT;
-        controls[2].Type = Control::Type::GLOSSARY;
-        controls[3].Type = Control::Type::CUSTOM;
-        controls[4].Type = Control::Type::NEW;
-        controls[5].Type = Control::Type::QUIT;
+        controls[2].Type = Control::Type::GENDER;
+        controls[3].Type = Control::Type::GLOSSARY;
+        controls[4].Type = Control::Type::CUSTOM;
+        controls[5].Type = Control::Type::NEW;
+        controls[6].Type = Control::Type::QUIT;
 
         TTF_Init();
 
@@ -2333,7 +2386,7 @@ Character::Base selectCharacter(SDL_Window *window, SDL_Renderer *renderer)
         {
             SDL_SetWindowTitle(window, title.c_str());
 
-            renderAdventurer(window, renderer, font, Character::Classes[character]);
+            renderAdventurer(window, renderer, font, Character::Classes[character], gender);
 
             renderTextButtons(renderer, controls, FONT_FILE, current, clrWH, intBK, intRD, font20, TTF_STYLE_NORMAL);
 
@@ -2348,6 +2401,8 @@ Character::Base selectCharacter(SDL_Window *window, SDL_Renderer *renderer)
                 if (controls[current].Type == Control::Type::NEW)
                 {
                     player = Character::Classes[character];
+
+                    player.Gender = gender;
 
                     current = -1;
 
@@ -2369,6 +2424,17 @@ Character::Base selectCharacter(SDL_Window *window, SDL_Renderer *renderer)
                     if (character < Character::Classes.size() - 1)
                     {
                         character++;
+                    }
+                }
+                else if (controls[current].Type == Control::Type::GENDER)
+                {
+                    if (gender == Character::Gender::MALE)
+                    {
+                        gender = Character::Gender::FEMALE;
+                    }
+                    else
+                    {
+                        gender = Character::Gender::MALE;
                     }
                 }
                 else if (controls[current].Type == Control::Type::GLOSSARY)
@@ -2579,6 +2645,7 @@ bool saveGame(Character::Base &player, const char *overwrite)
     data["name"] = player.Name;
     data["description"] = player.Description;
     data["type"] = player.Type;
+    data["gender"] = player.Gender;
     data["life"] = player.Life;
     data["money"] = player.Money;
     data["itemLimit"] = player.ITEM_LIMIT;
@@ -2665,6 +2732,13 @@ Character::Base loadGame(std::string file_name)
 
         auto type = static_cast<Character::Type>((int)data["type"]);
 
+        auto gender = Character::Gender::MALE;
+
+        if (!data["gender"].is_null())
+        {
+            gender = static_cast<Character::Gender>((int)data["gender"]);
+        }
+
         auto skills = std::vector<Skill::Base>();
         auto items = std::vector<Item::Base>();
         auto codewords = std::vector<Codeword::Type>();
@@ -2734,6 +2808,8 @@ Character::Base loadGame(std::string file_name)
         character.MAX_LIFE_LIMIT = (int)data["lifeLimit"];
         character.SKILLS_LIMIT = (int)data["skillsLimit"];
         character.StoryID = (int)data["storyID"];
+
+        character.Gender = gender; 
 
         try
         {

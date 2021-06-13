@@ -10,6 +10,13 @@
 
 namespace Character
 {
+    enum class Gender
+    {
+        NONE = 0,
+        MALE,
+        FEMALE
+    };
+
     enum class Type
     {
         CUSTOM = 0,
@@ -54,6 +61,8 @@ namespace Character
         int LostMoney = 0;
 
         int StoryID = 0;
+
+        Character::Gender Gender = Character::Gender::MALE;
 
 #if defined(_WIN32) || defined(__arm__)
         long long Epoch = 0;

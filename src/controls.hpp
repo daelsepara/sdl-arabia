@@ -41,7 +41,8 @@ namespace Control
         NO,
         BUY,
         SELL,
-        BARTER
+        BARTER,
+        GENDER
     };
 
     class Base
