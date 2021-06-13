@@ -4617,6 +4617,239 @@ public:
     int Continue(Character::Base &player) { return 459; }
 };
 
+class Story170 : public Story::Base
+{
+public:
+    Story170()
+    {
+        ID = 170;
+
+        Text = "You wait ten days until your owner and his camel-drivers return from Mecca. During that time, your thoughts were often of escape, but you know that running away would do you no good. You would soon be recaptured by the soldiers who patrol the pilgrim routes. The fate of a runaway slave does not bear thinking about.\n\nAs Hakim checks the straps of his camel\"s harness, he looks at you askance. Perhaps he has guessed what was in your mind, because he says: \"Wiser to stay with me. I treat you well enough. You're better off than most slaves, eh?\"\n\nYou return his gaze without expression. \"But still I am a slave,\" you say flatly.\n\nAt least you have had the opportunity to rest and regain your strength.\n\nYou RECOVER 1 Life Point.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 1);
+    }
+
+    int Continue(Character::Base &player) { return 123; }
+};
+
+class Story171 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story171()
+    {
+        ID = 171;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "They are direly offended that you should spurn their hospitality. \"We offer you our only food, and you repay us by taking our pride instead!\" rages the chief. \"Begone! Perish in the wilderness, you ungrateful dogs!\"\n\nThey take up stones and start to pelt you. Seizing the halters of your camels, you retreat amid the dunes.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        Character::LOSE_ALL(player);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou can only nod when Hakim, the owner of the camel train, says: \"I am chastened. We are civilized men, yet we have had a lesson in honour from those who are almost too poor to afford the luxury of it.\"";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 217; }
+};
+
+class Story172 : public Story::Base
+{
+public:
+    Story172()
+    {
+        ID = 172;
+
+        Image = "images/filler4.png";
+
+        Text = "The wind wraps a cloak of sand around you and pulls you off your feet. The camel's halter slips through your fingers. You give a startled cry, but it is torn from your lips and flung into the fury of the storm. You have a single glimpse of your companions' faces in the swirling gritty gloom. They stare in dismay to see you sucked into the air by the whirlwind. Then they drop away at dizzying speed and are lost to sight.\n\nYou hurtle through the heavens, flung between the dim gulfs of the clouds by the force of the storm. A leaden knell echoes inside your skull, sounding like the surge of waves heard from the ocean floor. You draw breath, but instead of sand you get a mouthful of salt water. Your last thought is that you are drowning beneath the sea -- surely the only traveller to do so while crossing the Arabian Desert!\n\nYou LOSE 1 Life Point.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 280; }
+};
+
+class Story173 : public Story::Base
+{
+public:
+    Story173()
+    {
+        ID = 173;
+
+        Image = "images/filler3.png";
+
+        Text = "You jump aside as the Lord of the Desert charges forward. He careers past, robes fluttering, slashing madly with his sword, and rebounds from the wall full of fury. Holding his sword straight out in front of him, he thrusts towards your heart.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try to dodge", 265));
+        Choices.push_back(Choice::Base("Punch at him as he comes in close", 468));
+        Choices.push_back(Choice::Base("Kick at his legs", 242));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story174 : public Story::Base
+{
+public:
+    Story174()
+    {
+        ID = 174;
+
+        Text = "The man you have caught gives his name as Jumal of Serendib. He admits to poisoning all of the crew of his own ship, but maintains that it was justified because they were unbelievers.\n\nThe captain, a perceptive man whose brother is a judge, soon sees the flaw in Jumal's argument. \"Obviously you were lying in wait till you could poison our water also!\" he cries. \"You unmitigated villain.\"\n\n\"You call me a villain,\" says Jumal, raising his finger, \"but I counter this with the charge that you are the villains. If you had learned of my quest for the diamond egg of the giant rokh, you would happily have murdered me for the secret.\"\n\n\"Sheer supposition!\" retorts the captain. \"Because you yourself are a treacherous pustule with the ethics of a starving hyena, you impute the same motives to others. Where is the rokh's nest, incidentally?\"\n\nUnder close interrogation, Jumal reveals that it is at the head of the Nile river. He also hands over a vial containing an all-purpose ANTIDOTE, which is given to you for safekeeping.\n\nYou gained the codeword KISMET.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::ANTIDOTE});
+
+        Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
+    }
+
+    int Continue(Character::Base &player) { return 197; }
+};
+
+class Story175 : public Story::Base
+{
+public:
+    Story175()
+    {
+        ID = 175;
+
+        Image = "images/city.png";
+
+        Text = "You take stock of your surroundings with growing astonishment. The ship is caught in the branches of a large tree whose roots lie in the clouds. Cliffs like puffs of foam loom above a sheer drop of hundreds of feet to the sea below.\n\nSlowly, like a sleepwalker, Captain Ibrahim reaches out and plucks a violet flower from the bough of the tree. He sniffs at it, then drops it into your hand. \"It is real,\" he says, his gruff voice softened by awe.\n\n\"Look!\" cries one of the sailors. He is pointing at gleaming towers that are visible on the other side of a hillock of cloud.\n\n\"It is a city,\" says Captain Ibrahim, gradually recovering his wits. He turns to you. \"Go and investigate. The city's inhabitants may know of a way for us to reach the ground.\"\n\nYou cannot argue. It was you who got everyone into this mess. You dangle your legs over the side, surprised to find the cloud surface is solid and springy. It reminds you of moss. With a last forlorn look at the others, you trudge off towards the mysterious city.\n\nYou have gone only a few hundred yards when you hear the sound of a child crying. It seems to come from beyond a fleecy white bank.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go closer", 257));
+        Choices.push_back(Choice::Base("Ignore the child and continue on to the city", 302));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story176 : public Story::Base
+{
+public:
+    Story176()
+    {
+        ID = 176;
+
+        Text = "Days pass without mishap, and at last a good following wind brings you to the port of Raysut.\n\nYou RECOVER 2 Life Points.\n\nBy now Captain Ibrahim is his old blustering self. Striding down the gangplank, he accosts a merchant on the seafront and asks the latest news.\n\n\"The Red Sea is unsafe for shipping by reason of pirates,\" announces the merchant. \"I myself lost a cargo of rugs that was bound for Cairo only last month.\"\n\nThe captain glowers like an angry old wolf. \"Pirates? Pah! Surely the Sultan's fleets can deal with them?\"\n\nAn old sailor who is passing by overhears this and stops to join in. \"These are no ordinary pirates. After each raid, they vanish like the dew in the gardens of Baghdad with the coming of dawn. I know, for I encountered them myself.\"\n\n\"And you survived?\" asks Yussuf the helmsman. \"How was that?\"\n\n\"Ah!\" declares the old sailor, raising his finger to the heavens. \"Now I shall tell you a tale of great wonder...\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Hang around and hear his story", 453));
+        Choices.push_back(Choice::Base("Visit the market to do some shopping", 350));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 2);
+    }
+};
+
+class Story177 : public Story::Base
+{
+public:
+    Story177()
+    {
+        ID = 177;
+
+        Image = "images/filler1.png";
+
+        Text = "You wander for days in the hills until you find a trail that leads down into a region of steaming swampland. Skirting this, you travel on until you see a city of tall towers and eggshell domes straddling both sides of a great river. When you arrive at the gates, you enquire where you are.\n\nThe sentries give you an unwelcoming look. \"This is Daibul,\" they say. \"Be warned, we give short shrift here to penniless vagabonds.\"\n\n\"Perhaps I am no vagabond, but heir to a kingdom,\" you reply, sauntering between them into the teeming city streets. Seeing their curious looks, you laugh, adding, \"Or perhaps not. God alone is all-knowing!\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 442; }
+};
+
+class Story178 : public Story::Base
+{
+public:
+    Story178()
+    {
+        ID = 178;
+
+        Text = "You dig at the interior of the lock using a thin metal sliver that you keep tucked in your boot. After a few seconds there is a heavy click and the lock springs open. Noiselessly raising the grille, you lope across the courtyard and make your getaway.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 223; }
+};
+
+class Story179 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story179()
+    {
+        ID = 179;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "Without warning, he rounds on you and utters a spell.";
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::BLACK_JEWEL}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nYou are helpless to stop yourself falling on all fours -- or rather hoofs -- and you will spend the rest of your life as a jackass.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 202; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -4787,6 +5020,16 @@ auto story166 = Story166();
 auto story167 = Story167();
 auto story168 = Story168();
 auto story169 = Story169();
+auto story170 = Story170();
+auto story171 = Story171();
+auto story172 = Story172();
+auto story173 = Story173();
+auto story174 = Story174();
+auto story175 = Story175();
+auto story176 = Story176();
+auto story177 = Story177();
+auto story178 = Story178();
+auto story179 = Story179();
 
 void InitializeStories()
 {
@@ -4807,7 +5050,8 @@ void InitializeStories()
         &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139,
         &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149,
         &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159,
-        &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169};
+        &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169,
+        &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179};
 }
 
 #endif
