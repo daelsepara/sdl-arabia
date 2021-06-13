@@ -2495,7 +2495,7 @@ public:
 
         if (player.Life > 0)
         {
-            PreText += "\n\nCoughing, half-blinded, deafened by the dreary shriek of the wind -- you trudge doggedly on towards your destiny..";
+            PreText += "\n\nCoughing, half-blinded, deafened by the dreary shriek of the wind -- you trudge doggedly on towards your destiny...";
         }
 
         Text = PreText.c_str();
@@ -3850,6 +3850,293 @@ public:
     int Continue(Character::Base &player) { return 230; }
 };
 
+class Story140 : public Story::Base
+{
+public:
+    Story140()
+    {
+        ID = 140;
+
+        Text = "Moving noiselessly between the softly swaying drapes, you put your finger to the woman's lips. Though startled, she nods to signal that she will not cry out for the guards.\n\n\"Who are you?\" she whispers. \"Have you come to answer my prayers? To rescue me from my fate?\"\n\n\"What fate is that?\" you reply quietly, keeping one eye on the hunched silhouettes of the guards at the front of the barque.\n\n\"I was the Caliph's slave, but I displeased his vizier, who arranged to have me sent as a gift to the Governor of Basra. I would sooner die than join his harem.\"\n\n\"I too have a grudge against Jafar.\"\n\n\"Then help me escape. When I do not arrive in Basra, Jafar himself will have to pay for another concubine.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (player.Gender != Character::Gender::FEMALE)
+        {
+            Choices.push_back(Choice::Base("Leap out and attack the guards", 320));
+            Choices.push_back(Choice::Base("Use [CUNNING]", 342, Skill::Type::CUNNING));
+            Choices.push_back(Choice::Base("[MAGIC] Summon a jinni", 364, Skill::Type::MAGIC));
+            Choices.push_back(Choice::Base("Return to your ship: you prefer not to get involved", 375));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 298; }
+};
+
+class Story141 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story141()
+    {
+        ID = 141;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "Pushing Yussuf back, you launch yourself into the thick of the devilish horde with a defiant cry of battle-fury. Chittering madly, they rip at your flesh with their hard axe-like talons and razor-edged jaws. One reaches past you for your cringing friend, who fends it away with a feeble blow and then falls to his knees and buries his head in his hands.\n\nYou have no time to worry about Yussuf. You push one of the monsters away, but another closes its jaws on your wrist and you feel the crunch of sinew as your blood spurts across its moist leathery orb of an eye.";
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nWithout SWORDPLAY or WRESTLING skills you have no hope at all, and you go down fighting under a hail of blows.";
+        }
+        else
+        {
+            PreText += "\n\n";
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                PreText += "[SWORDPLAY] ";
+            }
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+            {
+                PreText += "[WRESTLING] ";
+            }
+
+            Character::GAIN_LIFE(player, -6);
+
+            PreText += "You LOSE 6 Life Points.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 209; }
+};
+
+class Story142 : public Story::Base
+{
+public:
+    Story142()
+    {
+        ID = 142;
+
+        Choices.clear();
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAREM}))
+        {
+            return 159;
+        }
+        else
+        {
+            return 113;
+        }
+    }
+};
+
+class Story143 : public Story::Base
+{
+public:
+    Story143()
+    {
+        ID = 143;
+
+        Text = "Choose what to do next.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a PRAYER-MAT now", 165, {Item::PRAYER_MAT}));
+        Choices.push_back(Choice::Base("[MAGIC] Summon a jinni", 188, Skill::Type::MAGIC));
+        Choices.push_back(Choice::Base("Otherwise", 211));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story144 : public Story::Base
+{
+public:
+    Story144()
+    {
+        ID = 144;
+
+        Text = "The captain orders the rigging stripped and spliced together, making a long rope which is lowered over the edge of the cloud.\n\n\"As the cause of all this trouble, you shall go first,\" he says.\n\nWeak with fear, you slither down the rope. When you reach the bottom there is still a drop of forty feet to the sea. You let go and fall, hitting the water with stunning force. Drenching darkness closes over your head.\n\nYou LOSE 1 Life Point.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 280; }
+};
+
+class Story145 : public Story::Base
+{
+public:
+    Story145()
+    {
+        ID = 145;
+
+        Text = "Racing through the streets back to the ship, you scramble aboard and gasp out the order to cast off. As the ship pulls away from the dock, you raise yourself breathlessly and lean on the rail to watch a mob of angry islanders come chasing after you. They are too late. The front runners race to the edge of the jetty intending to jump aboard, but they see the distance is too far and stand suspended with flailing arms and comical alarmed stares before plunging over into the water. Your relief at escaping from such peril spills over into laughter, and the rest of the crew join in.\n\nSuddenly a grim old man pushes through the throng. Something about the look of him chokes off your merriment. He raises a staff topped by a human skull and begins a low howling chant that reverberates off the hills. You feel a prickling in the hair of your scalp. You are sure it is a curse.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::MAGIC))
+        {
+            return 324;
+        }
+        else
+        {
+            return 346;
+        }
+    }
+};
+
+class Story146 : public Story::Base
+{
+public:
+    Story146()
+    {
+        ID = 146;
+
+        Text = "This is no carefree jaunt for the half-hearted. The rituals are rigorous and take many days. First you visit the Great Mosque, where the looming black block of the sacred Kaaba stands like the very fingerprint of God against the sky. Circling this seven times, as tradition demands, is wearying in the intense desert heat. You are soon soaked in sweat and coughing because of the dust thrown up by hundreds of feet.\n\nAfter kissing the black stone, you drink and wash in the sacred well, Zamzam. Then there is an arduous run to and fro between two mountains just outside the city walls. You see an old man falter and drop to his knees. By now you are suffused with understanding of the Prophet’s teachings and you stop to help him even though you, too, are close to fainting.\n\nYour kindness is repaid. The old man helps you with your prayers in the days that follow. On the eighth day, you listen to a sermon preached at the same spot where the Prophet last spoke to his people in this life. Then, as the sun pulls streamers of red fire out of the sky to the west, you must walk to the Pillars of Mena where you spend the next day collecting pebbles. When you wonder at the meaning of this, the old man is on hand to instruct you. It seems that when Ismail was tempted by the Devil to disobey his father, Abraham, he drove the Devil away by throwing stones at him.\n\nOn the last day you sacrifice a sheep and distribute the meat to the poor. This symbolizes the sheep that Abraham sacrificed to God in place of his son Ismail.\n\nThe rituals are over. You are now a hajji, a pilgrim, and may wear a green turban to show this.\n\nYou gained the codeword HAJJI.";
+
+        Bye = "The next morning you awaken invigorated after your first good restful sleep in many days.\n\nYou RECOVER 2 Life Points.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::HAJJI});
+
+        Character::GAIN_LIFE(player, 2);
+    }
+
+    int Continue(Character::Base &player) { return 123; }
+};
+
+class Story147 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story147()
+    {
+        ID = 147;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The two ghouls race off ahead and are soon out of sight. Gasping for breath, you realize you cannot hope to keep up with them. No doubt they have benefitted from their high-protein diet. You decide that it would be better to simply slink away. You are clambering down through the rocks when you hear an ominous cough just behind you. Whirling, your heart sinks to see the ghoulish witch and her sons standing right behind you. She is holding a divining rod which she points towards you, saying through gritted teeth: \"There's your supper. Don't lose it again.\"\n\nThey club you brutally to the ground.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        Choices.clear();
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou are gripped firmly by the arms and led back to the hut. As they shove you inside, the mother starts looking at the jars along the shelves. \"Let's see... a bit of pepper and some garlic ought to set off the flavours nicely.\"\n\nYou must do something.";
+
+            if (!Character::VERIFY_SKILL(player, Skill::Type::MAGIC))
+            {
+                Choices.push_back(Choice::Base("Go down fighting", 370));
+                Choices.push_back(Choice::Base("Otherwise", 305));
+            }
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 327; }
+};
+
+class Story148 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story148()
+    {
+        ID = 148;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try the same tactic again", 83));
+        Choices.push_back(Choice::Base("Weave back and go for a lighter blow", 37));
+        Choices.push_back(Choice::Base("Try to parry", 60));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You cut him deeply across the chest, but his skin is hard like wind- dried leather and he only smiles at your efforts. Striking back, he inflicts a wicked gash to your thigh.\n\nYou LOSE 4 Life Points.";
+
+        Character::GAIN_LIFE(player, -4);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou are still able to fight.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 327; }
+};
+
+class Story149 : public Story::Base
+{
+public:
+    Story149()
+    {
+        ID = 149;
+
+        Image = "images/filler3.png";
+
+        Text = "The streets of the city are tiered thoroughfares that snake up between the clustered houses to the palace at the top of the hill. As you ascend the steps of one such street, you are shouldered aside by a patrol of stern-faced soldiers. Affronted at their rudeness, you give them a glowering look as they descend towards the docks.\n\nA passing barber notices the incident and says to you: \"The palace guards are looking for a thief who stole a ruby from the treasury. The Sultan is furious, and he has decreed that if the thief is not caught by the time the moon rises tonight, the captain of the palace guard will be crucified.\"\n\nYour pride is still ruffled. \"I can understand their urgency, then. All the same, there is no excuse for manhandling an honest traveller in that way.\"\n\nHe peers at you in the dusk. \"Ah, you are a stranger to the city?\"\n\n\"Yes,\" you say, nodding. \"What of it?\"\n\nHe suddenly leaps back and cries: \"Here is the thief! Here!\"\n\nBefore you can react, the soldiers turn and race back up the street.\n\nAs you start to raise your hands, the barber leaps on your back, bearing you to the ground.\n\nThe soldiers grab you. \"Well done, friend,\" their officer says to the barber. \"You'll be rewarded for this.\"\n\n\"My reward awaits me in heaven,\" he says.\n\n\"I'll give it to you myself,\" you growl at him, \"once I've explained there's been a mistake.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 250; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -3990,6 +4277,16 @@ auto story136 = Story136();
 auto story137 = Story137();
 auto story138 = Story138();
 auto story139 = Story139();
+auto story140 = Story140();
+auto story141 = Story141();
+auto story142 = Story142();
+auto story143 = Story143();
+auto story144 = Story144();
+auto story145 = Story145();
+auto story146 = Story146();
+auto story147 = Story147();
+auto story148 = Story148();
+auto story149 = Story149();
 
 void InitializeStories()
 {
@@ -4007,7 +4304,8 @@ void InitializeStories()
         &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109,
         &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119,
         &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129,
-        &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139};
+        &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139,
+        &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149};
 }
 
 #endif

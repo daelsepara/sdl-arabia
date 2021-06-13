@@ -25,8 +25,9 @@ namespace Item
         LONG_TAILED_CAT,
         LAMP_OF_ANTAR,
         DIAMOND,
+        PRAYER_MAT,
         First = BOW,
-        Last = LAMP_OF_ANTAR
+        Last = PRAYER_MAT
     };
 
     class Base
@@ -77,6 +78,7 @@ namespace Item
     auto LONG_TAILED_CAT = Item::Base("LONG TAILED CAT", "LONG TAILED CAT", Item::Type::LONG_TAILED_CAT);
     auto LAMP_OF_ANTAR = Item::Base("LAMP of Antar", "LAMP of Antar", Item::Type::LAMP_OF_ANTAR);
     auto DIAMOND = Item::Base("DIAMOND", "DIAMOND", Item::Type::DIAMOND);
+    auto PRAYER_MAT = Item::Base("PRAYER-MAT", "PRAYER-MAT", Item::Type::PRAYER_MAT);
 
     std::vector<Item::Type> UniqueItems = {Item::Type::LONG_TAILED_CAT, Item::Type::LAMP_OF_ANTAR};
 
