@@ -2495,7 +2495,7 @@ public:
 
         if (player.Life > 0)
         {
-            PreText += "\n\nCoughing, half-blinded, deafened by the dreary shriek of the wind -- you trudge doggedly on towards your destiny...";
+            PreText += "\n\nCoughing, half-blinded, deafened by the dreary shriek of the wind -- you trudge doggedly on towards your destiny.";
         }
 
         Text = PreText.c_str();
@@ -4398,6 +4398,225 @@ public:
     }
 };
 
+class Story160 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story160()
+    {
+        ID = 160;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Seen from the docks, the towers of Baghdad are like a carving of pale wood against the sky. Ships bob up and down at the quayside, sails wrapped tight around their high slender masts. You pass groups of sailors drinking wine and playing at dice, carousing now that the rigours of Ramadan are behind them.\n\nSeveral captains are hiring crew members.";
+
+        auto pay = 3;
+
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            pay = 3;
+
+            PreText += "\n\nYou will only be trusted with menial tasks and your pay is just 3 dinars.";
+        }
+        else
+        {
+            pay = 8;
+
+            PreText += "\n\nYou will be paid 8 dinars.";
+        }
+
+        Choices.push_back(Choice::Base("Sail east to the Indies", 229, Choice::Type::GAIN_MONEY, pay));
+        Choices.push_back(Choice::Base("Sail westwards towards Egypt", 252, Choice::Type::GAIN_MONEY, pay));
+        Choices.push_back(Choice::Base("Sail south in search of the fabled Scarlet Isle", 274, Choice::Type::GAIN_MONEY, pay));
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story161 : public Story::Base
+{
+public:
+    Story161()
+    {
+        ID = 161;
+
+        Text = "Masrur's sword flashes like a lightning bolt in the lamplight. You do not even feel it cleave through your neck, and your eyes are already darkened by death when your head hits the floor at Jafar's feet. Your adventure has come to a grisly end.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story162 : public Story::Base
+{
+public:
+    Story162()
+    {
+        ID = 162;
+
+        Text = "The flag at the prow identifies this vessel as belonging to the Governor of Basra. Those are his elite guards, each of them more than a match for any common swordsman. Even if you are skilled in fighting, you do not relish a confrontation with six such doughty warriors.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Return to your ship", 375));
+        Choices.push_back(Choice::Base("Approach the woman quietly", 140));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story163 : public Story::Base
+{
+public:
+    Story163()
+    {
+        ID = 163;
+
+        Text = "You snuff out the taper just before the monsters get within striking distance. Yussuf gives a long despairing wail of dread as darkness closes its robe around you.\n\nMoments trickle by. In the nerve-jangling silence, the only sound to be heard is the ragged rasp of Yussuf's desperate prayers: \"Merciful God, spare your unworthy servant. Never will I thieve nor cheat at dice again. No drop of wine will touch my lips -- \"\n\n\"Yussuf, listen!\" You reach out a hand in the dark and shake him until he regains his wits.\n\n\"There's nothing...\" he says in a wanly hopeful voice. \"What happened to the monsters?\"\n\nStepping back to find a rock to strike sparks with, you tread on something which squelches under your heel. Relighting the taper, you see that you have crushed a swarm of beetles. \"There are the monsters.\"\n\nYussuf gapes at them. \"Tiny insects! But those things we saw were huge.\"\n\n\"Illusions. The shape of our own fears.\" You peer into the gloom ahead. \"We must be on our guard, my friend. This is a place of dark sorcery.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 186; }
+};
+
+class Story164 : public Story::Base
+{
+public:
+    Story164()
+    {
+        ID = 164;
+
+        Text = "As you make your choice, the old man claps his hands and the mysterious light flares up, dazzling you. As your eyes clear, you find yourselves back on the ledge overlooking the river. There is no sign of the old man, nor any trace that his charcoal fire was ever here.\n\n\"How very strange,\" says Yussuf. \"I would think it all a dream, if not for the treasures we have with us. Who was the old man, I wonder?\"\n\n\"A ghost or jinni. Let's hope the treasures are not cursed.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::LAMP_OF_ANTAR, Item::INDIAN_ROPE});
+    }
+
+    int Continue(Character::Base &player) { return 256; }
+};
+
+class Story165 : public Story::Base
+{
+public:
+    Story165()
+    {
+        ID = 165;
+
+        Text = "The captain glowers as you kneel on the deck and unroll the mat. \"Save your prayers for later,\" he snarls. \"God is compassionate, but we cannot look to Him to guide us from this fog bank.\"\n\nThe mat falls with its gold fringe towards Mecca. You scan the charts, pointing to a jagged line that the map-maker has labelled with a warning. \"See this coral reef?\" you say to the captain. \"If I'm right as to our heading, it lies just a few leagues to starboard. I counsel you to steer well clear, or we'll run aground.\"\n\nHe stares at your prayer-mat, then tries it for himself. No matter how he unrolls it, it always falls the same way. \"It must be magical,\" he grumbles suspiciously.\n\n\"It is pious magic, at least. As reliable as any compass.\"\n\nFinally he agrees to steer the course you set. Slowly the current carries you clear of the dismal fog, and when the crew see the sun again they raise you on their shoulders with a cheer.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 234; }
+};
+
+class Story166 : public Story::Base
+{
+public:
+    Story166()
+    {
+        ID = 166;
+
+        Text = "You take a stroll through the dusty streets of red earth. Children follow you in silence. The adults have all gone with your captain to the headman's house. You see no wares to buy. When you pass the window of a house, you catch a brief glimpse on an old woman inside before the shutters are banged shut. A dog watches you without barking, then slinks off to lie in the shade beside an old well.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Look in the well", 212));
+        Choices.push_back(Choice::Base("Go to the headman's house", 235));
+        Choices.push_back(Choice::Base("Return to the ship", 189));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story167 : public Story::Base
+{
+public:
+    Story167()
+    {
+        ID = 167;
+
+        Text = "With Jumail nervously following a few steps behind, you thread your way along the narrow empty streets until you reach an ox cart not far from the headman's house. Barely have you hidden yourselves behind this when you see the islanders emerging from the building, dragging your captain whom they have bound with thick ropes. Despite the danger he is in, he is wrothly red and hurling eye-popping obscenities with his usual gusto.\n\n\"Swear and call upon your god all you like,\" you hear the headman say as the procession passes your hiding place. \"Tomorrow you will become a sacrifice to ours.\"\n\nThey take him and lock him inside a hut built of closely spliced hardwood logs. Two islanders are left to guard him while the others see to the grisly business of returning their dead ancestors to the cliffside tombs above the town.\n\nJumail is beginning to get cold feet. \"Poor old Captain Ibrahim,\" he whispers. \"It doesn't look like we've much chance of rescuing him, does it? I suppose we ought to get back before they catch us, too.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Return to the ship", 346));
+        Choices.push_back(Choice::Base("Continue with the rescue attempt", 213));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            Choices[1].Destination = 190;
+        }
+        else
+        {
+            Choices[1].Destination = 213;
+        }
+    }
+};
+
+class Story168 : public Story::Base
+{
+public:
+    Story168()
+    {
+        ID = 168;
+
+        Text = "By noon of the following day your nostrils are thickly clogged with dusty sand stirred up by the wind. The sky resembles a plate of molten lead; the ground is hotter than a kiln.\n\nOne of your scouts returns and leads you and Hakim, the merchant, to a blue flag set on a long cane in the sand. \"What can it mean?\" Hakim wonders aloud. \"Is it a Bedouin grave?\"\n\nFalling to your knees, you begin to dig. \"God preserve us!\" cries the scout. \"Do you mean to loot the corpse?\"\n\nYou only laugh. \"There is no corpse here,\" you tell him. \"Quite the opposite.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 263; }
+};
+
+class Story169 : public Story::Base
+{
+public:
+    Story169()
+    {
+        ID = 169;
+
+        Image = "images/filler5.png";
+
+        Text = "Drawing inspiration from the Lord of the Desert's taunts, your jinni uses his magic to transform you into a mouse. You scurry out of the alcove, but the enraged Lord pays no notice. Seeing the jinni's shadow beyond the curtain, he thinks he still has you trapped.\n\nYou run across the floor and up the steps, squeezing under the frame of the giant iron door just seconds before the spell wears off and you return to your normal form.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::RING});
+    }
+
+    int Continue(Character::Base &player) { return 459; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -4558,6 +4777,16 @@ auto story156 = Story156();
 auto story157 = Story157();
 auto story158 = Story158();
 auto story159 = Story159();
+auto story160 = Story160();
+auto story161 = Story161();
+auto story162 = Story162();
+auto story163 = Story163();
+auto story164 = Story164();
+auto story165 = Story165();
+auto story166 = Story166();
+auto story167 = Story167();
+auto story168 = Story168();
+auto story169 = Story169();
 
 void InitializeStories()
 {
@@ -4577,7 +4806,8 @@ void InitializeStories()
         &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129,
         &story130, &story131, &story132, &story133, &story134, &story135, &story136, &story137, &story138, &story139,
         &story140, &story141, &story142, &story143, &story144, &story145, &story146, &story147, &story148, &story149,
-        &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159};
+        &story150, &story151, &story152, &story153, &story154, &story155, &story156, &story157, &story158, &story159,
+        &story160, &story161, &story162, &story163, &story164, &story165, &story166, &story167, &story168, &story169};
 }
 
 #endif
