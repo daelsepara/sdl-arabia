@@ -3363,6 +3363,272 @@ public:
     int Continue(Character::Base &player) { return 96; }
 };
 
+class Story120 : public Story::Base
+{
+public:
+    Story120()
+    {
+        ID = 120;
+
+        Text = "The Caliph lavishes gifts on you: gold, jewels and splendid robes of honour. \"This is not all,\" he says. \"Now I need a new Grand Vizier.\"\n\n\"Me, lord?\" You bow to keep him from seeing the look of shock on your face. \"But I am not wise or worthy enough.\"\n\nHe laughs. \"What you mean to say is, you're not a fat, spoiled court popinjay.\"\n\n\"Prince of Princes, I would never say such -- \"\n\n\"Then you are diplomatic enough for the job. Also, you have proved wise where it matters, which is not in academic affairs but in affairs of the human heart. Moreover, you have seen much of the world. I shall enjoy hearing your tales.\"\n\nAnd so, from humble origins, you suddenly find yourself the Grand Vizier to the Caliph of Baghdad. You are rich and respected. Nobles and courtiers flock to hear your advice. The Prophet warned against intoxication, but you had always thought that referred only to wine. Now you know that destiny, too, can be a heady draught.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 496; }
+};
+
+class Story121 : public Story::Base
+{
+public:
+    Story121()
+    {
+        ID = 121;
+
+        Text = "The gryphon is as good as its word. Beating its wings with hurricane force, it pulls the ship clear of the branches and swoops down, bearing you off the edge of the cloud and down towards the azure water far below.\n\n\"By the blessed Creator of All!\" gasps Captain Ibrahim, his face as white as the fluttering sails. \"This is no voyage for a sailor.\"\n\n\"Cheer up,\" you tell him. \"When you return to Baghdad, this will be a tale to match any that has ever been told.\"\n\nAs the ship touches the waves, his look of drawn horror slowly gives way to a broad smile. \"That's true...\"\n\nThe gryphon circles once and soars off into the sky. As one man, the crew fall to their knees and bow towards Mecca, thanking God for their safe deliverance.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 234; }
+};
+
+class Story122 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story122()
+    {
+        ID = 122;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Grabbing the rafters, you swing yourself up and drive a hard kick into the midriff of the man right in front of you. He goes flailing back and collides with Captain Ibrahim, who gives him a hefty clout across the chin and snatches up his sword. Ibrahim's bewildered expression gives way to a joyous lusty roar as he leaps forward to help you.\n\nStanding back to back, the two of you fight your way to the door.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        {
+            DAMAGE = -1;
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                PreText += "[SWORDPLAY] ";
+            }
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+            {
+                PreText += "[WRESTLING] ";
+            }
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou still have breath in your body, you race off with the islanders in close pursuit.\n\nThe jetty comes in sight. Encouraged by the crew's yells, you ignore the stones and spears that are whistling past your heads. Leaping aboard, the captain gives the immediate order to cast off. The ship lurches out from the jetty and swirls on the river currents. You watch from the rail as the angry mob comes charging onto the jetty. Some career into the water in their haste, and now it is the turn of your crew to pelt them with missiles.\n\nAs he gets his breath back, Captain Ibrahim tells you that the islanders kept asking him about the nest of the rokh, the giant bird said to prey on elephants. \"I told them I wanted only to trade, but they were having none of it,\" he pants. \"They accused me of being after the rokh's diamond eggs.\"\n\n\"Its nest must be somewhere in these parts, then.\"\n\n\"They said it was somewhere to the west,\" he says with as much interest as if he were speaking about the shape of a bee's backside. \"But I think it\"s just so much poppycock.\"\n\nYou gained the codeword KISMET.";
+
+            Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 346; }
+};
+
+class Story123 : public Story::Base
+{
+public:
+    Story123()
+    {
+        ID = 123;
+
+        Image = "images/filler3.png";
+
+        Text = "You journey on for several days. The road turns away from the coast and rises towards some hills which present an outline of dull grey- brown against the clear indigo hues of the sky. Hakim eyes the pass through the hills with a worried frown. He fears an ambush by bandits.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::MORDANT}))
+        {
+            return 191;
+        }
+        else
+        {
+            return 214;
+        }
+    }
+};
+
+class Story124 : public Story::Base
+{
+public:
+    Story124()
+    {
+        ID = 124;
+
+        Text = "One of the ghoul brothers gives the signal and they go charging off down the path like a pair of stampeding elephants. You stand watching them in the moonlight. After fifty metres or so, one of them glances back and laughs, saying, \"Haw! You forgot to start at the signal. You don't have a chance of catching us now!\"\n\n\"You're right,\" you reply, \"I don't.\" And you shoot him through the heart.\n\nThe other ghoul skids to a halt, stares at his brother's corpse in shock, then glowers at you. He takes a step back along the trail, sees you nocking another arrow, and starts to back away.\n\nYou release the second arrow and watch it streak to find its mark. You give a sad shake of the head as you turn away. They were almost too easy. Now to deal with the vile monster that spawned them.\n\nShe looks up from tasting a ladle of stew as you kick the door in. Her slack blue-lipped mouth starts to frame a quizzical frown. The expression turns to a death grimace as your arrow splits her throat. Stepping over the body, you make a quick search of the hut, finding 15 dinars in a jar.\n\nYou also take a warm woollen cloak. You have no desire to spend the night here, and you will need something to keep warm while sheltering amid the rocks. The cloak is crawling with lice, but you hold it over the fire for a few minutes so that the smoke drives most of them out.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 15);
+
+        Take = {Item::CLOAK};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 80; }
+};
+
+class Story125 : public Story::Base
+{
+public:
+    Story125()
+    {
+        ID = 125;
+
+        Image = "images/masked-rider.png";
+
+        Text = "The four riders are garbed all in white, with silver filigree around the borders of their robes. Three look down with fierce eyes. The emotions of the fourth remain a mystery, for he wears a mask of carved ivory. All carry bristling lances. Knives and long swords hang at their belts.\n\nThe masked rider points to the fallen gazelle. \"This was our game, which we\"d pursued since before sunrise. You've stolen it.\" His voice sounds as sweet as the melody of a harp, as sweet as a fresh brook, as sweet as poisoned syrup.\n\nAbdullah becomes truculent. \"Who are you, to lay such accusations on us?\"\n\nThe masked stranger leans forward in his saddle. \"I am the Sultan of Nishapur.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            return 378;
+        }
+        else
+        {
+            return 398;
+        }
+    }
+};
+
+class Story126 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story126()
+    {
+        ID = 126;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "He casts another spell as you flee.";
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::BLACK_JEWEL}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nThe spell takes effect and you are aged a hundred years in the space of a single heartbeat, falling to gasp your last feeble breaths on the cold hard floor.";
+        }
+        else
+        {
+            PreText += "\n\nThe BLACK JEWEL absorbs the spell into itself, crumbling to powder as it does";
+
+            Character::LOSE_ITEMS(player, {Item::Type::BLACK_JEWEL});
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 66; }
+};
+
+class Story127 : public Story::Base
+{
+public:
+    Story127()
+    {
+        ID = 127;
+
+        Text = "The meagre meal is surprisingly good. The Bedouin watch with empty stomachs as you enjoy the only food they have to spare. The children of the tribe begin to cry, so the chief starts a song to distract them from their hunger. The meal over, you recline on soft cushions. Night rushes across the sky, unfolding a multitude of stars while the stirring strains of the desert song resound off the looming dunes around you.\n\nHakim makes a gift of salt to the tribe. The chief tries to hide his almost pathetic gratitude at this kindness. \"Beware when you cross the desert,\" he warns you. \"The tribes of the remote interior show no shame in stealing from others.\"\n\nThanking the Bedouin for their hospitality, you spend the night with them and head on at first light.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            return 168;
+        }
+        else
+        {
+            return 217;
+        }
+    }
+};
+
+class Story128 : public Story::Base
+{
+public:
+    Story128()
+    {
+        ID = 128;
+
+        Text = "You stumble into a patch of quicksand. As it sucks you down, you twist around and try to pull yourself out using the halter of the camel you were leading. But the camel tugs away in fright, jerking the halter out of your hand. You see the horror-stricken looks on your companions' faces as they watch you sink inexorably into the ground. Hakim calls out something, but you cannot hear him over the howl of the storm. Then the quicksand closes over your head and you are plunged into silence and darkness.\n\nYou drift weightlessly down. Your pulse pounds in your ears and your chest is close to bursting, but you cannot bring yourself to give up your last breath. Just as it seems the cloud of oblivion is descending across your mind for ever, you fall out of the fluid sand and into an underground chamber.\n\nYou have never been so grateful for the simple taste of fresh air. Falling on your face, you give thanks to God for sparing you. But then you hear a voice that makes every muscle shake with fear.\n\n\"I am the only god here,\" it says.\n\nYou look up.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 25; }
+};
+
+class Story129 : public Story::Base
+{
+public:
+    Story129()
+    {
+        ID = 129;
+
+        Text = "Falling into an easy rhythm, you manage to sweep blow after blow aside, parrying as though in a trance. A mystical sense of tranquillity comes over you. You seem to be sunk in a dream. The sight of your foe's glaring gaze no longer fills you with terror. The scene is one of unearthly beauty -- the shimmering colours of the silk tapestries, like streams of spring water... the heady odour of perfume and incense... the lustrous sheen of gold and jewels...";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 152; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -3483,6 +3749,16 @@ auto story116 = Story116();
 auto story117 = Story117();
 auto story118 = Story118();
 auto story119 = Story119();
+auto story120 = Story120();
+auto story121 = Story121();
+auto story122 = Story122();
+auto story123 = Story123();
+auto story124 = Story124();
+auto story125 = Story125();
+auto story126 = Story126();
+auto story127 = Story127();
+auto story128 = Story128();
+auto story129 = Story129();
 
 void InitializeStories()
 {
@@ -3498,7 +3774,8 @@ void InitializeStories()
         &story080, &story081, &story082, &story083, &story084, &story085, &story086, &story087, &story088, &story089,
         &story090, &story091, &story092, &story093, &story094, &story095, &story096, &story097, &story098, &story099,
         &story100, &story101, &story102, &story103, &story104, &story105, &story106, &story107, &story108, &story109,
-        &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119};
+        &story110, &story111, &story112, &story113, &story114, &story115, &story116, &story117, &story118, &story119,
+        &story120, &story121, &story122, &story123, &story124, &story125, &story126, &story127, &story128, &story129};
 }
 
 #endif
