@@ -4659,8 +4659,6 @@ public:
 
         Character::GAIN_LIFE(player, -1);
 
-        Character::LOSE_ALL(player);
-
         if (player.Life > 0)
         {
             PreText += "\n\nYou can only nod when Hakim, the owner of the camel train, says: \"I am chastened. We are civilized men, yet we have had a lesson in honour from those who are almost too poor to afford the luxury of it.\"";
@@ -6187,6 +6185,357 @@ public:
     }
 };
 
+class Story240 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story240()
+    {
+        ID = 240;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The sun pours down a ceaseless stream of blistering heat. By mid afternoon you are reeling with heat exhaustion. The landscape looks like the barren plains of Hell. When you say as much to one of the camel drivers, he replies, \"Except that to enter Hell a man must die. In the case of the desert, death is the only escape.\"\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::HAWK}))
+        {
+            DAMAGE = -1;
+
+            PreText += "[Item: HAWK] ";
+        }
+
+        Character::GAIN_LIFE(player, -DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou press on across the hard rocky terrain. Dust rises from your footsteps and hangs like smoke in the air. At nightfall you watch the moon rise and wonder if you will live to see another day.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::HAWK}))
+        {
+            return 458;
+        }
+        else
+        {
+            return 373;
+        }
+    }
+};
+
+class Story241 : public Story::Base
+{
+public:
+    Story241()
+    {
+        ID = 241;
+
+        Text = "Your arrow whistles through the air and sends a spurt of blood from the chief's head. He raises his hand, face blank with shock, and finds that your shot has sliced off his ear. Waving his spear, he orders his men to break off the attack. You watch them go with relief, waiting until they are out of sight before you lower your bow.\n\nHakim clasps your neck and showers you with kisses. \"I owe you my life!\" he sobs. \"We all do. From this day, Hakim of Baghdad is as a brother to you. Here, this pouch of gold is a poor reward, but treat it as the merest token of my esteem.\"\n\nHe has given you 50 dinars.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 50);
+    }
+
+    int Continue(Character::Base &player) { return 218; }
+};
+
+class Story242 : public Story::Base
+{
+public:
+    Story242()
+    {
+        ID = 242;
+
+        Text = "His shins are like iron. You stumble back after your kick, wincing in pain. It feels as though you have broken a toe. The only effect it had on the Lord of the Desert was to throw him off balance so that his sword-tip barely grazed your face.\n\nYou LOSE 1 Life Point.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Dodge", 219));
+        Choices.push_back(Choice::Base("Attack", 288));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+};
+
+class Story243 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story243()
+    {
+        ID = 243;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Abandon ship and see if you can survive in the swamp", 85));
+        Choices.push_back(Choice::Base("Stay aboard and let the ocean current carry you onwards", 266));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        ToLose = {};
+        Limit = 0;
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            PreText = "You check your belongings. To your dismay, the hairless monkeys made off with all your money and the first two items listed among your possessions.";
+
+            player.LostMoney = player.Money;
+            player.Money = 0;
+        }
+        else
+        {
+            PreText = "You check your belongings. To your dismay, the hairless monkeys made off with two items listed among your possessions but failed to find your money.";
+        }
+
+        if (player.Items.size() < 3 || !Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            for (auto i = 0; i < 2; i++)
+            {
+                if (player.Items.size() > 0)
+                {
+                    auto item = player.Items[0];
+
+                    player.LostItems.push_back(item);
+
+                    player.Items.erase(player.Items.begin());
+                }
+            }
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::LUCK) && player.Items.size() > 2)
+        {
+            ToLose = player.Items;
+
+            Limit = player.Items.size() - 2;
+        }
+
+        PreText += "\n\nNow you face a fateful decision.";
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story244 : public Story::Base
+{
+public:
+    Story244()
+    {
+        ID = 244;
+
+        Text = "The hawk flies up, spiralling around the tower to perch on the balcony. It disappears inside the dome, reappearing moments later with something clutched in its talons. It swoops down, and in the fading daylight you see that it has found a large grey egg, which it deposits on the turf at your feet.\n\nYussuf the helmsman spits in annoyance. \"I thought there'd at least be a jewelled necklace or something up there.\"\n\n\"Perhaps it is the diamond egg of the rokh?\" suggests Selim the look-out.\n\nYou shake your head. \"Not if the legends are true. The rokh's egg would be bigger than an elephant. Anyway, whatever that is, it isn't diamond.\"\n\nWill you touch the egg?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Touch the egg", 290));
+        Choices.push_back(Choice::Base("You think it might be dangerous", 267));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story245 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story245()
+    {
+        ID = 245;
+
+        Bye = "You manage to drive the knights back and they abandon the struggle. Mounting up, they ride off after their master.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "The three attack as one, launching themselves from horseback with spears raised. Straight away you see that just one of these men would be a hard foe. Together they are almost unbeatable.";
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nWithout SWORDPLAY or WRESTLING skills you have no chance and are cut down at once.";
+        }
+        else
+        {
+            PreText += "\n\n";
+
+            auto DAMAGE = -6;
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                DAMAGE = -3;
+
+                PreText += "[SWORDPLAY] ";
+            }
+            else
+            {
+                PreText += "[WRESTLING] ";
+            }
+
+            Character::GAIN_LIFE(player, DAMAGE);
+
+            PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story246 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story246()
+    {
+        ID = 246;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The jinni swirls out through the bars of the grille, hanging above you in the moonlight in a dark swirling cloud from which his face peers tenebrously. \"What do you desire?\"\n\n\"My freedom!\" you hiss back at him.\n\n\"As do we all,\" he replies with a resounding sigh.\n\nHe mutters a spell and you feel a tingling in your muscles. It feels as if you are being squeezed and stretched. A moment later you have become a snake. Quickly you slither through the grille.";
+
+        if (!Character::VERIFY_CODEWORDS(player, {Codeword::Type::TRUCE}))
+        {
+            PreText += "\n\nYou wait for the jinni to turn you back to normal and then you scurry away from the prison.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::TRUCE}))
+        {
+            return 269;
+        }
+        else
+        {
+            return 223;
+        }
+    }
+};
+
+class Story247 : public Story::Base
+{
+public:
+    Story247()
+    {
+        ID = 247;
+
+        Text = "You gained the codeword FABRIC.\n\nAzenomei looks different now. His eyes are gold-flecked, and a cast of evil shadows his features. He moves closer with the drowsy menace of a snake. \"So, here I have you at last,\" he murmurs. \"The infamous Shadow is more gullible than I'd have thought.\"\n\n\"What are you talking about?\" you reply angrily. \"You know I'm not the Shadow!\"\n\nHe shakes his head. \"Of course you are. That's why I allowed myself to be caught and put in the oubliette with you. I've pursued you for more than a year. Ever since you stole the gem from my citadel here.\"\n\n\"Gem? What gem? You're talking nonsense. I've never been here before.\"\n\nHe ignores your protests. \"The gem -- a ruby almost as big as the egg of the rokh that perches in its eyrie atop the Isle of Palms -- had been given to me for safekeeping by the King of the Sea. If he learns I have lost it, he will sunder me into atoms and constrain my soul within a sealed copper jar for all time. So, here is your chance to save yourself. Tell me where you hid the ruby.\"\n\n\"For the last time,\" you reply between gritted teeth, \"this is a case of mistaken identity. I never stole anything from you.\"\n\n\"You greedy fool,\" hisses Azenomei, raising his hands to weave a spell. \"Now you will die!\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::FABRIC});
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::BLACK_JEWEL}))
+        {
+            return 293;
+        }
+        else
+        {
+            return 315;
+        }
+    }
+};
+
+class Story248 : public Story::Base
+{
+public:
+    Story248()
+    {
+        ID = 248;
+
+        Image = "images/filler5.png";
+
+        Text = "You know that the rokh's nest lies far beyond the boundaries of the civilized world. If you journey to such remote areas, you might eventually find a clue to its whereabouts. On the other hand, you might just wander fruitlessly for years.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Travel to the far east", 180));
+        Choices.push_back(Choice::Base("Head west", 271));
+        Choices.push_back(Choice::Base("Give up the search for fame and fortune and return to Baghdad", 113));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story249 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story249()
+    {
+        ID = 249;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You scramble back down, slipping the last few feet to land with a painful jolt.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou are grateful to be back on solid ground. You rack your brains trying to think of another way to reach the nest.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 204; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -6427,6 +6776,16 @@ auto story236 = Story236();
 auto story237 = Story237();
 auto story238 = Story238();
 auto story239 = Story239();
+auto story240 = Story240();
+auto story241 = Story241();
+auto story242 = Story242();
+auto story243 = Story243();
+auto story244 = Story244();
+auto story245 = Story245();
+auto story246 = Story246();
+auto story247 = Story247();
+auto story248 = Story248();
+auto story249 = Story249();
 
 void InitializeStories()
 {
@@ -6454,7 +6813,8 @@ void InitializeStories()
         &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209,
         &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219,
         &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229,
-        &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239};
+        &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239,
+        &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249};
 }
 
 #endif
