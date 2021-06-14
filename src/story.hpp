@@ -5697,6 +5697,241 @@ public:
     }
 };
 
+class Story220 : public Story::Base
+{
+public:
+    Story220()
+    {
+        ID = 220;
+
+        Text = "When the jinni sees what is happening, he unleashes a freezing gust of air from his lungs that turns the waves around the ship to ice. Some of the monkeys escape into the trees, but many are trapped by the frozen water. Swirling out on a column of blue-grey gas, the jinni retrieves some of what they filched, returning it to you. You have lost one of your possessions, however.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Abandon ship and see if you can survive in the swamp", 85));
+        Choices.push_back(Choice::Base("Stay aboard and let the ocean current carry you onwards", 266));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        ToLose = {};
+
+        Limit = 0;
+
+        if (player.Items.size() > 0)
+        {
+            if (player.Items.size() == 1)
+            {
+                Character::LOSE_ITEMS(player, {player.Items[0].Type});
+            }
+            else
+            {
+                ToLose = player.Items;
+
+                Limit = player.Items.size() - 1;
+            }
+        }
+    }
+};
+
+class Story221 : public Story::Base
+{
+public:
+    Story221()
+    {
+        ID = 221;
+
+        Image = "images/filler3.png";
+
+        Text = "Collecting the turbans of everyone in the crew, you knot them together to make a long cloth. You stretch this right around the circumference of the tower. It gives you the purchase you need to slowly ascend to the top.\n\nSurmounting the balcony, you drop to a wary crouch and survey the chamber under the dome. It is bare of any decoration or feature except for a podium in the middle, where a large grey egg rests on a velvet cushion.\n\nYou step forward. The whole tower must have been built for the single purpose of keeping this egg safe.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Touch the egg", 290));
+        Choices.push_back(Choice::Base("Climb back down to the ground", 267));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story222 : public Story::Base
+{
+public:
+    Story222()
+    {
+        ID = 222;
+
+        Text = "The Sultan leaps down from his horse. His sword leaves its scabbard with a hard ringing sound. He waits like a statue, sword-tip touching the ground. The mask remains inscrutable, but his stance conveys absolute certainty. He believes you are no threat.\n\nYou take a wary half-step forward. His left hand hovers ready to lift his mask.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[ARCHERY] Use a BOW", 268, Skill::Type::ARCHERY));
+        Choices.push_back(Choice::Base("Use a MIRROR", 291, {Item::MIRROR}));
+        Choices.push_back(Choice::Base("Use a CLOAK", 313, {Item::CLOAK}));
+        Choices.push_back(Choice::Base("You have none of those", 335));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story223 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story223()
+    {
+        ID = 223;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go on with your meal", 463));
+        Choices.push_back(Choice::Base("Follow them to see what they are going to do", 471));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You lose no time putting a good distance between you and the city where you were imprisoned. Your journey takes you up into high crags. The sky looks dark and storm-laden. The white sheen of snow lies on the tallest peaks above you.\n\nDays pass without any sign of habitation. You eke out your food under the rocks -- mostly grubs, insects and berries.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            Character::GAIN_LIFE(player, -1);
+
+            PreText += "\n\nYou LOSE 1 Life Point.";
+        }
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nAt last, hungry and cold, you stumble on a palace of ash-grey stone that seems to loom like a bank of cloud against the ominous sky. You climb the path towards it. Bronze gates swing open at your approach, and servants emerge to help you inside. Too weary to question them, you allow yourself to be led to a table where you are presented with dishes of honey-cake, roast fowl, mutton stew, plums and figs, spiced bread and sharp clean meltwater.\n\nYou eat so ravenously that at first you do not notice three dignified old men in scarlet robes who have quietly entered the room. As you look up, one of them raises his hand and smiles. \"Please, eat your meal,\" he says. \"Later we'll have a chance to talk.\"\n\nYou rise and bow. \"I must thank you for your hospitality.\"\n\n\"Later. We have something to attend to first.\"\n\nThey turn and glide out of the room, long robes rustling on the marble floor.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story224 : public Story::Base
+{
+public:
+    Story224()
+    {
+        ID = 224;
+
+        Text = "You find Azenomei reclining on a divan in one of the citadel's many rooms. \"I thought you said we had to hurry,\" you say. \"Come on -- what if the jinni should return and find us here?\"\n\nHe rises languidly to his feet. \"He has returned. I am the jinni whose palace this is.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 247; }
+};
+
+class Story225 : public Story::Base
+{
+public:
+    Story225()
+    {
+        ID = 225;
+
+        Image = "images/smoke-filled-room.png";
+
+        Text = "Pulling your arms close to your sides to avoid touching the muck and grime of the tunnel walls, you tread carefully forward through the darkness until you see a flicker of torchlight ahead. You emerge in the crawl space below a large low-raftered house. Through a crack in the floorboards over your head, you see a strange scene. The islanders are bowing in homage to a group of rug-cloaked figures sitting on carved teak benches. Your captain stands between the two rows of seated figures as though he were on trial.\n\nYou hear him speak: \"What is this? Why have I been brought here?\"\n\nThe voice that replies sounds like the rustling of dead grass. It seems to come from one of the cloaked figures. Through the smoke-filled air of the room you catch sight of a lidless gaze. A hand like old clay clutches at the folds of the rug as it says, \"You came to steal the egg of the rokh, the giant bird that has its nests in the mountains above the Nile. Do not deny it.\"\n\n\"Preposterous!\" retorts Captain Ibrahim. \"I do not even believe the rokh truly exists.\"\n\nHis interrogator is not deterred. \"Tonight you will be imprisoned. Tomorrow our living descendents will put you to death.\"\n\nYou gained the codeword KISMET.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
+    }
+
+    int Continue(Character::Base &player) { return 77; }
+};
+
+class Story226 : public Story::Base
+{
+public:
+    Story226()
+    {
+        ID = 226;
+
+        Text = "You remember hearing a tale about the rokh, which is said to swoop through the skies near to the Isle of Palms. It is so big that sometimes it seizes ships out of the water. The Isle of Palms lies in the far east, so that is where your destiny must take you. You manage to convince the fishermen to take you there in exchange for a share of the spoils.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 21; }
+};
+
+class Story227 : public Story::Base
+{
+public:
+    Story227()
+    {
+        ID = 227;
+
+        Text = "By the time you are halfway, and the ground is no more distant than the wisps of cloud above, you are beginning to wonder what you've let yourself in for. You are not even sure if you could get back down now. Equally, the cliff is so smooth and sheer that your fingers and legs are aching with the strain. If you go on, you might easily drop from fatigue.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL_ITEM(player, Skill::Type::AGILITY, Item::Type::JASMINE_FLOWER))
+        {
+            return 272;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 249;
+        }
+        else
+        {
+            return 294;
+        }
+    }
+};
+
+class Story228 : public Story::Base
+{
+public:
+    Story228()
+    {
+        ID = 228;
+
+        Text = "Jafar utters a mad laugh as he throws the knife. Rolling forward in a somersault, you pluck it out of the air before it can strike the Caliph, who is rooted to the spot in shock. As Jafar runs off, the Caliph recovers enough to call for his guards.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 339; }
+};
+
+class Story229 : public Story::Base
+{
+public:
+    Story229()
+    {
+        ID = 229;
+
+        Text = "The sails bulge as they catch the wind, putting you in mind of overfull waterskins. Slowly your vessel edges out from the dock and glides gracefully downriver towards Basra. The sun rises, turning the bowl of the sky to flaring azure. Long banners of white cloud hang across the heavens, while below the river swirls with rich green darkness.\n\nAt dusk on the sixth day out of Baghdad, as the ship is moored for the night, a sailor whose name is Yussuf suggests taking a swim. \"Toiling in the rigging all day is hot work,\" he says, grinning wearily as he wipes his brow. \"As the Prophet has warned us against the perils of wine, perhaps a plunge in the cool river water would refresh us just as well.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go for a swim", 474));
+        Choices.push_back(Choice::Base("Otherwise", 375));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -5917,6 +6152,16 @@ auto story216 = Story216();
 auto story217 = Story217();
 auto story218 = Story218();
 auto story219 = Story219();
+auto story220 = Story220();
+auto story221 = Story221();
+auto story222 = Story222();
+auto story223 = Story223();
+auto story224 = Story224();
+auto story225 = Story225();
+auto story226 = Story226();
+auto story227 = Story227();
+auto story228 = Story228();
+auto story229 = Story229();
 
 void InitializeStories()
 {
@@ -5942,7 +6187,8 @@ void InitializeStories()
         &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189,
         &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199,
         &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209,
-        &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219};
+        &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219,
+        &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229};
 }
 
 #endif

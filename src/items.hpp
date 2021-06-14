@@ -29,8 +29,9 @@ namespace Item
         JEWELLED_KEY,
         ANTIDOTE,
         JERICHO_HORN,
+        MIRROR,
         First = BOW,
-        Last = JERICHO_HORN
+        Last = MIRROR
     };
 
     class Base
@@ -85,6 +86,7 @@ namespace Item
     auto JEWELLED_KEY = Item::Base("JEWELLED KEY", "JEWELLED KEY", Item::Type::JEWELLED_KEY);
     auto ANTIDOTE = Item::Base("ANTIDOTE", "ANTIDOTE", Item::Type::ANTIDOTE);
     auto JERICHO_HORN = Item::Base("Jericho HORN", "Jericho HORN", Item::Type::JERICHO_HORN);
+    auto MIRROR = Item::Base("MIRROR", "MIRROR", Item::Type::MIRROR);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::LONG_TAILED_CAT,
