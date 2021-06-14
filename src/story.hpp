@@ -6989,7 +6989,7 @@ public:
     {
         ID = 268;
 
-        Text = "The Sultan starts to remove his mask. In the space of one heartbeat you have drawn an arrow and nocked it to your bowstring. In another, you've raised the bow and sent the shaft speeding across the clearing. It strikes the Sultan through the eye, pinning the mask to his face.\n\nThe three knights give a gasp and reach for their swords. You ready another arrow. \"The duel was fairly fought and won,\" you say to them. \"Take your master's body and go. If you're of a mind to argue, I have three more arrows I can spare.\"\n\nPutting the Sultan\"s body across his horse, the knights lead it away. As you cross the clearing, you find a BLACK JEWEL lying among the fallen leaves.";
+        Text = "The Sultan starts to remove his mask. In the space of one heartbeat you have drawn an arrow and nocked it to your bowstring. In another, you've raised the bow and sent the shaft speeding across the clearing. It strikes the Sultan through the eye, pinning the mask to his face.\n\nThe three knights give a gasp and reach for their swords. You ready another arrow. \"The duel was fairly fought and won,\" you say to them. \"Take your master's body and go. If you're of a mind to argue, I have three more arrows I can spare.\"\n\nPutting the Sultan's body across his horse, the knights lead it away. As you cross the clearing, you find a BLACK JEWEL lying among the fallen leaves.";
 
         Choices.clear();
 
@@ -7252,6 +7252,257 @@ public:
         Choices.push_back(Choice::Base("Return to the ship", 301));
 
         Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story280 : public Story::Base
+{
+public:
+    Story280()
+    {
+        ID = 280;
+
+        Image = "images/filler3.png";
+
+        Text = "The surf pounds an accompaniment to your throbbing head. There is wet sand under your face. A crab is pinching your finger with its claws. You shake it off and sit up. You are on a lonely beach backed by high cliffs that shine with veins of blue and green rock. You realize you must have passed out. Getting shakily to your feet, you stagger along the beach.\n\nSick and dazed as you are, your first glimpse of the palace seems like a hallucination. It rises from a tumble of rocks at the end of the beach. Needle-thin spires of white marble rise around domes crusted with pastel mosaic. You stand in awe as figures emerge from the buildings and come to greet you. They are men and women with faces like angels. You swoon into their arms and feel them carry you to the palace, where you are laid on a soft silken bed. Gratefully, you sleep.\n\nThe next time you awaken, it is to see the faces of ordinary men -- honest sailors, by the look of them. They are clustered around your bed. \"What happened to the others?\" you say, sitting up.\n\nOne of the sailors steps forward. His accent tells you he is from Basra. \"The wizard's beautiful servants, you mean? I saw them once. We all did, when we first arrived here.\"\n\nYou swing your legs to the floor and test your strength. You feel fully recovered. \"What wizard?\" you ask as you get to your feet. \"Are we his prisoners?\"\n\nThey all laugh at this. \"No, we're his guests!\" says the man from Basra. \"He saved us all when a giant fish swallowed our ship. He even gave us a new ship to journey home, but he told us we had to wait a week because he had seen in the future that another castaway would be swept up on the shore. We've been waiting for you.\"\n\nYou notice that all your belongings are neatly piled beside the bed. Your money is there too. Your mysterious benefactor apparently has only the best of intentions -- unlike most of the wizards you've heard of.\n\n\"Now that you're fully recovered,\" says one of the other sailors, \"why delay any longer? Let's set sail.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go with them to their ship right away", 389));
+        Choices.push_back(Choice::Base("Ask them to wait while you go to speak with the wizard", 444));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        player.Life = player.MAX_LIFE_LIMIT;
+    }
+};
+
+class Story281 : public Story::Base
+{
+public:
+    Story281()
+    {
+        ID = 281;
+
+        Text = "You press yourself to one side of the doorway and listen. Inside, you hear two men talking. From the strained way they're speaking, you guess they must be carrying something heavy. Risking a quick peek around the door-frame, you see them manhandling a long rolled-up rug through into the room beyond.\n\n\"I think great-grandfather's put on weight,\" grumbles one of the men.\n\n\"Sssh! He'll hear you,\" says the other. He leans against the wall to wipe a trickle of sweat off his forehead. \"Just one more of these to go, thank goodness. I think it's old Bamara's great uncle.\"\n\nThe other glances back. You hastily duck out of sight, but he wasn't looking in your direction. He takes an appraising glance at another rug lying rolled up on the floorboards. \"No,\" he mutters thoughtfully. \"We took him in first, remember?\"\n\nThey disappear through into the next room. This is your chance. Scuttling in, you race across to the inner doorway and glance through. You get a quick impression of a crowd of people crouching in near-darkness. Looking back around the vestibule, your gaze falls on the rolled-up rug. The two men will be back for it in less than a minute.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Take a closer look at it in the meantime", 411));
+        Choices.push_back(Choice::Base("Creep quietly into the next room", 433));
+        Choices.push_back(Choice::Base("Enter boldly and announce yourself", 8));
+        Choices.push_back(Choice::Base("Sneak back to the ship", 258));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        player.Life = player.MAX_LIFE_LIMIT;
+    }
+};
+
+class Story282 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story282()
+    {
+        ID = 282;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Both guards strike at the same time, driving towards you from either side with straight thrusts of their long knives.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            PreText += "\n\nYou are pierced by the tips of both blades. You LOSE 2 Life Points.";
+
+            Character::GAIN_LIFE(player, -2);
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 369;
+        }
+        else
+        {
+            return 390;
+        }
+    }
+};
+
+class Story283 : public Story::Base
+{
+public:
+    Story283()
+    {
+        ID = 283;
+
+        Text = "You have heard the story of this island. Long ago, an old woman who could have no children found two eggs buried in the ground. One hatched, and she dressed the little manikin that emerged in baby's clothing. He grew to become a strange dwarf with magical powers, and one of his feats was to build a high tower in the space of a single night. In this tower he placed the other egg, because he had learned from a prophecy that in that egg slept his brother, whom he feared.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 311; }
+};
+
+class Story284 : public Story::Base
+{
+public:
+    Story284()
+    {
+        ID = 284;
+
+        Image = "images/filler5.png";
+
+        Text = "You say your farewells to Hakim and the others. Many speak to you with tremors in their voices, and several openly wipe away tears. Though you met as strangers and it is likely you'll never see any of them again, you have shared experiences that make you all as close as cousins.\n\nHakim himself presses a pouch into your hand. \"You've been more help than I could have imagined,\" he says. \"Take this as a little bonus.\"\n\nOnce out of sight around the corner, you check the contents of the pouch: 3 dinars. Well, for Hakim that is generous.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 3);
+    }
+
+    int Continue(Character::Base &player) { return 215; }
+};
+
+class Story285 : public Story::Base
+{
+public:
+    Story285()
+    {
+        ID = 285;
+
+        Text = "The pirates sail away after looting the merchant ship of its cargo. You can hear their merry shouts from afar as they broach one of the wine barrels.\n\n\"They can't be true believers,\" says the captain of marines with a sorry shake of his head. \"Don't they know of the Prophet's warning against drunkenness?\"\n\nSeveral of his men sidle away rather guiltily when they hear this. Your reply is more forthright. \"Much worse than drunkards, they are thieves and murderers. Tonight, in any case, they'll be held to account for all their crimes.\"\n\nYou may have spoken too soon. The pirate ship is faster than your own, and soon their black sails drop out of sight across the waves. A few minutes later, the lookout calls down that he has lost them altogether.\n\nThe marine captain smacks his fist into his palm. \"Two tons of camel dung!\" he swears extravagantly. \"We'll never find them now.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::HAWK}))
+        {
+            return 486;
+        }
+        else if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::LUCK, Skill::Type::SEAFARING}))
+        {
+            return 393;
+        }
+        else
+        {
+            return 415;
+        }
+    }
+};
+
+class Story286 : public Story::Base
+{
+public:
+    Story286()
+    {
+        ID = 286;
+
+        Text = "By evening, when it is time to halt and rest, you are close to fainting from thirst and weariness. You drop to your haunches on the ground, too weak even to eat. Others are faring even worse. One old man -- a slave of Hakim's -- is shivering with the first signs of fever.\n\nYou LOSE 1 Life Point.";
+
+        Bye = "You survive to see the sunrise.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 308; }
+};
+
+class Story287 : public Story::Base
+{
+public:
+    Story287()
+    {
+        ID = 287;
+
+        Text = "You have heard tales of the Lord of the Desert. He is one of the powerful spirits that men used to worship in the days before the coming of the Prophet. His nature is such that he uses a victim's own strength against them. In the legends, the more a person strove to defy the Lord of the Desert, the easier they made it for him to overcome them.\n\nYou also recognize the glyph in the keystone above the alcove. It is the seal of Suleiman, the wizard king whom all evil spirits feared. For all his power, the Lord of the Desert could never pass beyond that magic glyph.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return  309; }
+};
+
+class Story288 : public Story::Base
+{
+public:
+    Story288()
+    {
+        ID = 288;
+
+        Text = "Seeing an opening, you jab your elbow into the base of his throat. He snarls like a dust devil and slashes his sword across your forearm, drawing a gout of blood. You can feel yourself weakening now.\n\nYou LOSE 2 Life Points.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go for a punch", 468));
+        Choices.push_back(Choice::Base("Go for a kick", 242));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -2);
+    }
+};
+
+class Story289 : public Story::Base
+{
+public:
+    Story289()
+    {
+        ID = 289;
+
+        Text = "The caravan travels on along roads that get increasingly busy as you approach Cairo. Porters carrying great bundles of grain and cloth jostle outside the city gates in a press of heavily laden camels, donkeys and rumbling wheeled carts.\n\nIn all the confusion, it amazes you that Hakim somehow manages to squeeze his way to the front of the crowd and present his papers to the sentries. The papers themselves are just a formality, since probably neither Hakim nor the sentry he speaks to can read. The important thing is the bag of gold coins that is discreetly handed over. With this transaction complete, the sentries help to push the crowd aside so that your camels can traipse through into the city.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::MORDANT}))
+        {
+            return 192;
+        }
+        else
+        {
+            return 284;
+        }
     }
 };
 
@@ -7535,6 +7786,16 @@ auto story276 = Story276();
 auto story277 = Story277();
 auto story278 = Story278();
 auto story279 = Story279();
+auto story280 = Story280();
+auto story281 = Story281();
+auto story282 = Story282();
+auto story283 = Story283();
+auto story284 = Story284();
+auto story285 = Story285();
+auto story286 = Story286();
+auto story287 = Story287();
+auto story288 = Story288();
+auto story289 = Story289();
 
 void InitializeStories()
 {
@@ -7566,7 +7827,8 @@ void InitializeStories()
         &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249,
         &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259,
         &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269,
-        &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279};
+        &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279,
+        &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289};
 }
 
 #endif
