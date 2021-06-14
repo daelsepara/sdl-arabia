@@ -5475,6 +5475,228 @@ public:
     int Continue(Character::Base &player) { return 186; }
 };
 
+class Story210 : public Story::Base
+{
+public:
+    Story210()
+    {
+        ID = 210;
+
+        Text = "Once you have picked them up, the old man claps his hands. The mysterious light flares up to fill the cavern, dazzling you. As your eyes clear, you find yourselves back on the ledge overlooking the river. There is no sign of the old man, nor any trace that his charcoal fire was ever here.\n\n\"How sweet the night air is,\" says Yussuf. \"I swear I never valued life half so much as I do now. We are lucky to be alive.\"\n\nYou nod in heartfelt agreement. \"God is compassionate and merciful. Let's go back to the ship, my friend.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::LAMP_OF_ANTAR, Item::JERICHO_HORN});
+    }
+
+    int Continue(Character::Base &player) { return 256; }
+};
+
+class Story211 : public Story::Base
+{
+public:
+    Story211()
+    {
+        ID = 211;
+
+        Text = "A dismal grey pall of fog hangs around the ship. Condensation drips from the rigging, making a soft whispering sound like fine rain on the decks. You are carried on blindly by the ocean current. There is no sign of the sun to help you steer a course, and in any case no wind to fill the sails.\n\nWithout warning, the ship lurches to one side. The stitched planks rip apart with the sound that every sailor dreads. You have time to glimpse hard jutting blocks of coral protruding through the broken hull. Then the mainmast snaps and the sail falls, enveloping you.\n\nYou hear the screams of the others as the ship goes down. Your fingers close on a spar of broken wood. Salt water fills your mouth and nose. You barely manage to struggle free of the wet sheet before it drags you under. Soaked through and buffeted by waves, you cling to the spar, drifting until at last you faint from grief and cold.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 280; }
+};
+
+class Story212 : public Story::Base
+{
+public:
+    Story212()
+    {
+        ID = 212;
+
+        Text = "At the bottom of the well, a glint of afternoon sunlight catches on something smooth and metallic. You are about to climb down when a stab of superstitious fear makes you hesitate. You know the old tales that say that wells and cisterns are the homes of demons.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Descend to see what the object is", 303));
+        Choices.push_back(Choice::Base("Go back to the ship", 189));
+        Choices.push_back(Choice::Base("Go up to the headman's house, where the captain was taken", 235));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story213 : public Story::Base
+{
+public:
+    Story213()
+    {
+        ID = 213;
+
+        Text = "An open assault is your best chance. You have to free the captain quickly, before the other islanders return from the tombs. Jumail is not certain he agrees, but he backs you up as you emerge from the cover of the ox cart.\n\nThe two guards leap up as they see you approaching. They have sharp hunting-knives almost as long as swords. You keep to a steady confident pace, neither hurrying nor hesitating, to show them you are a foe to be feared. As you draw near, you have the chance to size them up. The one on your left is small and wiry, and looks as though he is a nimble fighter best dealt with at close quarters. The other is huge and lumbering, with rock-hard knuckles that you'd do well to stay clear of.\n\nYou step up onto the porch. The two men are on either side of you. The look in their eyes is a turbid mixture of surprise, amusement, uncertainty and fear.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Deal with the smaller one", 236));
+        Choices.push_back(Choice::Base("Deal with the larger one", 259));
+        Choices.push_back(Choice::Base("Deal with both at once", 282));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story214 : public Story::Base
+{
+public:
+    Story214()
+    {
+        ID = 214;
+
+        Text = "Hakim asks if you will go ahead of the main group and see if there are bandits lying in wait. \"It is a dangerous job,\" he admits, \"and I will pay you two dinars.\"\n\n\"Two dinars for my life? That is hardly fair.\"\n\nHe nods. \"Three, then.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Accept", 478, Choice::Type::GAIN_MONEY, 3));
+        Choices.push_back(Choice::Base("Point out that is not in your contract to take such risks", 191));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story215 : public Story::Base
+{
+public:
+    Story215()
+    {
+        ID = 215;
+
+        Text = "The talk on the streets of Cairo is mostly of the Red Sea pirates. Small children are enthralled by the stories, but none of the adults of the city has a good word for the pirates. \"Prices have doubled in the last two months,\" complains a shopkeeper. \"No one dares to travel by sea, and perishable goods cannot survive the slow journey by camel. I have not had a properly spiced meal since the end of Ramadan.\"\n\nYou soon learn that the Sultan of Cairo has promised a reward for the one who puts a stop to these pirates. One thousand dinars. That would make you as rich and respected a citizen as any in Baghdad.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Offer your services in catching the pirates", 306));
+        Choices.push_back(Choice::Base("Visit the bazaar", 328));
+        Choices.push_back(Choice::Base("Leave the city", 349));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story216 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story216()
+    {
+        ID = 216;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stand your ground", 332));
+        Choices.push_back(Choice::Base("Retreat", 46));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The demon descends and flails at you with its thin claws. Most horrible of all is the soft hissing cry which sounds like the dying gasps of a thousand souls.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        {
+            DAMAGE = -1;
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                PreText += "[SWORDPLAY] ";
+            }
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+            {
+                PreText += "[WRESTLING] ";
+            }
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nThe demon breaks off the fight and rises on humming wings to hover just above your head. You managed to deal it a couple of strong blows, breaking its hard exoskeleton, but now you see that it is regenerating. In front of your eyes, its wounds are disappearing.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story217 : public Story::Base
+{
+public:
+    Story217()
+    {
+        ID = 217;
+
+        Text = "By noon of the following day your nostrils and eyes are raw with the fine gritty sand stirred up by the wind. The sky is a plate of molten lead, the ground hotter than a kiln.\n\nOne of your scouts returns and leads you and Hakim, the merchant, to a blue flag set on a long cane in the sand. \"What can it mean?\" Hakim wonders aloud. \"Is it a Bedouin grave?\"\n\n\"More likely a warning that the region ahead is off limits to travellers,\" suggests the scout. \"We should turn south-west, master.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::MORDANT}))
+        {
+            return 286;
+        }
+        else
+        {
+            return 195;
+        }
+    }
+};
+
+class Story218 : public Story::Base
+{
+public:
+    Story218()
+    {
+        ID = 218;
+
+        Text = "The days crawl by. The sun, a boulder of light rolling relentlessly across the sky, plummets each evening beyond the edge of the world, draining all heat behind it so that you are left shivering in the chill of night. Even with strict rationing, you soon have barely enough water to moisten your lips, and barely food enough to make one mouthful at supper.\n\nYou have almost lost hope when, in the long shadows of dusk, you see an olive-green splash of colour against the dusty ochre landscape. You blink, rubbing your eyes to make sure, then call back to the others: \"An oasis!\"\n\nHakim stumbles forward. Barely able to stand, he leans on your shoulder and peers into the middle distance. \"Yes, but look. See those tents? That smoke from campfires? Do we dare risk provoking the inhabitants? If they're hostile, we're too weak to put up a fight.\"\n\nWhat will you advise?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stop at the oasis", 416));
+        Choices.push_back(Choice::Base("Go past and hope to find water elsewhere", 438));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story219 : public Story::Base
+{
+public:
+    Story219()
+    {
+        ID = 219;
+
+        Text = "You jump aside as the Lord of the Desert charges forward. He careers past, robes fluttering, slashing madly with his sword, and rebounds from the wall full of fury. Holding his sword straight out in front of him, he thrusts towards your heart.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try to dodge", 265));
+        Choices.push_back(Choice::Base("Punch at him as he comes in close", 468));
+        Choices.push_back(Choice::Base("Kick at his legs", 242));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -5685,6 +5907,16 @@ auto story206 = Story206();
 auto story207 = Story207();
 auto story208 = Story208();
 auto story209 = Story209();
+auto story210 = Story210();
+auto story211 = Story211();
+auto story212 = Story212();
+auto story213 = Story213();
+auto story214 = Story214();
+auto story215 = Story215();
+auto story216 = Story216();
+auto story217 = Story217();
+auto story218 = Story218();
+auto story219 = Story219();
 
 void InitializeStories()
 {
@@ -5709,7 +5941,8 @@ void InitializeStories()
         &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179,
         &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189,
         &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199,
-        &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209};
+        &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209,
+        &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219};
 }
 
 #endif
