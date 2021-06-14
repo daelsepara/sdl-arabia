@@ -7023,6 +7023,238 @@ public:
     }
 };
 
+class Story270 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story270()
+    {
+        ID = 270;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Break the door down", 300));
+        Choices.push_back(Choice::Base("Go looking for Azenomei", 224));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Azenomei leads you into the wasteland, where the hot air rasps your throat and each footstep raises a cloud of acrid dust. For days you travel without seeing any sign of life. From dawn to dusk you feel as though your flesh is being dried on your bones. Night makes the rocks colder than ice.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        {
+            Character::GAIN_LIFE(player, -2);
+
+            PreText += "\n\nYou LOSE 2 Life Points.";
+        }
+        else
+        {
+            if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+            {
+                Character::EMPTY(player, Item::Type::WATER_BOTTLE);
+
+                PreText += "\n\nThe WATER BOTTLE is now EMPTY.";
+            }
+        }
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou see a gleam of burnished metal in the thickening dusk. \"It is the jinni's citadel,\" breathes Azenomei. Taking your arm, he hurries on until you stand below the walls. The battlements and turrets are all of polished bronze, flickering like fire in the red sunset.\n\nYou find the doors -- a huge double portal of ebony studded with iron. Putting your shoulders against the doors, you slowly push them open. Beyond lies a great hall with many passages leading off it.\n\n\"Let's split up and look for my sister,\" says Azenomei. \"We'll have to hurry, because the jinni might return at any moment.\"\n\nYou gaze along the hall. \"But there may be hundreds of rooms in the citadel. How will we find her?\"\n\n\"There are a thousand doors,\" says Azenomei, starting off down one of the passages. \"Just be sure not to try and open any that are locked.\"\n\nChoosing a passage at random, you start to explore. Doorway after doorway leads to empty rooms. At last you find a door that will not open. You thought there was a muffled shout from the other side, but when you press your ear to the door you can hear nothing.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 289; }
+};
+
+class Story271 : public Story::Base
+{
+public:
+    Story271()
+    {
+        ID = 271;
+
+        Text = "You travel in the far west, through the inhospitable hinterland of Egypt where, so the saying goes, 'only God and the wind dwell.'\n\nSome legends place the nest of the rokh at the head of the River Nile. You trudge up into the mountains until you have left the last scattered settlements far behind. The landscape is one of soaring desolate crags under a sky filled with the constant threat of storms.\n\nWater is hard to come by, and the only things to eat are snakes and insects. You climb a slope of loose dark pebbles, passing a stream where you drink deeply despite the salty taste of the water. Suddenly a boom shakes the ground. At first you think it is thunder, but then you see a corona of hissing flame against the mountain peak. A cloud of hazy black smoke is rolling down the slope towards you. You are on an erupting volcano!";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            Choices.push_back(Choice::Base("Run for your life", 487));
+            Choices.push_back(Choice::Base("Look for shelter", 90));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 44; }
+};
+
+class Story272 : public Story::Base
+{
+public:
+    Story272()
+    {
+        ID = 272;
+
+        Text = "You manage to climb just a little further, until you reach a cloud streaming like a banner beside the pinnacle. Leaping onto the cloud, you wait for it to drift up, carrying you miraculously to the rokh's nest at the top.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 325; }
+};
+
+class Story273 : public Story::Base
+{
+public:
+    Story273()
+    {
+        ID = 273;
+
+        Text = "As Jafar makes his throw, you sweep the cloak around, sweeping the deadly blade out of the air before it reaches its target.\n\nThe Caliph, recovering from his shock, calls for his guards. Jafar turns and flees.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 339; }
+};
+
+class Story274 : public Story::Base
+{
+public:
+    Story274()
+    {
+        ID = 274;
+
+        Text = "The sailors move like monkeys through the rigging. The sails billow as they catch the wind, and your vessel moves out from the dock and drifts gracefully downriver towards Basra. In the dawn the water is splashed with light like liquid gold. It flows sluggishly past as the day wears on, dark and deep as a draft of cool wine.\n\nA week passes. Moored one night in midstream, you find yourself unable to sleep. Climbing quietly over the dozing forms of your fellow sailors, you look out from the rail. The sky is filled with stars, and the moon watches its twin in the dim black depths of the river. You hear the soft plash of oars and, gazing upriver, you see the lamps of a barque approaching.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Wake the captain", 26));
+        Choices.push_back(Choice::Base("Wait and watch", 48));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story275 : public Story::Base
+{
+public:
+    Story275()
+    {
+        ID = 275;
+
+        Image = "images/flying-carpet.png";
+
+        Text = "Casting the limp carcass of the demon to one side, you race across the parade ground in search of Jafar. He can't have got far, the fat waddling toad. Then you see him, crouching by the wall as he unrolls a long carpet embroidered with mystic sigils.\n\nHe looks up, shakes his head with mock pity, and steps onto the carpet. \"Too late,\" he calls. \"But don't worry. I'll make sure our paths cross again.\"\n\nSo saying, he gives an imperious gesture and the carpet starts to rise from the ground. As it rises, your heart sinks. You can't possibly get to Jafar before he is out of reach.\n\nThere is a crack like wood being hit with a hammer. One of the stable doors flies open and bangs against the wall. You see Jafar's head shoot round in astonishment, and you follow his gaze to see your white stallion Antar rearing fiercely in the open doorway. With a proud whinny, he gallops over and you pull yourself up by his mane.\n\nTo the end of your days, you will never quite be sure of what happens next. You could have sworn Antar's hoofs strike sparks off thin air as, with a breathtaking leap, he carries you up beside Jafar on the flying carpet.\n\nJafar's mouth drops open -- whether to cast a spell or simply to curse you, you will never know. Antar rears, plunges, and clubs him with his hoof. Jafar topples and falls, and the carpet slowly drifts back to the ground. Dismounting, you lift Jafar's wrist and search for a pulse. Nothing. The traitor is dead.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::IRIS}))
+        {
+            return 403;
+        }
+        else
+        {
+            return 120;
+        }
+    }
+};
+
+class Story276 : public Story::Base
+{
+public:
+    Story276()
+    {
+        ID = 276;
+
+        Text = "Against a true master of the sword such as Masrur, even a skilled fighter like yourself can have no chance. He calmly parries your barrage of desperate attacks. Toying with you, he allows his sword- point to prick your skin again and again -- painful but not mortal wounds.\n\nYou LOSE 1 Life Point.";
+
+        Bye = "Finally tiring of this sadistic sport, Masrur disarms you with a deft twist of his blade.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 2; }
+};
+
+class Story277 : public Story::Base
+{
+public:
+    Story277()
+    {
+        ID = 277;
+
+        Text = "Having dealt with the guards, you push aside the curtain of the kiosk. The woman presses back on her cushions, frightened by the carnage she has just witnessed, but you reach out a reassuring hand. \"Have no fear of me, my lady,\" you say to her with a smile.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 254; }
+};
+
+class Story278 : public Story::Base
+{
+public:
+    Story278()
+    {
+        ID = 278;
+
+        Image = "images/filler1.png";
+
+        Text = "The first warrior steps forward, making no attempt to parry your attack. Your blade drives deep through the folds of his cloak, piercing his heart, but he makes no sound. Withdrawing the sword, you wait for him to topple. You are taken by surprise when, instead, he lunges at your throat. You barely deflect the blow, and now you notice that there is no trace of blood on your sword. These warriors are immune to the touch of cold steel!\n\nHis next blow is luckier -- or perhaps your timing is off. The edge of his scimitar strokes the flesh of your upper arm, drawing a deep line of scarlet.\n\nYou LOSE 2 Life Points.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a CLOAK", 343, {Item::CLOAK}));
+        Choices.push_back(Choice::Base("Drop your SWORD and fight empty-handed", 321));
+        Choices.push_back(Choice::Base("Try to break away and retreat through the caves", 365));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -2);
+    }
+};
+
+class Story279 : public Story::Base
+{
+public:
+    Story279()
+    {
+        ID = 279;
+
+        Text = "A man makes the sign of protection against the evil eye as you pass him on a street corner. You look at him in surprise and start to ask why he acted as he did, but he shuns you, saying, \"O unlucky one!\"\n\nDumbfounded, you watch as he hurries off along the street.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Follow him", 322));
+        Choices.push_back(Choice::Base("Return to the ship", 301));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -7293,6 +7525,16 @@ auto story266 = Story266();
 auto story267 = Story267();
 auto story268 = Story268();
 auto story269 = Story269();
+auto story270 = Story270();
+auto story271 = Story271();
+auto story272 = Story272();
+auto story273 = Story273();
+auto story274 = Story274();
+auto story275 = Story275();
+auto story276 = Story276();
+auto story277 = Story277();
+auto story278 = Story278();
+auto story279 = Story279();
 
 void InitializeStories()
 {
@@ -7323,7 +7565,8 @@ void InitializeStories()
         &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239,
         &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249,
         &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259,
-        &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269};
+        &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269,
+        &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279};
 }
 
 #endif
