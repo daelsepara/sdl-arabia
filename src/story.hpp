@@ -5407,7 +5407,7 @@ public:
         Choices.clear();
         Choices.push_back(Choice::Base("Take the HAWK", 318));
         Choices.push_back(Choice::Base("Arm yourself with one of the SWORDs", 450));
-        Choices.push_back(Choice::Base("Otherwise", 450));
+        Choices.push_back(Choice::Base("Otherwise", 93));
 
         Controls = Story::Controls::STANDARD;
     }
