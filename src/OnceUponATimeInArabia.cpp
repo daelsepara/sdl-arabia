@@ -360,7 +360,16 @@ void putText(SDL_Renderer *renderer, const char *text, TTF_Font *font, int space
 
             fillRect(renderer, w, height, x, y, bg);
 
-            renderText(renderer, surface, bg, x + space, y + space, height - 2 * space, 0);
+            if (space > 0)
+            {
+                renderText(renderer, surface, bg, x + space, y + space, height - 2 * space, 0);
+            }
+            else
+            {
+                renderText(renderer, surface, bg, x + (w - surface->w) / 2, y + (h - surface->h) / 2, height - 2 * space, 0);
+            }
+
+            
 
             SDL_FreeSurface(surface);
 
@@ -1929,12 +1938,12 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
 
     if (gender != Character::Gender::NONE)
     {
-        auto genderx = (int)(SCREEN_WIDTH * (1.0 - 2.0 * Margin) / 2) + startx;
+        auto genderx = startx + boxw + marginw;
         auto genderh = (int)(0.07 * SCREEN_HEIGHT) - space;
         auto genderw = splashw / 2;
 
-        putText(renderer, "MALE", font, 8, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, genderx, starty);
-        putText(renderer, "FEMALE", font, 8, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, genderx + genderw + 2 * space, starty);
+        putText(renderer, "MALE", font, -1, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, genderx, starty);
+        putText(renderer, "FEMALE", font, -1, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, genderx + genderw + 2 * space, starty);
 
         if (gender == Character::Gender::MALE)
         {
@@ -2138,8 +2147,8 @@ Character::Base customCharacter(SDL_Window *window, SDL_Renderer *renderer)
                 putText(renderer, "SELECT 4 Skills for your character.", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
             }
 
-            putText(renderer, "MALE", font, 8, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, startx, starty + boxh + box_space);
-            putText(renderer, "FEMALE", font, 8, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, startx, starty + boxh + box_space + genderh + text_space);
+            putText(renderer, "MALE", font, -1, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, startx, starty + boxh + box_space);
+            putText(renderer, "FEMALE", font, -1, clrBK, intWH, TTF_STYLE_NORMAL, genderw, genderh, startx, starty + boxh + box_space + genderh + text_space);
 
             if (gender == Character::Gender::MALE)
             {

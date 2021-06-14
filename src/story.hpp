@@ -5932,6 +5932,261 @@ public:
     }
 };
 
+class Story230 : public Story::Base
+{
+public:
+    Story230()
+    {
+        ID = 230;
+
+        Text = "Seeing you nock an arrow, the foremost guard skids to a halt on the marble floor. The others tumble into him from behind and they stand there silently for a moment, glowering at you.\n\n\"Fools! What are you waiting for?\" screeches Jafar. \"The arrow can only kill one of you.\"\n\nYou smoothly swing the arrow around to point at him. \"Then tell them to charge now,\" you say with a sly smile.\n\nHe holds up a fat jade-ringed hand. \"Wait! Hold your ground,\" he blusters at the guards. A trickle of sweat escapes the confines of his satin turban and rolls down into the plump clefts between his narrow eyes.\n\n\"That's better.\" You back away carefully and start to descend the stairs. Your arrow remains trained on Jafar's heart. \"I'm leaving now, Jafar, but I just want you to know that I'll be back. And I'll bring proof of your treachery before the Caliph.\"\n\nAs you reach the door, you release the arrow. It whips through the air, pinning Jafar\"s turban to the door behind him. Startled for a moment, he gives a sigh of relief and then points a trembling finger at you. \"Get the assassin!\"\n\nHe deserves to die, certainly, but that must wait until another day. You desire justice as much as revenge. Turning, you run back out of the palace and lose yourself in the side streets.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 383; }
+};
+
+class Story231 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story231()
+    {
+        ID = 231;
+
+        Image = "images/filler1.png";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You have rarely faced a more desperate test of your courage. Blows rain down on you, and it is all you can do to duck and weave fast enough to avoid being cut to bloody tatters.\n\n";
+
+        auto DAMAGE = -7;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -3;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else
+        {
+            DAMAGE = -5;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 277; }
+};
+
+class Story232 : public Story::Base
+{
+public:
+    Story232()
+    {
+        ID = 232;
+
+        Text = "You have also heard myths of the old days, when men worshipped a profusion of strange deities. Mithra was said to bestow invulnerability on his most devout followers, so that no weapon had the power to harm them. When they needed to settle duels among themselves, as honour would sometimes dictate, they had to resort to boxing and wrestling because these skills involve no weapons.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 255; }
+};
+
+class Story233 : public Story::Base
+{
+public:
+    Story233()
+    {
+        ID = 233;
+
+        Text = "You mentioned four treasures. There are no more in the chest. Is the last that BLACK JEWEL you wear?\"\n\nHe takes the JEWEL from around his neck and hands it to you. \"This little trinket? A charm against baneful magic. Take it if you wish.\"\n\nYussuf selects the INDIAN ROPE, which he gives to you for safe keeping.\n\nSmiling, the old man brings his hands together. There is a noise like a thunderclap and a blaze of white light, and then you are standing in the open air again. You are on the ledge above the river, with no sign now of the cavern or the old man.\n\n\"Strange magic,\" whispers Yussuf. \"If we tell the others about this, they'll think us mad.\"\n\n\"So we won't tell them.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::INDIAN_ROPE});
+
+        Take = {Item::BLACK_JEWEL};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 256; }
+};
+
+class Story234 : public Story::Base
+{
+public:
+    Story234()
+    {
+        ID = 234;
+
+        Image = "images/filler4.png";
+
+        Text = "The days stream by and you lose yourself completely in the tranquil pleasure of the sea's rhythms.\n\nYou RECOVER 2 Life Points.\n\nAt night the stars look down upon your progress, blistering beacons placed in their courses by divine providence as a guide for seafarers. By day the sun shimmers from a sky of eggshell blue. You listen to the slow gentle creak of the rigging, the slosh of the waves, and the murmur of the ship's boards. Gulls follow your course, hunting the fish that your passage stirs up to the surface.\n\nDriven by north-east monsoon winds, you make good speed and in three weeks the peaks of the Scarlet Isle can be seen thrusting up from the horizon. Here you see the reddish tinge to the water that gives the island its name. \"Some say it is the blood of the warlike tribes who live there,\" says one man in a voice hushed with fear of the unknown.\n\n\"Bah!\" says the captain, hearing this. \"It is nothing more than the minerals carried out to sea by the rivers.\"\n\nFinding an estuary, you cruise upstream until you see the roofs of a town. Buildings of mud-brick squat dustily amid the crags, fields laid out in front of them like rolling carpets of emerald and golden thread. As you tie up at the dock, a crowd of natives come down from the houses to meet you. They are garbed in long robes of beige cloth, belted at the waist, and each wears a long gold-hilted knife at his side.\n\nCaptain Ibrahim leaps ashore. \"Stay with the ship,\" he tells the rest of you. \"I'm going to speak with their headman.\" So saying, he strides off and is escorted by the natives back to a large building in the centre of the town.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Disembark", 166));
+        Choices.push_back(Choice::Base("Stay on board as ordered", 189));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 2);
+    }
+};
+
+class Story235 : public Story::Base
+{
+public:
+    Story235()
+    {
+        ID = 235;
+
+        Text = "The other sailors are too frightened to come with you. Alone, you make your way through the empty streets to the headman's house. Now you can see that beyond it, lining the cliffs, are rows of tombs. The boulders that normally seal them have been rolled back, and emerging from them are a group of islanders bearing smoking torches. Each carries something across his shoulders -- something long, wrapped in thick rugs like shrouds. You have the sudden conviction that they are dead bodies.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go back to the ship", 258));
+        Choices.push_back(Choice::Base("Sneak into the building", 281));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story236 : public Story::Base
+{
+public:
+    Story236()
+    {
+        ID = 236;
+
+        Text = "How will you attack?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SWORDPLAY] Use a SWORD", 304, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("You do not possess a SWORD or do not wish to use it", 326));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story237 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story237()
+    {
+        ID = 237;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Run forward across the parade ground", 216));
+        Choices.push_back(Choice::Base("Stand firm", 332));
+        Choices.push_back(Choice::Base("Retreat", 46));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "It drops on you with a voiceless shriek of glee. The talons dig deep into your neck, and you cannot stifle a scream of unendurable pain.\n\n";
+
+        auto DAMAGE = -3;
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        {
+            DAMAGE = -2;
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                PreText += "[SWORDPLAY] ";
+            }
+
+            if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+            {
+                PreText += "[WRESTLING] ";
+            }
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou feel the demon release you and retreat into the air. You must have managed to hurt it. Through red waves of pain, you see its carapace reknitting, the wounds you struggled so hard to inflict vanishing in seconds.\n\nHow can you win against such a creature?";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story238 : public Story::Base
+{
+public:
+    Story238()
+    {
+        ID = 238;
+
+        Text = "The ship puts out of harbour and begins the journey downriver to the Mediterranean. You soon show that you are too useful to waste at the oars, and various minor deck duties are assigned to you.\n\nOnce clear of Alexandria and onto the open sea, the captain has your shackles removed. \"Ten leagues of empty ocean,\" he says with a laugh, sweeping his hand astern of the ship. \"That ought to make you think twice about running away.\"\n\nThat night you slip over the side. The captain thinks no-one could swim all the way back to land, but you were brought up on a river boat that plied the stretch from Basra to Baghdad. A fish is no more at home in the water than you.\n\nYou reach the shore with aching limbs, shivering from the cold, but you are alive. No doubt when you're discovered missing they will assume you fell overboard and drowned. Few Frankish sailors can swim.\n\nYou find employment on a barge bound for Cairo, arriving there a few days later. The barge owner rewards you with 2 dinars for helping him unload his cargo.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::MORDANT);
+
+        Character::GAIN_MONEY(player, 2);
+    }
+
+    int Continue(Character::Base &player) { return 215; }
+};
+
+class Story239 : public Story::Base
+{
+public:
+    Story239()
+    {
+        ID = 239;
+
+        Text = "The captain of the merchant ship loudly dismisses your suggestion that he might be attacked by pirates. \"We are only one vessel!\" he retorts.\n\n\"You are almost the only vessel on the Red Sea,\" replies the officer in charge of your marines. \"They'll take you as surely as wild dogs would help themselves to a fat goose.\"\n\nThe captain takes umbrage at this comparison, but you see a look of unease on his sailors\" faces. \"Er, Captain,\" suggests his first mate, \"why don't we let those marines hide themselves in some of the barrels? That way, if the pirates do attack, they'll be in for a surprise.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Agree with that plan", 100));
+        Choices.push_back(Choice::Base("Let the merchant ship get a little way ahead as bait for the pirates", 476));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -6162,6 +6417,16 @@ auto story226 = Story226();
 auto story227 = Story227();
 auto story228 = Story228();
 auto story229 = Story229();
+auto story230 = Story230();
+auto story231 = Story231();
+auto story232 = Story232();
+auto story233 = Story233();
+auto story234 = Story234();
+auto story235 = Story235();
+auto story236 = Story236();
+auto story237 = Story237();
+auto story238 = Story238();
+auto story239 = Story239();
 
 void InitializeStories()
 {
@@ -6188,7 +6453,8 @@ void InitializeStories()
         &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199,
         &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209,
         &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219,
-        &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229};
+        &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229,
+        &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239};
 }
 
 #endif
