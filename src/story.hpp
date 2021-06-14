@@ -935,7 +935,7 @@ public:
     {
         ID = 20;
 
-        Text = "Now that the danger is over, you find you are trembling in shock. You sit on the end of Ayisha's couch while you recover. \"Where did you learn sorcery?\"\n\n\"My old nurse taught me,\" she replies, smiling. \"Alas, she never told me any spell to undo these enchanted chains.\"\n\n\"There must be a key.\"\n\nAyisha nods. \"There is. It is in the nest of the giant bird known as the rokh. If you\"d agree to try and get it, I could send you there with another spell I know.\" She pauses and adds hesitantly, \"It would be dangerous, of course.\"";
+        Text = "Now that the danger is over, you find you are trembling in shock. You sit on the end of Ayisha's couch while you recover. \"Where did you learn sorcery?\"\n\n\"My old nurse taught me,\" she replies, smiling. \"Alas, she never told me any spell to undo these enchanted chains.\"\n\n\"There must be a key.\"\n\nAyisha nods. \"There is. It is in the nest of the giant bird known as the rokh. If you'd agree to try and get it, I could send you there with another spell I know.\" She pauses and adds hesitantly, \"It would be dangerous, of course.\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Agree to try", 114));
@@ -1573,7 +1573,7 @@ public:
 
         Image = "images/filler4.png";
 
-        Text = "The guards burst into the room, only to find a dead body slumped on the cold marble floor. Shrugging, they sheathe their swords. Jafar pushes his way to the front and demands to know what is going on.\n\n\"The intruder committed suicide, it seems, lord,\" says the captain of the guard, indicating the trickle of poison on your lips.\n\nJafar hisses between his teeth. \"A pity. I\"d have liked to oversee the interrogation of this one.\"\n\nThe captain hides a flicker of disgust at Jafar's open cruelty. Turning away sharply, he says to the guards, \"Take this corpse to the burial-ground.\"\n\nYou are taken to the edge of the city and left in a small brick building beside the cemetery, there to await burial in the morning. When the guards have left, the jinni breathes the gust of life back into your lungs. Rubbing your stiff limbs, you get up and fix him with a sour frown. \"Why did you make them think I was dead?\"\n\nHe smiles -- at least, you think it's a smile. \"They\"re not going to kill you twice, are they?\"\n\n\"But why didn't you turn their swords to snakes? Or fill the room with choking fog? Or whisk me away to safety on a flying cloud?\"\n\n\"Oh, what are you complaining about?\" snaps the jinni. \"I got you out safely, didn't I?\" He becomes a twist of vapour that slowly flows back into your ring.\n\nAs you walk back from the graveyard, you consider that it might be wise to quit Baghdad for a while. The wild corners of the world are full of mystery and promise, and adventurers of olden times often returned from their travels laden with riches. If you could do the same, then you would be a better position to bring Jafar to justice. It only remains to decide your route.";
+        Text = "The guards burst into the room, only to find a dead body slumped on the cold marble floor. Shrugging, they sheathe their swords. Jafar pushes his way to the front and demands to know what is going on.\n\n\"The intruder committed suicide, it seems, lord,\" says the captain of the guard, indicating the trickle of poison on your lips.\n\nJafar hisses between his teeth. \"A pity. I'd have liked to oversee the interrogation of this one.\"\n\nThe captain hides a flicker of disgust at Jafar's open cruelty. Turning away sharply, he says to the guards, \"Take this corpse to the burial-ground.\"\n\nYou are taken to the edge of the city and left in a small brick building beside the cemetery, there to await burial in the morning. When the guards have left, the jinni breathes the gust of life back into your lungs. Rubbing your stiff limbs, you get up and fix him with a sour frown. \"Why did you make them think I was dead?\"\n\nHe smiles -- at least, you think it's a smile. \"They're not going to kill you twice, are they?\"\n\n\"But why didn't you turn their swords to snakes? Or fill the room with choking fog? Or whisk me away to safety on a flying cloud?\"\n\n\"Oh, what are you complaining about?\" snaps the jinni. \"I got you out safely, didn't I?\" He becomes a twist of vapour that slowly flows back into your ring.\n\nAs you walk back from the graveyard, you consider that it might be wise to quit Baghdad for a while. The wild corners of the world are full of mystery and promise, and adventurers of olden times often returned from their travels laden with riches. If you could do the same, then you would be a better position to bring Jafar to justice. It only remains to decide your route.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Go by sea", 160));
@@ -2536,7 +2536,7 @@ public:
     {
         ID = 84;
 
-        Text = "The mysterious island drops astern and is lost to sight. For a day or so afterwards, the captain takes to stamping around the deck fretfully. \"I should have surveyed the isle, at least,\" he admits to you. \"It might have been one of those places spoken of in the old tales.\"\n\n\"Which tales are those?\"\n\n\"You know the ones! I\"ve heard tell of islands where the fruit is solid gold, where the streams give eternal life and the womenfolk are --\"\n\n\"Ah, I thought you meant the other tales.\" You take a sip of water from the barrel to conceal a smile. \"Stories of Sindbad's voyages -- islands inhabited by murderous cannibals, insane wizards, bloated giants and the like.\"\n\n\"Yes...\" says the captain thoughtfully. \"I expect I made the right decision, after all.\"\n\nA sailor breaks in on your conversation to point out a ship drifting ahead. Her sails are furled and there is no reply to your shouts. As you come alongside, you see the reason. The deck is strewn with corpses.";
+        Text = "The mysterious island drops astern and is lost to sight. For a day or so afterwards, the captain takes to stamping around the deck fretfully. \"I should have surveyed the isle, at least,\" he admits to you. \"It might have been one of those places spoken of in the old tales.\"\n\n\"Which tales are those?\"\n\n\"You know the ones! I've heard tell of islands where the fruit is solid gold, where the streams give eternal life and the womenfolk are --\"\n\n\"Ah, I thought you meant the other tales.\" You take a sip of water from the barrel to conceal a smile. \"Stories of Sindbad's voyages -- islands inhabited by murderous cannibals, insane wizards, bloated giants and the like.\"\n\n\"Yes...\" says the captain thoughtfully. \"I expect I made the right decision, after all.\"\n\nA sailor breaks in on your conversation to point out a ship drifting ahead. Her sails are furled and there is no reply to your shouts. As you come alongside, you see the reason. The deck is strewn with corpses.";
 
         Choices.clear();
 
@@ -2824,7 +2824,7 @@ public:
 
         if (player.Life > 0)
         {
-            PreText += "\n\nIf you survive, you hear the guards\" shouts from above. You cannot lie flopping in agony on the ground. You must rise and flee for your life before they catch you.\n\nLimping painfully towards the gate you are intercepted by a sentry. Your heart sinks, but then you realise that he does not know what the commotion is all about. He stares past you at the soldiers rushing across the courtyard. \"What's going on?\" he asks.\n\n\"There\"s an assassin in the palace,\" you gasp through gritted teeth.\n\nThe sentry rushes off across the courtyard. Moving with all the speed your twisted ankle will allow, you slip out of the gate and duck into the shadows of a side street. Glancing back, you see the soldiers who were chasing you run out of the gate. They look around, confused, but none saw where you went. You have given them the slip.";
+            PreText += "\n\nIf you survive, you hear the guards' shouts from above. You cannot lie flopping in agony on the ground. You must rise and flee for your life before they catch you.\n\nLimping painfully towards the gate you are intercepted by a sentry. Your heart sinks, but then you realise that he does not know what the commotion is all about. He stares past you at the soldiers rushing across the courtyard. \"What's going on?\" he asks.\n\n\"There's an assassin in the palace,\" you gasp through gritted teeth.\n\nThe sentry rushes off across the courtyard. Moving with all the speed your twisted ankle will allow, you slip out of the gate and duck into the shadows of a side street. Glancing back, you see the soldiers who were chasing you run out of the gate. They look around, confused, but none saw where you went. You have given them the slip.";
         }
 
         Text = PreText.c_str();
@@ -2908,7 +2908,7 @@ public:
 
         Image = "images/pirates-asleep.png";
 
-        Text = "You give orders for the merchantman's sailors to take your ship back to port, while your own crew come aboard and man their vessel. Along with a hand-picked band of your best marines, you hide inside some empty barrels in the hold. You do not have to wait long before the cry goes out from the look-out, warning of black sails on the horizon.\n\nGrappling hooks wrench the ships together and there is the desultory clash of steel. Your sailors put up a token resistance just to prevent the pirates getting suspicious, surrendering before anyone is killed. Listening from inside the barrel, you hear the tramp of feet on the deck above. Harsh commands are given and the barrels are loaded aboard the pirate ship. The slow rolling of the heavy merchantman gives way to the swift grace of the pirates\" warship.\n\nHours pass before you feel the ship jolt against the side of a dock. The pirates start to unload the barrels. You get ready to spring out on them, but then someone says, \"Let's broach this keg and have a party. We can unload the rest tomorrow.\"\n\nEven better. You wait until the noise of drunken carousing settles down into rhythmic snores, then you ease the top off your barrel and climb out. You emerge from the hold to find yourself in an underground lagoon covered by a vast stone dome. There are bronze braziers all along the shore of the lagoon, and the scene they illuminate is one of opulent luxury. The shore is covered with scattered gold, gems, ivory, pearls -- along with jars of oil and perfume, flasks of cool green wine and bolts of rich red cloth. The pirates lie asleep, limbs flung out like starfish in their wine-soaked contentment. Here you see a scar-faced villain clutching a necklace of dripping sapphires. Beside him lies a snoring red-faced ruffian hugging a blanket of lustrous silk.";
+        Text = "You give orders for the merchantman's sailors to take your ship back to port, while your own crew come aboard and man their vessel. Along with a hand-picked band of your best marines, you hide inside some empty barrels in the hold. You do not have to wait long before the cry goes out from the look-out, warning of black sails on the horizon.\n\nGrappling hooks wrench the ships together and there is the desultory clash of steel. Your sailors put up a token resistance just to prevent the pirates getting suspicious, surrendering before anyone is killed. Listening from inside the barrel, you hear the tramp of feet on the deck above. Harsh commands are given and the barrels are loaded aboard the pirate ship. The slow rolling of the heavy merchantman gives way to the swift grace of the pirates' warship.\n\nHours pass before you feel the ship jolt against the side of a dock. The pirates start to unload the barrels. You get ready to spring out on them, but then someone says, \"Let's broach this keg and have a party. We can unload the rest tomorrow.\"\n\nEven better. You wait until the noise of drunken carousing settles down into rhythmic snores, then you ease the top off your barrel and climb out. You emerge from the hold to find yourself in an underground lagoon covered by a vast stone dome. There are bronze braziers all along the shore of the lagoon, and the scene they illuminate is one of opulent luxury. The shore is covered with scattered gold, gems, ivory, pearls -- along with jars of oil and perfume, flasks of cool green wine and bolts of rich red cloth. The pirates lie asleep, limbs flung out like starfish in their wine-soaked contentment. Here you see a scar-faced villain clutching a necklace of dripping sapphires. Beside him lies a snoring red-faced ruffian hugging a blanket of lustrous silk.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Rely on [ROGUERY]", 12, Skill::Type::ROGUERY));
@@ -3434,7 +3434,7 @@ public:
 
         if (player.Life > 0)
         {
-            PreText += "\n\nYou still have breath in your body, you race off with the islanders in close pursuit.\n\nThe jetty comes in sight. Encouraged by the crew's yells, you ignore the stones and spears that are whistling past your heads. Leaping aboard, the captain gives the immediate order to cast off. The ship lurches out from the jetty and swirls on the river currents. You watch from the rail as the angry mob comes charging onto the jetty. Some career into the water in their haste, and now it is the turn of your crew to pelt them with missiles.\n\nAs he gets his breath back, Captain Ibrahim tells you that the islanders kept asking him about the nest of the rokh, the giant bird said to prey on elephants. \"I told them I wanted only to trade, but they were having none of it,\" he pants. \"They accused me of being after the rokh's diamond eggs.\"\n\n\"Its nest must be somewhere in these parts, then.\"\n\n\"They said it was somewhere to the west,\" he says with as much interest as if he were speaking about the shape of a bee's backside. \"But I think it\"s just so much poppycock.\"\n\nYou gained the codeword KISMET.";
+            PreText += "\n\nYou still have breath in your body, you race off with the islanders in close pursuit.\n\nThe jetty comes in sight. Encouraged by the crew's yells, you ignore the stones and spears that are whistling past your heads. Leaping aboard, the captain gives the immediate order to cast off. The ship lurches out from the jetty and swirls on the river currents. You watch from the rail as the angry mob comes charging onto the jetty. Some career into the water in their haste, and now it is the turn of your crew to pelt them with missiles.\n\nAs he gets his breath back, Captain Ibrahim tells you that the islanders kept asking him about the nest of the rokh, the giant bird said to prey on elephants. \"I told them I wanted only to trade, but they were having none of it,\" he pants. \"They accused me of being after the rokh's diamond eggs.\"\n\n\"Its nest must be somewhere in these parts, then.\"\n\n\"They said it was somewhere to the west,\" he says with as much interest as if he were speaking about the shape of a bee's backside. \"But I think it's just so much poppycock.\"\n\nYou gained the codeword KISMET.";
 
             Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
         }
@@ -3509,7 +3509,7 @@ public:
 
         Image = "images/masked-rider.png";
 
-        Text = "The four riders are garbed all in white, with silver filigree around the borders of their robes. Three look down with fierce eyes. The emotions of the fourth remain a mystery, for he wears a mask of carved ivory. All carry bristling lances. Knives and long swords hang at their belts.\n\nThe masked rider points to the fallen gazelle. \"This was our game, which we\"d pursued since before sunrise. You've stolen it.\" His voice sounds as sweet as the melody of a harp, as sweet as a fresh brook, as sweet as poisoned syrup.\n\nAbdullah becomes truculent. \"Who are you, to lay such accusations on us?\"\n\nThe masked stranger leans forward in his saddle. \"I am the Sultan of Nishapur.\"";
+        Text = "The four riders are garbed all in white, with silver filigree around the borders of their robes. Three look down with fierce eyes. The emotions of the fourth remain a mystery, for he wears a mask of carved ivory. All carry bristling lances. Knives and long swords hang at their belts.\n\nThe masked rider points to the fallen gazelle. \"This was our game, which we'd pursued since before sunrise. You've stolen it.\" His voice sounds as sweet as the melody of a harp, as sweet as a fresh brook, as sweet as poisoned syrup.\n\nAbdullah becomes truculent. \"Who are you, to lay such accusations on us?\"\n\nThe masked stranger leans forward in his saddle. \"I am the Sultan of Nishapur.\"";
 
         Choices.clear();
 
@@ -3810,7 +3810,7 @@ public:
     {
         ID = 138;
 
-        Text = "The sailor speaks with rapture of the joys of seafaring. \"The salt spray has a scent more lovely than the spices of Ceylon,\" he says. \"And what jewel ever shone as bright as the setting sun, smouldering like a ruby above the languid gold of the ocean?\"\n\nAs you approach the docks, however, his mood becomes more practical. \"You'll first sail downriver to Basra,\" he says. \"From Basra on to the open sea of the Gulf. Once past the Straits of Hormuz, I'd counsel you to stay close to shore if you wish to avoid a hazardous adventure. Somewhere in the Indian Ocean lies the island of a malevolent dwarf. He has deep knowledge of dire sorcery. It's said that he does not welcome visitors, but nor does he hurry to see them leave again once they\"ve found his isle. His seven sentinels have as much mercy as sharks.\"\n\nYou nod, glancing away to hide your sceptical smile. \"I'm grateful for this advice. Are there other dangers of the deep I should watch out for?\"\n\nHe spreads his hands as if at an embarrassment of riches. \"The giant fish called the dendan, which swallows ships. The people of the Scarlet Isle, who are ruled by dead kings. The evil fire wizards whom the Prophet cast out from this land two centuries ago. And sundry ghosts, ifrits and cannibal pirates, of course...\"\n\nYou raise your eyebrows. \"Are you sure that going to sea is a good idea?\"\n\n\"Now I come to think,\" says the sailor, pulling thoughtfully at his beard, \"it is a perilous life at best. But consider the great rewards, my friend, if you should survive to reach one of those fabulous ports where silks and spices are as plentiful as the plums of the Caliph\"s garden.\"";
+        Text = "The sailor speaks with rapture of the joys of seafaring. \"The salt spray has a scent more lovely than the spices of Ceylon,\" he says. \"And what jewel ever shone as bright as the setting sun, smouldering like a ruby above the languid gold of the ocean?\"\n\nAs you approach the docks, however, his mood becomes more practical. \"You'll first sail downriver to Basra,\" he says. \"From Basra on to the open sea of the Gulf. Once past the Straits of Hormuz, I'd counsel you to stay close to shore if you wish to avoid a hazardous adventure. Somewhere in the Indian Ocean lies the island of a malevolent dwarf. He has deep knowledge of dire sorcery. It's said that he does not welcome visitors, but nor does he hurry to see them leave again once they've found his isle. His seven sentinels have as much mercy as sharks.\"\n\nYou nod, glancing away to hide your sceptical smile. \"I'm grateful for this advice. Are there other dangers of the deep I should watch out for?\"\n\nHe spreads his hands as if at an embarrassment of riches. \"The giant fish called the dendan, which swallows ships. The people of the Scarlet Isle, who are ruled by dead kings. The evil fire wizards whom the Prophet cast out from this land two centuries ago. And sundry ghosts, ifrits and cannibal pirates, of course...\"\n\nYou raise your eyebrows. \"Are you sure that going to sea is a good idea?\"\n\n\"Now I come to think,\" says the sailor, pulling thoughtfully at his beard, \"it is a perilous life at best. But consider the great rewards, my friend, if you should survive to reach one of those fabulous ports where silks and spices are as plentiful as the plums of the Caliph's garden.\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("You are resolved to seek adventure at sea", 160));
@@ -4291,7 +4291,7 @@ public:
     {
         Type = Story::Type::NORMAL;
 
-        PreText = "A week later, the grille is hauled up and another prisoner is lowered into the oubliette. \"Here is the real Shadow!\" calls down a guard. \"Now you worthless wretches have got some distinguished company for a change.\"\n\nThe grille drops back into place with a clang. \"What about me?\" you shout up. \"If you\"ve got the real Shadow, you must know I'm innocent!\"\n\nThe guard's face reappears at the top. He has a broad smirk as he says, \"Innocent? You can\"t be innocent if you're in gaol, can you? So maybe you didn't steal the Sultan's ruby -- who cares? No doubt there's some other crime we can mark down to you.\"\n\n\"This is rank injustice!\" you call back, but he has gone.\n\nThe newcomer places a hand on your shoulder. \"I too am the victim of injustice, my friend, for I am not the Shadow. I thought you were. In fact, I got myself caught in order to meet you. My name is Azenomei.\" You turn and look at him: a handsome beardless young man with sparkling gaze. He has a small scar across the bridge of his nose.\n\n\"In that case, you\"re in for a big disappointment. And why are you smiling? Don't you know we'll probably stay here till we die?\"\n\nHis grin grows all the wider as he brings out a huge bunch of keys. \"Here I have the answer to nine hundred and ninety-nine locks. All we need is a way to reach the grille.\"";
+        PreText = "A week later, the grille is hauled up and another prisoner is lowered into the oubliette. \"Here is the real Shadow!\" calls down a guard. \"Now you worthless wretches have got some distinguished company for a change.\"\n\nThe grille drops back into place with a clang. \"What about me?\" you shout up. \"If you've got the real Shadow, you must know I'm innocent!\"\n\nThe guard's face reappears at the top. He has a broad smirk as he says, \"Innocent? You can't be innocent if you're in gaol, can you? So maybe you didn't steal the Sultan's ruby -- who cares? No doubt there's some other crime we can mark down to you.\"\n\n\"This is rank injustice!\" you call back, but he has gone.\n\nThe newcomer places a hand on your shoulder. \"I too am the victim of injustice, my friend, for I am not the Shadow. I thought you were. In fact, I got myself caught in order to meet you. My name is Azenomei.\" You turn and look at him: a handsome beardless young man with sparkling gaze. He has a small scar across the bridge of his nose.\n\n\"In that case, you're in for a big disappointment. And why are you smiling? Don't you know we'll probably stay here till we die?\"\n\nHis grin grows all the wider as he brings out a huge bunch of keys. \"Here I have the answer to nine hundred and ninety-nine locks. All we need is a way to reach the grille.\"";
 
         if (!Character::VERIFY_ITEMS_ANY(player, {Item::MAGIC_SLIPPERS, Item::INDIAN_ROPE, Item::LONG_TAILED_CAT}))
         {
@@ -4624,7 +4624,7 @@ public:
     {
         ID = 170;
 
-        Text = "You wait ten days until your owner and his camel-drivers return from Mecca. During that time, your thoughts were often of escape, but you know that running away would do you no good. You would soon be recaptured by the soldiers who patrol the pilgrim routes. The fate of a runaway slave does not bear thinking about.\n\nAs Hakim checks the straps of his camel\"s harness, he looks at you askance. Perhaps he has guessed what was in your mind, because he says: \"Wiser to stay with me. I treat you well enough. You're better off than most slaves, eh?\"\n\nYou return his gaze without expression. \"But still I am a slave,\" you say flatly.\n\nAt least you have had the opportunity to rest and regain your strength.\n\nYou RECOVER 1 Life Point.";
+        Text = "You wait ten days until your owner and his camel-drivers return from Mecca. During that time, your thoughts were often of escape, but you know that running away would do you no good. You would soon be recaptured by the soldiers who patrol the pilgrim routes. The fate of a runaway slave does not bear thinking about.\n\nAs Hakim checks the straps of his camel's harness, he looks at you askance. Perhaps he has guessed what was in your mind, because he says: \"Wiser to stay with me. I treat you well enough. You're better off than most slaves, eh?\"\n\nYou return his gaze without expression. \"But still I am a slave,\" you say flatly.\n\nAt least you have had the opportunity to rest and regain your strength.\n\nYou RECOVER 1 Life Point.";
 
         Choices.clear();
 
@@ -4857,7 +4857,7 @@ public:
     {
         ID = 180;
 
-        Text = "It takes months, but at last, while sitting in a fisherman's shack on the fringe of the mangrove swamps outside Daibul, you hear confirmation of the legend.\n\n\"Indeed, I have seen the rokh,\" claims the fisherman. \"Its wingspan is so wide as to blot out the sun, and each claw could enfold a ship. Its beak is longer and sharper than -- \"\n\nYou give a cough. \"The important thing is, does it really lay diamond eggs?\"\n\nHe cackles wildly. \"I don\"t know, do I? I never visited the Isle of Palms myself, much less climbed to the rokh's eyrie.\"\n\n\"The Isle of Palms?\" you enquire. Suddenly, success seems within your reach.\n\n\"That's where it nests. If you want, I'll take you there tomorrow.\"";
+        Text = "It takes months, but at last, while sitting in a fisherman's shack on the fringe of the mangrove swamps outside Daibul, you hear confirmation of the legend.\n\n\"Indeed, I have seen the rokh,\" claims the fisherman. \"Its wingspan is so wide as to blot out the sun, and each claw could enfold a ship. Its beak is longer and sharper than -- \"\n\nYou give a cough. \"The important thing is, does it really lay diamond eggs?\"\n\nHe cackles wildly. \"I don't know, do I? I never visited the Isle of Palms myself, much less climbed to the rokh's eyrie.\"\n\n\"The Isle of Palms?\" you enquire. Suddenly, success seems within your reach.\n\n\"That's where it nests. If you want, I'll take you there tomorrow.\"";
 
         Choices.clear();
 
@@ -4925,7 +4925,7 @@ public:
     {
         ID = 184;
 
-        Text = "You can hear murmuring and the rustling of silks as Jafar changes his robe in the next room. Since he is boasting loudly to the timid slave about his plans, it's unlikely he will hear you. Even so, you are careful to pad as quietly as a cat over to the table where the chart lies. Scanning it quickly, you see that the rokh\"s nest is marked close to the source of the Nile river.\n\nYou gained the codeword KISMET.\n\n\"These green slippers will not do!\" you hear Jafar hissing at his slave. \"Have you no sense at all, you curd-faced girl? Fetch the red pair from the other room.\"\n\nYou glance down. The red slippers are beside the table. You see the slave girl's swaying silhouette as she approaches the curtained archway. You must get away fast, or she will raise the alarm. Hastily you retrace your steps.";
+        Text = "You can hear murmuring and the rustling of silks as Jafar changes his robe in the next room. Since he is boasting loudly to the timid slave about his plans, it's unlikely he will hear you. Even so, you are careful to pad as quietly as a cat over to the table where the chart lies. Scanning it quickly, you see that the rokh's nest is marked close to the source of the Nile river.\n\nYou gained the codeword KISMET.\n\n\"These green slippers will not do!\" you hear Jafar hissing at his slave. \"Have you no sense at all, you curd-faced girl? Fetch the red pair from the other room.\"\n\nYou glance down. The red slippers are beside the table. You see the slave girl's swaying silhouette as she approaches the curtained archway. You must get away fast, or she will raise the alarm. Hastily you retrace your steps.";
 
         Choices.clear();
 
@@ -5196,7 +5196,7 @@ public:
     {
         ID = 197;
 
-        Text = "The remainder of the voyage is uneventful, and at last you reach the port of Daibul, which straddles a wide dun-coloured river beyond a region of mangrove swamps.\n\nThe captain goes ashore, returning quite soon with a broad smile on his face. \"I have sold all the cargo to a wealthy nobleman from Nishapur,\" he announces. \"Make ready. We sail on the tide.\"\n\nThe crew are surprised to be returning so quickly. They had expected that the captain\"s business would take at least a week. As the ship hoves out of port, you feel a sense of disappointment. \"Where is the adventure I longed for?\" you say with a sigh.\n\n\"Beware of wishing, so they say, lest you get what you wish for!\" replies the helmsman. \"See that dark scudding cloud across our bows? We're running into a storm.\"";
+        Text = "The remainder of the voyage is uneventful, and at last you reach the port of Daibul, which straddles a wide dun-coloured river beyond a region of mangrove swamps.\n\nThe captain goes ashore, returning quite soon with a broad smile on his face. \"I have sold all the cargo to a wealthy nobleman from Nishapur,\" he announces. \"Make ready. We sail on the tide.\"\n\nThe crew are surprised to be returning so quickly. They had expected that the captain's business would take at least a week. As the ship hoves out of port, you feel a sense of disappointment. \"Where is the adventure I longed for?\" you say with a sigh.\n\n\"Beware of wishing, so they say, lest you get what you wish for!\" replies the helmsman. \"See that dark scudding cloud across our bows? We're running into a storm.\"";
 
         Choices.clear();
 
@@ -5269,6 +5269,210 @@ public:
     }
 
     int Continue(Character::Base &player) { return 27; }
+};
+
+class Story201 : public Story::Base
+{
+public:
+    Story201()
+    {
+        ID = 201;
+
+        Text = "Squeezing through the bars of the grille, the hawk soars off into the night. You watch it go with a sense of misery. You cannot blame the bird for abandoning you -- it deserves its freedom -- but now you feel even more trapped.\n\nBarely a minute later, while you are still examining the lock, the hawk returns and settles on the ground. Hearing a metallic chink, you peer through the gloom. It has brought the keys from the guardhouse! Fingers trembling with anxious joy, you test each key in turn. One of them fits, and the padlock springs open. You are free.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 223; }
+};
+
+class Story202 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story202()
+    {
+        ID = 202;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The BLACK JEWEL clouds and cracks as it absorbs the force of the spell. Azenomei shouts an obscene oath and draws his sword, flying at you in a fury. Strangely, it is only now that you notice his eyes. They are golden.\n\nThe battle is hard-fought and bloody. Soon you are gasping in the chill mountain air as you circle your foe looking for an opening. Blood streams from both of you. Azenomei's is black.\n\n";
+
+        auto DAMAGE = -6;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -2;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -4;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nyou finally succeed in clubbing Azenomei to the ground, where he gives a last gasp before dissolving into a thick tarry vapour.\n\nHis SWORD remains. The power of the BLACK JEWEL is now used up.";
+
+            Character::LOSE_ITEMS(player, {Item::Type::BLACK_JEWEL});
+        }
+
+        Take = {Item::SWORD};
+
+        Limit = 1;
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 42; }
+};
+
+class Story203 : public Story::Base
+{
+public:
+    Story203()
+    {
+        ID = 203;
+
+        Text = "The rokh's nest lies in the east, on the Isle of Palms. You manage to convince the fishermen to take you there in exchange for a share of the spoils.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 21; }
+};
+
+class Story204 : public Story::Base
+{
+public:
+    Story204()
+    {
+        ID = 204;
+
+        Text = "Decide what to do next.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use a LONG-TAILED CAT", 316, {Item::LONG_TAILED_CAT}));
+        Choices.push_back(Choice::Base("Use an INDIAN ROPE", 360, {Item::INDIAN_ROPE}));
+        Choices.push_back(Choice::Base("Climb up to the nest", 181));
+        Choices.push_back(Choice::Base("Abandon the whole quest", 142));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story205 : public Story::Base
+{
+public:
+    Story205()
+    {
+        ID = 205;
+
+        Text = "You approach a richly-dressed slave outside the palace gates and explain that you have come to see Jafar. \"Tell him it is Shazir.\"\n\nHe peers at you in the dusk. \"Shazir? But I thought -- Well, never mind. Wait here while I find Jafar.\"\n\nYou catch his sleeve before he can move away. \"Jafar told me to come straight to him,\" you say, adding an undercurrent of menace to your tone. \"Things might go badly for you if there's any delay.\"\n\n\"Follow me,\" he says after a moment's thought.\n\nHe leads you to the throne room, where you see Jafar talking to the Caliph. The slave goes over, whispers something into Jafar's ear, and brings him over to the doorway where you're waiting.\n\n\"Have you brought the diamond...?\" says Jafar. His voice trails off as he gets a good look at you. \"You're not Shazir!\"\n\n\"No, and what I bring is something more precious than diamond. I bring the truth!\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 477; }
+};
+
+class Story206 : public Story::Base
+{
+public:
+    Story206()
+    {
+        ID = 206;
+
+        Text = "You steal into the palace pretending to be a servant. The guards hardly glance at you, intent as they are on the festivities in the street outside. You pass under the great arch that is emblazoned with the Caliph's insignia, past a group of slaves bearing empty platters back to the kitchens, and duck into an open doorway. You have no clear idea what you can achieve here. Perhaps you can bluff your way into the Caliph's apartments and warn him about Jafar.\n\nFollowing a corridor, you make your way up a flight of stairs. You emerge onto a landing overlooking a torchlit hall. The marble walls shine with a colour like moonlight. There are rich tapestries of black, ruby-red and the blue of dusk, and the balustrade of the balcony is inlaid with gold and limpid mother of-pearl.\n\nAdvancing to the end of the balcony, you peer into a chamber beyond. Swords in jewelled scabbards hang along the walls, below murals that show the Caliph's ancestors in all the glorious panoply of war. As you cross the room, you notice an alcove where a hooded hawk sits on a perch.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Take the HAWK", 318));
+        Choices.push_back(Choice::Base("Arm yourself with one of the SWORDs", 450));
+        Choices.push_back(Choice::Base("Otherwise", 450));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story207 : public Story::Base
+{
+public:
+    Story207()
+    {
+        ID = 207;
+
+        Text = "You are halfway along the landing when you hear a voice ring out behind you. \"What have we here? A skulking thief.\"\n\nYou whirl around, but you know it is Jafar even before you set eyes on his round hateful face. There is no mistaking those vicious tones, like the squawk of a vulture as it spies a carcass.\n\nA smile creases his fat lips. \"Well, well. You again. You must have more lives than a cat.\"\n\n\"You smirking villain. And you call me a thief...\" You take a step towards him.\n\nA glimmer of alarm shows in his tiny eyes. Clapping his hands, he calls in a quavering voice for the guards. Moments later, a band of swordsmen in the Caliph's livery come bursting from an archway at the end of the landing.\n\n\"Seize this cur!\" screeches Jafar.\n\nThe guards rush towards you.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::ARCHERY))
+        {
+            Choices.push_back(Choice::Base("Fight", 47));
+            Choices.push_back(Choice::Base("Beat a hasty retreat", 253));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 230; }
+};
+
+class Story208 : public Story::Base
+{
+public:
+    Story208()
+    {
+        ID = 208;
+
+        Image = "images/filler4.png";
+
+        Text = "The first guard slumps across the rail with a groan, his belly laid open by your sword-swipe. You are about to tip him over the rail and advance to meet the next guard when the lamplight flashes on the gems encrusting your weapon's pommel. The remaining guards stare at you wide-eyed and their leader holds up his hand.\n\n\"Wait,\" he says. \"In the night-time we mistook you for a river pirate, or some other knave with mischief in mind. Now I see you are a servant of our great lord the Caliph.\"\n\nYou lower your blade guardedly. This is a happy stroke of luck. \"Yes, the Caliph,\" you reply. \"May the blessing of God be upon him!\"\n\nBefore you can say more, the woman rises and ventures nervously out of the curtained kiosk. \"Tell me the Caliph has sent you to bring me back,\" she pleads. \"For if I am forced to enter the harem of the Governor of Basra, I shall take my own life.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Tell the guards you have come to take the woman", 254));
+        Choices.push_back(Choice::Base("Bid them goodnight and return to your own ship", 375));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story209 : public Story::Base
+{
+public:
+    Story209()
+    {
+        ID = 209;
+
+        Text = "At last you manage to drive the loathsome creatures away. Those you have not killed go shuffling off into the recesses of the cavern. All around you are piled the cracked carapaces of their fellows, dripping dark ichor across the rocks. You pick your way through the carnage with a shiver of revulsion. Your own wounds are merging into a single throb of pain now, and your fervent prayer is that the other monsters do not return. You doubt if you could survive a second assault.\n\nWhen you go to help Yussuf to his feet, you are astonished to find him totally unscathed. \"They left me alone once I hid my face,\" he says, as surprised as you are at his lucky escape.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 186; }
 };
 
 auto prologue = Prologue();
@@ -5472,6 +5676,15 @@ auto story197 = Story197();
 auto story198 = Story198();
 auto story199 = Story199();
 auto story200 = Story200();
+auto story201 = Story201();
+auto story202 = Story202();
+auto story203 = Story203();
+auto story204 = Story204();
+auto story205 = Story205();
+auto story206 = Story206();
+auto story207 = Story207();
+auto story208 = Story208();
+auto story209 = Story209();
 
 void InitializeStories()
 {
@@ -5496,7 +5709,7 @@ void InitializeStories()
         &story170, &story171, &story172, &story173, &story174, &story175, &story176, &story177, &story178, &story179,
         &story180, &story181, &story182, &story183, &story184, &story185, &story186, &story187, &story188, &story189,
         &story190, &story191, &story192, &story193, &story194, &story195, &story196, &story197, &story198, &story199,
-        &story200};
+        &story200, &story201, &story202, &story203, &story204, &story205, &story206, &story207, &story208, &story209};
 }
 
 #endif

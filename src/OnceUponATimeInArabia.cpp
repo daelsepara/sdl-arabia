@@ -1903,7 +1903,7 @@ void renderAdventurer(SDL_Window *window, SDL_Renderer *renderer, TTF_Font *font
         {
             name_string += " (Male)";
         }
-        else
+        else if (player.Gender == Character::Gender::FEMALE)
         {
             name_string += " (Female)";
         }
