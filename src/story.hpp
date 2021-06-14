@@ -6768,6 +6768,261 @@ public:
     }
 };
 
+class Story260 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story260()
+    {
+        ID = 260;
+
+        Bye = "The next morning, shivering and hungry, you make your way down out of the hills to fetch the others.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The sky is like diamond, displaying the stars with dazzling clarity. A wind begins to blow in from the east and the temperature drops. Without so much as a blanket, you are forced to shelter against the bare rocks. A little bracken is all the cover you can find.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            Character::GAIN_LIFE(player, -1);
+
+            PreText += "\n\nYou LOSE 1 Life Point.";
+        }
+        else
+        {
+            PreText += "\n\n[WILDERNESS LORE] You are used to this kind of hardship.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 289; }
+};
+
+class Story261 : public Story::Base
+{
+public:
+    Story261()
+    {
+        ID = 261;
+
+        Text = "The slave master is a short bullish man with a wide witless grin. He chains you to the oars and advises you not to try to escape. \"I'm telling you this for your own good,\" he says as he walks off.\n\nThat night you pick the lock and slip out of your shackles. Rousing each of the other slaves in turn, you press your hand to their lips while you get them free.\n\n\"Are we escaping?\" whispers one. \"Where shall we go?\"\n\n\"You can all go where you like, as long as it's in a different direction from me.\"\n\nOne at a time, the slaves drop over the side and swim for the river bank. You are the last to go. Freeing the others was a sensible precaution in case the ship's captain is a vindictive man. If you had escaped alone he might have hired thugs to pursue you, but this way you cover your tracks by flooding the countryside with runaway slaves. It is a case of doing well while doing good.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::REMOVE_CODEWORD(player, Codeword::Type::MORDANT);
+    }
+
+    int Continue(Character::Base &player) { return 215; }
+};
+
+class Story262 : public Story::Base
+{
+public:
+    Story262()
+    {
+        ID = 262;
+
+        Choices.clear();
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 307;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::ARCHERY))
+        {
+            return 329;
+        }
+        else
+        {
+            return 351;
+        }
+    }
+};
+
+class Story263 : public Story::Base
+{
+public:
+    Story263()
+    {
+        ID = 263;
+
+        Image = "images/filler2.png";
+
+        Text = "Scooping the sand away from the pole, you uncover a stretched piece of camel leather. When this is removed, water trickles forth from a hidden well. There is not much, but enough to clear the clogging sand from your mouth and fill your limp waterskins.\n\nYou are careful to replace the leather so that other travellers will also find water here. \"In the face of the desert's callous ways, all men are brothers,\" remarks Hakim, adding a short prayer of thanks before signalling for the caravan to move on.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 308; }
+};
+
+class Story264 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story264()
+    {
+        ID = 264;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The others start to scatter, utterly routed by the Bedouin's show of fury, leaving you alone to confront the foe.\n\nThe Bedouin chief is first to reach you. Dashing his spear-thrust aside, you give him a punishing blow as he goes hurtling past. But although you hear him gasp aloud in pain, he refuses to retreat. He wheels his camel around, and now the other Bedouin are also upon you.\n\n";
+
+        auto DAMAGE = -6;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -3;
+
+            PreText += "[SWORDPLAY] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYour bravery rallies the others, who come racing back to join the fight. At last the Bedouin lie dead on the sun- baked ground and you are able to loot their belongings.\n\nHakim presents you with 10 dinars as a reward.";
+
+            Character::GAIN_MONEY(player, 10);
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::MORDANT}))
+        {
+            return 67;
+        }
+        else
+        {
+            return 218;
+        }
+    }
+};
+
+class Story265 : public Story::Base
+{
+public:
+    Story265()
+    {
+        ID = 265;
+
+        Text = "Falling into an easy rhythm, you manage to evade blow after blow. The Lord of the Desert's sword sweeps down again and again, never quite able to find its mark. A mystical sense of tranquillity comes over you, and you move as though in a trance. Everything seems unreal. The sight of the Lord of the Desert's glaring gaze no longer fills you with terror. You now see the unearthly beauty of the scene: the shimmering colours of the silk tapestries, like streams of spring water...\n\nThe heady odour of perfume and incense...\n\nThe lustrous sheen of gold and jewels...";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 152; }
+};
+
+class Story266 : public Story::Base
+{
+public:
+    Story266()
+    {
+        ID = 266;
+
+        Text = "The ship veers away from the coast. You watch with sinking heart as all sight of land vanishes in the distance. Soon your misery turns to despair, because the clouds ahead are as thick and dark as soot, and the hissing crack of lightning rolls across the sky. The sea seethes, pitch-black chopped through by crests of angry white foam.\n\nAs the clouds descend to cover you, the wind strikes with gale force, ripping at the furled sails. The ship pitches over, forcing you to cling to the mast. Waves leap like capering demons over the bows. Sea water sloshes around your feet. The rain falls as hard and heavy as a curtain of ice.\n\nEven over the roar of the storm, you hear the great dolorous crack as the mainmast splits. It falls across the deck, sundering the spliced timbers, pulling the ship in half. You plunge into the sea, fingers scrabbling desperately to hold onto a broken plank. Water closes over your head, wrapping you in warm silent darkness.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 280; }
+};
+
+class Story267 : public Story::Base
+{
+public:
+    Story267()
+    {
+        ID = 267;
+
+        Text = "You will have to try another tack.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try [CUNNING]", 333, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Sneak off using the LAMP of Antar", 495, {Item::LAMP_OF_ANTAR}));
+        Choices.push_back(Choice::Base("Attack the shark men", 108));
+        Choices.push_back(Choice::Base("Wait and see what the dwarf does when he wakes up", 397));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story268 : public Story::Base
+{
+public:
+    Story268()
+    {
+        ID = 268;
+
+        Text = "The Sultan starts to remove his mask. In the space of one heartbeat you have drawn an arrow and nocked it to your bowstring. In another, you've raised the bow and sent the shaft speeding across the clearing. It strikes the Sultan through the eye, pinning the mask to his face.\n\nThe three knights give a gasp and reach for their swords. You ready another arrow. \"The duel was fairly fought and won,\" you say to them. \"Take your master's body and go. If you're of a mind to argue, I have three more arrows I can spare.\"\n\nPutting the Sultan\"s body across his horse, the knights lead it away. As you cross the clearing, you find a BLACK JEWEL lying among the fallen leaves.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::BLACK_JEWEL};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story269 : public Story::Base
+{
+public:
+    Story269()
+    {
+        ID = 269;
+
+        Text = "\"Shall I transform you back to human form?\" asks the jinni. You try to reply. It just comes out as a hiss.\n\nThe jinni leans closer, smiles a mocking smile. \"No? You wish to remain a snake?\"\n\nYou try to bite him, but your fangs close on a thin wisp of acrid smoke.\n\n\"You must enjoy being a snake!\" he says. \"You've taken to it very quickly. Well, if you don't have any more use for me, I'll be off.\"\n\nHe flits up into the sky and is lost among the stars. You have only yourself to blame. The jinni returned treachery for treachery. You will spend the rest of your life in the body of a snake.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -7028,6 +7283,16 @@ auto story256 = Story256();
 auto story257 = Story257();
 auto story258 = Story258();
 auto story259 = Story259();
+auto story260 = Story260();
+auto story261 = Story261();
+auto story262 = Story262();
+auto story263 = Story263();
+auto story264 = Story264();
+auto story265 = Story265();
+auto story266 = Story266();
+auto story267 = Story267();
+auto story268 = Story268();
+auto story269 = Story269();
 
 void InitializeStories()
 {
@@ -7057,7 +7322,8 @@ void InitializeStories()
         &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229,
         &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239,
         &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249,
-        &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259};
+        &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259,
+        &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269};
 }
 
 #endif
