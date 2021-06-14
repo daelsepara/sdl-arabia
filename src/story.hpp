@@ -7296,11 +7296,6 @@ public:
 
         Controls = Story::Controls::STANDARD;
     }
-
-    void Event(Character::Base &player)
-    {
-        player.Life = player.MAX_LIFE_LIMIT;
-    }
 };
 
 class Story282 : public Story::Base
@@ -7454,7 +7449,7 @@ public:
         Controls = Story::Controls::STANDARD;
     }
 
-    int Continue(Character::Base &player) { return  309; }
+    int Continue(Character::Base &player) { return 309; }
 };
 
 class Story288 : public Story::Base
@@ -7504,6 +7499,272 @@ public:
             return 284;
         }
     }
+};
+
+class Story290 : public Story::Base
+{
+public:
+    Story290()
+    {
+        ID = 290;
+
+        Text = "The warmth of your touch is enough to crack the egg. A tiny figure jumps out, growing in seconds into the identical twin of the sleeping dwarf. Then you see on second glance that they are not identical. This dwarf has a full friendly smile in place of the other's prim little smirk.\n\n\"For a hundred years I've waited in that egg,\" he says. \"I knew of my brother's evil deeds, which came to me in dreams, but I was powerless to act. Now I have been hatched into this world. It is time to set matters straight.\"\n\nWith a wave of his hands, he transports you and the others back to the ship. \"You are free to go,\" he says. \"I'll deal with my wicked twin.\" With that, he vanishes again in a blaze of light.\n\nYou find that all your wounds are healed.\n\nCaptain Ibrahim loses no time giving the order to weigh anchor. The mysterious island drops astern and is lost to sight.\n\nThe next few days pass uneventfully. You have not spotted any other vessels until a ship drifts into view one afternoon. Her sails are furled and there is no reply to your shouts. As you come alongside, you see the reason. The deck is strewn with corpses.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        player.Life = player.MAX_LIFE_LIMIT;
+    }
+
+    int Continue(Character::Base &player) { return 356; }
+};
+
+class Story291 : public Story::Base
+{
+public:
+    Story291()
+    {
+        ID = 291;
+
+        Text = "As the Sultan removes his mask, there is a moment when it obscures his gaze. Leaping forward, you press the mirror up in front of him. He stares into it. There is a gasp and he claws at his eyes, then slumps forward dead at your feet.\n\nThe three knights step closer, watching you warily. They are frightened of whatever magic you might use against them. Silently they retrieve the body, placing it across their master's horse before withdrawing in confusion. You are left alone in the woods.\n\nThere is nothing you can do for your friends, but at least you were able to avenge them. As you go to leave, you notice a BLACK JEWEL lying on the moss by your feet.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::BLACK_JEWEL};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story292 : public Story::Base
+{
+public:
+    Story292()
+    {
+        ID = 292;
+
+        Text = "You wait until midnight when everyone else is asleep. The ROPE uncoils like a serpent, stretching up into the air until it reaches the bars of the grille.\n\nAzenomei climbs up first, trying each of keys until he finds one that fits. The padlock springs open and the two of you emerge into the sweet fresh air.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 358; }
+};
+
+class Story293 : public Story::Base
+{
+public:
+    Story293()
+    {
+        ID = 293;
+
+        Text = "Cold tongues of magical flame blast from his fingers to lick around you. The JEWEL absorbs the brunt of the spell but is destroyed in the process.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::BLACK_JEWEL});
+
+        Choices.clear();
+
+        if (!Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAREM}))
+        {
+            Choices.push_back(Choice::Base("Use [MAGIC]", 359, Skill::Type::MAGIC));
+            Choices.push_back(Choice::Base("Use the Jericho HORN", 381, {Item::JERICHO_HORN}));
+            Choices.push_back(Choice::Base("Fight", 410));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 337; }
+};
+
+class Story294 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story294()
+    {
+        ID = 294;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        Type = Story::Type::NORMAL;
+
+        PreText = "No way to go on and no way back. You cling miserably to the sheer cliff and desperately try to think of a plan.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::LUCK) && !Character::VERIFY_ITEMS_ANY(player, {Item::MAGIC_SLIPPERS, Item::INDIAN_ROPE}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nYou finally cannot hang on any longer, and with a bleak cry you go plunging to your doom.";
+        }
+        else
+        {
+            if (!Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+            {
+                Choices.push_back(Choice::Base("Use a pair of MAGIC SLIPPERS", 338, {Item::MAGIC_SLIPPERS}));
+                Choices.push_back(Choice::Base("Use an INDIAN ROPE", 360, {Item::INDIAN_ROPE}));
+            }
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 157; }
+};
+
+class Story295 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story295()
+    {
+        ID = 295;
+
+        Bye = "Jafar sees his last attempt has failed and, cursing, he turns to run.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You step forward just as Jafar throws the knife. Instead of hitting the Caliph, it impales itself in your shoulder. Immediately you feel a wave of deathly weakness as the poison takes effect.";
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::ANTIDOTE}))
+        {
+            Character::GAIN_LIFE(player, -5);
+
+            PreText += "\n\nYou LOSE 5 Life Points.";
+        }
+        else
+        {
+            PreText += "\n\n[Item: ANTIDOTE] You take the ANTIDOTE to counteract the poison.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 339; }
+};
+
+class Story296 : public Story::Base
+{
+public:
+    Story296()
+    {
+        ID = 296;
+
+        Text = "For the first week you have nothing to do but walk along beside the camels and steady the swaying bundles on their backs. At Kermanshah, a town in the foothills, Abdullah exchanges the camels for donkeys. When he unwraps the bundles, you are astonished to see that they are just rags.\n\n\"Is your head on backwards?\" you ask him. \"You cannot think they'll pay you much for those in the east.\"\n\n\"Trade is not my true mission,\" he reveals. \"Stitched inside these bundles are secret messages that the Caliph has told me to deliver to the commanders of his forts beyond the mountains.\" He peers hard at you. \"Breathe no word of this to another, as you value your life.\"\n\nYou do not need to be told twice. The next day you start your ascent into the mountains, guiding the donkeys up steep flinty paths until you reach a brooding forest. The slanting rays of the sun hang in the misty air, against which the shadows of the leaves remind you of naked blades.\n\nA gazelle comes racing through the trees. You hear the pounding of hoofs and realize that it is being hunted, but before you can say anything one of the donkey-handlers has brought the gazelle down with his own spear. \"We'll eat well tonight!\" he calls merrily to the others.\n\nYou look up. Against the backdrop of mist, four armed riders take ominous shape between the trees.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Hide", 312));
+        Choices.push_back(Choice::Base("Wait to see what they want", 125));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story297 : public Story::Base
+{
+public:
+    Story297()
+    {
+        ID = 297;
+
+        Text = "You are amazed at Masrur's strength and skill. He is one of the most dangerous swordsmen in the world, and in his youth he must have been unbeatable. As it is, your best manoeuvres and parries are only just enough to keep him at bay. You know your only hope is to stay out of his reach and let him tire himself out.\n\nYou glance aside to judge the distance to the door. Taking instant advantage of your lapse of concentration, Masrur breaks through your guard and his sword lays open a long gash across your brow. You stagger back, wiping the blood from your eyes, expecting the death-blow to follow at any moment. But by this time Masrur's age and bulk are beginning to tell. Leaning on his sword to get his breath back, he gasps, \"You're better than I thought... you wretch... But I'll have you now...\"\n\nThe door to the landing is behind you. As Masrur lumbers forward, you get ready to time your dodge perfectly. So that he doesn't realize what you're planning, you taunt him by saying, \"You should stick to your job as executioner, Masrur. You don't seem so hot when you're fighting someone who isn't tied up.\"\n\nThat does it. He snarls like a lion and lunges for your heart.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 70; }
+};
+
+class Story298 : public Story::Base
+{
+public:
+    Story298()
+    {
+        ID = 298;
+
+        Text = "She explains her plan: \"We'll exchange clothes. I can slip away back to your vessel, you stay here in my place.\"\n\nYou give her a doubtful frown. \"I think I see a flaw. Doesn't that leave me on my way to become an inmate of the harem?\"\n\nShe stifles a musical trill of laughter. \"Please excuse me for pointing this out,\" she says between chuckles, \"but the guards will let you go as soon as they get a good look at you. Not that your looks are unappealing, you understand, but you just don't have the elegance that marks out a good concubine.\"\n\nProbably she's right, but do you want to risk it? If her plan backfires you might spend the rest of your days in the Sultan's harem.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go along with the plan", 385));
+        Choices.push_back(Choice::Base("Resort to [CUNNING]", 342, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Attack the guards", 320));
+        Choices.push_back(Choice::Base("Forget about helping the woman and return to your ship", 375));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story299 : public Story::Base
+{
+public:
+    Story299()
+    {
+        ID = 299;
+
+        Text = "The arrow lances through the air, finding its mark in the first warrior's heart. But he gives no grunt of pain, nor does he sway and fall. Instead he plucks out the shaft and regards it for a moment as though he had never seen such a thing before. Breath rasps contemptuously behind the iron plate of his helmet as he tosses the arrow aside and lunges forward. His moon-sliver sword gives your shoulder a lusty bite, and blood streams freely from the wound as he steps back with a flourish.\n\nYou LOSE 2 Life Points.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Draw a SWORD", 278, {Item::SWORD}));
+        Choices.push_back(Choice::Base("Launch yourself at them and fight bare handed", 321));
+        Choices.push_back(Choice::Base("Make a run for it", 365));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -2);
+    }
+};
+
+class Story300 : public Story::Base
+{
+public:
+    Story300()
+    {
+        ID = 300;
+
+        Image = "images/ayisha.png";
+
+        Text = "The door frame splinters under the force of a kick, and you step through into a scented chamber curtained with diaphanous silks. A raven-haired girl reclines on a golden couch in the middle of the room. She looks up as you enter, and her expression is a mixture of fear and hope as she says, \"Have you come to free me?\"\n\nYou notice that her ankle is chained to the floor, the chain being fixed by a huge padlock. \"Who are you?\" you ask.\n\n\"Ayisha, the daughter of the Caliph. I was stolen from Baghdad in the middle of the night by a powerful jinni who brought me here to his citadel.\"\n\nYou go closer and test the strength of the padlock. It is easy to see that you could never hope to break it. \"Perhaps Azenomei has a key to fit it.\"\n\n\"Who is Azenomei?\"\n\n\"I am.\"\n\nYou turn to see your friend standing in the doorway. He slowly runs his hand over the broken wood and then shakes his head regretfully. \"I did tell you not to open any locked doors.\"\n\n\"Azenomei...\" You take a pace towards him. \"Look, I've found your sister.\"\n\nHis only answer is a soft mocking laugh. After a moment, Ayisha says, \"He lied to you. He isn't my brother. This is the jinni who abducted me!\"\n\nYou gained the codeword HAREM.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::HAREM});
+    }
+
+    int Continue(Character::Base &player) { return 247; }
 };
 
 auto prologue = Prologue();
@@ -7796,6 +8057,17 @@ auto story286 = Story286();
 auto story287 = Story287();
 auto story288 = Story288();
 auto story289 = Story289();
+auto story290 = Story290();
+auto story291 = Story291();
+auto story292 = Story292();
+auto story293 = Story293();
+auto story294 = Story294();
+auto story295 = Story295();
+auto story296 = Story296();
+auto story297 = Story297();
+auto story298 = Story298();
+auto story299 = Story299();
+auto story300 = Story300();
 
 void InitializeStories()
 {
@@ -7828,7 +8100,9 @@ void InitializeStories()
         &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259,
         &story260, &story261, &story262, &story263, &story264, &story265, &story266, &story267, &story268, &story269,
         &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279,
-        &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289};
+        &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289,
+        &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299,
+        &story300};
 }
 
 #endif
