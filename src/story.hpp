@@ -5937,7 +5937,7 @@ public:
     {
         ID = 230;
 
-        Text = "Seeing you nock an arrow, the foremost guard skids to a halt on the marble floor. The others tumble into him from behind and they stand there silently for a moment, glowering at you.\n\n\"Fools! What are you waiting for?\" screeches Jafar. \"The arrow can only kill one of you.\"\n\nYou smoothly swing the arrow around to point at him. \"Then tell them to charge now,\" you say with a sly smile.\n\nHe holds up a fat jade-ringed hand. \"Wait! Hold your ground,\" he blusters at the guards. A trickle of sweat escapes the confines of his satin turban and rolls down into the plump clefts between his narrow eyes.\n\n\"That's better.\" You back away carefully and start to descend the stairs. Your arrow remains trained on Jafar's heart. \"I'm leaving now, Jafar, but I just want you to know that I'll be back. And I'll bring proof of your treachery before the Caliph.\"\n\nAs you reach the door, you release the arrow. It whips through the air, pinning Jafar\"s turban to the door behind him. Startled for a moment, he gives a sigh of relief and then points a trembling finger at you. \"Get the assassin!\"\n\nHe deserves to die, certainly, but that must wait until another day. You desire justice as much as revenge. Turning, you run back out of the palace and lose yourself in the side streets.";
+        Text = "Seeing you nock an arrow, the foremost guard skids to a halt on the marble floor. The others tumble into him from behind and they stand there silently for a moment, glowering at you.\n\n\"Fools! What are you waiting for?\" screeches Jafar. \"The arrow can only kill one of you.\"\n\nYou smoothly swing the arrow around to point at him. \"Then tell them to charge now,\" you say with a sly smile.\n\nHe holds up a fat jade-ringed hand. \"Wait! Hold your ground,\" he blusters at the guards. A trickle of sweat escapes the confines of his satin turban and rolls down into the plump clefts between his narrow eyes.\n\n\"That's better.\" You back away carefully and start to descend the stairs. Your arrow remains trained on Jafar's heart. \"I'm leaving now, Jafar, but I just want you to know that I'll be back. And I'll bring proof of your treachery before the Caliph.\"\n\nAs you reach the door, you release the arrow. It whips through the air, pinning Jafar's turban to the door behind him. Startled for a moment, he gives a sigh of relief and then points a trembling finger at you. \"Get the assassin!\"\n\nHe deserves to die, certainly, but that must wait until another day. You desire justice as much as revenge. Turning, you run back out of the palace and lose yourself in the side streets.";
 
         Choices.clear();
 
@@ -6175,7 +6175,7 @@ public:
     {
         ID = 239;
 
-        Text = "The captain of the merchant ship loudly dismisses your suggestion that he might be attacked by pirates. \"We are only one vessel!\" he retorts.\n\n\"You are almost the only vessel on the Red Sea,\" replies the officer in charge of your marines. \"They'll take you as surely as wild dogs would help themselves to a fat goose.\"\n\nThe captain takes umbrage at this comparison, but you see a look of unease on his sailors\" faces. \"Er, Captain,\" suggests his first mate, \"why don't we let those marines hide themselves in some of the barrels? That way, if the pirates do attack, they'll be in for a surprise.\"";
+        Text = "The captain of the merchant ship loudly dismisses your suggestion that he might be attacked by pirates. \"We are only one vessel!\" he retorts.\n\n\"You are almost the only vessel on the Red Sea,\" replies the officer in charge of your marines. \"They'll take you as surely as wild dogs would help themselves to a fat goose.\"\n\nThe captain takes umbrage at this comparison, but you see a look of unease on his sailors' faces. \"Er, Captain,\" suggests his first mate, \"why don't we let those marines hide themselves in some of the barrels? That way, if the pirates do attack, they'll be in for a surprise.\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Agree with that plan", 100));
@@ -6536,6 +6536,238 @@ public:
     int Continue(Character::Base &player) { return 204; }
 };
 
+class Story250 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story250()
+    {
+        ID = 250;
+
+        Image = "images/old-man.png";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Talk to him", 38));
+        Choices.push_back(Choice::Base("Ignore him and sit in silence", 61));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Despite your protests, you are dragged in front of the palace gates. The Sultan's executioner was already preparing to execute the captain of the guard, who is relieved to see his men arriving in the nick of time.\n\nThe Sultan looks down from his palanquin. \"Is this the thief?\"\n\nThe captain barely glances at you. \"Yes, O master of justice,\" he says.\n\nThe Sultan orders you to be thrown into prison while he decides your eventual punishment. You are too stunned by the sudden wretched twist of fate to react. ";
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::BOW}))
+        {
+            PreText += "Hauled away by guards, you are stripped of your BOW.";
+
+            Character::LOSE_ITEMS(player, {Item::Type::BOW});
+        }
+        else
+        {
+            PreText += "You are hauled away by guards.";
+        }
+
+        Character::GAIN_MONEY(player, -player.Money);
+
+        PreText += " They also take any money you are carrying, although they leave your other belongings.\n\nThey lower you into an oubliette. The grating drops into place with a harsh clang. You listen in shock as the heavy iron padlock is sealed. You can hear rats rustling through the dank straw carpeting the cell.\n\n\"So you're the jewel thief, then,\" says a voice in the gloom. \"Doesn't look like much to us, eh, Shahrazad?\"\n\nAs your eyes adjust, you make out a figure crouching beside you. He is an old man with limbs as thin and gnarled as twigs. On his lap he has a mangy cat which he is cosseting as though it were a princess.";
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story251 : public Story::Base
+{
+public:
+    Story251()
+    {
+        ID = 251;
+
+        Text = "You must present yourself at the palace and request an audience with the Caliph";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::STREETWISE))
+        {
+            return 68;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    int Continue(Character::Base &player) { return 22; }
+};
+
+class Story252 : public Story::Base
+{
+public:
+    Story252()
+    {
+        ID = 252;
+
+        Image = "images/filler5.png";
+
+        Text = "Sailors pull themselves up through the rigging like monkeys. As the sails catch the wind, your vessel heaves away from the harbour and drifts gracefully downriver towards Basra. The sun rises higher, turning the water from pale gold to a cool, glittering olive-green.\n\nOn the sixth day out, the ship puts in at a village to take on supplies. Strolling through the dusty streets, you soon attract a crowd of children who are eager for you to tell them stories of the splendours of Baghdad. You make up a few tales, but you are overheard by an old man who interrupts, saying, \"These stories are but fiction. It is an elegant tapestry of lore that you spin with your words, but I could tell you a tale that has the golden yarn of truth.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("You are interested in hearing his story", 3));
+        Choices.push_back(Choice::Base("Return to the ship", 375));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story253 : public Story::Base
+{
+public:
+    Story253()
+    {
+        ID = 253;
+
+        Text = "The guards raise their swords and come cautiously at you three abreast. Backing away along the landing, you pass a door that must lead up to the palace roof.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go through it", 319));
+        Choices.push_back(Choice::Base("Run back the way you came", 341));
+        Choices.push_back(Choice::Base("Retreat to the door at the far end of the landing", 363));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story254 : public Story::Base
+{
+public:
+    Story254()
+    {
+        ID = 254;
+
+        Text = "The woman, whose name is Sabira, is grateful to you for rescuing her from her fate. \"To think I might have languished in the Sultan's harem for the rest of my days,\" she says with a grimace as you return to your ship. \"I would sooner have died.\"\n\nYou give her your hand and help her up onto the deck. \"In that case, I may very well have saved your life,\" you point out.\n\nShe looks taken aback, then laughs in delight at your audacity. \"Yes, indeed. And now I shall repay you. Here are two treasures I have had since infancy. The first, given to me by my pious father, is a PRAYER-MAT that always unfurls itself in the direction of Mecca. The second is this BLACK JEWEL, which was my mother's gift. She was superstitious, and this jewel protects against the sorcery of evil wizards, ifrits and the like -- or so I was told.\"\n\nThe captain tells Sabira he will drop her off at the next village.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::PRAYER_MAT, Item::BLACK_JEWEL});
+    }
+
+    int Continue(Character::Base &player) { return 375; }
+};
+
+class Story255 : public Story::Base
+{
+public:
+    Story255()
+    {
+        ID = 255;
+
+        Text = "Yussuf is so interested in the murals that he does not see the three iron-masked warriors marching along the gallery towards you. Their swords are burnished like the crescent moon, their robes richly decorated with fine embroidery. But in stark contrast to this artistry are their faces: hideous twisted beast-masks with long metal snouts. The darkness behind their visors drinks up your feeble taper-light.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SWORDPLAY] Draw your SWORD", 278, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[ARCHERY] Shoot them", 299, Skill::Type::ARCHERY));
+        Choices.push_back(Choice::Base("Fight them bare-handed", 321));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story256 : public Story::Base
+{
+public:
+    Story256()
+    {
+        ID = 256;
+
+        Text = "The two of you climb down to the river and swim back to the ship. Later, over supper, Yussuf tells you he is too frightened to claim his share of the treasure. \"You keep both items,\" he says. \"I trust you to use their power for our mutual benefit.\"\n\n\"I shall try to do so,\" you assure him. Although he is not bold, you know him now to be a man of good heart. It may be that his friendship is the greatest treasure you won this evening.\n\nYou gained the codeword GEMINI.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::GEMINI});
+    }
+
+    int Continue(Character::Base &player) { return 375; }
+};
+
+class Story257 : public Story::Base
+{
+public:
+    Story257()
+    {
+        ID = 257;
+
+        Image = "images/filler1.png";
+
+        Text = "It is indeed a child -- a pretty little girl whose olive-black eyes are bejewelled with tears. She looks up and gives a woeful sniff when she sees you come in sight. You notice she is clutching a broken garland of violet flowers in her hands. Then you remember that you are still holding the flower the captain plucked.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Give it to the child", 323));
+        Choices.push_back(Choice::Base("Otherwise", 345));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story258 : public Story::Base
+{
+public:
+    Story258()
+    {
+        ID = 258;
+
+        Text = "Around midnight you are all woken by the lookout. He points with alarm to a group of islanders advancing towards the jetty. The moonlight splashes on their naked knives, their open feral grins.\n\n\"What have you done with our captain, you devils?\" a sailor screams at them, his voice trembling in fright. He turns to you. \"We must storm the headman's house and rescue him!\"\n\nWhatever you think, the decision is out of your hands. The others have already cast off. As the ship drifts out into mid-river, the islanders reach the jetty. In their midst is a withered old man with a skull-topped staff. He begins a low howling chant that reverberates off the hills. The sound of it prickles the hair of your scalp. You are sure it is a baneful spell.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::MAGIC))
+        {
+            return 324;
+        }
+        else
+        {
+            return 346;
+        }
+    }
+};
+
+class Story259 : public Story::Base
+{
+public:
+    Story259()
+    {
+        ID = 259;
+
+        Text = "How will you attack?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[SWORDPLAY] Use a SWORD", 347, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("You do not possess a SWORD or do not wish to use it", 304));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -6786,6 +7018,16 @@ auto story246 = Story246();
 auto story247 = Story247();
 auto story248 = Story248();
 auto story249 = Story249();
+auto story250 = Story250();
+auto story251 = Story251();
+auto story252 = Story252();
+auto story253 = Story253();
+auto story254 = Story254();
+auto story255 = Story255();
+auto story256 = Story256();
+auto story257 = Story257();
+auto story258 = Story258();
+auto story259 = Story259();
 
 void InitializeStories()
 {
@@ -6814,7 +7056,8 @@ void InitializeStories()
         &story210, &story211, &story212, &story213, &story214, &story215, &story216, &story217, &story218, &story219,
         &story220, &story221, &story222, &story223, &story224, &story225, &story226, &story227, &story228, &story229,
         &story230, &story231, &story232, &story233, &story234, &story235, &story236, &story237, &story238, &story239,
-        &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249};
+        &story240, &story241, &story242, &story243, &story244, &story245, &story246, &story247, &story248, &story249,
+        &story250, &story251, &story252, &story253, &story254, &story255, &story256, &story257, &story258, &story259};
 }
 
 #endif
