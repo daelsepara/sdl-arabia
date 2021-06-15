@@ -8460,7 +8460,7 @@ public:
 
     void Event(Character::Base &player)
     {
-        PreText = "The demon pursues you into the covered passage. It realizes its mistake when you leap on it. Here it cannot retreat into the air every few seconds to recuperate from its wounds. \"Bad move, devil,\" you snarl as you pound it with heavy blows, \"now you've got to fight fair.\"\n\nThe demon's talons scrape you to the bone, but you give two blows for every one that it inflicts.\n\n";
+        PreText = "A salvo of arrows fly from your bow, carrying flaring red fire into the enemy's black sails. The pirates are thrown into immediate confusion. While they swarm across the deck like hornets, colliding with each other in their hurry to throw water on the burning canvas, you bring your own vessel in close for boarding.\n\nYou are first to leap across the rail, your marines taking courage from your example. The pirates muster a defiant roar as they raise their swords and rush to meet you, but they are men who prefer a helpless foe. Not used to fighting a defensive battle, they soon begin to weaken in the teeth of your onslaught.\n\nEven though victory is certain, there is a chance you might be killed in the fighting.\n\n";
 
         auto DAMAGE = -2;
 
