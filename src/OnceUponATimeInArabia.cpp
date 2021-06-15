@@ -4517,7 +4517,7 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                                 items.push_back(story->Choices[current].Items[i].Type);
                             }
 
-                            if (Character::VERIFY_SKILL_ANY(player, story->Choices[current].Skill, items))
+                            if (Character::VERIFY_SKILL_ANY_ITEMS(player, story->Choices[current].Skill, items))
                             {
                                 next = (Story::Base *)findStory(story->Choices[current].Destination);
 
@@ -4529,7 +4529,7 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                             {
                                 if (Character::HAS_SKILL(player, story->Choices[current].Skill))
                                 {
-                                    message = "You do not have any of the required item to use with this skill!";
+                                    message = "You do not have any of the required item(s) to use with this skill!";
                                 }
                                 else
                                 {
@@ -4567,39 +4567,6 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                                     {
                                         message = "You do not have the required item to use with this skill!";
                                     }
-                                }
-                                else
-                                {
-                                    message = "You do not possess the required skill!";
-                                }
-
-                                start_ticks = SDL_GetTicks();
-
-                                error = true;
-                            }
-                        }
-                        else if (story->Choices[current].Type == Choice::Type::SKILL_ANY)
-                        {
-                            auto items = std::vector<Item::Type>();
-
-                            for (auto i = 0; i < story->Choices[current].Items.size(); i++)
-                            {
-                                items.push_back(story->Choices[current].Items[i].Type);
-                            }
-
-                            if (Character::VERIFY_SKILL_ANY(player, story->Choices[current].Skill, items))
-                            {
-                                next = (Story::Base *)findStory(story->Choices[current].Destination);
-
-                                done = true;
-
-                                break;
-                            }
-                            else
-                            {
-                                if (Character::HAS_SKILL(player, story->Choices[current].Skill))
-                                {
-                                    message = "You do not have any of the required item to use with this skill!";
                                 }
                                 else
                                 {
@@ -5135,11 +5102,11 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 if (!splash || (splash && splash_h < text_bounds - (2 * (boxh + infoh) + box_space)))
                 {
                     putText(renderer, "Money", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
-                    
+
                     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-                    
+
                     putText(renderer, (std::to_string(player.Money) + std::string(" dinars")).c_str(), font, text_space, clrBK, BE_50, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
-                    
+
                     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
                 }
 

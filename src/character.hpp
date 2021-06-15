@@ -320,20 +320,20 @@ namespace Character
     }
 
     // verify that player has the skill and ANY of the items
-    bool VERIFY_SKILL_ANY(Character::Base &player, Skill::Type skill, std::vector<Item::Type> items)
+    bool VERIFY_SKILL_ANY_ITEMS(Character::Base &player, Skill::Type skill, std::vector<Item::Type> items)
     {
         return Character::FIND_SKILL_ITEMS(player, skill, items) > 0;
     }
 
     // verify that player has the skill and ALL of the items
-    bool VERIFY_SKILL_ALL(Character::Base &player, Skill::Type skill, std::vector<Item::Type> items)
+    bool VERIFY_SKILL_ALL_ITEMS(Character::Base &player, Skill::Type skill, std::vector<Item::Type> items)
     {
-        return Character::FIND_SKILL_ITEMS(player, skill, items) == items.size();
+        return Character::FIND_SKILL_ITEMS(player, skill, items) >= items.size();
     }
 
     bool VERIFY_SKILL_ITEM(Character::Base &player, Skill::Type skill, Item::Type item)
     {
-        return Character::VERIFY_SKILL_ALL(player, skill, {item});
+        return Character::VERIFY_SKILL_ALL_ITEMS(player, skill, {item});
     }
 
     int FIND_CODEWORD(Character::Base &player, Codeword::Type codeword)

@@ -1318,7 +1318,7 @@ public:
     {
         ID = 38;
 
-        Text = "You explain to the old man that there has been a mistake. You are not the one who stole the Sultan'S ruby.\n\nSurprisingly, his answer to this is a thin wheeze of laughter. \"Not the Shadow, eh? I thought not. I doubt they'll ever catch that one.\"\n\n\"Who is the Shadow?\"\n\n\"The most daring of knaves. The rogue who purloined the jinn ring of Ala al-Din and the flying rug once owned by the Emir of Cordoba, as well as the crown of the infidel ruler Shah al Ma'in. He -- or she, for the Shadow is a figure veiled in mystery -- has vowed next to steal the diamond egg of the rokh.\"";
+        Text = "You explain to the old man that there has been a mistake. You are not the one who stole the Sultan'S ruby.\n\nSurprisingly, his answer to this is a thin wheeze of laughter. \"Not the Shadow, eh? I thought not. I doubt they'll ever catch that one.\"\n\n\"Who is the Shadow?\"\n\n\"The most daring of knaves. The rogue who purloined the jinn RING of Ala al-Din and the flying rug once owned by the Emir of Cordoba, as well as the crown of the infidel ruler Shah al Ma'in. He -- or she, for the Shadow is a figure veiled in mystery -- has vowed next to steal the diamond egg of the rokh.\"";
 
         Choices.clear();
 
@@ -1578,7 +1578,7 @@ public:
 
         Image = "images/filler4.png";
 
-        Text = "The guards burst into the room, only to find a dead body slumped on the cold marble floor. Shrugging, they sheathe their swords. Jafar pushes his way to the front and demands to know what is going on.\n\n\"The intruder committed suicide, it seems, lord,\" says the captain of the guard, indicating the trickle of poison on your lips.\n\nJafar hisses between his teeth. \"A pity. I'd have liked to oversee the interrogation of this one.\"\n\nThe captain hides a flicker of disgust at Jafar's open cruelty. Turning away sharply, he says to the guards, \"Take this corpse to the burial-ground.\"\n\nYou are taken to the edge of the city and left in a small brick building beside the cemetery, there to await burial in the morning. When the guards have left, the jinni breathes the gust of life back into your lungs. Rubbing your stiff limbs, you get up and fix him with a sour frown. \"Why did you make them think I was dead?\"\n\nHe smiles -- at least, you think it's a smile. \"They're not going to kill you twice, are they?\"\n\n\"But why didn't you turn their swords to snakes? Or fill the room with choking fog? Or whisk me away to safety on a flying cloud?\"\n\n\"Oh, what are you complaining about?\" snaps the jinni. \"I got you out safely, didn't I?\" He becomes a twist of vapour that slowly flows back into your ring.\n\nAs you walk back from the graveyard, you consider that it might be wise to quit Baghdad for a while. The wild corners of the world are full of mystery and promise, and adventurers of olden times often returned from their travels laden with riches. If you could do the same, then you would be a better position to bring Jafar to justice. It only remains to decide your route.";
+        Text = "The guards burst into the room, only to find a dead body slumped on the cold marble floor. Shrugging, they sheathe their swords. Jafar pushes his way to the front and demands to know what is going on.\n\n\"The intruder committed suicide, it seems, lord,\" says the captain of the guard, indicating the trickle of poison on your lips.\n\nJafar hisses between his teeth. \"A pity. I'd have liked to oversee the interrogation of this one.\"\n\nThe captain hides a flicker of disgust at Jafar's open cruelty. Turning away sharply, he says to the guards, \"Take this corpse to the burial-ground.\"\n\nYou are taken to the edge of the city and left in a small brick building beside the cemetery, there to await burial in the morning. When the guards have left, the jinni breathes the gust of life back into your lungs. Rubbing your stiff limbs, you get up and fix him with a sour frown. \"Why did you make them think I was dead?\"\n\nHe smiles -- at least, you think it's a smile. \"They're not going to kill you twice, are they?\"\n\n\"But why didn't you turn their swords to snakes? Or fill the room with choking fog? Or whisk me away to safety on a flying cloud?\"\n\n\"Oh, what are you complaining about?\" snaps the jinni. \"I got you out safely, didn't I?\" He becomes a twist of vapour that slowly flows back into your RING.\n\nAs you walk back from the graveyard, you consider that it might be wise to quit Baghdad for a while. The wild corners of the world are full of mystery and promise, and adventurers of olden times often returned from their travels laden with riches. If you could do the same, then you would be a better position to bring Jafar to justice. It only remains to decide your route.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Go by sea", 160));
@@ -5036,7 +5036,7 @@ public:
     {
         ID = 188;
 
-        Text = "A thick vapour, darker than the mist, pours from your ring and congeals into a broad figure with eyes like hissing coals. The sailors fall flat on the deck in terror. Captain Ibrahim draws his sword and takes a step forward, but you place your hand on his wrist. \"Be calm. This grotesque ogre is my servant.\"\n\nThe jinni eyes you blackly. \"What service may I perform for you, O fount of one thousand virtues?\" he grates.\n\n\"Fill our sails with wind,\" you tell him. \"Carry us far out of this fog bank.\"\n\n\"I exist only to do your bidding,\" he replies, but you do not like the vicious smile on his gnarled features as he says this. Your worries are confirmed a moment later when, blowing hard into the lank sails, he propels the ship directly upwards out of the water. The sailors cling on to the rail for dear life. It is a miracle that no one falls to his death.\n\nComing to rest with a soft jolt, you think that the ordeal is over. You have landed, indeed -- but not back on the waves. Beneath you is a swirling mass of white. Your ship is suspended in the clouds!\n\nThe jinni swirls back into your ring. You exert your magic, brandishing the ring and sternly crying out, \"Jinni! I summon you to reappear!\"\n\n\"There is no jinni here,\" says a sullen voice from the ring. \"Just a grotesque ogre.\"";
+        Text = "A thick vapour, darker than the mist, pours from your RING and congeals into a broad figure with eyes like hissing coals. The sailors fall flat on the deck in terror. Captain Ibrahim draws his sword and takes a step forward, but you place your hand on his wrist. \"Be calm. This grotesque ogre is my servant.\"\n\nThe jinni eyes you blackly. \"What service may I perform for you, O fount of one thousand virtues?\" he grates.\n\n\"Fill our sails with wind,\" you tell him. \"Carry us far out of this fog bank.\"\n\n\"I exist only to do your bidding,\" he replies, but you do not like the vicious smile on his gnarled features as he says this. Your worries are confirmed a moment later when, blowing hard into the lank sails, he propels the ship directly upwards out of the water. The sailors cling on to the rail for dear life. It is a miracle that no one falls to his death.\n\nComing to rest with a soft jolt, you think that the ordeal is over. You have landed, indeed -- but not back on the waves. Beneath you is a swirling mass of white. Your ship is suspended in the clouds!\n\nThe jinni swirls back into your RING. You exert your magic, brandishing the RING and sternly crying out, \"Jinni! I summon you to reappear!\"\n\n\"There is no jinni here,\" says a sullen voice from the RING. \"Just a grotesque ogre.\"";
 
         Choices.clear();
 
@@ -5182,7 +5182,7 @@ public:
 
         Image = "images/filler5.png";
 
-        Text = "The jinni lays a finger along his nose and gives a sly wink. \"Remember the story of Mount Safa and the Prophet? When commanded to come to him, the mountain did not move. But the Prophet knew that if it had it would have brought disaster, so he set out to go to it.\"\n\n\"Your parable is too oblique for me,\" you say, shaking your head. He booms out a laugh that sends blue sparks flying through the rigging. \"Then watch and learn!\"\n\nDissolving into a cloud of pungent gas, the jinni floats down into the water. A thick dark patch of bubbling miasma goes snaking through the depths. A faint tinge of ammonia pervades the air.\n\nMinutes pass. Suddenly the stone door grates open and the pirates come swimming out, gasping and coughing. A strong stench billows after them. Even at this distance it is enough to make you dizzy. As the pirates are taken aboard and put in irons, the jinni leaps back into your ring in the form of a black fish.";
+        Text = "The jinni lays a finger along his nose and gives a sly wink. \"Remember the story of Mount Safa and the Prophet? When commanded to come to him, the mountain did not move. But the Prophet knew that if it had it would have brought disaster, so he set out to go to it.\"\n\n\"Your parable is too oblique for me,\" you say, shaking your head. He booms out a laugh that sends blue sparks flying through the rigging. \"Then watch and learn!\"\n\nDissolving into a cloud of pungent gas, the jinni floats down into the water. A thick dark patch of bubbling miasma goes snaking through the depths. A faint tinge of ammonia pervades the air.\n\nMinutes pass. Suddenly the stone door grates open and the pirates come swimming out, gasping and coughing. A strong stench billows after them. Even at this distance it is enough to make you dizzy. As the pirates are taken aboard and put in irons, the jinni leaps back into your RING in the form of a black fish.";
 
         Choices.clear();
 
@@ -5221,7 +5221,7 @@ public:
         Bye = "Sunlight streaks the grass. One of the shark men steps forward and shakes his master awake. Opening his eyes, the dwarf gives a sour grunt of disappointment. \"So you did it.\"";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("Free him: throw the ring into the sea", 441, Choice::Type::LOSE_ITEMS, {Item::RING}));
+        Choices.push_back(Choice::Base("Free him: throw the RING into the sea", 441, Choice::Type::LOSE_ITEMS, {Item::RING}));
         Choices.push_back(Choice::Base("Break your promise", 441, Choice::Type::GET_CODEWORD, {Codeword::Type::TRUCE}));
 
         Controls = Story::Controls::STANDARD;
@@ -5235,7 +5235,7 @@ public:
     {
         ID = 199;
 
-        Text = "The horses pound up the path, rearing to a halt at the brink of the glass bridge. The four riders do not see you hiding in a thicket nearby because their attention is focussed on the jinni who, having taken your appearance, is standing in the middle of the bridge.\n\n\"Come and face me, dogs, if you dare!\" he screams. \"I yearn to spill your blood and crack the bones of your limbs between my teeth!\" \n\nYou wince. You might suggest he makes his performance a little less intense next time. But it seems to have done the trick. The first of the knights, goaded by his comrades, advances out onto the bridge. He slips and falls to his doom almost at once. The second knight fares better, getting halfway to the jinni before he too tumbles off. The third must be quite nimble -- he actually reaches the jinni and only slips because his sword-stroke costs him his balance.\n\nFrom your hiding-place, you hear the masked Sultan breathe a curse. His sword slithers from its sheath and he starts out along the bridge. Seven swift steps bring him to the jinni, who waits until the sword is in motion before dissolving into a cloud of vapour. The Sultan's lunge sweeps through empty air, and he spends an instant poised on the brink of eternity before following his knights down into the chasm.\n\nThe jinni returns to the ring beaming with satisfaction. \"I enjoyed that!\"\n\n\"All very well, but how am I going to get across?\" you ask.\n\n\"Just walk along the clifftop,\" he says, pointing. \"There's a perfectly safe footbridge after a mile or so.\"";
+        Text = "The horses pound up the path, rearing to a halt at the brink of the glass bridge. The four riders do not see you hiding in a thicket nearby because their attention is focussed on the jinni who, having taken your appearance, is standing in the middle of the bridge.\n\n\"Come and face me, dogs, if you dare!\" he screams. \"I yearn to spill your blood and crack the bones of your limbs between my teeth!\" \n\nYou wince. You might suggest he makes his performance a little less intense next time. But it seems to have done the trick. The first of the knights, goaded by his comrades, advances out onto the bridge. He slips and falls to his doom almost at once. The second knight fares better, getting halfway to the jinni before he too tumbles off. The third must be quite nimble -- he actually reaches the jinni and only slips because his sword-stroke costs him his balance.\n\nFrom your hiding-place, you hear the masked Sultan breathe a curse. His sword slithers from its sheath and he starts out along the bridge. Seven swift steps bring him to the jinni, who waits until the sword is in motion before dissolving into a cloud of vapour. The Sultan's lunge sweeps through empty air, and he spends an instant poised on the brink of eternity before following his knights down into the chasm.\n\nThe jinni returns to the RING beaming with satisfaction. \"I enjoyed that!\"\n\n\"All very well, but how am I going to get across?\" you ask.\n\n\"Just walk along the clifftop,\" he says, pointing. \"There's a perfectly safe footbridge after a mile or so.\"";
 
         Choices.clear();
 
@@ -8413,7 +8413,7 @@ public:
     {
         ID = 327;
 
-        Text = "At your command, the jinni blows a thick cloud of smoke out of the hearth. The ghouls are reduced to helpless coughing and are powerless to stop you from leaping back out of the doorway. There is the smack of a meaty fist and a yowl of pain as one of the ghouls, taking a blind swing in the smoke, hits his brother by mistake. As you hurry away down the hillside you can hear their roars of anger rattling the hilltops.\n\n\"Am I safe now?\" you whisper to your ring.\n\n\"Hide in a cave till sunrise,\" replies the jinni's voice. \"The she-ghoul will try to use her wiles to find you, but I'll confound her with spells of my own.\"";
+        Text = "At your command, the jinni blows a thick cloud of smoke out of the hearth. The ghouls are reduced to helpless coughing and are powerless to stop you from leaping back out of the doorway. There is the smack of a meaty fist and a yowl of pain as one of the ghouls, taking a blind swing in the smoke, hits his brother by mistake. As you hurry away down the hillside you can hear their roars of anger rattling the hilltops.\n\n\"Am I safe now?\" you whisper to your RING.\n\n\"Hide in a cave till sunrise,\" replies the jinni's voice. \"The she-ghoul will try to use her wiles to find you, but I'll confound her with spells of my own.\"";
 
         Choices.clear();
 
@@ -8532,7 +8532,7 @@ public:
     {
         ID = 331;
 
-        Text = "What will you do next?";
+        Text = "How will you attack?";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Try a punch", 468));
@@ -8984,7 +8984,7 @@ public:
 
     void Event(Character::Base &player)
     {
-        PreText = "Leaving Cairo on foot, you head along the banks of the Nile. Soon you have left the fertile farmland behind, and you head on into wild territory where the Sultan’s rule of law does not extend. Crocodiles splash the dun-coloured water, sliding down off the sun-drenched banks as you pass. You see boats plying their trade, but they stay in midstream. A lone traveller in these parts might easily be a brigand or a mad wizard, and the few peasants you see are fearful of approaching you.\n\nBeyond the river-bank lies a waterless wasteland. Soon the soles of your feet are hardened like leather and your tongue sticks to the roof of your mouth. In all directions the horizon is lost in a hot flat haze.";
+        PreText = "Leaving Cairo on foot, you head along the banks of the Nile. Soon you have left the fertile farmland behind, and you head on into wild territory where the Sultan's rule of law does not extend. Crocodiles splash the dun-coloured water, sliding down off the sun-drenched banks as you pass. You see boats plying their trade, but they stay in midstream. A lone traveller in these parts might easily be a brigand or a mad wizard, and the few peasants you see are fearful of approaching you.\n\nBeyond the river-bank lies a waterless wasteland. Soon the soles of your feet are hardened like leather and your tongue sticks to the roof of your mouth. In all directions the horizon is lost in a hot flat haze.";
 
         if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
         {
@@ -9008,6 +9008,290 @@ public:
         }
 
         Text = PreText.c_str();
+    }
+};
+
+class Story350 : public Story::Base
+{
+public:
+    int COUNT_APPLES = 0;
+
+    Story350()
+    {
+        ID = 350;
+
+        Image = "images/marketplace.png";
+
+        Text = "The pirates have stifled trade, and the marketplace is denuded of goods. What there is fetches a high price. You stroll along beside the mats of the traders. A fat man seated on plump cushions beneath a stretched silk awning points to his dishes. \"Here is food of the far Orient,\" he says.\n\nYou look at the dishes piled with golden apples. \"A journey of weeks or months, yet these apples seem quite fresh.\"\n\n\"They are rich with enchantment,\" he replies. \"Each has the power to banish sickness and make injuries fade like...\"\n\n\"Like the dew of the gardens of Baghdad at dawn?\" You smile.\n\n\"Like footprints on a beach as the tide rolls over them.\"\n\n\"A veritable marvel. And how much do you want for these doubtless delicious fruits?\"\n\nHe flutters his fingers in calculation. \"Accounting you to be a pious traveller of good heart, with a discount for your poetic turn of phrase and the proper deduction for brisk business... Let us say, five dinars apiece.\"\n\nFive dinars would pay for a whole banquet.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::SHOP;
+    }
+
+    void Event(Character::Base &player)
+    {
+        COUNT_APPLES = Item::COUNT_TYPES(player.Items, Item::Type::GOLDEN_APPLE);
+
+        Shop = {{Item::GOLDEN_APPLE, 5}};
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if ((Item::COUNT_TYPES(player.Items, Item::Type::GOLDEN_APPLE) - COUNT_APPLES) > 0)
+        {
+            return 467;
+        }
+        else
+        {
+            return 78;
+        }
+    }
+};
+
+class Story351 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story351()
+    {
+        ID = 351;
+
+        Bye = "You survive to see victory.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The pirates bear down towards your ship. As they get close, the shadow of their black sails falls across the deck, drawing a groan of fear from your marines.\n\nThe enemy's prow crashes hard into your rail, splintering the planks. Your men go pale with fear, but you are not daunted. Smashing your foot into the broken timber, you cry out: \"This ship's scuppered. Will you wait aboard her till she sinks? Those of you who want to live, follow me!\"\n\nYou leap across the rail towards the startled pirates. Your marines take courage from your example. The pirates fight furiously, but they are not used to fighting a defensive battle, and soon begin to weaken in the teeth of your onslaught.\n\n";
+
+        auto DAMAGE = -7;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -2;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -4;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 372; }
+};
+
+class Story352 : public Story::Base
+{
+public:
+    Story352()
+    {
+        ID = 352;
+
+        Text = "The Bedouin respond to your defiance by digging their heels into their camels' flanks and riding forward with a shrill battle cry.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ARCHERY))
+        {
+            return 241;
+        }
+        else
+        {
+            return 264;
+        }
+    }
+};
+
+class Story353 : public Story::Base
+{
+public:
+    Story353()
+    {
+        ID = 353;
+
+        Text = "You dive through the curtain and find yourself in a cramped alcove. If you were hoping for an escape route, you\"re out of luck. You hear the Lord of the Desert stamping around his treasure hall. His sword makes angry swishing sounds, but for some reason he does not try to pursue you or drag you out of the alcove.\n\n\"How long can you hide in there?\" he snarls. \"Come out and face me, coward!\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::ROGUERY, Skill::Type::CUNNING, Skill::Type::MAGIC}) && !Character::VERIFY_ITEMS(player, {Item::Type::SWORD}))
+        {
+            Choices.push_back(Choice::Base("Fight him with your bare hands", 331));
+        }
+        else
+        {
+            Choices.push_back(Choice::Base("Use [ROGUERY]", 439, Skill::Type::ROGUERY));
+            Choices.push_back(Choice::Base("Use [CUNNING]", 395, Skill::Type::CUNNING));
+            Choices.push_back(Choice::Base("Use [MAGIC]", 417, Skill::Type::MAGIC));
+            Choices.push_back(Choice::Base("Fight him with a SWORD", 13, {Item::SWORD}));
+        }
+    }
+};
+
+class Story354 : public Story::Base
+{
+public:
+    Story354()
+    {
+        ID = 354;
+
+        Image = "images/filler4.png";
+
+        Text = "You discover that the 'cloud' you saw was actually a swarm of locusts. They cover the ground, and you show the others how to catch them by throwing rugs, saddlebags and robes over them where they lie. As an added bonus, the locusts had discovered a patch of scrub which, when you dig down to the roots, reveals a trickle of water.\n\nThe others are squeamish about eating locusts. \"Are they not unclean creatures?\" says the scribe Rahman, looking dubiously at the plate of roasted insects you hand to him. But you notice that, all the same, he tucks in as hungrily as everyone else.\n\nYou journey on the next day with lightened spirits. \"Soon we'll reach the coast,\" says Hakim. \"Then we'll take the road north-west to Cairo. No more starvation or thirst to worry about. We're past the worst of it, my friends.\"\n\n\"We should stop at Mecca to make our thanks to God, master,\" suggests one of the camel-drivers.\n\nHakim looks reluctant. \"Ah, well, perhaps we\"ll do that on the way back. I'll lose money if these goods are late in getting to Cairo market.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("You also think that the caravan should stop off at Mecca", 101));
+        Choices.push_back(Choice::Base("You are not worried about it", 123));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story355 : public Story::Base
+{
+public:
+    Story355()
+    {
+        ID = 355;
+
+        Text = "The jinni balks at the task you want to set him. \"To build an entire tower overnight!\" he cries, raising his bristly eyebrows. \"You think too much of my ability.\"\n\n\"I'm relying on you,\" you reply. \"We all are. This dwarf told us to build a tower. If he wakes to find we've failed, I fear an unpleasant conclusion to the matter.\"\n\nThe jinni considers for a moment, nods. \"I'll grant this last wish,\" he proposes, \"and then you must give me my freedom.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Agree with the jinni and make your last wish", 198));
+        Choices.push_back(Choice::Base("Dismiss the jinni and try another tack: [CUNNING]", 333, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Explore the tower", 377));
+        Choices.push_back(Choice::Base("Sneak off using the LAMP of Antar", 495, {Item::LAMP_OF_ANTAR}));
+        Choices.push_back(Choice::Base("Attack the shark men", 108));
+        Choices.push_back(Choice::Base("Wait and see what the dwarf does when he wakes up", 397));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story356 : public Story::Base
+{
+public:
+    Story356()
+    {
+        ID = 356;
+
+        Image = "images/filler2.png";
+
+        Text = "A hurried inspection of the ship reveals that everyone aboard died mysteriously and quite suddenly. \"At first I feared it was plague,\" says the captain, \"but there is nothing in the log to suggest trouble. It seems they just went to sleep one night and never woke up.\"\n\nThe cargo hold is found to be full of porcelain and glassware, which should fetch a tidy sum in the east. The captain, deciding that it is too late today to sort through the cargo, orders the two ships tethered. \"Tomorrow we will give her a thorough inspection,\" he says. He points to you. \"You will keep watch on board her tonight.\"\n\nIt is plain from the looks of the other sailors that they would not relish spending the night on a ship full of dead men. You are not all that keen yourself, but orders are orders. Taking a lantern, you go across to the other ship.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            return 107;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            return 130;
+        }
+        else
+        {
+            return 153;
+        }
+    }
+};
+
+class Story357 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story357()
+    {
+        ID = 357;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You drive the sword right through the Sultan so that the tip pushes out of his back. His entrails spill out onto the moss. The three knights stand looking on in shock, then lift the body across their late master's horse and lead it away. You think they have forgotten you, but at the edge of the clearing one turns and casts his spear. It strikes your shoulder.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou staunch the bleeding while they ride off between the trees. There is nothing you can do for your friends, but at least you were able to avenge them. As you go to leave, you notice a BLACK JEWEL lying on the moss by your feet.";
+        }
+
+        Text = PreText.c_str();
+
+        Take = {Item::BLACK_JEWEL};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 177; }
+};
+
+class Story358 : public Story::Base
+{
+public:
+    Story358()
+    {
+        ID = 358;
+
+        Image = "images/filler4.png";
+
+        Text = "The two of you manage to slip out of the city the next morning on the back of an ox-cart. The owner is startled when the sacks of grain on the back of his cart are suddenly thrown aside to reveal two scruffy young vagabonds.\n\nAzenomei gazes back at the city and gives a hearty laugh. \"A pox on that place. I'll never go there again, I can tell you.\" He turns to you. \"And where are you bound now, my friend?\"\n\n\"I left Baghdad in search of fame and fortune. But I was accused of being an infamous thief, and now I have no money.\"\n\n\"You could do worse than throw in your lot with me,\" declares Azenomei. \"I'm heading across the desert to rescue my sister. She was spirited away by a jinni who imprisoned her in a bronze citadel. I can promise you as much adventure as you can take.\"\n\nIf someone had said that to you just a few months ago, you would have assumed they were mad. Now you have seen many marvels with your own eyes. But you have not learned to be careless of risk.\n\n\"A jinni's citadel, you say? That may be a little more adventure than I can take.\"\n\nAzenomei waits for your decision.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go with him across the desert", 270));
+        Choices.push_back(Choice::Base("Go your own way", 223, Choice::Type::GET_CODEWORD, {Codeword::Type::NOOSE}));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story359 : public Story::Base
+{
+public:
+    Story359()
+    {
+        ID = 359;
+
+        Text = "A swirl of vapour emerges from the RING, clotting in midair into the shape of your jinni. He looks across the chamber with a groan of dread.\n\n\"Azenomei al-Umara!\" Turning to you, he mutters, \"This is one of the lords of the jinn. He is far mightier than I. If you send me forth to battle him, it may mean my death.\"\n\n\"Your life's purpose is to serve me,\" you retort. \"Attack!\"\n\nTaking the form of a shaggy black lion, he leaps on Azenomei. The tumult of roars, shrieks and bone-crunching blows is enough to freeze your blood. It is soon clear that your jinni was right -- he's no match for Azenomei.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Recall the jinni and attack Azenomei yourself", 112));
+        Choices.push_back(Choice::Base("Watch to see how the fight goes", 43));
+
+        Controls = Story::Controls::STANDARD;
     }
 };
 
@@ -9361,6 +9645,16 @@ auto story346 = Story346();
 auto story347 = Story347();
 auto story348 = Story348();
 auto story349 = Story349();
+auto story350 = Story350();
+auto story351 = Story351();
+auto story352 = Story352();
+auto story353 = Story353();
+auto story354 = Story354();
+auto story355 = Story355();
+auto story356 = Story356();
+auto story357 = Story357();
+auto story358 = Story358();
+auto story359 = Story359();
 
 void InitializeStories()
 {
@@ -9399,7 +9693,8 @@ void InitializeStories()
         &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319,
         &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329,
         &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339,
-        &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349};
+        &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349,
+        &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359};
 }
 
 #endif
