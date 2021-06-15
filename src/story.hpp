@@ -7071,8 +7071,6 @@ public:
 
         Text = PreText.c_str();
     }
-
-    int Continue(Character::Base &player) { return 289; }
 };
 
 class Story271 : public Story::Base
@@ -8740,6 +8738,279 @@ public:
     }
 };
 
+class Story340 : public Story::Base
+{
+public:
+    Story340()
+    {
+        ID = 340;
+
+        Text = "Hoisting yourself over the parapet, you dangle down until your feet find purchase on the flagpole. You hold your arms out for balance and skip nimbly like a tightrope walker to the end of the pole.\n\nBy this time the guards have reached the edge of the roof. \"Don't be a fool!\" one of them shouts. \"You can't make that jump.\"\n\nHe may be right, but you do not hesitate. You are dead anyway if they catch you. You fling yourself into empty space. Time seems to slow down as you see the gatehouse roof come looming towards you. Then your fingers catch on the cornice and you swing yourself up onto the battlements.\n\nThe guards are shouting wildly, trying to attract the attention of the sentries on watch in the gatehouse. As you descend, a portly soldier emerges from a doorway and starts to relieve himself against the wall. He glances as you sweep past, but by the time he realizes you're an intruder you have reached the street and made your getaway.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 383; }
+};
+
+class Story341 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story341()
+    {
+        ID = 341;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Just as you reach the bottom of the stairs, the door across the hall crashes open and a dozen more guards rush in, obviously alerted by the noise. Jafar clutches the rail of the balustrade above and shakes with wrath as he screams, \"I'll behead any man who lets the villain escape!\"\n\nRaising their swords, the guards charge across the hall. You push over a tall candelabrum behind you to delay them while you dart back along a passage leading deeper into the palace. Curses resound along the passage as the guards disentangle themselves from the fallen candelabrum. You hear the tramp of running feet. They are right behind you.\n\nTurning a corner, you stop short with a groan. The passage ends in an alcove containing a tall alabaster jar. You have reached a dead end.";
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::STREETWISE, Skill::Type::LUCK}))
+        {
+            PreText += "\n\nYou can only whirl to face your pursuers.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::STREETWISE, Skill::Type::LUCK}))
+        {
+            return 465;
+        }
+        else
+        {
+            return 447;
+        }
+    }
+};
+
+class Story342 : public Story::Base
+{
+public:
+    Story342()
+    {
+        ID = 342;
+
+        Text = "\"No doubt the guards check on you from time to time?\"\n\nShe nods. \"One of them comes to look in through the curtain every hour or so. If you are thinking we might slip away, I advise you to forget it. As soon as they noticed I was gone they'd be sure to search every ship on this stretch of the river.\"\n\n\"Then we must make sure they don't notice it. Not until tomorrow, at least.\"\n\nGathering the cushions lining the floor of the kiosk, you start to arrange them carefully. The woman watches with furrowed brow for a moment, then sees what you are planning. Removing her shawl, she drapes it over the pile of cushions and adds a few trinkets of jewellery to complete the effect.\n\nThe two of you stand back and appraise your handiwork. Anyone looking in through the curtains would certainly think there was a figure lying there curled up asleep.\n\nYou lower her silently over the side and you both swim back to your own vessel.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 254; }
+};
+
+class Story343 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story343()
+    {
+        ID = 343;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "You fling the cloak over the nearest warrior's head. While he is struggling blindly to get free, you kick his legs out from under him and stoop to whack his head against the ground. The iron helmet rings like an anvil under a hammer. The effect on the warrior must be rather the same as putting his head inside a bell. He squirms away, clutching his ears and writhing in pain.\n\nThe other two rush in to attack. As they step onto the cloak, you whisk it out from under them and they go sprawling. Glancing at Yussuf, you see that he will be of no use in this fight. He is cowering wide-eyed at the end of the gallery with his fist stuffed into his mouth. Still, you seem to be getting the better of the three warriors with just your bare hands.\n\nThe battle is brief.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            Character::GAIN_LIFE(player, -2);
+
+            PreText += "\n\nYou LOSE 2 Life Point(s).";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 386; }
+};
+
+class Story344 : public Story::Base
+{
+public:
+    Story344()
+    {
+        ID = 344;
+
+        Text = "Two men stand back in the shadows of the bath-house doorway. You notice at once they are villains. One has had his ears cropped for some crime or other, the other lacks a nose. The stout sticks they hold behind their backs are a dead giveaway too.\n\nThe man leading you down the alley sees you hesitate and asks what the matter is.\n\n\"Do you think me so witless that I can be lured into a den of thieves?\" you say. \"Be thankful I don't summon the city militia and have you flogged.\"\n\nHearing this, his two cronies emerge from the bath-house and advance menacingly towards you. You beat a swift retreat to the main street. Glancing back over your shoulder, you see them watching you go with disappointed scowls.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 301; }
+};
+
+class Story345 : public Story::Base
+{
+public:
+    Story345()
+    {
+        ID = 345;
+
+        Text = "She suddenly stops her sobbing and gives you a scowl of such blood-freezing hatred that you hope never to see the like again. As you step back in dismay, she leaps up and runs off between the clumps of cloud. You follow for a short distance, but you cannot find any trace of her. Seeing the spires and domes of the city not far off, you make your way towards it.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 302; }
+};
+
+class Story346 : public Story::Base
+{
+public:
+    Story346()
+    {
+        ID = 346;
+
+        Text = "You sail downriver to the sea. As you go, clouds thicken like soot in the sky and the sails flutter fretfully as the first stirrings of a high wind come howling down. Lightning spits across the sky, rattling great blows against the gong of the heavens. The waters surge around your prow, sending high spurts of foam across the deck.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 131; }
+};
+
+class Story347 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story347()
+    {
+        ID = 347;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "His muscular bulk is no protection against a deft sword-thrust to the heart. But in your hurry to dispose of him, you step straight into a solid punch to the jaw. You reel back, blood spurting from your nose, as the guard sinks to the ground.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -1;
+
+            PreText += "[SWORDPLAY] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story348 : public Story::Base
+{
+public:
+    Story348()
+    {
+        ID = 348;
+
+        Text = "\"Bit puny for ghouls, aren't you?\" you say to the brothers as they start to tie you up.\n\nThe mother overhears this. \"Don't you listen to that nonsense,\" she snaps. \"Those mortals are sly little wretches.\"\n\n\"What do you mean, puny?\" says one of the brothers, ignoring her.\n\nYou shrug casually. \"I've seen lots of ghouls tougher than you. Dozens.\"\n\nThe other one glares at you. \"What's your game, eh? I'll have you know we're as strong as they come. A good diet of mortal flesh sees to that, eh, Ma?\"\n\n\"That's right, son,\" cackles the crone as she stirs the pot.\n\n\"Believe whatever you like, if it makes you feel better,\" you say. \"I'm going to die soon, so it doesn't matter to me. I'm just saying you're a pathetic pair of undernourished ghouls.\"\n\nThey fling the ropes aside. \"Prove it!\"\n\n\"All right. How about a race around the hill? If you two beat me, you'll have worked up a good appetite. If I win, you let me go.\"\n\n\"You'll never win!\" they snort. Taking no notice of their mother's outraged glare, they take you outside. \"Back in a minute, Ma!\" one of them calls over his shoulder.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_CODEWORDS(player, {Codeword::Type::CONCH}) && Character::VERIFY_ANY_SKILLS(player, {Skill::Type::FOLKLORE, Skill::Type::CUNNING, Skill::Type::AGILITY, Skill::Type::ARCHERY}))
+        {
+            Choices.push_back(Choice::Base("Use [FOLKLORE]", 56, Skill::Type::FOLKLORE));
+            Choices.push_back(Choice::Base("Use [CUNNING]", 469, Skill::Type::CUNNING));
+            Choices.push_back(Choice::Base("Use [AGILITY]", 102, Skill::Type::AGILITY));
+            Choices.push_back(Choice::Base("Use [ARCHERY]", 124, Skill::Type::ARCHERY));
+        }
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::CONCH}))
+        {
+            return 10;
+        }
+        else
+        {
+            return 147;
+        }
+    }
+};
+
+class Story349 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story349()
+    {
+        ID = 349;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stop off at the oasis", 473));
+        Choices.push_back(Choice::Base("Continue past the oasis", 15));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Leaving Cairo on foot, you head along the banks of the Nile. Soon you have left the fertile farmland behind, and you head on into wild territory where the Sultan’s rule of law does not extend. Crocodiles splash the dun-coloured water, sliding down off the sun-drenched banks as you pass. You see boats plying their trade, but they stay in midstream. A lone traveller in these parts might easily be a brigand or a mad wizard, and the few peasants you see are fearful of approaching you.\n\nBeyond the river-bank lies a waterless wasteland. Soon the soles of your feet are hardened like leather and your tongue sticks to the roof of your mouth. In all directions the horizon is lost in a hot flat haze.";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        {
+            Character::GAIN_LIFE(player, -1);
+
+            PreText += "\n\nYou LOSE 1 Life Point.";
+        }
+        else
+        {
+            if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+            {
+                Character::EMPTY(player, Item::Type::WATER_BOTTLE);
+
+                PreText += "\n\nThe WATER BOTTLE is now EMPTY.";
+            }
+        }
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nAfter days without seeing another soul, you reach an oasis. High palm trees sway against the sky. They are a rich dark green that almost looks black against the dazzling dust-draped landscape.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -9080,6 +9351,16 @@ auto story336 = Story336();
 auto story337 = Story337();
 auto story338 = Story338();
 auto story339 = Story339();
+auto story340 = Story340();
+auto story341 = Story341();
+auto story342 = Story342();
+auto story343 = Story343();
+auto story344 = Story344();
+auto story345 = Story345();
+auto story346 = Story346();
+auto story347 = Story347();
+auto story348 = Story348();
+auto story349 = Story349();
 
 void InitializeStories()
 {
@@ -9117,7 +9398,8 @@ void InitializeStories()
         &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309,
         &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319,
         &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329,
-        &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339};
+        &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339,
+        &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349};
 }
 
 #endif
