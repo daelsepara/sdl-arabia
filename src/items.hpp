@@ -33,8 +33,10 @@ namespace Item
         HAREM_COSTUME,
         WHISTLE,
         GLOVES,
+        VEIL,
+        CANDLE,
         First = BOW,
-        Last = GLOVES
+        Last = CANDLE
     };
 
     class Base
@@ -93,6 +95,8 @@ namespace Item
     auto HAREM_COSTUME = Item::Base("HAREM COSTUME", "HAREM COSTUME", Item::Type::HAREM_COSTUME);
     auto WHISTLE = Item::Base("WHISTLE", "WHISTLE", Item::Type::WHISTLE);
     auto GLOVES = Item::Base("GLOVES", "GLOVES", Item::Type::GLOVES);
+    auto VEIL = Item::Base("VEIL", "VEIL", Item::Type::VEIL);
+    auto CANDLE = Item::Base("CANDLE", "CANDLE", Item::Type::CANDLE);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::LONG_TAILED_CAT,

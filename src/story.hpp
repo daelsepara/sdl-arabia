@@ -532,7 +532,7 @@ public:
 
     void Event(Character::Base &player)
     {
-        PreText = "There is a clang as your sword strikes the floor, followed by an ominous hush as Masrur steps forward smiling and pins your arms behind your back. You are taken to the dungeons, stripped of everything you own, then hung in chains and tortured for several days.\n\nYou LOSE 2 Life Points.";
+        PreText = "There is a clang as your SWORD strikes the floor, followed by an ominous hush as Masrur steps forward smiling and pins your arms behind your back. You are taken to the dungeons, stripped of everything you own, then hung in chains and tortured for several days.\n\nYou LOSE 2 Life Points.";
 
         Character::GAIN_LIFE(player, -2);
 
@@ -1482,19 +1482,18 @@ public:
 
         auto DAMAGE = -2;
 
-        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -1;
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
-            {
-                PreText += "[SWORDPLAY] ";
-            }
+            PreText += "[SWORDPLAY] ";
+        }
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
-            {
-                PreText += "[WRESTLING] ";
-            }
+        if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -1;
+
+            PreText += "[WRESTLING] ";
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -1529,13 +1528,13 @@ public:
 
         auto DAMAGE = -5;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -2;
 
             PreText += "[SWORDPLAY] ";
         }
-        else
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
         {
             DAMAGE = -3;
 
@@ -1729,13 +1728,13 @@ public:
 
         auto DAMAGE = -3;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -1;
 
             PreText += "[SWORDPLAY] ";
         }
-        else
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
         {
             DAMAGE = -2;
 
@@ -3198,7 +3197,7 @@ public:
 
         auto DAMAGE = -6;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -2;
 
@@ -3418,19 +3417,18 @@ public:
 
         auto DAMAGE = -4;
 
-        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -1;
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
-            {
-                PreText += "[SWORDPLAY] ";
-            }
+            PreText += "[SWORDPLAY] ";
+        }
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
-            {
-                PreText += "[WRESTLING] ";
-            }
+        if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -1;
+
+            PreText += "[WRESTLING] ";
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -3903,7 +3901,7 @@ public:
 
         PreText = "Pushing Yussuf back, you launch yourself into the thick of the devilish horde with a defiant cry of battle-fury. Chittering madly, they rip at your flesh with their hard axe-like talons and razor-edged jaws. One reaches past you for your cringing friend, who fends it away with a feeble blow and then falls to his knees and buries his head in his hands.\n\nYou have no time to worry about Yussuf. You push one of the monsters away, but another closes its jaws on your wrist and you feel the crunch of sinew as your blood spurts across its moist leathery orb of an eye.";
 
-        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        if (!Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}) && !Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
         {
             Type = Story::Type::DOOM;
 
@@ -3913,7 +3911,7 @@ public:
         {
             PreText += "\n\n";
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
             {
                 PreText += "[SWORDPLAY] ";
             }
@@ -5311,7 +5309,7 @@ public:
 
         auto DAMAGE = -6;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -2;
 
@@ -5610,19 +5608,18 @@ public:
 
         auto DAMAGE = -2;
 
-        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -1;
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
-            {
-                PreText += "[SWORDPLAY] ";
-            }
+            PreText += "[SWORDPLAY] ";
+        }
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
-            {
-                PreText += "[WRESTLING] ";
-            }
+        if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -1;
+
+            PreText += "[WRESTLING] ";
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -5974,13 +5971,13 @@ public:
 
         auto DAMAGE = -7;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -3;
 
             PreText += "[SWORDPLAY] ";
         }
-        else
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
         {
             DAMAGE = -5;
 
@@ -6091,7 +6088,7 @@ public:
         Text = "How will you attack?";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("[SWORDPLAY] Use a SWORD", 304, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Use a SWORD", 304, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::JEWELLED_SWORD}));
         Choices.push_back(Choice::Base("You do not possess a SWORD or do not wish to use it", 326));
 
         Controls = Story::Controls::STANDARD;
@@ -6121,19 +6118,18 @@ public:
 
         auto DAMAGE = -3;
 
-        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -2;
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
-            {
-                PreText += "[SWORDPLAY] ";
-            }
+            PreText += "[SWORDPLAY] ";
+        }
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
-            {
-                PreText += "[WRESTLING] ";
-            }
+        if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -2;
+
+            PreText += "[WRESTLING] ";
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -6385,7 +6381,7 @@ public:
 
         PreText = "The three attack as one, launching themselves from horseback with spears raised. Straight away you see that just one of these men would be a hard foe. Together they are almost unbeatable.";
 
-        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        if (!Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}) && !Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
         {
             Type = Story::Type::DOOM;
 
@@ -6397,13 +6393,13 @@ public:
 
             auto DAMAGE = -6;
 
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
             {
                 DAMAGE = -3;
 
                 PreText += "[SWORDPLAY] ";
             }
-            else
+            else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
             {
                 PreText += "[WRESTLING] ";
             }
@@ -6680,7 +6676,7 @@ public:
         Text = "Yussuf is so interested in the murals that he does not see the three iron-masked warriors marching along the gallery towards you. Their swords are burnished like the crescent moon, their robes richly decorated with fine embroidery. But in stark contrast to this artistry are their faces: hideous twisted beast-masks with long metal snouts. The darkness behind their visors drinks up your feeble taper-light.";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("[SWORDPLAY] Draw your SWORD", 278, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Draw your SWORD", 278, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::JEWELLED_SWORD}));
         Choices.push_back(Choice::Base("[ARCHERY] Shoot them", 299, Skill::Type::ARCHERY));
         Choices.push_back(Choice::Base("Fight them bare-handed", 321));
 
@@ -6766,7 +6762,7 @@ public:
         Text = "How will you attack?";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("[SWORDPLAY] Use a SWORD", 347, Skill::Type::SWORDPLAY));
+        Choices.push_back(Choice::Base("[SWORDPLAY] Use a SWORD", 347, Choice::Type::SKILL_ANY, Skill::Type::SWORDPLAY, {Item::SWORD, Item::JEWELLED_SWORD}));
         Choices.push_back(Choice::Base("You do not possess a SWORD or do not wish to use it", 304));
 
         Controls = Story::Controls::STANDARD;
@@ -6900,7 +6896,7 @@ public:
 
         auto DAMAGE = -6;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -3;
 
@@ -7737,7 +7733,7 @@ public:
         Text = "The arrow lances through the air, finding its mark in the first warrior's heart. But he gives no grunt of pain, nor does he sway and fall. Instead he plucks out the shaft and regards it for a moment as though he had never seen such a thing before. Breath rasps contemptuously behind the iron plate of his helmet as he tosses the arrow aside and lunges forward. His moon-sliver sword gives your shoulder a lusty bite, and blood streams freely from the wound as he steps back with a flourish.\n\nYou LOSE 2 Life Points.";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("Draw a SWORD", 278, {Item::SWORD}));
+        Choices.push_back(Choice::Base("Draw a SWORD", 278, Choice::Type::ANY_ITEM, {Item::SWORD, Item::JEWELLED_SWORD}));
         Choices.push_back(Choice::Base("Launch yourself at them and fight bare handed", 321));
         Choices.push_back(Choice::Base("Make a run for it", 365));
 
@@ -7865,7 +7861,7 @@ public:
 
         Choices.clear();
         Choices.push_back(Choice::Base("Strike at her with your bare fists", 413));
-        Choices.push_back(Choice::Base("Strike at her with a SWORD", 391, {Item::SWORD}));
+        Choices.push_back(Choice::Base("Strike at her with a SWORD", 391, Choice::Type::ANY_ITEM, {Item::SWORD, Item::JEWELLED_SWORD}));
         Choices.push_back(Choice::Base("Look around for a weapon", 435));
 
         Controls = Story::Controls::STANDARD;
@@ -7877,7 +7873,7 @@ public:
 
         auto DAMAGE = -6;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -2;
 
@@ -7967,7 +7963,7 @@ public:
         Text = "The Lord of the Desert bids you rise. Not kindly -- his voice is laden with menace. When you see his naked sword glistening in the light, you know what is to come.\n\n\"Come, mortal!\" he cries. \"Your last moment is at hand. Will you stand with limbs shaking, or will you fight to save yourself? Fight boldly, and I may even be merciful.\"";
 
         Choices.clear();
-        Choices.push_back(Choice::Base("Draw a SWORD now", 13, {Item::SWORD}));
+        Choices.push_back(Choice::Base("Draw a SWORD now", 13, Choice::Type::ANY_ITEM, {Item::SWORD, Item::JEWELLED_SWORD}));
         Choices.push_back(Choice::Base("Fight him unarmed", 331));
         Choices.push_back(Choice::Base("Try to hide in the curtained alcove", 353));
         Choices.push_back(Choice::Base("Try to hide in one of the huge stone jars", 374));
@@ -8467,20 +8463,17 @@ public:
 
         auto DAMAGE = -2;
 
-        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
-            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
-            {
-                DAMAGE = 0;
+            DAMAGE = 0;
 
-                PreText += "[SWORDPLAY] You are uninjuired.";
-            }
-            else
-            {
-                DAMAGE = -1;
+            PreText += "[SWORDPLAY] You are uninjuired.";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -1;
 
-                PreText += "[WRESTLING] ";
-            }
+            PreText += "[WRESTLING] ";
         }
 
         if (DAMAGE < 0)
@@ -8577,7 +8570,7 @@ public:
 
         auto DAMAGE = -3;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -1;
 
@@ -8913,7 +8906,7 @@ public:
 
         auto DAMAGE = -2;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -1;
 
@@ -9071,7 +9064,7 @@ public:
 
         auto DAMAGE = -7;
 
-        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
         {
             DAMAGE = -2;
 
@@ -9137,7 +9130,7 @@ public:
     {
         Choices.clear();
 
-        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::ROGUERY, Skill::Type::CUNNING, Skill::Type::MAGIC}) && !Character::VERIFY_ITEMS(player, {Item::Type::SWORD}))
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::ROGUERY, Skill::Type::CUNNING, Skill::Type::MAGIC}) && !Character::VERIFY_ITEMS_ANY(player, {Item::SWORD, Item::JEWELLED_SWORD}))
         {
             Choices.push_back(Choice::Base("Fight him with your bare hands", 331));
         }
@@ -9146,7 +9139,7 @@ public:
             Choices.push_back(Choice::Base("Use [ROGUERY]", 439, Skill::Type::ROGUERY));
             Choices.push_back(Choice::Base("Use [CUNNING]", 395, Skill::Type::CUNNING));
             Choices.push_back(Choice::Base("Use [MAGIC]", 417, Skill::Type::MAGIC));
-            Choices.push_back(Choice::Base("Fight him with a SWORD", 13, {Item::SWORD}));
+            Choices.push_back(Choice::Base("Fight him with a SWORD", 13, {Item::SWORD, Item::JEWELLED_SWORD}));
         }
     }
 };
@@ -9743,6 +9736,236 @@ public:
     int Continue(Character::Base &player) { return 177; }
 };
 
+class Story380 : public Story::Base
+{
+public:
+    Story380()
+    {
+        ID = 380;
+
+        Text = "Azenomei is as good as his word. After levitating up and unlocking the grille, he throws the slippers down to you. Soon you have joined him on the edge of the pit.\n\nGazing down into the foetid hole that has been your prison for the last week, you cannot suppress a shudder of disgust. \"I might have wasted away to a skeleton down there.\"\n\nHe claps you on the back. \"Don't think of it. We're free!\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 358; }
+};
+
+class Story381 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story381()
+    {
+        ID = 381;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "The blaring note of the horn builds in the air until the very walls of the citadel begin to shake. You sense the tremendous pressure of the sound forcing itself out from where you are standing. A moment later, the vast metal blocks of the ceiling are blown apart and the whole structure collapses around you.\n\n";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            Character::GAIN_LIFE(player, -3);
+
+            PreText += "You LOSE 3 Life Point(s).";
+        }
+        else
+        {
+            PreText += "[LUCK] You are miraculously unscathed.";
+        }
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou dig your way out of the debris. There is no sign of Azenomei -- he must have perished in the ruins of his bronze fortress.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 66; }
+};
+
+class Story382 : public Story::Base
+{
+public:
+    Story382()
+    {
+        ID = 382;
+
+        Text = "You know more tall tales than all the sailors of Suhar, more unlikely yarns than the storytellers of Basra, and more outright lies than every beggar in Baghdad. Within minutes the CAT'S TAIL has soared up out of sight among the clouds. You tell it a few more falsehoods for good measure, since you want the TAIL to stay extended long enough for you to get what you came for, then you rapidly climb up to the top of the pinnacle.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 325; }
+};
+
+class Story383 : public Story::Base
+{
+public:
+    Story383()
+    {
+        ID = 383;
+
+        Text = "You make your way hurriedly away from the palace by way of the deserted back streets. Your heart is thudding at the thought of your bold escapade -- but it is still a bitter heart, for you have achieved next to nothing. Jafar remains free to plague the realm with his wickedness, and your own personal grievance remains unpunished.\n\nYou know now that you cannot expect to right all wrongs in a single night. First you must make your fortune. Once you are rich, you will be able to get an audience with the Caliph and tell him everything. But how will you earn fame and fortune?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Join a merchant caravan", 183));
+        Choices.push_back(Choice::Base("Go to sea and sail in search of exotic lands, as the legendary Sindbad once did", 160));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story384 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story384()
+    {
+        ID = 384;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try to get away", 404));
+        Choices.push_back(Choice::Base("Keep on fighting", 427));
+        Choices.push_back(Choice::Base("Drop the SWORD and surrender", 2));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::JEWELLED_SWORD});
+
+        PreText = "You OBTAINED a JEWELLED SWORD. It serves as a normal SWORD for the purpose of using [SWORDPLAY]; nonetheless you suspect it may prove useful in other ways too.\n\nYou raise it to parry Masrur's first attack. His blade strikes with an impact that makes the hilt shudder in your grip, sending a bone-wrenching jolt all down your arm. Your own sword is almost dashed aside by Masrur\"s great strength, and the blow cuts a narrow gash across your brow.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nAs he lunges again, you jump back, making the most of your greater speed.\n\n\"Be thankful I'm trying not to damage that PRECIOUS SWORD,\" he puffs as you circle nimbly around him. \"Otherwise I'd cut you in two where you stand.\"\n\nOut of the corner of your eye you see a silk-gowned figure emerge from the next room. It is the evil vizier, Jafar. \"You're getting old, Masrur,\" he says snidely. \"There was a time when you could deal with a little gutter stripling like that without breaking into a sweat.\"";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story385 : public Story::Base
+{
+public:
+    Story385()
+    {
+        ID = 385;
+
+        Text = "You swap clothes. It feels odd to wear the impractical silken finery of a harem girl, instead of your travelling clothes. The woman slips out of the back of the kiosk and turns at the rail. \"Since you have helped me, it's only right I should reward you,\" she whispers. \"See the PRAYER-MAT there? It has the special property that, when unrolled, it always lies in the direction of Mecca. Take it with my blessing.\"\n\nShe lowers herself into the water and swims off. After an hour or so, one of the guards comes back to check the kiosk. He peers through the curtain, but does not notice anything amiss. You doze off, only to be woken in the first grey light of dawn by cries of anguish.\n\n\"What has happened to Sabira?\" one of the guards is saying. \"Who are you?\"\n\nYou decide not to disclose your full involvement in the woman's escape. \"I was swimming last night,\" you reply. \"I came across this barque moored in the river. You were all playing dice in the prow, but there was no woman here. I saw a pile of fine veils and silks, which I dressed myself in for fun. I suppose the swim must have exhausted me, though, because then I fell asleep.\"\n\nThe guards start to wail and tear their hair, distressed at the thought of the punishment in store for them. They take no further interest in you, so you quietly slip away and swim back to your own ship.\n\nYou OBTAINED a HAREM COSTUME.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::PRAYER_MAT, Item::HAREM_COSTUME});
+    }
+
+    int Continue(Character::Base &player) { return 375; }
+};
+
+class Story386 : public Story::Base
+{
+public:
+    Story386()
+    {
+        ID = 386;
+
+        Text = "The warriors lie motionless on the dusty floor. Letting out a long sigh of relief, you lower your bruised fists and go back to Yussuf, who is shaking in a heap. As you help him to his feet, he whispers, \"I'm sorry I wasn't any help.\" He is too ashamed to look you in the eye.\n\n\"God did not give courage to all men and women in equal measure,\" you reply. You clasp his shoulder, trying to rally his spirits. \"You have other fine qualities, my friend -- your good humour, your loyalty, and your love of life.\"\n\nHe nods slowly. Then, raising his head, he peers into the gloom at the end of the gallery. \"Are you sure they're beaten?\"\n\nThe taper gives little light. Taking it back to where you left your fallen foes, you see no sign of the bodies. You look all around, expecting them to leap out of the darkness, when Yussuf points to the mural. \"Look, it's changed.\"\n\nHe's right. All of the warriors in the picture now lie defeated. A single hero in simple modern-day clothing is shown striding among them, breaking the ancient idols. Yussuf leans close to inspect the mural. His voice is a mixture of puzzlement and awe as he says, \"The face on this figure -- it might almost be you.\"\n\nYou take a close look. Long centuries have dimmed the ancient pigments. \"No...\" you say at last, shaking your head. \"It couldn't be.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 52; }
+};
+
+class Story387 : public Story::Base
+{
+public:
+    Story387()
+    {
+        ID = 387;
+
+        Text = "Reaching the bath-house, the man steps back and politely motions for you to enter. You step into the entrance. Coming into cool gloom after the bright sunlight outside, for a moment you can see nothing. You sense a movement to one side, but before you can react a heavy cosh whacks down against your skull, and you are swallowed up by a deeper darkness.\n\nYou LOSE 1 Life Point.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 432; }
+};
+
+class Story388 : public Story::Base
+{
+public:
+    Story388()
+    {
+        ID = 388;
+
+        Text = "On the very instant that she takes the flower from your fingers, the cloud underfoot becomes no more solid than a wisp of mist. You give a scream, which the child matches with a peal of malevolent laughter as she watches you sink through the cloud. For less than a heartbeat you are surrounded in white haze, then you break through the bottom of the cloud and go plunging down to strike the water with numbing force.\n\nYou LOSE 6 Life Points.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -6);
+    }
+
+    int Continue(Character::Base &player) { return 280; }
+};
+
+class Story389 : public Story::Base
+{
+public:
+    Story389()
+    {
+        ID = 389;
+
+        Text = "In time, fair winds and fate carry you to safe berth in the port of Zeila. Here you bid your shipmates farewell, for their travels will take them back to Basra, while you have yet to find your fortune.\n\nNearby are carts loaded with a variety of goods. They are bound for the market, and you know that you have a good chance of a bargain if you buy anything here. You find the following items for sale: WATER BOTTLE, ANTIDOTE, SWORD, VEIL and CANDLE.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::SHOP;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Shop = {{Item::WATER_BOTTLE, 1}, {Item::ANTIDOTE, 60}, {Item::SWORD, 15}, {Item::VEIL, 2}, {Item::CANDLE, 3}};
+    }
+
+    int Continue(Character::Base &player) { return 149; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -10123,6 +10346,16 @@ auto story376 = Story376();
 auto story377 = Story377();
 auto story378 = Story378();
 auto story379 = Story379();
+auto story380 = Story380();
+auto story381 = Story381();
+auto story382 = Story382();
+auto story383 = Story383();
+auto story384 = Story384();
+auto story385 = Story385();
+auto story386 = Story386();
+auto story387 = Story387();
+auto story388 = Story388();
+auto story389 = Story389();
 
 void InitializeStories()
 {
@@ -10164,7 +10397,8 @@ void InitializeStories()
         &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349,
         &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359,
         &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369,
-        &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379};
+        &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379,
+        &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389};
 }
 
 #endif
