@@ -9153,7 +9153,7 @@ public:
 
         Image = "images/filler4.png";
 
-        Text = "You discover that the 'cloud' you saw was actually a swarm of locusts. They cover the ground, and you show the others how to catch them by throwing rugs, saddlebags and robes over them where they lie. As an added bonus, the locusts had discovered a patch of scrub which, when you dig down to the roots, reveals a trickle of water.\n\nThe others are squeamish about eating locusts. \"Are they not unclean creatures?\" says the scribe Rahman, looking dubiously at the plate of roasted insects you hand to him. But you notice that, all the same, he tucks in as hungrily as everyone else.\n\nYou journey on the next day with lightened spirits. \"Soon we'll reach the coast,\" says Hakim. \"Then we'll take the road north-west to Cairo. No more starvation or thirst to worry about. We're past the worst of it, my friends.\"\n\n\"We should stop at Mecca to make our thanks to God, master,\" suggests one of the camel-drivers.\n\nHakim looks reluctant. \"Ah, well, perhaps we\"ll do that on the way back. I'll lose money if these goods are late in getting to Cairo market.\"";
+        Text = "You discover that the 'cloud' you saw was actually a swarm of locusts. They cover the ground, and you show the others how to catch them by throwing rugs, saddlebags and robes over them where they lie. As an added bonus, the locusts had discovered a patch of scrub which, when you dig down to the roots, reveals a trickle of water.\n\nThe others are squeamish about eating locusts. \"Are they not unclean creatures?\" says the scribe Rahman, looking dubiously at the plate of roasted insects you hand to him. But you notice that, all the same, he tucks in as hungrily as everyone else.\n\nYou journey on the next day with lightened spirits. \"Soon we'll reach the coast,\" says Hakim. \"Then we'll take the road north-west to Cairo. No more starvation or thirst to worry about. We're past the worst of it, my friends.\"\n\n\"We should stop at Mecca to make our thanks to God, master,\" suggests one of the camel-drivers.\n\nHakim looks reluctant. \"Ah, well, perhaps we'll do that on the way back. I'll lose money if these goods are late in getting to Cairo market.\"";
 
         Choices.clear();
         Choices.push_back(Choice::Base("You also think that the caravan should stop off at Mecca", 101));
@@ -9848,7 +9848,7 @@ public:
     {
         Character::GET_ITEMS(player, {Item::JEWELLED_SWORD});
 
-        PreText = "You OBTAINED a JEWELLED SWORD. It serves as a normal SWORD for the purpose of using [SWORDPLAY]; nonetheless you suspect it may prove useful in other ways too.\n\nYou raise it to parry Masrur's first attack. His blade strikes with an impact that makes the hilt shudder in your grip, sending a bone-wrenching jolt all down your arm. Your own sword is almost dashed aside by Masrur\"s great strength, and the blow cuts a narrow gash across your brow.\n\nYou LOSE 1 Life Point.";
+        PreText = "You OBTAINED a JEWELLED SWORD. It serves as a normal SWORD for the purpose of using [SWORDPLAY]; nonetheless you suspect it may prove useful in other ways too.\n\nYou raise it to parry Masrur's first attack. His blade strikes with an impact that makes the hilt shudder in your grip, sending a bone-wrenching jolt all down your arm. Your own sword is almost dashed aside by Masrur's great strength, and the blow cuts a narrow gash across your brow.\n\nYou LOSE 1 Life Point.";
 
         Character::GAIN_LIFE(player, -1);
 
@@ -9964,6 +9964,283 @@ public:
     }
 
     int Continue(Character::Base &player) { return 149; }
+};
+
+class Story390 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story390()
+    {
+        ID = 390;
+
+        Image = "images/filler3.png";
+
+        Bye = "You watch Jumail rush in and clobber the prone bodies of the guards for good measure before turning to free your captain.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Jumail starts burbling with fright, but at least he overcomes it enough to snatch up a shovel and start flailing at the guards. His blows are mostly ineffectual, but they provide enough distraction to give you some hope of victory.\n\nThe fight is brief and silent.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
+        {
+            DAMAGE = -2;
+
+            PreText += "[SWORDPLAY] ";
+        }
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -2;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 412; }
+};
+
+class Story391 : public Story::Base
+{
+public:
+    Story391()
+    {
+        ID = 391;
+
+        Text = "Your weapon has as much effect as a blade of grass. With a shrill laugh, the she-ghoul raises her arm to strike back. The cleaver falls, embedding itself in your skull, and blood-soaked darkness falls around you. Your adventure is at an end.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story392 : public Story::Base
+{
+public:
+    Story392()
+    {
+        ID = 392;
+
+        Text = "One of the Sultan's advisors, a wealthy man named Nizam, has a reputation for modesty and generosity. You wait until you see him approaching the mosque for evening prayer, and then take out a bowl with which you start washing the feet of the worshippers as they come up the mosque steps. Nizam pauses beside you, but instead of washing his feet you select a common labourer with toes as dirty as a camel's.\n\n\"Why do you wash this man's feet ahead of mine?\" Nizam asks. \"Are you unaware that I am one of the Sultan's personal friends?\"\n\nFrom the corner of your eye you see that he wears a half smile, which is an encouraging sign. You decide to press ahead with your ploy. \"God sees no difference in your feet, nor cares a whit less for this man's prayers than for yours. You may indeed have the ear of the Sultan, but do not be so prideful as to suppose this elevates you above other men.\"\n\nNizam stares open-mouthed at this, then gives a delighted chuckle. \"Never have I heard such insolence. It is most refreshing! Please do me the honour of coming to my house for supper.\"\n\nThat night you strike up a friendship with Nizam over several games of chess. As you depart, you mention casually that you have a plan for dealing with the Red Sea pirates. \"Perhaps it would be better if the Sultan heard it from you, though,\" you suggest. \"He'd never listen to a commoner like me.\"\n\n\"Nonsense,\" replies Nizam. \"How can you, of all people, think such a thing? It is your plan, and I would not dream of presenting it as my own. Tomorrow I shall take you into the palace and introduce you to the Sultan. You can tell him your plan in person.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 193; }
+};
+
+class Story393 : public Story::Base
+{
+public:
+    Story393()
+    {
+        ID = 393;
+
+        // Also in 486
+        Image = "images/stone-slab.png";
+
+        Text = "Guided either by intuition or long experience, you stick to the course the pirates were on when last seen.\n\n\"Surely they must be trickier than that?\" complains the first mate.\n\nYou shake your head. \"Not at all. Remember that no other vessel has been able to track them. They're confident of their ability to vanish into thin air, so why would they worry about pursuit?\"\n\nAt dusk you arrive at high cliffs rising at the edge of the sea. Carved into the side of the cliff are two ancient colossi with heads of lions. Between them is a vast stone slab.\n\n\"It may be a door,\" says the first mate, \"but I can't see any way of getting it open.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE) && !Character::VERIFY_CODEWORDS(player, {Codeword::Type::SESAME}) && !Character::VERIFY_ITEMS(player, {Item::Type::JERICHO_HORN}))
+        {
+            Choices.push_back(Choice::Base("Use [MAGIC]", 440, Skill::Type::MAGIC));
+            Choices.push_back(Choice::Base("Otherwise", 415));
+        }
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE) && !Character::VERIFY_CODEWORDS(player, {Codeword::Type::SESAME}))
+        {
+            return 457;
+        }
+        else
+        {
+            return 437;
+        }
+    }
+};
+
+class Story394 : public Story::Base
+{
+public:
+    Story394()
+    {
+        ID = 394;
+
+        Text = "\"Why should we pay any toll?\" you reply in a challenging voice. \"No man owns the desert.\"\n\nThe Bedouin leader makes a sweeping gesture with the point of his spear. \"These skies are the canopy of our tents. The sands are our rugs. The rocks, our cushions. Hence you must pay.\"\n\n\"Are we your enemies?\" you ask him. \"Have we caused you any harm?\" When he does not find a ready answer, you go on, \"No -- for, if we had, then you would have already struck us down, as honour demands.\"\n\n\"And so?\" he mutters darkly.\n\n\"You say the desert itself is your home. If we are not your enemies, we must be your guests. The law of hospitality forbids you to profit from us.\"\n\nThere is no sound at all for several seconds. Then, to your relief, the Bedouin dismount and lead their camels over. The chief's face is like a mask of granite as he says, \"Well spoken. I am abashed. I shall kill my camel for your meal, and here is water from my own flask.\"\n\nThe water tastes like the contents of a ditch, but you do not complain. After spending as short a time with the Bedouin as courtesy allows, you make your excuses and travel on into the west.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 218; }
+};
+
+class Story395 : public Story::Base
+{
+public:
+    Story395()
+    {
+        ID = 395;
+
+        Text = "You pretend that you are so frightened that you start mumbling to yourself. \"Oh woe, that a poor slave like myself should suffer such a fate! A curse on my proud master for sending me down to keep this mighty spirit busy while he escaped.\"\n\n\"What's that you say?\" demands the Lord of the Desert, pressing his ear to the curtain. \"Who is your master?\"\n\n\"The Defender of the Faith, Harun al-Rashid, Caliph of all the civilized world,\" you reply. \"His learned sages explained how they could outwit a senile god of ancient times by sending me, a mere slave, as lure for his quicksand trap.\"\n\n\"Senile!\" he roars. \"I'll turn the tables on them yet. Quickly, come forth.\" When he sees you hesitate, he adds, \"Come. What do I care for the life of a slave when I can have Harun and his advisors?\"\n\nHe pours gold from thin air into your hands. \"Return to the surface,\" he says. \"When Harun sees this loot, tell him you found an abandoned treasure-house beneath the earth. Greed will bring him into my clutches.\"\n\nHe opens the iron door and waves you through.\n\nYou RECEIVED 60 dinars.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 60);
+    }
+
+    int Continue(Character::Base &player) { return 459; }
+};
+
+class Story396 : public Story::Base
+{
+public:
+    Story396()
+    {
+        ID = 396;
+
+        Text = "You leap up, vault over the soldier's lance, and land directly in the Sultan's path. His guards think you are an assassin. Two of them swing their swords, but panic makes them clumsy. Ducking under their attacks, you jump forward and seize the bridle of the Sultan's horse, jerking it to a halt.\n\nAngry soldiers surround you. The Sultan stares down, more astonished than frightened. Raising his hand to stay his guards from attacking, he says, \"I am a good enough judge of character to see you are no lunatic or zealot. Why did you risk your life to get to me?\"\n\n\"Your excellency, how else can a commoner speak to a king? I know a way to catch the Red Sea pirates.\"\n\nHe nods. \"I'll hear what you have to say.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 193; }
+};
+
+class Story397 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story397()
+    {
+        ID = 397;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "You huddle together during the long chill night. Everyone is too frightened to speak. They do not even want to guess what the dwarf will do when he wakes up.\n\nAt sunrise, as a pool of gold spreads along the eastern sky, one of the shark men steps forward and touches his master's arm. Yawning floridly, the dwarf makes a great show of sitting up, stretching, and rubbing his eyes. \"I don't see any tower!\" he cries in feigned surprise. \"You haven't even touched the pile of rubble. Don't tell me you all fell asleep instead of getting on with the job?\"\n\n\"You stunted fiend!\" roars the captain, his fear welling up into black rage. He grabs his sword. \"Let us go this instant or by God you'll be a head shorter!\"\n\nThe dwarf purses his blobby little lips in distaste, then babbles a quick spell. A queasy feeling crawls through your flesh as you are struck by the evil magic.";
+
+        if (!Character::VERIFY_ITEMS(player, {Item::Type::BLACK_JEWEL}))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nThere is nothing you can do to stop yourself from being turned into a gasping fish, and you will end your adventures on the dwarf's dinner plate.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 419; }
+};
+
+class Story398 : public Story::Base
+{
+public:
+    Story398()
+    {
+        ID = 398;
+
+        Text = "The Sultan makes a soft clicking sound with his tongue. It is almost too faint to be heard, but it is the signal for his knights to begin their butchery. Riding forward, they slash and stab at the terrified donkey-handlers. Abdullah scrambles for his sword but is cut down in front of you.\n\nSo far you're unscathed.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stand and fight", 17));
+        Choices.push_back(Choice::Base("Run off along the woodland path", 40));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story399 : public Story::Base
+{
+public:
+    Story399()
+    {
+        ID = 399;
+
+        Text = "The captain welcomes you aboard his ship. \"We are bound for Basra,\" he says. \"The journey should take less than a month. Are you from that part of the world yourself?\"\n\n\"From Baghdad,\" you say. \"I left to seek my fortune.\"\n\nHe laughs. \"Well, I doubt you'd find it here. Overall, my last trip has barely shown a profit.\"\n\n\"Not until I came aboard, presumably,\" you say with a rueful look at your purse.\n\nYou PAID 50 dinars.\n\nThe voyage starts well, but only two days out from the coast a sudden squall blows in from the north. \"It will be a rough ride,\" predicts the captain. \"Hang on tight.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, -50);
+    }
+
+    int Continue(Character::Base &player) { return 131; }
+};
+
+class Story400 : public Story::Base
+{
+public:
+    Story400()
+    {
+        ID = 400;
+
+        Image = "images/bedouin-tents.png";
+
+        Text = "The merchant caravan leaves the city, heading out across the desert. The camels lope sedately along, refusing to be hurried. You trudge beside them on sands the colour of dried blood, gazing at dunes sculpted by the wind into patterns like snakeskin. The air is dry as flint.\n\nAfter several days you come in sight of a group of tents crouching in the shade of a mountainous sand dune. The Bedouin emerge to greet you, glancing with shame at their scrawny goats. \"Alas, we have almost nothing to offer you by way of hospitality,\" laments their chief. \"But take this bread and the stew of vegetable roots that I was about to share with my family.\"\n\nIf you accept, it will mean that the Bedouin themselves go hungry.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+        {
+            Choices.push_back(Choice::Base("Eat the food they have set before you", 127));
+            Choices.push_back(Choice::Base("Insist they keep it", 171));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 104; }
 };
 
 auto prologue = Prologue();
@@ -10356,6 +10633,17 @@ auto story386 = Story386();
 auto story387 = Story387();
 auto story388 = Story388();
 auto story389 = Story389();
+auto story390 = Story390();
+auto story391 = Story391();
+auto story392 = Story392();
+auto story393 = Story393();
+auto story394 = Story394();
+auto story395 = Story395();
+auto story396 = Story396();
+auto story397 = Story397();
+auto story398 = Story398();
+auto story399 = Story399();
+auto story400 = Story400();
 
 void InitializeStories()
 {
@@ -10398,7 +10686,9 @@ void InitializeStories()
         &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359,
         &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369,
         &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379,
-        &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389};
+        &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389,
+        &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399,
+        &story400};
 }
 
 #endif
