@@ -7926,7 +7926,7 @@ public:
     {
         ID = 307;
 
-        Text = "You steer a course between the pirates and their prey. The prow slices the waves, but the wind seems to favour the pirate ship. You see its triangular black sails looming towards your stern. A raven figurehead glares from its prow.\n\nYour sailors rush to the rail. The pirate ship is bearing down relentlessly with the wind filling its sails. When you give the order to turn hard about, your helmsman stares at you doubtfully. \"That'll leave us dead in the water!\" he says.\n\nYou nod. \"Do it.\"\n\nYour ship turns to face the oncoming pirates. You can see their faces now: eager rapacious grins, eyes barren of pity. The wind knocks your sails flat and your ship lurches to a standstill, rocking to and fro. Your own crew\"s groan of dismay is echoed by a vaunting cheer from the pirates. They think you are a sitting duck. You watch calmly as they sail closer... closer...\n\nShuddering violently, the pirate ship comes to a dead halt. Those cruel grins vanish when the pirates see how you've lured them onto a sandbank just below the surface. Now it is they who are helpless. Calling a rapid-fire volley of instructions to the marines, you bring your own vessel around within hailing distance and tell the pirates that you are ready to take their surrender. Stuck fast on the sandbank, they have no choice.";
+        Text = "You steer a course between the pirates and their prey. The prow slices the waves, but the wind seems to favour the pirate ship. You see its triangular black sails looming towards your stern. A raven figurehead glares from its prow.\n\nYour sailors rush to the rail. The pirate ship is bearing down relentlessly with the wind filling its sails. When you give the order to turn hard about, your helmsman stares at you doubtfully. \"That'll leave us dead in the water!\" he says.\n\nYou nod. \"Do it.\"\n\nYour ship turns to face the oncoming pirates. You can see their faces now: eager rapacious grins, eyes barren of pity. The wind knocks your sails flat and your ship lurches to a standstill, rocking to and fro. Your own crew's groan of dismay is echoed by a vaunting cheer from the pirates. They think you are a sitting duck. You watch calmly as they sail closer... closer...\n\nShuddering violently, the pirate ship comes to a dead halt. Those cruel grins vanish when the pirates see how you've lured them onto a sandbank just below the surface. Now it is they who are helpless. Calling a rapid-fire volley of instructions to the marines, you bring your own vessel around within hailing distance and tell the pirates that you are ready to take their surrender. Stuck fast on the sandbank, they have no choice.";
 
         Choices.clear();
 
@@ -8073,7 +8073,6 @@ public:
 };
 
 class Story315 : public Story::Base
-
 {
 public:
     std::string PreText = "";
@@ -8204,6 +8203,294 @@ public:
     {
         Character::GET_ITEMS(player, {Item::HAWK});
     }
+};
+
+class Story320 : public Story::Base
+{
+public:
+    Story320()
+    {
+        ID = 320;
+
+        Text = "The guards look up amazed as you whisk the curtains aside and step out onto the deck. In an instant they have drawn their swords and are bearing down on you with murder in their eyes.\n\nThe nearest swings his blade and you duck, hearing the sharp steel hiss over your head and strike the wooden post of the kiosk with a dull thunk. As your foe tugs desperately at the sword to free it, you stamp on his foot and follow through with a vicious blow to his stomach. The others crowd in behind him, keen to try their mettle against you.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::JEWELLED_SWORD}))
+        {
+            return 208;
+        }
+        else
+        {
+            return 231;
+        }
+    }
+};
+
+class Story321 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story321()
+    {
+        ID = 321;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "Your blows land solidly. The nearest warrior grunts and folds around the knee you have brought up hard into his stomach. Smashing your forearm into the side of his neck where the helmet gives no protection, you send him reeling aside. He collides with one of the others and both go sprawling.\n\nAs you whirl to face the third warrior, he brings up his sword and aims the tip at your heart. You fling yourself aside and the blade just nicks your arm. Stepping closer, you grab his forearm and drive the stiffened fingers of your other hand deep into his solar plexus. A gasp of pain issues from the iron visor as he crumples. But by now the other two have picked themselves up. You seem to be getting the better of them, but weight of numbers could still tell against you. Yussuf is no help -- he just cowers at the end of the gallery bleating like a lost lamb.\n\n";
+
+        auto DAMAGE = -3;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -1;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 386; }
+};
+
+class Story322 : public Story::Base
+{
+public:
+    Story322()
+    {
+        ID = 322;
+
+        Text = "Catching up with the man, you remonstrate with him for suggesting you bear a curse. \"This BLACK JEWEL I wear is a sure defence against evil sorcery,\" you point out.\n\n\"Whoever told you that was a prince of liars,\" he vows. \"You have been tricked, I fear. But I know a person who can rid you of the curse.\"\n\n\"At a price, I suppose?\"\n\n\"Of course. But what price is too high if paying it will save your soul?\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go with him", 489));
+        Choices.push_back(Choice::Base("Go back to the ship", 301));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story323 : public Story::Base
+{
+public:
+    Story323()
+    {
+        ID = 323;
+
+        Choices.clear();
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            return 367;
+        }
+        else
+        {
+            return 388;
+        }
+    }
+};
+
+class Story324 : public Story::Base
+{
+public:
+    Story324()
+    {
+        ID = 324;
+
+        Text = "The jinni comes in answer to your summons. Surveying the chanting mage on the jetty, he turns to you and says, \"What is it you would have me do?\"\n\n\"Deflect the curse!\"\n\nThe jinni shrugs. \"His curse has no power. You are in the lap of fate now. I can save you from what is to come, but how do you know that matters will then turn out for the best?\"\n\n\"This is meaningless prattle. Steer our ship safely to a friendly port. I command you.\"\n\nStill he demurs. \"I say again, if I help you now then in the long run it may be worse for you. Will you bid me a third time? Then I must obey.\"\n\nWhat will you do?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Dismiss the jinni and trust to fate", 346));
+        Choices.push_back(Choice::Base("Insist that he does as he is told", 368));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story325 : public Story::Base
+{
+public:
+    Story325()
+    {
+        ID = 325;
+
+        Image = "images/rokh.png";
+
+        Text = "The legends were true. The rokh's nest is strewn with fragments of DIAMOND, some of them as big as a large shield. Any one of them would make your fortune -- which is just as well, because you could only carry one on the precarious descent.\n\nThere is something else in the nest: a JEWELLED METAL KEY as long as your forearm. You lick your lips uncertainly. Which is it to be: the JEWELLED KEY, or a fragment of DIAMOND? You can only choose one of these.";
+
+        Bye = "Then you descend the same way you came up.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::JEWELLED_KEY, Item::DIAMOND};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAREM}))
+        {
+            return 159;
+        }
+        else
+        {
+            return 480;
+        }
+    }
+};
+
+class Story326 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story326()
+    {
+        ID = 326;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "You close in quickly to a distance where he cannot get a good angle for striking. One punch lays him flat out, but he manages to gash you across the thigh as he falls.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -1;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 434; }
+};
+
+class Story327 : public Story::Base
+{
+public:
+    Story327()
+    {
+        ID = 327;
+
+        Text = "At your command, the jinni blows a thick cloud of smoke out of the hearth. The ghouls are reduced to helpless coughing and are powerless to stop you from leaping back out of the doorway. There is the smack of a meaty fist and a yowl of pain as one of the ghouls, taking a blind swing in the smoke, hits his brother by mistake. As you hurry away down the hillside you can hear their roars of anger rattling the hilltops.\n\n\"Am I safe now?\" you whisper to your ring.\n\n\"Hide in a cave till sunrise,\" replies the jinni's voice. \"The she-ghoul will try to use her wiles to find you, but I'll confound her with spells of my own.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 260; }
+};
+
+class Story328 : public Story::Base
+{
+public:
+    Story328()
+    {
+        ID = 328;
+
+        Image = "images/filler2.png";
+
+        Text = "Cairo market has few bargains to offer because of the problem of the pirates, but you find the following goods for sale: WATER BOTTLE, BOW, MIRROR, and SWORD.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Offer to help catch the pirates", 306));
+        Choices.push_back(Choice::Base("Leave the city", 349));
+
+        Controls = Story::Controls::SHOP;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Shop = {{Item::WATER_BOTTLE, 5}, {Item::BOW, 40}, {Item::MIRROR, 30}, {Item::SWORD, 30}};
+    }
+};
+
+class Story329 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story329()
+    {
+        ID = 329;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The demon pursues you into the covered passage. It realizes its mistake when you leap on it. Here it cannot retreat into the air every few seconds to recuperate from its wounds. \"Bad move, devil,\" you snarl as you pound it with heavy blows, \"now you've got to fight fair.\"\n\nThe demon's talons scrape you to the bone, but you give two blows for every one that it inflicts.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::SWORDPLAY, Skill::Type::WRESTLING}))
+        {
+            if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+            {
+                DAMAGE = 0;
+
+                PreText += "[SWORDPLAY] You are uninjuired.";
+            }
+            else
+            {
+                DAMAGE = -1;
+
+                PreText += "[WRESTLING] ";
+            }
+        }
+
+        if (DAMAGE < 0)
+        {
+            Character::GAIN_LIFE(player, DAMAGE);
+
+            PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 372; }
 };
 
 auto prologue = Prologue();
@@ -8526,6 +8813,16 @@ auto story316 = Story316();
 auto story317 = Story317();
 auto story318 = Story318();
 auto story319 = Story319();
+auto story320 = Story320();
+auto story321 = Story321();
+auto story322 = Story322();
+auto story323 = Story323();
+auto story324 = Story324();
+auto story325 = Story325();
+auto story326 = Story326();
+auto story327 = Story327();
+auto story328 = Story328();
+auto story329 = Story329();
 
 void InitializeStories()
 {
@@ -8561,7 +8858,8 @@ void InitializeStories()
         &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289,
         &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299,
         &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309,
-        &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319};
+        &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319,
+        &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329};
 }
 
 #endif
