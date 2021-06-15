@@ -509,6 +509,11 @@ public:
 
         Controls = Story::Controls::STANDARD;
     }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, -1);
+    }
 };
 
 class Story002 : public Story::Base
@@ -8493,6 +8498,248 @@ public:
     int Continue(Character::Base &player) { return 372; }
 };
 
+class Story330 : public Story::Base
+{
+public:
+    Story330()
+    {
+        ID = 330;
+
+        Text = "The Bedouin refuse to see reason and are now so indignant that they also demand your water.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Leave", 373));
+        Choices.push_back(Choice::Base("Fight", 352));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::CUNNING, Skill::Type::WILDERNESS_LORE}))
+        {
+            return 394;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+};
+
+class Story331 : public Story::Base
+{
+public:
+    Story331()
+    {
+        ID = 331;
+
+        Text = "What will you do next?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try a punch", 468));
+        Choices.push_back(Choice::Base("Try a leg sweep", 242));
+        Choices.push_back(Choice::Base("Wait for him to attack and then dodge aside", 219));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::WRESTLING, Skill::Type::AGILITY}))
+        {
+            return 173;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+};
+
+class Story332 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story332()
+    {
+        ID = 332;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stand you ground", 237));
+        Choices.push_back(Choice::Base("Back away", 46));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The demon swoops to renew its attack. Claws like razors rake across your flesh, but you ignore the pain and lash out with blows of your own. Each time you hit, you feel the crack of chitin and the demon utters a sibilant scream.\n\n";
+
+        auto DAMAGE = -3;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -1;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -2;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nAfter a short exchange of blows, the demon breaks off and rises again into the air to heal its wounds. If only you had the same advantage.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story333 : public Story::Base
+{
+public:
+    Story333()
+    {
+        ID = 333;
+
+        Text = "The captain pulls off his turban and weeps into it. \"Even working all together, it would take us weeks to build that tower's twin!\" he wails. \"Alas, we can only wait and see what fate the dwarf has in store.\"\n\n\"Why wait?\" You take hold of the cushion by one corner and turn it around so that the dwarf's head is pointing away from the sun. Ignoring the horrified looks of your comrades, you give a bold laugh and shake him awake.\n\nHe opens one eye, then the other. He yawns. \"Morning already?\"\n\nYou gesture towards the tower. \"Yes. And see, we've built your tower.\"\n\nHe sits up, blinks and rubs his eyes. Uttering an angry oath, he leaps to his stumpy legs and glares at you. \"But what has happened to my own tower? It lies in ruins!\"\n\n\"There weren't quite enough stones, I'm afraid. We had to pull a few extra out of your tower's foundations and -- well, it toppled, as you can see.\"\n\nThe dwarf looks at the seven shark men, but they are apparently too dull-witted to make any comment. Contentment shows in a tight little smile as he replaces his crown. \"Oh well,\" you hear him mutter to himself, \"at least I won't have to worry about the egg any more.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 441; }
+};
+
+class Story334 : public Story::Base
+{
+public:
+    Story334()
+    {
+        ID = 334;
+
+        Image = "images/filler5.png";
+
+        Text = "At a gesture, the rope uncoils itself like a snake and rises until it stretches to the top of the tower. The sailors fall back with superstitious moans, but you are undaunted. Seizing the rope, you climb swiftly up to the balcony.\n\nThe chamber under the dome is bare of any decoration or feature except for a podium in the middle, where a large grey egg rests on a velvet cushion.\n\nYou step forward. The whole tower must have been built for the single purpose of keeping this egg safe.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Touch the egg", 290));
+        Choices.push_back(Choice::Base("Climb back down to the ground", 267));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story335 : public Story::Base
+{
+public:
+    Story335()
+    {
+        ID = 335;
+
+        Text = "You find yourself staring into the Sultan's face. His right eye is normal, but his left eye shines like a droplet of black venom. You feel a chill taking the strength from your limbs. You try to raise your arm, but it is lifeless. With a moan, you slump to the ground and darkness drops across you. It is the end.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story336 : public Story::Base
+{
+public:
+    Story336()
+    {
+        ID = 336;
+
+        Image = "images/filler3.png";
+
+        Text = "In the still silence of midnight, with everyone else asleep, you crouch beside Azenomei and make your plans for escaping from this dark hole.\n\n\"One of my keys will certainly fit the lock,\" he whispers. \"Give me your MAGIC SLIPPERS so that I can get up there. Once I'm out, I'll drop them back down.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Trust him", 380));
+        Choices.push_back(Choice::Base("Insist on being the one to go first", 401));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story337 : public Story::Base
+{
+public:
+    Story337()
+    {
+        ID = 337;
+
+        Text = "Ayisha sings a spell which sends a hail of hard pebbles flying from nowhere into Azenomei's face. He falls back, dazed, with blood streaming from a dozen wounds.\n\n\"Quickly!\" shrieks Ayisha. \"Get him while he's still stunned.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Attack him", 423));
+        Choices.push_back(Choice::Base("Run for it while you have the chance", 445));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story338 : public Story::Base
+{
+public:
+    Story338()
+    {
+        ID = 338;
+
+        Image = "images/filler2.png";
+
+        Text = "The slippers make you weightless and you drift high up into the sky until finally, penetrating the clouds, you see the nest of the rokh. Success is within your grasp.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 325; }
+};
+
+class Story339 : public Story::Base
+{
+public:
+    Story339()
+    {
+        ID = 339;
+
+        Text = "Despite the commotion behind you, there is no time to wait for the palace guards to arrive on the scene. You are determined not to let Jafar get away. You chase him down a wide staircase and on through an empty hall that echoes to the sound of his ragged breath as he struggles along in his heavy robes. Crossing a small courtyard, he glances back to see you gaining on him. You pursue him the length of a covered passage, emerging onto a parade ground which abuts the royal stables. And here you skid to a halt, for Jafar has turned to wait for you.\n\nHe takes a jar from his robes and raises it, saying a few words in the tongue of the idolaters who held sway in this land before the coming of the Prophet. Then he casts the jar down. It shatters on the cobblestones at his feet.\n\nA swirl of smoke rises, thickening into solid form. The creature Jafar has conjured has long limbs ending in extravagant talons. Its body gleams like old earthenware in the moonlight. Its eyes are brighter than the stars. Strangest of all are its wings -- translucent panes with a filigree of silver, like some huge insect's.\n\nJafar says, \"I'll leave you now to enjoy my demon's embrace.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            return 490;
+        }
+        else
+        {
+            return 216;
+        }
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -8823,6 +9070,16 @@ auto story326 = Story326();
 auto story327 = Story327();
 auto story328 = Story328();
 auto story329 = Story329();
+auto story330 = Story330();
+auto story331 = Story331();
+auto story332 = Story332();
+auto story333 = Story333();
+auto story334 = Story334();
+auto story335 = Story335();
+auto story336 = Story336();
+auto story337 = Story337();
+auto story338 = Story338();
+auto story339 = Story339();
 
 void InitializeStories()
 {
@@ -8859,7 +9116,8 @@ void InitializeStories()
         &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299,
         &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309,
         &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319,
-        &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329};
+        &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329,
+        &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339};
 }
 
 #endif
