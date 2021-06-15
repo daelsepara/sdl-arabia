@@ -31,8 +31,10 @@ namespace Item
         JERICHO_HORN,
         MIRROR,
         HAREM_COSTUME,
+        WHISTLE,
+        GLOVES,
         First = BOW,
-        Last = HAREM_COSTUME
+        Last = GLOVES
     };
 
     class Base
@@ -89,6 +91,8 @@ namespace Item
     auto JERICHO_HORN = Item::Base("Jericho HORN", "Jericho HORN", Item::Type::JERICHO_HORN);
     auto MIRROR = Item::Base("MIRROR", "MIRROR", Item::Type::MIRROR);
     auto HAREM_COSTUME = Item::Base("HAREM COSTUME", "HAREM COSTUME", Item::Type::HAREM_COSTUME);
+    auto WHISTLE = Item::Base("WHISTLE", "WHISTLE", Item::Type::WHISTLE);
+    auto GLOVES = Item::Base("GLOVES", "GLOVES", Item::Type::GLOVES);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::LONG_TAILED_CAT,

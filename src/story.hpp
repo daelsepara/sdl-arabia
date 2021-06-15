@@ -9128,7 +9128,7 @@ public:
     {
         ID = 353;
 
-        Text = "You dive through the curtain and find yourself in a cramped alcove. If you were hoping for an escape route, you\"re out of luck. You hear the Lord of the Desert stamping around his treasure hall. His sword makes angry swishing sounds, but for some reason he does not try to pursue you or drag you out of the alcove.\n\n\"How long can you hide in there?\" he snarls. \"Come out and face me, coward!\"";
+        Text = "You dive through the curtain and find yourself in a cramped alcove. If you were hoping for an escape route, you're out of luck. You hear the Lord of the Desert stamping around his treasure hall. His sword makes angry swishing sounds, but for some reason he does not try to pursue you or drag you out of the alcove.\n\n\"How long can you hide in there?\" he snarls. \"Come out and face me, coward!\"";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -9498,6 +9498,249 @@ public:
     }
 
     int Continue(Character::Base &player) { return 412; }
+};
+
+class Story370 : public Story::Base
+{
+public:
+    Story370()
+    {
+        ID = 370;
+
+        Image = "images/filler1.png";
+
+        Text = "The two sons are stocky and strong, but you can capitalize on their slow wits and clumsiness. The mother will be harder to beat, because legend has it that a she-ghoul can only be hurt by a weapon made of wood. Furthermore, you must strike well with your first attack. There are countless stories of ghoul-witches who have been felled by one blow, only to be replenished when a second blow was struck.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 305; }
+};
+
+class Story371 : public Story::Base
+{
+public:
+    Story371()
+    {
+        ID = 371;
+
+        Text = "Falling in with a group of marines who have just returned from a patrol of the Red Sea, you impress them with your knowledge of naval tactics. These men are slaves of the Sultan, well trained and fiercely loyal. Their officer vows to follow some of your suggestions on his next patrol. A few days later you see him with his commander as they emerge from the public bath-house, and the officer calls you over to introduce you.\n\nThe commander is a man with little practical experience, but he listens keenly to your tales of distant lands. When you tell him about the explosive powders of China and the incendiary liquid used by the Byzantine navy, he claps his hands in amazement. \"You must tell these stories to the Sultan himself. He is fascinated by such things.\"\n\n\"I would be delighted to do so. Also, I would like to explain to him about the ideas you and I have come up with for catching the Red Sea pirates.\"\n\n\"Eh? What plans are those?\" Understanding dawns with a sudden grin. \"Oh yes. The plans we discussed. I hope my own input was useful.\"\n\n\"Invaluable, my lord.\"\n\nHe arranges an audience with the Sultan and also pays you 50 dinars as a reward for letting the Sultan think that the plan came from both of you.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 50);
+    }
+
+    int Continue(Character::Base &player) { return 193; }
+};
+
+class Story372 : public Story::Base
+{
+public:
+    Story372()
+    {
+        ID = 372;
+
+        Image = "images/filler4.png";
+
+        Text = "The pirate leader wore a BLACK JEWEL on a chain around his neck. The captain of marines hands it to you. \"Perhaps you'd like to have this as a keepsake,\" he suggests. \"We have to take the rest of the booty back to the Sultan, of course.\"\n\nWhen you return to Cairo, the Sultan is overwhelmed with gratitude. \"Those pirates had been bleeding the city dry,\" he says. \"You are our saviour. This reward is hardly enough to express my thanks. On your future travels, always remember that there is a welcome here for you in Cairo.\"\n\nYou RECEIVED 1000 dinars.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 1000);
+
+        Take = {Item::BLACK_JEWEL};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 349; }
+};
+
+class Story373 : public Story::Base
+{
+public:
+    Story373()
+    {
+        ID = 373;
+
+        Text = "At dawn the next day, a sheath of darkness suddenly covers the burnished edge of the rising sun. The roaring wind hits only moments later, bringing with it dense clouds of stinging sand. The storm blots out all daylight. Sheltering your eyes, you grab the halter of the nearest camel to keep from getting lost. Then you realize you have the leading camel. It is up to you to decide which route to take.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Head straight into the wind", 36));
+        Choices.push_back(Choice::Base("Bear left", 82));
+        Choices.push_back(Choice::Base("Lead the camels to the right", 59));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story374 : public Story::Base
+{
+public:
+    Story374()
+    {
+        ID = 374;
+
+        Text = "You scramble across the chamber, narrowly avoiding the Lord's blade as it slices through the air behind you, and dive into the jar.\n\nAfter a moment, his face appears above you. He wears a predatory smile as he says: \"You're cornered in your bolt-hole, little mouse. Let that be your final resting place, then.\"\n\nSand pours magically from his hands, filling the jar and smothering you. There is no escape.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story375 : public Story::Base
+{
+public:
+    Story375()
+    {
+        ID = 375;
+
+        Image = "images/port-of-suhar.png";
+
+        Text = "You sail on to Basra and beyond, now leaving the river and entering open sea. Crossing the Persian Gulf as far as the Straits of Hormuz takes a week, in weather as serene as an idyll from the ancient epics. \"But wait till we're on the ocean,\" mutters one of the sailors. \"We'll earn our pay then.\"\n\nThe glittering port of Suhar lies a day's sailing down the coast from the straits. Here the ship will take on supplies for the long ocean voyage. You have the opportunity to stroll through the market and examine the goods on offer. You may purchase any of the following that you have money for: WATER BOTTLE, MIRROR, WHISTLE, GLOVES, and HAWK.";
+
+        Bye = "You head back to the harbour.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::SHOP;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Shop = {{Item::WATER_BOTTLE, 5}, {Item::MIRROR, 20}, {Item::WHISTLE, 3}, {Item::GLOVES, 5}, {Item::HAWK, 20}};
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::BLACK_JEWEL}))
+        {
+            return 279;
+        }
+        else
+        {
+            return 301;
+        }
+    }
+};
+
+class Story376 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story376()
+    {
+        ID = 376;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go to pray in the holy city", 101));
+        Choices.push_back(Choice::Base("You can see Hakim's point", 123));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You stagger on, tortured by hunger and thirst every moment you are awake. Your sleep is a fever haunted by strange fugitive visions.\n\nYou LOSE 2 Life Points.";
+
+        Character::GAIN_LIFE(player, -2);
+
+        Character::LOSE_ALL(player);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou fall to your knees in tearful thanks when at long last you see the walls and spires of a city in the distance. \n\n\"It is Mecca!\" says Rahman, the scribe who keeps Hakim's accounts. \"God be praised for His mercy. All of you, cast off your travelling clothes and prepare to enter the holy city. We must give thanks for our deliverance from the wilderness.\"\n\n\"Not so fast,\" says Hakim. \"We'll stop long enough to fill the waterskins, but if any of you want to get pious you'll have to do it on the way home. I'm in a hurry to get these goods to Cairo market, and I can't afford to dally around here for days on end.\"";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story377 : public Story::Base
+{
+public:
+    Story377()
+    {
+        ID = 377;
+
+        Text = "You approach the tower and walk all around it. There is no way in. Looking up, you see a balcony surrounding the domed turret. But the walls are smooth and sheer. You doubt if a lizard would find enough purchase to climb it.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::AGILITY, Skill::Type::CUNNING}) && Character::VERIFY_ITEMS_ANY(player, {Item::HAWK, Item::INDIAN_ROPE}))
+        {
+            Choices.push_back(Choice::Base("Use a HAWK", 244, {Item::HAWK}));
+            Choices.push_back(Choice::Base("Use an INDIAN ROPE", 334, {Item::INDIAN_ROPE}));
+        }
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::AGILITY, Skill::Type::CUNNING}))
+        {
+            return 221;
+        }
+        else
+        {
+            return 311;
+        }
+    }
+};
+
+class Story378 : public Story::Base
+{
+public:
+    Story378()
+    {
+        ID = 378;
+
+        Text = "Strange stories are told about the Sultan of Nishapur. He is said to be a sorcerer who drowned his elder brother in a vat of black dye, then flayed the skin to make a covering for his sword. Learning spells that could command even the angels, he placed himself in a deep sleep during which a messenger came and cut out his eye with a silver dagger. The messenger -- apparently an angel -- bore the eye up to heaven, where it witnessed marvels beyond the limits of human experience. When the eye was brought back and replaced, the Sultan awoke with knowledge of secrets from before the dawn of time. The gaze of the eye had become so terrible, however, that it slew any who looked into it. So it was that from that day on the Sultan has always worn a mask, and the women of his harem are always blinded.\n\nThat, at least, is the story.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 398; }
+};
+
+class Story379 : public Story::Base
+{
+public:
+    Story379()
+    {
+        ID = 379;
+
+        Text = "Touching your lips, you bow and say, \"Peace be upon you, O King. Your perceptive gaze has gleaned the truth. I was cursed by a powerful jinni never to know good fortune. No doubt that is why I now find myself standing in abject terror with all my friends slaughtered around me. There is only one way to end this curse.\"\n\n\"Yes?\" says the Sultan. The leather of his saddle creaks as he leans forward in curiosity.\n\n\"I must be slain. Then my curse will pass to those who kill me.\" You look around at the band of knights, suddenly falling to your knees and wailing, \"I can take no more misery! Kill me, I pray!\"\n\nA nervous look passes between them. \"This pitiful wretch may speak the truth, Majesty,\" they say to the Sultan.\n\nThere is silence behind the mask, then he says, \"Only God is wise in all things. Come.\"\n\nThey ride off, leaving you alone in the midst of the carnage.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 177; }
 };
 
 auto prologue = Prologue();
@@ -9870,6 +10113,16 @@ auto story366 = Story366();
 auto story367 = Story367();
 auto story368 = Story368();
 auto story369 = Story369();
+auto story370 = Story370();
+auto story371 = Story371();
+auto story372 = Story372();
+auto story373 = Story373();
+auto story374 = Story374();
+auto story375 = Story375();
+auto story376 = Story376();
+auto story377 = Story377();
+auto story378 = Story378();
+auto story379 = Story379();
 
 void InitializeStories()
 {
@@ -9910,7 +10163,8 @@ void InitializeStories()
         &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339,
         &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349,
         &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359,
-        &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369};
+        &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369,
+        &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379};
 }
 
 #endif
