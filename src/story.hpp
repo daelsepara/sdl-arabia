@@ -7697,6 +7697,8 @@ public:
 
         Text = "You are amazed at Masrur's strength and skill. He is one of the most dangerous swordsmen in the world, and in his youth he must have been unbeatable. As it is, your best manoeuvres and parries are only just enough to keep him at bay. You know your only hope is to stay out of his reach and let him tire himself out.\n\nYou glance aside to judge the distance to the door. Taking instant advantage of your lapse of concentration, Masrur breaks through your guard and his sword lays open a long gash across your brow. You stagger back, wiping the blood from your eyes, expecting the death-blow to follow at any moment. But by this time Masrur's age and bulk are beginning to tell. Leaning on his sword to get his breath back, he gasps, \"You're better than I thought... you wretch... But I'll have you now...\"\n\nThe door to the landing is behind you. As Masrur lumbers forward, you get ready to time your dodge perfectly. So that he doesn't realize what you're planning, you taunt him by saying, \"You should stick to your job as executioner, Masrur. You don't seem so hot when you're fighting someone who isn't tied up.\"\n\nThat does it. He snarls like a lion and lunges for your heart.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -7755,6 +7757,8 @@ public:
         Image = "images/ayisha.png";
 
         Text = "The door frame splinters under the force of a kick, and you step through into a scented chamber curtained with diaphanous silks. A raven-haired girl reclines on a golden couch in the middle of the room. She looks up as you enter, and her expression is a mixture of fear and hope as she says, \"Have you come to free me?\"\n\nYou notice that her ankle is chained to the floor, the chain being fixed by a huge padlock. \"Who are you?\" you ask.\n\n\"Ayisha, the daughter of the Caliph. I was stolen from Baghdad in the middle of the night by a powerful jinni who brought me here to his citadel.\"\n\nYou go closer and test the strength of the padlock. It is easy to see that you could never hope to break it. \"Perhaps Azenomei has a key to fit it.\"\n\n\"Who is Azenomei?\"\n\n\"I am.\"\n\nYou turn to see your friend standing in the doorway. He slowly runs his hand over the broken wood and then shakes his head regretfully. \"I did tell you not to open any locked doors.\"\n\n\"Azenomei...\" You take a pace towards him. \"Look, I've found your sister.\"\n\nHis only answer is a soft mocking laugh. After a moment, Ayisha says, \"He lied to you. He isn't my brother. This is the jinni who abducted me!\"\n\nYou gained the codeword HAREM.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -7833,6 +7837,8 @@ public:
         ID = 304;
 
         Text = "You jump forward with a sharp yell, but your opponent is not intimidated. He holds you off long enough for the other guard to slash a deep cut in your flank.\n\nYou LOSE 1 Life Point.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -7922,6 +7928,8 @@ public:
 
         Text = "You steer a course between the pirates and their prey. The prow slices the waves, but the wind seems to favour the pirate ship. You see its triangular black sails looming towards your stern. A raven figurehead glares from its prow.\n\nYour sailors rush to the rail. The pirate ship is bearing down relentlessly with the wind filling its sails. When you give the order to turn hard about, your helmsman stares at you doubtfully. \"That'll leave us dead in the water!\" he says.\n\nYou nod. \"Do it.\"\n\nYour ship turns to face the oncoming pirates. You can see their faces now: eager rapacious grins, eyes barren of pity. The wind knocks your sails flat and your ship lurches to a standstill, rocking to and fro. Your own crew\"s groan of dismay is echoed by a vaunting cheer from the pirates. They think you are a sitting duck. You watch calmly as they sail closer... closer...\n\nShuddering violently, the pirate ship comes to a dead halt. Those cruel grins vanish when the pirates see how you've lured them onto a sandbank just below the surface. Now it is they who are helpless. Calling a rapid-fire volley of instructions to the marines, you bring your own vessel around within hailing distance and tell the pirates that you are ready to take their surrender. Stuck fast on the sandbank, they have no choice.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -7962,6 +7970,239 @@ public:
         Choices.push_back(Choice::Base("Try to hide in one of the huge stone jars", 374));
 
         Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story310 : public Story::Base
+{
+public:
+    Story310()
+    {
+        ID = 310;
+
+        Text = "You give a sudden whoop of delight that frightens the others. They think the ordeal has sent you mad. Hakim recoils in horror when you seize his sleeve and say, \"Sandstorm? That's no sandstorm. It's the answer to our prayers.\"\n\n\"There is no majesty nor power except in God,\" says Rahman, the portly scribe who keeps the accounts.\n\nYou round on him. You know you must present a wild sight, with your joyful grin and feverish stare. You see his look of shock and speak to calm him, saying, \"It is not for me to guide you. God guides those He chooses to.\"\n\nYou set off with a determined stride. The others murmur doubtfully, but soon see they have no hope if they do not trust you. Tugging the camels, they follow you towards the spot where you saw the dark cloud.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 354; }
+};
+
+class Story311 : public Story::Base
+{
+public:
+    Story311()
+    {
+        ID = 311;
+
+        Text = "You look at the sun, now dipping low in the west. How can you possibly build a tower in the space of one night?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[CUNNING] will do the trick", 333, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Use [MAGIC]", 355, Skill::Type::MAGIC));
+        Choices.push_back(Choice::Base("Go off to explore the tower", 377));
+        Choices.push_back(Choice::Base("Use the LAMP of Antar to slip away", 495, {Item::LAMP_OF_ANTAR}));
+        Choices.push_back(Choice::Base("Urge the other sailors to help you fight the shark men", 108));
+        Choices.push_back(Choice::Base("Wait until the dwarf wakes up and try to reason with him", 397));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story312 : public Story::Base
+{
+public:
+    Story312()
+    {
+        ID = 312;
+
+        Text = "You take cover in the bushes as the riders draw near. All four are clad in white robes, with doeskin boots and glinting silver filigree across their cloaks. All four carry spears, and all have swords and long curved knives at their belts. But they are not all alike in every way, for one wears a blankly serene mask fashioned from polished ivory.\n\nThe masked one speaks in a voice of honey, of music: \"I am the Sultan of Nishapur. The gazelle you took was mine, not yours.\"\n\n\"All gifts are given by God,\" says Abdullah defiantly. \"Besides, Nishapur is far from here and, since you wear a mask, who can say whether you speak the truth?\"\n\n\"I wear a mask,\" replies the other, \"because my gaze would shrivel you.\" His voice remains placid but with the merest lacing of menace, like a tart taste of poison mixed with sweet date wine.\n\nThe three knights brandish their spears. Events are about to turn nasty.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Emerge and stand with your comrades", 398));
+        Choices.push_back(Choice::Base("Stay in hiding", 420));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story313 : public Story::Base
+{
+public:
+    Story313()
+    {
+        ID = 313;
+
+        Text = "Just as the Sultan removes his mask, you step forward and fling the cloak across his face. He claws at it, blinded for an instant. The three knights growl deep in their throats and go for their swords.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::SWORD}))
+        {
+            return 357;
+        }
+        else
+        {
+            return 335;
+        }
+    }
+};
+
+class Story314 : public Story::Base
+{
+public:
+    Story314()
+    {
+        ID = 314;
+
+        Text = "You remember the cat's weird knack of adding inches to its tail each time it hears a lie. \"Then that's how we'll escape,\" says Azenomei brightly when you tell him.\n\nYou shake your head. \"The tail soon shrinks again, and the grille's at least twenty feet up.\"\n\nHis eyes show a sly glint. \"I know a thousand lies, each more scandalous than the last. We'll wait till it's dark.\"\n\nAt midnight he wakes you and then, bending close to the cat's ear, he starts to whisper to it. Instantly the tail shoots up, growing longer and longer, until it reaches to the grille. \"Climb quick,\" says Azenomei, tossing you the keys.\n\nThe two of you ascend and unlock the grille. After more than a week in the noxious air of the cell, the night breeze tastes as sweet as oasis water. Azenomei takes back his bunch of keys. You notice the cat's tail is shrinking again, so you grab it and haul the animal up after you. Who knows, it might come in useful again.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 358; }
+};
+
+class Story315 : public Story::Base
+
+{
+public:
+    std::string PreText = "";
+
+    Story315()
+    {
+        ID = 315;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "Cold tongues of magical flame blast from his fingers. They lick around your limbs and you feel as though shards of ice are being hammered into your bones.\n\n";
+
+        auto DAMAGE = -6;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            DAMAGE = -3;
+
+            PreText += "[AGILITY] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        if (player.Life > 0)
+        {
+            if (!Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAREM}))
+            {
+                Choices.push_back(Choice::Base("Use [MAGIC]", 359, Skill::Type::MAGIC));
+                Choices.push_back(Choice::Base("Use the Jericho HORN", 381, {Item::JERICHO_HORN}));
+                Choices.push_back(Choice::Base("Fight", 410));
+            }
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 337; }
+};
+
+class Story316 : public Story::Base
+{
+public:
+    Story316()
+    {
+        ID = 316;
+
+        Text = "You tell the cat a couple of lies. Its tail grows a few inches but then, as before, shrinks back to its original length.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use [STREETWISE]", 382, Skill::Type::STREETWISE));
+        Choices.push_back(Choice::Base("Use [FOLKLORE]", 382, Skill::Type::FOLKLORE));
+        Choices.push_back(Choice::Base("Find something else to use", 204));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story317 : public Story::Base
+{
+public:
+    Story317()
+    {
+        ID = 317;
+
+        Text = "Jafar hurls the knife. The Caliph gives a groan and starts to crumple across his silk cushions like a flower wilting in the sun. Jafar hardly waits to celebrate his evil deed. Seeing the look in your eyes, he flees out of the room.\n\nYou gained the codeword IRIS.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::IRIS});
+    }
+
+    int Continue(Character::Base &player) { return 339; }
+};
+
+class Story318 : public Story::Base
+{
+public:
+    Story318()
+    {
+        ID = 318;
+
+        Text = "You place the HAWK on your shoulder, where it sits without protest.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Avail yourself of one of the magnificent JEWELLED SWORDs hanging on the wall", 450));
+        Choices.push_back(Choice::Base("Leave without them", 93));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::HAWK});
+    }
+};
+
+class Story319 : public Story::Base
+{
+public:
+    Story319()
+    {
+        ID = 319;
+
+        Text = "A narrow winding staircase leads up to the roof. You can hear the guards scrambling up behind you, and Jafar's voice echoes from the bottom of the stairwell.\n\nYou run over to the parapet and look around for an escape route. Nearby is the roof of the gatehouse, just a little lower than the level of the parapet. If you could make it to the gatehouse you could descend easily to the ground and make your getaway. The snag is that it is almost ten metres away. No one could make that jump.\n\nShouts from behind warn you that the guards have reached the top of the stairs. Just as you are resigning yourself to the thought of a futile death, you notice a flagpole sticking out from the wall just below the parapet. A gonfalon dangles from it, moving slowly in the gentle night breeze, casting its shadow across a moonlit balcony below. A gap of only six metres separates the tip of the flagpole from the gatehouse roof. A good athlete might make the jump.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[AGILITY] Try to jump to the gatehouse", 340, Skill::Type::AGILITY));
+        Choices.push_back(Choice::Base("Rely on [CUNNING]", 406, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Try [MAGIC]", 428, Skill::Type::MAGIC));
+        Choices.push_back(Choice::Base("You are cornered and must fight", 447));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::HAWK});
     }
 };
 
@@ -8275,6 +8516,16 @@ auto story306 = Story306();
 auto story307 = Story307();
 auto story308 = Story308();
 auto story309 = Story309();
+auto story310 = Story310();
+auto story311 = Story311();
+auto story312 = Story312();
+auto story313 = Story313();
+auto story314 = Story314();
+auto story315 = Story315();
+auto story316 = Story316();
+auto story317 = Story317();
+auto story318 = Story318();
+auto story319 = Story319();
 
 void InitializeStories()
 {
@@ -8309,7 +8560,8 @@ void InitializeStories()
         &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279,
         &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289,
         &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299,
-        &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309};
+        &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309,
+        &story310, &story311, &story312, &story313, &story314, &story315, &story316, &story317, &story318, &story319};
 }
 
 #endif

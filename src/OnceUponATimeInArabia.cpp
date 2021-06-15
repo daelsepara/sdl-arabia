@@ -362,14 +362,12 @@ void putText(SDL_Renderer *renderer, const char *text, TTF_Font *font, int space
 
             if (space > 0)
             {
-                renderText(renderer, surface, bg, x + space, y + space, height - 2 * space, 0);
+                renderText(renderer, surface, 0, x + space, y + space, height - 2 * space, 0);
             }
             else
             {
-                renderText(renderer, surface, bg, x + (w - surface->w) / 2, y + (h - surface->h) / 2, height - 2 * space, 0);
+                renderText(renderer, surface, 0, x + (w - surface->w) / 2, y + (h - surface->h) / 2, height - 2 * space, 0);
             }
-
-            
 
             SDL_FreeSurface(surface);
 
@@ -2826,7 +2824,7 @@ Character::Base loadGame(std::string file_name)
         character.SKILLS_LIMIT = (int)data["skillsLimit"];
         character.StoryID = (int)data["storyID"];
 
-        character.Gender = gender; 
+        character.Gender = gender;
 
         try
         {
@@ -4132,7 +4130,11 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
                 }
             }
 
-            fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);
+            SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+            fillRect(renderer, textwidth, text_bounds, textx, texty, BE_50);
+
+            SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 
             renderButtons(renderer, controls, current, intYW, text_space, text_space / 2);
 
@@ -5122,21 +5124,35 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 if (!splash || (splash && splash_h < (text_bounds - (boxh + infoh))))
                 {
                     putText(renderer, "Life", font, text_space, clrWH, (player.Life > 0 ? intYW : intRD), TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (boxh + infoh));
-                    putText(renderer, (std::to_string(player.Life)).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
+
+                    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+                    putText(renderer, (std::to_string(player.Life)).c_str(), font, text_space, clrBK, BE_50, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
+
+                    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
                 }
 
                 if (!splash || (splash && splash_h < text_bounds - (2 * (boxh + infoh) + box_space)))
                 {
                     putText(renderer, "Money", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
-                    putText(renderer, (std::to_string(player.Money) + std::string(" dinars")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+                    
+                    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+                    
+                    putText(renderer, (std::to_string(player.Money) + std::string(" dinars")).c_str(), font, text_space, clrBK, BE_50, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+                    
+                    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
                 }
 
-                fillRect(renderer, textwidth, text_bounds, textx, texty, intBE);
+                SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+                fillRect(renderer, textwidth, text_bounds, textx, texty, BE_50);
 
                 if (story->Text && text)
                 {
-                    renderText(renderer, text, intBE, textx + space, texty + space, text_bounds - 2 * space, offset);
+                    renderText(renderer, text, 0, textx + space, texty + space, text_bounds - 2 * space, offset);
                 }
+
+                SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 
                 if (flash_message)
                 {

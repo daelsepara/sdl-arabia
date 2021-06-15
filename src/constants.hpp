@@ -28,6 +28,7 @@ const Uint32 intDB = 0xFF07073A;
 
 // Beige in ARG format
 const Uint32 intBE = 0xFFF5F5DC;
+const Uint32 BE_50 = 0x7FF5F5DC;
 
 // Light Blue in ARG format
 const Uint32 intLB = 0xFF0A64AD;
