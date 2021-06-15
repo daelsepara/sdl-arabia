@@ -30,8 +30,9 @@ namespace Item
         ANTIDOTE,
         JERICHO_HORN,
         MIRROR,
+        HAREM_COSTUME,
         First = BOW,
-        Last = MIRROR
+        Last = HAREM_COSTUME
     };
 
     class Base
@@ -87,6 +88,7 @@ namespace Item
     auto ANTIDOTE = Item::Base("ANTIDOTE", "ANTIDOTE", Item::Type::ANTIDOTE);
     auto JERICHO_HORN = Item::Base("Jericho HORN", "Jericho HORN", Item::Type::JERICHO_HORN);
     auto MIRROR = Item::Base("MIRROR", "MIRROR", Item::Type::MIRROR);
+    auto HAREM_COSTUME = Item::Base("HAREM COSTUME", "HAREM COSTUME", Item::Type::HAREM_COSTUME);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::LONG_TAILED_CAT,

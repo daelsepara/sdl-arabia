@@ -7767,6 +7767,204 @@ public:
     int Continue(Character::Base &player) { return 247; }
 };
 
+class Story301 : public Story::Base
+{
+public:
+    Story301()
+    {
+        ID = 301;
+
+        Text = "Where are you headed?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("You are bound for Egypt", 409));
+        Choices.push_back(Choice::Base("You are bound for the Indies", 431));
+        Choices.push_back(Choice::Base("You are heading towards the Scarlet Isle", 451));
+        Choices.push_back(Choice::Base("You cannot remember", 466));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story302 : public Story::Base
+{
+public:
+    Story302()
+    {
+        ID = 302;
+
+        Text = "The city is a sight to take the breath away. Columns of ivory and alabaster support walls of pure shimmering gold. The blocks of the pavement are gold and silver inlaid with sparkling jewels. The minarets are encrusted with lapis lazuli of so intense a blue that they seem as though the sky itself has taken on solid form.\n\nAwestruck, you pass through a burnished arch that gleams like flame in the sunlight and enter a wide hall where a strange battle is taking place. A gryphon -- a lion-like being with an eagle's wings and beak -- is struggling with a giant scorpion. The fury of their battle is like nothing you have ever witnessed. Their deafening cries reverberate off the walls: the shriek and caw of the noble gryphon, the awful rattling hiss of its venomous foe. Each blow makes the metallic floor ring like an anvil. The whole chamber is awash with gore.\n\nDuring a respite in the fighting, the gryphon falls back, sinking to the floor beside you. The scorpion crouches against the far wall. It is injured too, but you see that it is recovering its strength faster. As the scorpion advances flailing its poison-coated sting, the gryphon turns to you and says weakly, \"Grant me a drop of your blood. It is the only thing that will sustain me in this battle.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("You consent to give some of your blood", 452));
+        Choices.push_back(Choice::Base("Otherwise", 402));
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story303 : public Story::Base
+{
+public:
+    Story303()
+    {
+        ID = 303;
+
+        Text = "If you had hoped for a magic lamp or a cask of jewels, you are due for disappointment. The metallic glint turns out to be just a single dinar buried in the muck at the bottom of the well. As you rub it clean and drop it into your pocket, you notice a narrow tunnel leading off from the well shaft. Looking along it, you can see nothing but dank walls with darkness stretching beyond.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Follow the tunnel to see where it leads", 225));
+        Choices.push_back(Choice::Base("Climb back out of the well and return to the ship", 189));
+        Choices.push_back(Choice::Base("Go to the headman's house", 235));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 1);
+    }
+};
+
+class Story304 : public Story::Base
+{
+public:
+    Story304()
+    {
+        ID = 304;
+
+        Text = "You jump forward with a sharp yell, but your opponent is not intimidated. He holds you off long enough for the other guard to slash a deep cut in your flank.\n\nYou LOSE 1 Life Point.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, -1);
+    }
+
+    int Continue(Character::Base &player) { return 282; }
+};
+
+class Story305 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story305()
+    {
+        ID = 305;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Strike at her with your bare fists", 413));
+        Choices.push_back(Choice::Base("Strike at her with a SWORD", 391, {Item::SWORD}));
+        Choices.push_back(Choice::Base("Look around for a weapon", 435));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The two male ghouls are as large as bulls standing on their hind legs. They are a lot uglier, of course. Uttering howls to make your blood flow like ice water, they launch iron-hard kicks at your shins while shredding at your face with their long talons.\n\n";
+
+        auto DAMAGE = -6;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SWORDPLAY))
+        {
+            DAMAGE = -2;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -4;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou step forward over the fallen bodies of the brothers. You spare no pity for the likes of them -- they were mere beasts who lived by preying on blameless travellers. But your real wrath is reserved for their evil dam, the vulture-faced crone who now stands spitting and snarling before you. You will take pleasure in ridding Creation of her loathsome life.\n\nSeeing you to be a doughty fighter, she makes a lunge towards a cleaver hanging on the wall.";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story306 : public Story::Base
+{
+public:
+    Story306()
+    {
+        ID = 306;
+
+        Text = "You believe you can come up with a plan to catch the Red Sea pirates. The problem is, who's going to listen to an impoverished wanderer like you?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use [SEAFARING]", 371, Skill::Type::SEAFARING));
+        Choices.push_back(Choice::Base("Use [STREETWISE]", 392, Skill::Type::STREETWISE));
+        Choices.push_back(Choice::Base("Use a HAREM COSTUME", 418, {Item::HAREM_COSTUME}));
+        Choices.push_back(Choice::Base("Your only option is to try to get to speak to the Sultan while he is outside the palace", 414));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story307 : public Story::Base
+{
+public:
+    Story307()
+    {
+        ID = 307;
+
+        Text = "You steer a course between the pirates and their prey. The prow slices the waves, but the wind seems to favour the pirate ship. You see its triangular black sails looming towards your stern. A raven figurehead glares from its prow.\n\nYour sailors rush to the rail. The pirate ship is bearing down relentlessly with the wind filling its sails. When you give the order to turn hard about, your helmsman stares at you doubtfully. \"That'll leave us dead in the water!\" he says.\n\nYou nod. \"Do it.\"\n\nYour ship turns to face the oncoming pirates. You can see their faces now: eager rapacious grins, eyes barren of pity. The wind knocks your sails flat and your ship lurches to a standstill, rocking to and fro. Your own crew\"s groan of dismay is echoed by a vaunting cheer from the pirates. They think you are a sitting duck. You watch calmly as they sail closer... closer...\n\nShuddering violently, the pirate ship comes to a dead halt. Those cruel grins vanish when the pirates see how you've lured them onto a sandbank just below the surface. Now it is they who are helpless. Calling a rapid-fire volley of instructions to the marines, you bring your own vessel around within hailing distance and tell the pirates that you are ready to take their surrender. Stuck fast on the sandbank, they have no choice.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 372; }
+};
+
+class Story308 : public Story::Base
+{
+public:
+    Story308()
+    {
+        ID = 308;
+
+        Text = "Time becomes a blur. Leaving the sand dunes behind, you enter a region of barren grey rock. The howling of the wind is like a dirge, and the trembling waves of heat cause strange images to hover above the horizon.\n\n\"I have heard the voices of the celestial maidens calling me to Paradise,\" avers one man. The next morning he has wandered away from the camp and cannot be found.\n\nYou press on. Everyone fears that the desert will become their grave, but no one dares to say it. Then you see a band of six white-robed Bedouin riding towards you with raised spears. \"God has abandoned us!\" wails Hakim, falling to his knees. \"These devils will slay us and eat our flesh.\"\n\nThe Bedouin rein in at a spear-cast's distance and call out to you in arrogant tones: \"This is our desert. To pass on you must pay a toll of half your goods.\"\n\nYou glance around. Hakim is too terrified to take charge. The others look on with dull leaden looks. It is left to you to decide how to deal with this challenge.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try to negotiate", 330));
+        Choices.push_back(Choice::Base("Attack", 352));
+        Choices.push_back(Choice::Base("Turn aside to avoid any trouble", 373));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story309 : public Story::Base
+{
+public:
+    Story309()
+    {
+        ID = 309;
+
+        Text = "The Lord of the Desert bids you rise. Not kindly -- his voice is laden with menace. When you see his naked sword glistening in the light, you know what is to come.\n\n\"Come, mortal!\" he cries. \"Your last moment is at hand. Will you stand with limbs shaking, or will you fight to save yourself? Fight boldly, and I may even be merciful.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Draw a SWORD now", 13, {Item::SWORD}));
+        Choices.push_back(Choice::Base("Fight him unarmed", 331));
+        Choices.push_back(Choice::Base("Try to hide in the curtained alcove", 353));
+        Choices.push_back(Choice::Base("Try to hide in one of the huge stone jars", 374));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -8068,6 +8266,15 @@ auto story297 = Story297();
 auto story298 = Story298();
 auto story299 = Story299();
 auto story300 = Story300();
+auto story301 = Story301();
+auto story302 = Story302();
+auto story303 = Story303();
+auto story304 = Story304();
+auto story305 = Story305();
+auto story306 = Story306();
+auto story307 = Story307();
+auto story308 = Story308();
+auto story309 = Story309();
 
 void InitializeStories()
 {
@@ -8102,7 +8309,7 @@ void InitializeStories()
         &story270, &story271, &story272, &story273, &story274, &story275, &story276, &story277, &story278, &story279,
         &story280, &story281, &story282, &story283, &story284, &story285, &story286, &story287, &story288, &story289,
         &story290, &story291, &story292, &story293, &story294, &story295, &story296, &story297, &story298, &story299,
-        &story300};
+        &story300, &story301, &story302, &story303, &story304, &story305, &story306, &story307, &story308, &story309};
 }
 
 #endif
