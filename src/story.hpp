@@ -9295,6 +9295,211 @@ public:
     }
 };
 
+class Story360 : public Story::Base
+{
+public:
+    Story360()
+    {
+        ID = 360;
+
+        Text = "You give the command for the rope to rise, taking a firm hold of the top so that you are borne upwards, through the wispy clouds, to the thin clean air where the rokh has its eyrie.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 325; }
+};
+
+class Story361 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story361()
+    {
+        ID = 361;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Ishak of Mosul is one of the Caliph's favourite musicians. You know that he lives the life of a recluse in a house on the outskirts of the city. Calling on him, you are invited to dine. For almost an hour Ishak talks to you of various matters, but he is scrupulous about the laws of courtesy and does not demand to know why you have come.\n\nAt last you explain. \"I must see the Caliph. It is very important.\" Ishak looks out of the window. \"It is after dark. The curfew is in force.\"\n\nYou go to stand beside him, looking deep into his eyes. \"It's very important, Ishak.\"\n\nHe paces to and fro, then comes to a decision. Telling you to wait, he slips out into the night. Quite a short time later, the door bursts open and a group of soldiers dash in. Ishak stands in the doorway behind them, wringing his hands.\n\n\"It's not my fault,\" he says. \"They arrested me and made me lead them back here.\"";
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            PreText += "\n\nYou are seized and hauled away.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 446;
+        }
+        else
+        {
+            return 405;
+        }
+    }
+};
+
+class Story362 : public Story::Base
+{
+public:
+    Story362()
+    {
+        ID = 362;
+
+        Text = "\"The other reason? It is here,\" says Jafar, pulling a scroll from his sleeve. \"This CHART was brought to me by my loyal henchman, who got it from an African trader. It shows where I can find the nest of the great rokh, the bird with wings longer than a city's streets. It lays eggs of DIAMOND, and with just a few fragments of such an egg I could bribe the army and make myself Caliph.\"\n\nThe slave's eyes are wide with wonder. \"When will you set out to seek this treasure, lord?\" she asks.\n\nJafar snorts. \"Me, risk my life climbing to the rokh's nest? I have no intention of doing so. I employ others for those tasks. Even now, my agents are combing the sordid dives and dens of a dozen cities searching for the famous thief Shazir.\"\n\n\"Shazir!\" The slave gasps. \"I have heard of that one's daring exploits. It was Shazir who stole the ruby known as Iblis's Eye from the treasury of the Sultan of Nishapur.\"\n\nJafar nods impatiently. \"Yes, and it will be the same Shazir who steals a piece of the rokh's egg for me. Now, come and help me change. This Robe of Honour is elegant, but it is also rather uncomfortable.\" He puts the chart down on a table and goes through a curtained archway into an inner room. The slave glides dutifully after him.\n\nYou look at the CHART and lick your lips. Just a few quick strides and you would hold the key to great treasure in your hands. But if you are discovered here, you will be beheaded as a common thief.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Creep over for a closer look at the CHART", 184));
+        Choices.push_back(Choice::Base("Leave the palace now", 383));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story363 : public Story::Base
+{
+public:
+    Story363()
+    {
+        ID = 363;
+
+        Text = "You jump through into an empty chamber, slamming the door shut. You manage to wedge a candelabrum against it, but the guards are battering on the other side with the pommels of their swords. \"Break it down!\" you hear Jafar snarl.\n\nYour makeshift barricade won't hold them off for long. You look around, heart thudding like that of a cornered animal. The only route out of here is over a vine-covered balcony -- a drop of six metres or more to the hard flagstones below.\n\nThere is the sound of splintering wood. The guards are almost through the door. You have no time left to ponder. You must act now.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[MAGIC] Call on your jinni", 49, Skill::Type::MAGIC));
+        Choices.push_back(Choice::Base("Jump from the balcony", 72));
+        Choices.push_back(Choice::Base("Start climbing down using the vines for support", 95));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story364 : public Story::Base
+{
+public:
+    Story364()
+    {
+        ID = 364;
+
+        Text = "The woman goes ashen as she sees the jinni swirl up in a cloud of indigo vapour from your ring. Sheer amazement is the only thing that keeps her from crying out.\n\nThe jinni listens, fingering his tusks, as you explain the predicament. \"Let me rend them into small chunks and scatter them to the fishes, supreme one,\" he says eagerly as he peers out from the drapes at the six guards.\n\n\"Oh no,\" gasps the woman, finding her voice at last. \"It is not their fault. They're just doing as Jafar ordered.\"\n\nThe jinni looks to you. After a glance at the woman, you give him a nod. \"Do it without bloodshed,\" you say.\n\nShrugging, he turns himself into a gnat and flies out to where the guards are playing dice. Without them noticing, he alters the dice roll and then buzzes into one man's ear. The man looks up and glares at the man next to him. \"What do you mean, I cheated?\" he snarls.\n\n\"Cheated?\" replies the other. \"I never said any such thing.\"\n\n\"It must have been your guilty conscience speaking to you, Abdul, you lowborn dog,\" chortles another of the guards.\n\n\"Worthless excrement of a diseased camel!\" screams Abdul, leaping up and swinging a punch. Within seconds the brawl is whipped into a frenzy by the jinni's trickery. Soon six unconscious forms line the deck.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 254; }
+};
+
+class Story365 : public Story::Base
+{
+public:
+    Story365()
+    {
+        ID = 365;
+
+        Text = "You join Yussuf in a desperate scramble up the tunnel leading to the surface. But a twist in the passage just brings you to a dead end. Yussuf throws himself against the rock slab and claws at it, crying,\n\n\"This wasn't here a moment ago!\"\n\nThere is a deathly soft footstep right behind you. Before you can whirl to face your pursuers, something hits you in the middle of the back. Suddenly you feel dizzy. The light seems to be draining away into an inky haze.\n\nYussuf is screaming as he stares at your chest. You look down, and as your eyes flutter closed you see a slender sword point protruding between your ribs. It is slick with your own blood. This is the end.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story366 : public Story::Base
+{
+public:
+    Story366()
+    {
+        ID = 366;
+
+        Text = "There is no mistaking the telltale tug on your purse strings. You look down in time to see a scrawny urchin slice through the purse, snatch up your gold and run pell-mell away down the alley. You are about to give chase when you see two burly ruffians lurking in the entrance to the bath-house. Their scarred, hard faces leave you in no doubt that they would not hesitate to use those gnarled clubs they're holding.\n\nRealising that the man who led you here must be in league with the thieves, you look around. But he is already running off. Disgruntled at having been robbed, you slouch back towards the docks.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, -player.Money);
+    }
+
+    int Continue(Character::Base &player) { return 301; }
+};
+
+class Story367 : public Story::Base
+{
+public:
+    Story367()
+    {
+        ID = 367;
+
+        Image = "images/filler2.png";
+
+        Text = "An old story you heard from your mother springs to mind. It concerned a sailor who was cast up to the heavens on a waterspout. His comrades all fell back to their doom, but he was clutching a MAGIC FLOWER which enabled him to walk on the clouds. Finding a city of scintillant gold, he dwelt among the people there and even married one of them. Many years later, he was able to leave when the cloud became lodged on top of a high mountain. He brought his wife down the mountainside with him, but she could not survive in the over-rich air and soon died.\n\nBearing this tale in mind, you decide it might be safer not to let go of the FLOWER.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::JASMINE_FLOWER});
+    }
+
+    int Continue(Character::Base &player) { return 345; }
+};
+
+class Story368 : public Story::Base
+{
+public:
+    Story368()
+    {
+        ID = 368;
+
+        Text = "You sail downriver to the sea. As you go, clouds thicken like soot in the sky and the sails flutter fretfully as the first stirrings of a high wind come howling down. Lightning spits across the sky, rattling great blows against the gong of the heavens. The waters surge around your prow, sending spurts of foam across the deck.\n\nThe sailors moan and start to pray for deliverance. You turn to the jinni, who exerts his magic to quell the storm. It rolls off into the east -- a yellow glimmering beyond the clouds, like the fires of Iblis the Destroyer.\n\nThe seas are left with a high swell, but soon that too dies down. With a satisfied smirk, the jinni becomes a coil of vapour that is sucked back into your RING.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 389; }
+};
+
+class Story369 : public Story::Base
+{
+public:
+    Story369()
+    {
+        ID = 369;
+
+        Text = "You put on a sudden burst of speed that takes the two guards completely by surprise. Dodging both lunges, you whirl in time to see their expressions of slack-faced disbelief as they spring together, each piercing the other on his blade. As they slump lifeless to the ground, you step up to the door and free the captain.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 412; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -9655,6 +9860,16 @@ auto story356 = Story356();
 auto story357 = Story357();
 auto story358 = Story358();
 auto story359 = Story359();
+auto story360 = Story360();
+auto story361 = Story361();
+auto story362 = Story362();
+auto story363 = Story363();
+auto story364 = Story364();
+auto story365 = Story365();
+auto story366 = Story366();
+auto story367 = Story367();
+auto story368 = Story368();
+auto story369 = Story369();
 
 void InitializeStories()
 {
@@ -9694,7 +9909,8 @@ void InitializeStories()
         &story320, &story321, &story322, &story323, &story324, &story325, &story326, &story327, &story328, &story329,
         &story330, &story331, &story332, &story333, &story334, &story335, &story336, &story337, &story338, &story339,
         &story340, &story341, &story342, &story343, &story344, &story345, &story346, &story347, &story348, &story349,
-        &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359};
+        &story350, &story351, &story352, &story353, &story354, &story355, &story356, &story357, &story358, &story359,
+        &story360, &story361, &story362, &story363, &story364, &story365, &story366, &story367, &story368, &story369};
 }
 
 #endif

@@ -493,6 +493,11 @@ namespace Character
     {
         player.Money += money;
 
+        if (money < 0)
+        {
+            player.LostMoney -= money;
+        }
+
         if (player.Money < 0)
         {
             player.Money = 0;
