@@ -10096,7 +10096,6 @@ public:
     {
         ID = 393;
 
-        // Also in 486
         Image = "images/stone-slab.png";
 
         Text = "Guided either by intuition or long experience, you stick to the course the pirates were on when last seen.\n\n\"Surely they must be trickier than that?\" complains the first mate.\n\nYou shake your head. \"Not at all. Remember that no other vessel has been able to track them. They're confident of their ability to vanish into thin air, so why would they worry about pursuit?\"\n\nAt dusk you arrive at high cliffs rising at the edge of the sea. Carved into the side of the cliff are two ancient colossi with heads of lions. Between them is a vast stone slab.\n\n\"It may be a door,\" says the first mate, \"but I can't see any way of getting it open.\"";
@@ -10108,24 +10107,15 @@ public:
     {
         Choices.clear();
 
-        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE) && !Character::VERIFY_CODEWORDS(player, {Codeword::Type::SESAME}) && !Character::VERIFY_ITEMS(player, {Item::Type::JERICHO_HORN}))
+        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE) && !Character::VERIFY_CODEWORDS(player, {Codeword::Type::SESAME}))
         {
             Choices.push_back(Choice::Base("Use [MAGIC]", 440, Skill::Type::MAGIC));
+            Choices.push_back(Choice::Base("Blow the Jericho HORN", 457, {Item::JERICHO_HORN}));
             Choices.push_back(Choice::Base("Otherwise", 415));
         }
     }
 
-    int Continue(Character::Base &player)
-    {
-        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE) && !Character::VERIFY_CODEWORDS(player, {Codeword::Type::SESAME}))
-        {
-            return 457;
-        }
-        else
-        {
-            return 437;
-        }
-    }
+    int Continue(Character::Base &player) { return 437; }
 };
 
 class Story394 : public Story::Base
@@ -11464,7 +11454,7 @@ public:
 
         Image = "images/masrur.png";
 
-        Text = "You lift the nearest sword off its hook, but it is heavier than you thought. Slipping from your hands, it clatters to the marble floor. Instantly you hear voices raised in the chamber beyond: \"Someone is there! Call the guards!\"\n\n\"No need for guards!\" booms a voice from the doorway you entered by. \"There'll be nothing left by the time they get here.\"\n\nYou spin around. Striding towards you comes a bald giant of a man with an executioner's sword grasped in one massive hand. His eyes look like thunderheads as he rasps, \"You'd filch one of my master's fine swords, eh? Well, little one, perhaps first you should learn how to use it.\"\n\nHe must be Masrur, the Caliph's fearsome bodyguard. You heard how he once slew five men with one sweep of that butcher\"s blade he carries.";
+        Text = "You lift the nearest sword off its hook, but it is heavier than you thought. Slipping from your hands, it clatters to the marble floor. Instantly you hear voices raised in the chamber beyond: \"Someone is there! Call the guards!\"\n\n\"No need for guards!\" booms a voice from the doorway you entered by. \"There'll be nothing left by the time they get here.\"\n\nYou spin around. Striding towards you comes a bald giant of a man with an executioner's sword grasped in one massive hand. His eyes look like thunderheads as he rasps, \"You'd filch one of my master's fine swords, eh? Well, little one, perhaps first you should learn how to use it.\"\n\nHe must be Masrur, the Caliph's fearsome bodyguard. You heard how he once slew five men with one sweep of that butcher's blade he carries.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Snatch up the SWORD and close with him", 384));
@@ -11541,7 +11531,7 @@ public:
     {
         ID = 453;
 
-        Text = "\"When I was younger I was a lion in battle,\" begins the old sailor, \"but it is my shame to admit that in my latter years I\"ve taken to the bottle. So it was that when the pirates attacked I lay in a dead faint below decks with a puddle of red wine beside me. I was oblivious to the carnage. I slept through the shouts and screams of the dying. When the pirates came across me they must have taken me for a corpse lying in its own blood, for they did nothing except pile me with the others. Then, steering our ship beside their own, they sailed on until dawn. Peeping with one eye, I saw a monumental door carved into the cliffs. On each side of the door were pagan statues of beings whose heads were as the heads of cats; their feet were in the sea.\n\n\"The pirate captain then spoke to the statues, saying: ''Meow, meow, open now!'' and I almost fell back into my swoon when I saw the statues rise and swing open that massive stone portal, beyond which lay a hidden cove. Fortunately I kept my wits about me enough to slip over the side while the pirates were busying themselves with steering through the narrow strait. The door closed behind them. I then swam for an hour until, weak with my efforts and the fright of what I'd seen, I was picked up by a kindly fisherman. And that is the tale as I remember it, though God alone knows the whole truth.\"\n\nYou gained the codeword SESAME.";
+        Text = "\"When I was younger I was a lion in battle,\" begins the old sailor, \"but it is my shame to admit that in my latter years I've taken to the bottle. So it was that when the pirates attacked I lay in a dead faint below decks with a puddle of red wine beside me. I was oblivious to the carnage. I slept through the shouts and screams of the dying. When the pirates came across me they must have taken me for a corpse lying in its own blood, for they did nothing except pile me with the others. Then, steering our ship beside their own, they sailed on until dawn. Peeping with one eye, I saw a monumental door carved into the cliffs. On each side of the door were pagan statues of beings whose heads were as the heads of cats; their feet were in the sea.\n\n\"The pirate captain then spoke to the statues, saying: ''Meow, meow, open now!'' and I almost fell back into my swoon when I saw the statues rise and swing open that massive stone portal, beyond which lay a hidden cove. Fortunately I kept my wits about me enough to slip over the side while the pirates were busying themselves with steering through the narrow strait. The door closed behind them. I then swam for an hour until, weak with my efforts and the fright of what I'd seen, I was picked up by a kindly fisherman. And that is the tale as I remember it, though God alone knows the whole truth.\"\n\nYou gained the codeword SESAME.";
 
         Choices.clear();
 
@@ -12206,13 +12196,288 @@ public:
 
         Text = "Dropping a line, you make careful note of the ocean currents. A master navigator like you can read them as clearly as the stars. Having determined your position and consulted the CHARTs, you are able to warn the captain about a coral reef that lies just a few leagues off the starboard bow. You set the course the ship must steer, and within an hour the glint of sunbeams pierces the haze. As the ship breaks clear of the enshrouding mist, every voice on board is raised in a cheer.\n\n\"That fog was nothing natural,\" vows Jumail the cook.\n\nYou laugh and shake your head. \"Do not look for supernatural threats where there are none, my friend. The sea has many perils, but all of them can be handled with a calm nerve and a modicum of experience.\"";
 
-
         Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
 
     int Continue(Character::Base &player) { return 234; }
+};
+
+class Story480 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story480()
+    {
+        ID = 480;
+
+        Choices.clear();
+    }
+
+    void Event(Character::Base &player)
+    {
+        Controls = Story::Controls::STANDARD;
+
+        PreText += "";
+
+        Sell = {};
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::DIAMOND}))
+        {
+            PreText = "You sell the DIAMOND for 50,000 dinars. Even after giving the fishermen a fair share, you are still left with 25,000 dinars -- enough to make you as respected as any merchant in Baghdad.\n\n";
+
+            Character::LOSE_ITEMS(player, {Item::Type::DIAMOND});
+
+            Character::GAIN_MONEY(player, 25000);
+        }
+        else if (Character::VERIFY_ITEMS(player, {Item::Type::JEWELLED_KEY}))
+        {
+            PreText = "You are in for a disappointment: the JEWELLED KEY is only worth 100 dinars. Sell it if you wish.\n\n";
+
+            Sell = {{Item::JEWELLED_KEY, 100}};
+
+            Controls = Story::Controls::SELL;
+        }
+
+        PreText += "It is time you headed home. For better or worse, your quest has reached its conclusion. Now you must settle your score with the evil Jafar.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 113; }
+};
+
+class Story481 : public Story::Base
+{
+public:
+    Story481()
+    {
+        ID = 481;
+
+        Text = "The next day, the talk going around the city is all about miserly Arshad the baker. He has been claiming that a thief crept into his shop by night and stole a bag of gold he had hidden under the floor.\n\n\"Is the story true?\" you ask an old spice merchant who is opening up his stall as you pass.\n\nHe snorts disdainfully. \"How should I know? Arshad is a liar as well as a cheat. At my granddaughter's wedding, we paid him for a hundred loaves and he delivered only sixty-two. His sole excuse was that this was the number of the years of the Prophet. The dog -- to claim piety, while stealing from our mouths! All around the city it is well-known that Arshad is more verminous than a buffalo that has not been in water for a year. If he has been robbed, I say good luck to the thief.\"\n\nYou walk away. The spice merchant's words have salved your conscience. And, indeed, Arshad's gold does feel very comfortable in your pocket.\n\nYou OBTAINED 60 dinars.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 60);
+    }
+
+    int Continue(Character::Base &player) { return 399; }
+};
+
+class Story482 : public Story::Base
+{
+public:
+    Story482()
+    {
+        ID = 482;
+
+        Text = "Finding some henna in the cargo hold, you daub red blotches all over your face and then make sure to stumble into the captain while coughing rheumily.\n\n\"Watch where you're going, you heathen dog -- \" He throws up his hands in horror. \"Ah, the plague!\"\n\nHe would no doubt be happy to have you thrown overboard, but none of his crew will come near you. Putting in at a bay along the coast, he coaxes you to go ashore by giving you a LITTLE MONEY and a WATER BOTTLE. \"To make your remaining days more comfortable,\" he says, making the sign of his faith.\n\nYou wait until the ship has sailed off before scouring away the spots of dye with sand and saltwater. Travelling along the coast, you take the road to Cairo.\n\nYou RECEIVED 10 dinars and a WATER BOTTLE.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 10);
+
+        Character::GET_ITEMS(player, {Item::WATER_BOTTLE});
+
+        Character::REMOVE_CODEWORD(player, Codeword::Type::MORDANT);
+    }
+
+    int Continue(Character::Base &player) { return 215; }
+};
+
+class Story483 : public Story::Base
+{
+public:
+    Story483()
+    {
+        ID = 483;
+
+        Text = "The old man takes a coal from the fire. It does not seem to hurt him, a fact that makes poor Yussuf only tremble all the more. Plucking a blade of grass from the hillside, the old man ignites it with the coal and hands it to you.\n\n\"This taper will light your way,\" he says with a sinister grin. \"But don't dawdle, for at moonrise it will burn out and if you haven't returned by then you'll be lost below ground for ever.\"\n\nWith Yussuf clinging to your arm, you advance into the looming black gulf of the cave. A path leads down into the rock.\n\n\"What's that noise?\" says Yussuf nervously.\n\nYou stop to turn and glare at him. \"The chattering of your teeth!\"\n\n\"No,\" he says, shaking his head, \"I meant that sort of scaly slithering sound accompanied by that kind of quiet gurgling and droo... droo... droo...\"\n\n\"Drooling?\"\n\nYussuf doesn't reply. He is staring with eyes as large as eggs at something beyond your shoulder. Slowly you turn, and in the wavering light of the taper you see the first threat the old man spoke of. Shambling up out of the tunnel come a horde of creatures with faces to daunt the heart of the bravest warrior.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 200; }
+};
+
+class Story484 : public Story::Base
+{
+public:
+    Story484()
+    {
+        ID = 484;
+
+        Text = "They file out of the room without noticing you. Hurrying over to the cushions where they were sitting, you notice the CHART they spoke of is still lying there.\n\nYou realize it will not be long before they find you are missing, so you gather your things and steal out of the citadel with all haste.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::CHART};
+
+        Limit = 1;
+    }
+
+    int Continue(Character::Base &player) { return 42; }
+};
+
+class Story485 : public Story::Base
+{
+public:
+    Story485()
+    {
+        ID = 485;
+
+        Text = "The lamp makes you invisible. The braziers burn low while you move unseen among the pirates, seeing to your midnight work. Occasionally a pirate wakes up -- perhaps hearing the gurgle of a throat being slit, or the snap of a breaking neck. But each time he just looks around, sees nothing but supine figures all around, and goes back to sleep.\n\nFinally you summon the marines out of the hold. They wake the pirate chief with a kick in the ribs. His eyes open, cloudy with wine-fog for a moment, then he leaps up with a snarl: \"The Sultan's men! Up and at 'em, my lads!\"\n\nHe looks around. No one moves.\n\n\"They went to sleep dead drunk,\" you say to him, \"and woke up just plain dead.\"\n\nYou've used up all the magic oil in the LAMP of Antar.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::LAMP_OF_ANTAR});
+    }
+
+    int Continue(Character::Base &player) { return 372; }
+};
+
+class Story486 : public Story::Base
+{
+public:
+    Story486()
+    {
+        ID = 486;
+
+        Image = "images/stone-slab.png";
+
+        Text = "After all this time, the hawk has learned to trust and understand you. You raise your wrist and it soars aloft, wheeling in the sky above the ship. Seagulls flutter away in panic, but the hawk has no interest in them. Its keen eyes find the black sails of the pirate ship, and it leads you on in pursuit.\n\nAt dusk you arrive at high cliffs rising at the edge of the sea. Carved into the side of the cliff are two ancient colossi with heads of lions. Between them is a vast stone slab. \"It may be a door,\" says the first mate, \"but I can't see any way of getting it open.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE) && !Character::VERIFY_CODEWORDS(player, {Codeword::Type::SESAME}))
+        {
+            Choices.push_back(Choice::Base("Use [MAGIC]", 440, Skill::Type::MAGIC));
+            Choices.push_back(Choice::Base("Blow the Jericho HORN", 457, {Item::JERICHO_HORN}));
+            Choices.push_back(Choice::Base("Otherwise", 415));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 437; }
+};
+
+class Story487 : public Story::Base
+{
+public:
+    Story487()
+    {
+        ID = 487;
+
+        Text = "Pebbles skitter under your feet as you go racing down the slope. You cannot outrun the deadly gases pouring from the volcanic cone. Within moments you are engulfed. It feels as though a furnace has been opened right behind your back. Drawing breath to scream, you suck in a lungful of searing hot gas, and mercifully you die almost at once.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story488 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story488()
+    {
+        ID = 488;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Greek fire cannot be extinguished by water, only by wine. Luckily there is a half-full barrel right next to you. You dive in, smothering the licking flames. Your marines, hearing the commotion, swarm out of the hold and leap down to the dock with drawn swords. In seconds you are embroiled in a fight for your life against the astonished pirate band.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
+        {
+            DAMAGE = -1;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -2;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 372; }
+};
+
+class Story489 : public Story::Base
+{
+public:
+    Story489()
+    {
+        ID = 489;
+
+        Text = "The man leads you down a narrow alley towards a bath-house.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::STREETWISE))
+        {
+            return 344;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            return 366;
+        }
+        else
+        {
+            return 387;
+        }
+    }
 };
 
 auto prologue = Prologue();
@@ -12695,6 +12960,16 @@ auto story476 = Story476();
 auto story477 = Story477();
 auto story478 = Story478();
 auto story479 = Story479();
+auto story480 = Story480();
+auto story481 = Story481();
+auto story482 = Story482();
+auto story483 = Story483();
+auto story484 = Story484();
+auto story485 = Story485();
+auto story486 = Story486();
+auto story487 = Story487();
+auto story488 = Story488();
+auto story489 = Story489();
 
 void InitializeStories()
 {
@@ -12746,7 +13021,8 @@ void InitializeStories()
         &story440, &story441, &story442, &story443, &story444, &story445, &story446, &story447, &story448, &story449,
         &story450, &story451, &story452, &story453, &story454, &story455, &story456, &story457, &story458, &story459,
         &story460, &story461, &story462, &story463, &story464, &story465, &story466, &story467, &story468, &story469,
-        &story470, &story471, &story472, &story473, &story474, &story475, &story476, &story477, &story478, &story479};
+        &story470, &story471, &story472, &story473, &story474, &story475, &story476, &story477, &story478, &story479,
+        &story480, &story481, &story482, &story483, &story484, &story485, &story486, &story487, &story488, &story489};
 }
 
 #endif
