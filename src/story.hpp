@@ -3905,7 +3905,7 @@ public:
         {
             Type = Story::Type::DOOM;
 
-            PreText += "\n\nWithout SWORDPLAY or WRESTLING skills you have no hope at all, and you go down fighting under a hail of blows.";
+            PreText += "\n\nWithout combat skills you have no hope at all, and you go down fighting under a hail of blows.";
         }
         else
         {
@@ -6385,7 +6385,7 @@ public:
         {
             Type = Story::Type::DOOM;
 
-            PreText += "\n\nWithout SWORDPLAY or WRESTLING skills you have no chance and are cut down at once.";
+            PreText += "\n\nWithout combat skills you have no chance and are cut down at once.";
         }
         else
         {
@@ -10429,6 +10429,256 @@ public:
     }
 };
 
+class Story410 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story410()
+    {
+        ID = 410;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Type = Story::Type::NORMAL;
+
+        PreText = "Azenomei's laughter is like the shriek of the desert wind. Taking up his SWORD, he leaps forward to match you blow for blow. Under your feet, red human blood soon mingles with the black ichor of the jinni's veins. You feel yourself weakening, but you are determined to fight to the death.";
+
+        if (!Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}) && !Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            Type = Story::Type::DOOM;
+
+            PreText += "\n\nWithout combat skills you are spitted on Azenomei's blade and die writhing in agony.";
+        }
+        else
+        {
+            PreText += "\n\n";
+
+            auto DAMAGE = -6;
+
+            if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
+            {
+                DAMAGE = -3;
+
+                PreText += "[SWORDPLAY] ";
+            }
+            else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+            {
+                PreText += "[WRESTLING] ";
+            }
+
+            Character::GAIN_LIFE(player, DAMAGE);
+
+            PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 89; }
+};
+
+class Story411 : public Story::Base
+{
+public:
+    Story411()
+    {
+        ID = 411;
+
+        Text = "You unroll the rug. A smell rises from it like rich old loam. When you see what was wrapped up inside, you have to clap your hand to your mouth to keep from crying out. It is a dead body with cracked yellow bones protruding from flesh that crumbles like dry brown clay. From the look of it, it must have lain in the grave for many years. The eye sockets stare up at you from the floor -- a grisly gaze that sends a shudder through your limbs.\n\nYou can hear the two men coming back.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[CUNNING] You have a strong stomach", 31, Skill::Type::CUNNING));
+        Choices.push_back(Choice::Base("Quickly roll up the rug and hide", 433));
+        Choices.push_back(Choice::Base("Stride openly into the inner room", 8));
+        Choices.push_back(Choice::Base("Cravenly sneak back to the ship", 258));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story412 : public Story::Base
+{
+public:
+    Story412()
+    {
+        ID = 412;
+
+        Text = "On the way down to the jetty, Captain Ibrahim tells you that the ancestral court kept asking about the nest of the rokh, the giant bird said to prey on elephants. \"I told them I wanted only to trade silk for ivory, but they'd have none of it. They seemed to think I was after the diamond eggs the rokh lays.\"\n\n\"DIAMOND? The chicks must have hard beaks.\"\n\nJumail presses the captain with questions. \"Where does it nest, Captain, this great bird? How can one reach the eggs? Are they truly made of DIAMOND?\"\n\n\"Its nest is somewhere to the west,\" says the captain with as much interest as if he were speaking about the shape of a bee's backside. \"As for your other questions, I know no more than the next man.\"\n\nBy now you have reached the river. Climbing aboard, the captain gives the order to cast off at once.\n\nYou gained the codeword KISMET.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
+    }
+
+    int Continue(Character::Base &player) { return 346; }
+};
+
+class Story413 : public Story::Base
+{
+public:
+    Story413()
+    {
+        ID = 413;
+
+        Text = "Your fist slams into the side of her head. It is like hitting a slab of granite. As you recoil back, clutching your broken hand, she whips the cleaver round and lays open your stomach. You slump to the floor, aghast, and the witch begins to twist your entrails into sausages even before you are quite dead.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story414 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story414()
+    {
+        ID = 414;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "By luck, that very afternoon the Sultan comes riding through the streets in a regal procession. His soldiers patrol the crowds lining the streets, making sure that everyone bows respectfully. You glance up to see the Sultan himself approaching on the back of a graceful chestnut mare whose harness glitters with jewels. For a moment you meet his gaze. He strikes you as a good man but a weary one, his thoughts no doubt constantly troubled by affairs of state.\n\nOne of the soldiers sees you looking up and jabs the butt of his lance towards you. \"You there, keep your face to the ground while the Sultan goes by.\"";
+
+        if (!Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAJJI}) && !Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            PreText += "\n\nYou are shoved roughly back into the gutter and the moment is lost; you will not get another chance.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAJJI}))
+        {
+            return 436;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 396;
+        }
+        else
+        {
+            return 349;
+        }
+    }
+};
+
+class Story415 : public Story::Base
+{
+public:
+    Story415()
+    {
+        ID = 415;
+
+        Text = "You send your men clambering up over the huge door, but they cannot find any way to open it. At last you are forced to admit defeat. You return to Cairo and report to the Sultan that the pirates' lair lies beyond an unbreachable stone portal.\n\nHe is obviously disappointed, but he puts a cheerful face on it. \"You found out more than any of my own agents were able to,\" he says. \"Perhaps I can find a wizard who can force the portal to open. Take this reward for your services.\"\n\nYou are given a bag containing 50 dinars.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 50);
+    }
+
+    int Continue(Character::Base &player) { return 349; }
+};
+
+class Story416 : public Story::Base
+{
+public:
+    Story416()
+    {
+        ID = 416;
+
+        Text = "People in flowing black robes come out from the gardens of the oasis to welcome you. They bring pitchers of fresh water which you drain gratefully. Then you are led to the tents of their camp, beneath the wall of the ruined fort, and made comfortable on rugs and cushions.\n\nAfter so long in the desert, to be surrounded by swaying palms and trickling streams is like a visit to Paradise. You rest at the oasis for several days.\n\nYou RECOVER 1 Life Point.\n\nEventually, with reluctance, you load your camels and set out on the last leg of your journey. \"We have nearly reached the Red Sea coast,\" Hakim says as you walk beside him. \"The worst is behind us now. Although I cannot pretend the roads to Cairo are wholly safe, at least we'll not perish of hunger or thirst.\"\n\n\"Our route takes us close to Mecca,\" you reply. \"Out of gratitude for our safe deliverance, we should stop and make the pilgrimage.\"\n\nHakim clicks his tongue. \"Oh, another time, perhaps. On the way back. I really can't afford to waste time at Mecca. I've got all these wares to sell in Cairo, you see.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Try to convince him to stop at Mecca", 101));
+        Choices.push_back(Choice::Base("Let the matter drop", 123));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 1);
+    }
+};
+
+class Story417 : public Story::Base
+{
+public:
+    Story417()
+    {
+        ID = 417;
+
+        Text = "The jinni comes out of your RING, but when he learns of your predicament he shakes his head sadly. \"I can help you escape, O Weaver of Enchantments,\" he whispers, \"but then I would have to remain trapped here until the end of the world. The glyph above the alcove is the seal of Suleiman, and no spirit or demon can pass by it. That is why the Lord of the Desert cannot pursue you in here.\"\n\nAt this, the Lord of the Desert stops pacing and stands with his ear pressed to the curtain. \"What's that?\" he says. \"Talking to yourself, are you? Are you mumbling your prayers, you pious little mouse?\"\n\nYou can say nothing to the jinni without giving the game away.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Nod for him to proceed with whatever he has planned", 169));
+        Choices.push_back(Choice::Base("(SWORD) Leap out of the alcove to confront the Lord of the Desert", 13, Choice::Type::ANY_ITEM, {Item::SWORD, Item::JEWELLED_SWORD}));
+        Choices.push_back(Choice::Base("Confront the Lord of the Desert: use only your bare hands", 331));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story418 : public Story::Base
+{
+public:
+    Story418()
+    {
+        ID = 418;
+
+        Text = "You ask about the women who work at the palace and find one, by the name of Fohzia, who runs errands for the Sultan's wives and also performs songs and dances in his court. You approach her while she is buying perfume in the marketplace. Pretending that you once worked in a harem yourself, you soon strike up a friendship. You help her carry her purchases back from the market. Standing outside the palace, you give a long sigh and say, \"How pleasant it would be to look on the face of the Sultan. I have heard he is a handsome man with a voice like the music of a harp.\"\n\nFohzia laughs. \"In all honesty, people tend to say that sort of thing about kings and princes. You mustn't take it too seriously.\"\n\n\"How knowledgeable you are, friend of my heart. Working in a harem has made you wise.\"\n\n\"I thought you used to work in a harem yourself?\" she says with a frown.\n\n\"Er... yes, but it was only a little harem in a tiny town. Well, more a village than a town. Just a few tents, in fact. I'd love to see inside a proper palace.\"\n\nAfter a little more wheedling, Fohzia relents and smuggles you into the palace. You have to wait a few days, but at last your chance arrives. The Sultan comes to sit with his wives, and as Fohzia is about to sing for him you suddenly jump forward and kiss the floor at his feet, crying, \"Cast me out if you wish, O Dispenser of Justice, but first hear why I smuggled myself into your court.\"\n\nHe peers at you, then shrugs and smiles indulgently. \"Very well, I'll listen to your story. At least it will make a change from the usual evening of songs, sherbets and sweetmeats.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 193; }
+};
+
+class Story419 : public Story::Base
+{
+public:
+    Story419()
+    {
+        ID = 419;
+
+        Text = "Your companions are all turned into fishes, but the black jewel deflects the spell so that you are not affected. \n\nThe dwarf frowns and mutters a protective rune. \"Incredible! No one has ever resisted my sorcery before.\"\n\nA bold bluff is your only chance. Taking a menacing step forward, you wave your hands in a meaningless but cryptic gesture. \"I am the High Adept of the Fire Wizards,\" you say angrily. \"How dare you cast your petty little spells at me, you gnarled lump of flesh! Now I shall send you shivering down to hell in a blast of fulminous flame.\"\n\n\"Wait, supreme one!\" he says, quailing. \"I did not realize! Forgive your wretched servant!\"\n\nYou look back at the fish thrashing around on the turf. \"Withdraw the spell. Restore my servants to their true shape and I may be lenient.\"\n\nHe hastily does so. As Captain Ibrahim and the rest go aboard the ship, the dwarf sidles over and says: \"May I ask what brought you here, O Worker of Miracles?\"\n\n\"We seek great treasures of ancient times. Do you know of such?\"\n\n\"There is the rokh's DIAMOND egg,\" he says. \"Its nest is at the head of the Nile, I believe. It would be a dangerous feat to steal it, though.\"\n\n\"Not for one of my power.\"\n\nYou dismiss the dwarf with a wave of your hand and stride up the gangplank. As the ship gets under sail, you stand in the stern, looking every inch the imperious wizard you pretend to be. Only when the uncharted isle has dropped below the horizon do you allow yourself to relax. Your sigh of relief is drowned out by the crew's cheers.\n\nThe BLACK JEWEL is cracked and clouded now that its power is used up.\n\nThe next few days pass uneventfully. You have not spotted any other vessels until a ship drifts into view one afternoon. Her sails are furled and there is no reply to your shouts. As you come alongside, you see the reason. The deck is strewn with corpses.\n\nYou gained the codeword KISMET.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ITEMS(player, {Item::Type::BLACK_JEWEL});
+
+        Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
+    }
+
+    int Continue(Character::Base &player) { return 356; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -10839,6 +11089,16 @@ auto story406 = Story406();
 auto story407 = Story407();
 auto story408 = Story408();
 auto story409 = Story409();
+auto story410 = Story410();
+auto story411 = Story411();
+auto story412 = Story412();
+auto story413 = Story413();
+auto story414 = Story414();
+auto story415 = Story415();
+auto story416 = Story416();
+auto story417 = Story417();
+auto story418 = Story418();
+auto story419 = Story419();
 
 void InitializeStories()
 {
@@ -10883,7 +11143,8 @@ void InitializeStories()
         &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379,
         &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389,
         &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399,
-        &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409};
+        &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409,
+        &story410, &story411, &story412, &story413, &story414, &story415, &story416, &story417, &story418, &story419};
 }
 
 #endif
