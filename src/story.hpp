@@ -5297,7 +5297,7 @@ public:
     {
         ID = 201;
 
-        Text = "Squeezing through the bars of the grille, the hawk soars off into the night. You watch it go with a sense of misery. You cannot blame the bird for abandoning you -- it deserves its freedom -- but now you feel even more trapped.\n\nBarely a minute later, while you are still examining the lock, the hawk returns and settles on the ground. Hearing a metallic chink, you peer through the gloom. It has brought the keys from the guardhouse! Fingers trembling with anxious joy, you test each key in turn. One of them fits, and the padlock springs open. You are free.";
+        Text = "Squeezing through the bars of the grille, the HAWK soars off into the night. You watch it go with a sense of misery. You cannot blame the bird for abandoning you -- it deserves its freedom -- but now you feel even more trapped.\n\nBarely a minute later, while you are still examining the lock, the HAWK returns and settles on the ground. Hearing a metallic chink, you peer through the gloom. It has brought the keys from the guardhouse! Fingers trembling with anxious joy, you test each key in turn. One of them fits, and the padlock springs open. You are free.";
 
         Choices.clear();
 
@@ -5421,7 +5421,7 @@ public:
     {
         ID = 206;
 
-        Text = "You steal into the palace pretending to be a servant. The guards hardly glance at you, intent as they are on the festivities in the street outside. You pass under the great arch that is emblazoned with the Caliph's insignia, past a group of slaves bearing empty platters back to the kitchens, and duck into an open doorway. You have no clear idea what you can achieve here. Perhaps you can bluff your way into the Caliph's apartments and warn him about Jafar.\n\nFollowing a corridor, you make your way up a flight of stairs. You emerge onto a landing overlooking a torchlit hall. The marble walls shine with a colour like moonlight. There are rich tapestries of black, ruby-red and the blue of dusk, and the balustrade of the balcony is inlaid with gold and limpid mother of-pearl.\n\nAdvancing to the end of the balcony, you peer into a chamber beyond. Swords in jewelled scabbards hang along the walls, below murals that show the Caliph's ancestors in all the glorious panoply of war. As you cross the room, you notice an alcove where a hooded hawk sits on a perch.";
+        Text = "You steal into the palace pretending to be a servant. The guards hardly glance at you, intent as they are on the festivities in the street outside. You pass under the great arch that is emblazoned with the Caliph's insignia, past a group of slaves bearing empty platters back to the kitchens, and duck into an open doorway. You have no clear idea what you can achieve here. Perhaps you can bluff your way into the Caliph's apartments and warn him about Jafar.\n\nFollowing a corridor, you make your way up a flight of stairs. You emerge onto a landing overlooking a torchlit hall. The marble walls shine with a colour like moonlight. There are rich tapestries of black, ruby-red and the blue of dusk, and the balustrade of the balcony is inlaid with gold and limpid mother of-pearl.\n\nAdvancing to the end of the balcony, you peer into a chamber beyond. Swords in jewelled scabbards hang along the walls, below murals that show the Caliph's ancestors in all the glorious panoply of war. As you cross the room, you notice an alcove where a hooded HAWK sits on a perch.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Take the HAWK", 318));
@@ -6367,7 +6367,7 @@ public:
     {
         ID = 244;
 
-        Text = "The hawk flies up, spiralling around the tower to perch on the balcony. It disappears inside the dome, reappearing moments later with something clutched in its talons. It swoops down, and in the fading daylight you see that it has found a large grey egg, which it deposits on the turf at your feet.\n\nYussuf the helmsman spits in annoyance. \"I thought there'd at least be a jewelled necklace or something up there.\"\n\n\"Perhaps it is the diamond egg of the rokh?\" suggests Selim the look-out.\n\nYou shake your head. \"Not if the legends are true. The rokh's egg would be bigger than an elephant. Anyway, whatever that is, it isn't diamond.\"\n\nWill you touch the egg?";
+        Text = "The HAWK flies up, spiralling around the tower to perch on the balcony. It disappears inside the dome, reappearing moments later with something clutched in its talons. It swoops down, and in the fading daylight you see that it has found a large grey egg, which it deposits on the turf at your feet.\n\nYussuf the helmsman spits in annoyance. \"I thought there'd at least be a jewelled necklace or something up there.\"\n\n\"Perhaps it is the diamond egg of the rokh?\" suggests Selim the look-out.\n\nYou shake your head. \"Not if the legends are true. The rokh's egg would be bigger than an elephant. Anyway, whatever that is, it isn't diamond.\"\n\nWill you touch the egg?";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Touch the egg", 290));
@@ -11436,6 +11436,282 @@ public:
     }
 };
 
+class Story450 : public Story::Base
+{
+public:
+    Story450()
+    {
+        ID = 450;
+
+        Image = "images/masrur.png";
+
+        Text = "You lift the nearest sword off its hook, but it is heavier than you thought. Slipping from your hands, it clatters to the marble floor. Instantly you hear voices raised in the chamber beyond: \"Someone is there! Call the guards!\"\n\n\"No need for guards!\" booms a voice from the doorway you entered by. \"There'll be nothing left by the time they get here.\"\n\nYou spin around. Striding towards you comes a bald giant of a man with an executioner's sword grasped in one massive hand. His eyes look like thunderheads as he rasps, \"You'd filch one of my master's fine swords, eh? Well, little one, perhaps first you should learn how to use it.\"\n\nHe must be Masrur, the Caliph's fearsome bodyguard. You heard how he once slew five men with one sweep of that butcher\"s blade he carries.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Snatch up the SWORD and close with him", 384));
+        Choices.push_back(Choice::Base("Try to get away", 24));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story451 : public Story::Base
+{
+public:
+    Story451()
+    {
+        ID = 451;
+
+        Image = "images/filler5.png";
+
+        Text = "You set sail the next morning, riding the tide out of the docks, under the broad sweep of the triumphal arch at the harbour mouth and onto the open sea. Other ships surround you in the blazing sunshine -- vessels as proud as desert hawks, with prows the shape of upcurved daggers and triangular sails as white as the wings of a hundred doves. Each is bound for a distant port. Each captain hopes to return with his hold full of pearls or ivory, spices or silks.\n\nYou ask Captain Ibrahim what cargo he will buy from the people of the Scarlet Isle. He fixes you with a sidelong look as he stands gazing out to sea with one hand on the bowsprit. \"Ivory,\" he says. \"Now, be about your chores.\"\n\nThree days out from Suhar, you run into a bank of dense fog which seems to rise up in minutes off a clear calm sea. Sun, sky and horizon are all swallowed up by a pearly haze. The sails sag, limp and wet with no breeze to fill them, and the ship begins to drift.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 479;
+        }
+        else
+        {
+            return 143;
+        }
+    }
+};
+
+class Story452 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story452()
+    {
+        ID = 452;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Let it peck out your eye", 7));
+        Choices.push_back(Choice::Base("Otherwise", 402));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The gryphon's beak slices into your breast, drawing a rivulet of blood.\n\nYou LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou fall back gasping as you see the invigorated gryphon launch itself afresh into the fray. Soon it has slain the ghastly scorpion. But before you can rise or speak a word, another monster of even greater size comes bounding into the hall. This is a great black goat with foaming spittle on its jaws.\n\nThe gryphon retreats to stand beside you. \"I must feast on a human eye,\" it pants. \"That is the only sustenance that will sustain me.\"";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story453 : public Story::Base
+{
+public:
+    Story453()
+    {
+        ID = 453;
+
+        Text = "\"When I was younger I was a lion in battle,\" begins the old sailor, \"but it is my shame to admit that in my latter years I\"ve taken to the bottle. So it was that when the pirates attacked I lay in a dead faint below decks with a puddle of red wine beside me. I was oblivious to the carnage. I slept through the shouts and screams of the dying. When the pirates came across me they must have taken me for a corpse lying in its own blood, for they did nothing except pile me with the others. Then, steering our ship beside their own, they sailed on until dawn. Peeping with one eye, I saw a monumental door carved into the cliffs. On each side of the door were pagan statues of beings whose heads were as the heads of cats; their feet were in the sea.\n\n\"The pirate captain then spoke to the statues, saying: ''Meow, meow, open now!'' and I almost fell back into my swoon when I saw the statues rise and swing open that massive stone portal, beyond which lay a hidden cove. Fortunately I kept my wits about me enough to slip over the side while the pirates were busying themselves with steering through the narrow strait. The door closed behind them. I then swam for an hour until, weak with my efforts and the fright of what I'd seen, I was picked up by a kindly fisherman. And that is the tale as I remember it, though God alone knows the whole truth.\"\n\nYou gained the codeword SESAME.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::SESAME});
+    }
+
+    int Continue(Character::Base &player) { return 78; }
+};
+
+class Story454 : public Story::Base
+{
+public:
+    Story454()
+    {
+        ID = 454;
+
+        Text = "After several days you stumble across a well. It is a curious sculpted bowl of clear blue stone into which the faces of fantastic animals have been carved.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            Choices.push_back(Choice::Base("Draw water from the well", 472));
+            Choices.push_back(Choice::Base("Otherwise", 71));
+        }
+    }
+
+    int Continue(Character::Base &player) { return 464; }
+};
+
+class Story455 : public Story::Base
+{
+public:
+    Story455()
+    {
+        ID = 455;
+
+        Text = "Blood spurts from the withered old knuckles. She gives vent to a shrill cry and drops the cleaver. Now's your chance. You bring the stick down hard against the side of her neck -- only to have your surge of triumph turn to utter despair. Instead of falling, she flexes her fingers. There are no signs now of the wounds you inflicted with your first blow. Her smile of leisurely spite would curdle milk. Ignoring your repeated blows, she stoops to recover the cleaver.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 391; }
+};
+
+class Story456 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story456()
+    {
+        ID = 456;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "To your surprise, Madan turns out to have been right. The captain nods sagely and says, \"I had been considering the very same thing. The Scarlet Isle is rich in wealth, you say?\"\n\n\"So I have heard.\"\n\nHis mind is made up. \"Very well, then. I had intended to promote you to a more responsible position in any case.\"\n\n";
+
+        auto pay = 5;
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            pay = 10;
+
+            PreText += "[SEAFARING] ";
+        }
+
+        Character::GAIN_MONEY(player, pay);
+
+        PreText = "He will pay you " + std::to_string(pay) + " dinars to sail on to the Scarlet Isle.\n\nSoon he is bellowing orders to the crew, and the ship steers out of the harbour and plunges southwards through the lapping waves.\n\nThree days out from Raysut, you run into a bank of dense fog which seems to rise up in minutes off a clear calm sea. Sun, sky and horizon are all swallowed up by a pearly haze. The sails sag, limp and wet with no breeze to fill them, and the ship begins to drift.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 479;
+        }
+        else
+        {
+            return 143;
+        }
+    }
+};
+
+class Story457 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story457()
+    {
+        ID = 457;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The HORN produces a piercing note that brings splinters of rock clattering down from the top of the cliff. Your sailors press their hands across their ears, wincing with pain, as you continue to blow.\n\nSuddenly the two lion-headed statues leap to their feet. One wades out and plucks the HORN from your hands, crying, \"Enough! We hear you!\" Each of its fingers is wider than a rudder, but it is dextrous enough not to hurt you.\n\nThe other statue takes hold of the stone door and hauls it open, revealing a hidden cove where the pirates are unloading their plunder. They look up in surprise and grab their swords as the first statue propels your ship in through the doorway and over to the dock.\n\nThe fight is short. The pirates, accustomed to easy pickings, are no match for the Sultan's marines. But you are embroiled in the thick of the fighting and your main worry is staying alive.\n\n";
+
+        auto DAMAGE = -2;
+
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
+        {
+            DAMAGE = 0;
+
+            PreText += "[SWORDPLAY] You take no injury.";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -1;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        if (DAMAGE < 0)
+        {
+            Character::GAIN_LIFE(player, DAMAGE);
+
+            PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Point(s).";
+        }
+
+        if (player.Life > 0)
+        {
+            Character::LOSE_ITEMS(player, {Item::Type::JERICHO_HORN});
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 372; }
+};
+
+class Story458 : public Story::Base
+{
+public:
+    Story458()
+    {
+        ID = 458;
+
+        Text = "The HAWK flies off to hunt. You lapse into a doze that is more fainting than slumber. Suddenly the HAWK perches on your shoulder, startling you awake. For a few moments you cannot remember where you are, and you stare around at the moon-drenched rocks and the huddled forms of your companions.\n\nThe HAWK drops a fresh green leaf in the dust at your feet. You pick it up with trembling fingers and give a gasp of joy. It is damp.\n\nRousing some of the others, you follow the HAWK to the waterhole it has found hidden in the rocks. \"This tastes like the gutter ooze of Basra,\" declares one of the drivers after he samples the water, \"and yet I vow it's sweeter to me now than the finest fruits of the Hadramaut.\"";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 373; }
+};
+
+class Story459 : public Story::Base
+{
+public:
+    Story459()
+    {
+        ID = 459;
+
+        Text = "A winding tunnel leads to a concealed opening in the side of a sand dune. The sandstorm has blown itself out, leaving the sky clear as a pool above the red sands.\n\nYour companions are astonished when you walk back to join them. \"We thought you were dead,\" says Hakim, pointing to the patch of quicksand.\n\n\"Fate dealt kindly with me for once,\" you reply.\n\nGiving the quicksand a wide berth, you travel on until you see an oasis glittering like a green jewel in the hot golden haze of dusk. Among the trees you see people camped, and behind them is the outline of an old stone fort.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Approach the oasis", 416));
+        Choices.push_back(Choice::Base("Avoid the oasis", 438));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -11886,6 +12162,16 @@ auto story446 = Story446();
 auto story447 = Story447();
 auto story448 = Story448();
 auto story449 = Story449();
+auto story450 = Story450();
+auto story451 = Story451();
+auto story452 = Story452();
+auto story453 = Story453();
+auto story454 = Story454();
+auto story455 = Story455();
+auto story456 = Story456();
+auto story457 = Story457();
+auto story458 = Story458();
+auto story459 = Story459();
 
 void InitializeStories()
 {
@@ -11934,7 +12220,8 @@ void InitializeStories()
         &story410, &story411, &story412, &story413, &story414, &story415, &story416, &story417, &story418, &story419,
         &story420, &story421, &story422, &story423, &story424, &story425, &story426, &story427, &story428, &story429,
         &story430, &story431, &story432, &story433, &story434, &story435, &story436, &story437, &story438, &story439,
-        &story440, &story441, &story442, &story443, &story444, &story445, &story446, &story447, &story448, &story449};
+        &story440, &story441, &story442, &story443, &story444, &story445, &story446, &story447, &story448, &story449,
+        &story450, &story451, &story452, &story453, &story454, &story455, &story456, &story457, &story458, &story459};
 }
 
 #endif
