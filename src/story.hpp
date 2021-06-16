@@ -2865,6 +2865,8 @@ public:
 
         Text = "Azenomei lunges forward, starting to utter the syllables of a new spell, but his foot catches on a rug and he stumbles. A wave of unearthly energy flows past your shoulder and crumples a bronze shield on the wall as though it were made of parchment.\n\nYou don't hang around to give him another chance. Racing pell-mell along the winding, maze-like corridors of the palace, you emerge at last in open air.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -2896,6 +2898,8 @@ public:
         ID = 99;
 
         Text = "The heads of the cowled figures slump wearily to their chests. It is the signal that the meeting is over. The cowering islanders rise to their feet, and several dart forward along the room to seize Captain Ibrahim. You realize it is time to get out of here, but shock at what you've witnessed makes you hesitate just a moment too long. As you tiptoe towards the door, an islander turns and spots you. A great shriek rings out, and the others are on you in an instant.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -2959,6 +2963,8 @@ public:
 
         Text = "You give the signal. The ghoul brothers go racing off without a backward glance, chortling because they think they will soon leave you far behind. So they do, but you are not worried. Instead of racing along the path, which curves around the hillside, you climb straight up and over the ridge, dropping back onto the path before they come around the bend. The two brothers give croaks of dismay when they see your heels kicking up dust in the moonlight far in front of them. They put on a burst of desperate speed, charging like a couple of enraged bull elephants, but you still manage to just beat them back to the hut.\n\nThe old she-ghoul is dumbfounded when she learns that her sons mean to honour their agreement with you. \"Then I've been slaving away over this pot for nothing!\" she grumbles. \"Why couldn't you just cheat like your old father used to?\"\n\n\"But we lost fair and square, Ma,\" protests the elder brother, putting his hand across your shoulder. You try not to squirm. You spend the night with the ghoul family -- as bizarre a group of hosts as you've ever known. This is a story to enthral the passers-by in the bazaar in Baghdad. Unfortunately you are still no closer to fame and riches. Or are you? The next morning you bid farewell to the ghouls and set off out of the hills to join your friends.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -2992,6 +2998,8 @@ public:
         Image = "images/filler2.png";
 
         Text = "The law of hospitality means that you must accept. The Bedouin would rather starve than lose face by failing to feed you.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -3062,6 +3070,8 @@ public:
 
         Text = "In the dead of night, the rocking of the ship rouses you from a light doze. You have a raging thirst. As you stumble sleepily towards the freshwater barrel in the middle of the deck, you almost tread on your ship's cat. It must have been brought across by one of the others when they first explored this ship, only to get left behind in the hurry to leave. It mews piteously and rubs against your legs, so you give it a saucer of water.\n\nYou are just on the point of draining your own cup when you hear a soft thud. The ship's cat has keeled over. It wheezes a last breath and then lies still. The water... it must be poisoned! Flinging the cup away, you softly pace across the deck, giving each corpse a kick in the guts. The sixth 'corpse' you do this to gives a yelp of pain and jumps up. You have found the poisoner.\n\nHearing your shouts, the crew come across from the other ship.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -3118,6 +3128,8 @@ public:
         ID = 109;
 
         Text = "Holding your arms out to either side, you stride along the glass column at a rapid but measured pace. Shouts from behind tell you that the Sultan and his knights have reached the brink. You ignore them. The Sultan's marvellous voice booms off the walls of the chasm, but you disregard his words. After a moment a spear whistles past your ear. You do not let it distract you.\n\nYou reach the far side. They do not dare come after you. Taunting them by bowing, you disappear into the undergrowth.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -3361,6 +3373,8 @@ public:
 
         Text = "You drop only a few feet, hitting the floor of the cavern with a painful thud. You were almost at the bottom of the staircase already, only you didn't realise it. You will have a nasty bruise to show for it, but at least you are alive -- for now.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -3376,6 +3390,8 @@ public:
 
         Text = "The Caliph lavishes gifts on you: gold, jewels and splendid robes of honour. \"This is not all,\" he says. \"Now I need a new Grand Vizier.\"\n\n\"Me, lord?\" You bow to keep him from seeing the look of shock on your face. \"But I am not wise or worthy enough.\"\n\nHe laughs. \"What you mean to say is, you're not a fat, spoiled court popinjay.\"\n\n\"Prince of Princes, I would never say such -- \"\n\n\"Then you are diplomatic enough for the job. Also, you have proved wise where it matters, which is not in academic affairs but in affairs of the human heart. Moreover, you have seen much of the world. I shall enjoy hearing your tales.\"\n\nAnd so, from humble origins, you suddenly find yourself the Grand Vizier to the Caliph of Baghdad. You are rich and respected. Nobles and courtiers flock to hear your advice. The Prophet warned against intoxication, but you had always thought that referred only to wine. Now you know that destiny, too, can be a heady draught.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -3390,6 +3406,8 @@ public:
         ID = 121;
 
         Text = "The gryphon is as good as its word. Beating its wings with hurricane force, it pulls the ship clear of the branches and swoops down, bearing you off the edge of the cloud and down towards the azure water far below.\n\n\"By the blessed Creator of All!\" gasps Captain Ibrahim, his face as white as the fluttering sails. \"This is no voyage for a sailor.\"\n\n\"Cheer up,\" you tell him. \"When you return to Baghdad, this will be a tale to match any that has ever been told.\"\n\nAs the ship touches the waves, his look of drawn horror slowly gives way to a broad smile. \"That's true...\"\n\nThe gryphon circles once and soars off into the sky. As one man, the crew fall to their knees and bow towards Mecca, thanking God for their safe deliverance.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -7104,6 +7122,8 @@ public:
 
         Text = "You manage to climb just a little further, until you reach a cloud streaming like a banner beside the pinnacle. Leaping onto the cloud, you wait for it to drift up, carrying you miraculously to the rokh's nest at the top.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -7118,6 +7138,8 @@ public:
         ID = 273;
 
         Text = "As Jafar makes his throw, you sweep the CLOAK around, sweeping the deadly blade out of the air before it reaches its target.\n\nThe Caliph, recovering from his shock, calls for his guards. Jafar turns and flees.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -10269,6 +10291,8 @@ public:
 
         Text = "Fleeing from the city with your hands pressed to your ears to shut out the terrible din of the fight, you return to the ship and tell them what you saw.\n\n\"What dreadful place have you brought us with your wizardry?\" laments the captain, pulling off his turban and tearing his hair.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -10362,6 +10386,8 @@ public:
 
         Text = "You dive off the parapet. From where the guards are standing, it looks as if you have simply jumped to your doom. You hear a gasp of horror escape their throats, then the clatter of footsteps as they run to look down.\n\nYou are in fact clinging to the gonfalon. Sliding down hastily, you swing to safety on the balcony and press back into the shadow of a leafy trellis. A moment later, a row of pale astonished faces appear at the edge of the roof above. \"The fool jumped -- must've been insane,\" says one guard.\n\n\"I don't call that insanity,\" says another grimly. \"Better a quick death than face the Caliph's torturers.\"\n\nThe captain of the guards peers down through the darkness. \"I can't see a body,\" he mutters, voice tinged with the first stirrings of doubt. \"You two, get down there and make sure of it.\"\n\nYou waste no more time. When no corpse is found, they'll scour the palace looking for you. By that time you mean to be long gone. Letting yourself in through the balcony window, you steal a brocade CLOAK and slip unnoticed past the guards on the gate.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -10398,6 +10424,8 @@ public:
         ID = 408;
 
         Text = "You retrace your steps, watching the taper burn steadily down. At last, when its light has dimmed to just a dying red ember and you are on the point of giving up hope, Yussuf gives a whoop of joy.\n\n\"Starlight!\" he cries, clasping your arm and dragging you along. \"We've found the way out!\"\n\nYou emerge onto the ledge above the river and lose no time returning to the ship. It seems as though you have been blundering through underground tunnels for hours, so you are surprised to find that no one on board even noticed you were missing.\n\nThe others listen as you tell your story over supper. The captain gives a gruff sceptical laugh and says, \"Bah, you fell asleep and dreamed this nonsense.\" But you can tell from the crew's faces that they believe you.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -10511,6 +10539,8 @@ public:
 
         Text = "On the way down to the jetty, Captain Ibrahim tells you that the ancestral court kept asking about the nest of the rokh, the giant bird said to prey on elephants. \"I told them I wanted only to trade silk for ivory, but they'd have none of it. They seemed to think I was after the diamond eggs the rokh lays.\"\n\n\"DIAMOND? The chicks must have hard beaks.\"\n\nJumail presses the captain with questions. \"Where does it nest, Captain, this great bird? How can one reach the eggs? Are they truly made of DIAMOND?\"\n\n\"Its nest is somewhere to the west,\" says the captain with as much interest as if he were speaking about the shape of a bee's backside. \"As for your other questions, I know no more than the next man.\"\n\nBy now you have reached the river. Climbing aboard, the captain gives the order to cast off at once.\n\nYou gained the codeword KISMET.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -10591,6 +10621,8 @@ public:
 
         Text = "You send your men clambering up over the huge door, but they cannot find any way to open it. At last you are forced to admit defeat. You return to Cairo and report to the Sultan that the pirates' lair lies beyond an unbreachable stone portal.\n\nHe is obviously disappointed, but he puts a cheerful face on it. \"You found out more than any of my own agents were able to,\" he says. \"Perhaps I can find a wizard who can force the portal to open. Take this reward for your services.\"\n\nYou are given a bag containing 50 dinars.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -10651,6 +10683,8 @@ public:
 
         Text = "You ask about the women who work at the palace and find one, by the name of Fohzia, who runs errands for the Sultan's wives and also performs songs and dances in his court. You approach her while she is buying perfume in the marketplace. Pretending that you once worked in a harem yourself, you soon strike up a friendship. You help her carry her purchases back from the market. Standing outside the palace, you give a long sigh and say, \"How pleasant it would be to look on the face of the Sultan. I have heard he is a handsome man with a voice like the music of a harp.\"\n\nFohzia laughs. \"In all honesty, people tend to say that sort of thing about kings and princes. You mustn't take it too seriously.\"\n\n\"How knowledgeable you are, friend of my heart. Working in a harem has made you wise.\"\n\n\"I thought you used to work in a harem yourself?\" she says with a frown.\n\n\"Er... yes, but it was only a little harem in a tiny town. Well, more a village than a town. Just a few tents, in fact. I'd love to see inside a proper palace.\"\n\nAfter a little more wheedling, Fohzia relents and smuggles you into the palace. You have to wait a few days, but at last your chance arrives. The Sultan comes to sit with his wives, and as Fohzia is about to sing for him you suddenly jump forward and kiss the floor at his feet, crying, \"Cast me out if you wish, O Dispenser of Justice, but first hear why I smuggled myself into your court.\"\n\nHe peers at you, then shrugs and smiles indulgently. \"Very well, I'll listen to your story. At least it will make a change from the usual evening of songs, sherbets and sweetmeats.\"";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -10665,6 +10699,8 @@ public:
         ID = 419;
 
         Text = "Your companions are all turned into fishes, but the black jewel deflects the spell so that you are not affected. \n\nThe dwarf frowns and mutters a protective rune. \"Incredible! No one has ever resisted my sorcery before.\"\n\nA bold bluff is your only chance. Taking a menacing step forward, you wave your hands in a meaningless but cryptic gesture. \"I am the High Adept of the Fire Wizards,\" you say angrily. \"How dare you cast your petty little spells at me, you gnarled lump of flesh! Now I shall send you shivering down to hell in a blast of fulminous flame.\"\n\n\"Wait, supreme one!\" he says, quailing. \"I did not realize! Forgive your wretched servant!\"\n\nYou look back at the fish thrashing around on the turf. \"Withdraw the spell. Restore my servants to their true shape and I may be lenient.\"\n\nHe hastily does so. As Captain Ibrahim and the rest go aboard the ship, the dwarf sidles over and says: \"May I ask what brought you here, O Worker of Miracles?\"\n\n\"We seek great treasures of ancient times. Do you know of such?\"\n\n\"There is the rokh's DIAMOND egg,\" he says. \"Its nest is at the head of the Nile, I believe. It would be a dangerous feat to steal it, though.\"\n\n\"Not for one of my power.\"\n\nYou dismiss the dwarf with a wave of your hand and stride up the gangplank. As the ship gets under sail, you stand in the stern, looking every inch the imperious wizard you pretend to be. Only when the uncharted isle has dropped below the horizon do you allow yourself to relax. Your sigh of relief is drowned out by the crew's cheers.\n\nThe BLACK JEWEL is cracked and clouded now that its power is used up.\n\nThe next few days pass uneventfully. You have not spotted any other vessels until a ship drifts into view one afternoon. Her sails are furled and there is no reply to your shouts. As you come alongside, you see the reason. The deck is strewn with corpses.\n\nYou gained the codeword KISMET.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -10706,6 +10742,8 @@ public:
 
         Text = "You loiter for a while in the marketplace, pretending to take note of the prices but making no purchase. After a while you wander away and sit in a thoughtful posture on the edge of a fountain. It is not long before a merchant approaches and strikes up a conversation. At first he talks of trifling matters, but at last a keen look comes into his eye and he says, \"Unless I am mistaken, you have been scouting out the market prices.\"\n\nYou adopt a smile that suggests grudging admiration. \"You are very perceptive. I have come here ahead of my master, who has three ships full of goods to sell. But he knows that as soon as people see he is a wealthy man, the asking prices will go up. Hence I am here to make purchases on his behalf.\"\n\nThe merchant licks his lips. \"Hmm. Well, what is your master interested in buying, if I may ask?\"\n\nYou take a sidelong glance at the stall the merchant was sitting in. \"He hopes to buy amber, which is in short supply back in Baghdad at the moment. Do you know anyone I could suggest he talks to?\"\n\nThe merchant throws up his hands in delight. \"What a coincidence! I myself trade in amber, and my prices are very reasonable.\" \n\n\"Well, as to that...\" You rub your jaw. \"I'd have to look around the market a bit more.\"\n\nHe takes out a bag of gold and presses it into your hands. \"Take my word for it. Just tell your master to come to Hisham al-Din -- that's me.\"\n\nYou nod sagely, assuring him you will do as he asks, and stroll away from the marketplace. The bribe he gave you is 200 dinars.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -10725,6 +10763,8 @@ public:
         ID = 422;
 
         Text = "How can you know who to trust? Leaving Azenomei to fend for himself, you hasten away across the courtyard.\n\nYou OBTAINED a BUNCH OF KEYS.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -10746,6 +10786,8 @@ public:
 
         Text = "You seize a candelabrum and raise it above your head. Azenomei looks up at the last moment, his mouth opening to start a spell. He is too late. The candelabrum falls, breaking open his skull.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -10760,6 +10802,8 @@ public:
         ID = 424;
 
         Text = "You turn the key and the lock drops from Ayisha's shackles. She springs up at once with a cry of delight. \"Excellent! Now we can return home.\"\n\n\"And we must make all speed. I have to warn the Caliph about his evil vizier, Jafar, who has been plotting to overthrow him.\"\n\nShe nods thoughtfully. \"I believe it was Jafar who summoned the jinni to abduct me. Prepare yourself...\"\n\nRaising her hands and chanting the words of a spell, she conjures another whirlwind that whisks the two of you halfway across the world in the blink of an eye. As the wind dies down, you stagger giddily out of the vortex to see that you are now in the Caliph's throne room. Jafar is also here, and his look of astonishment is soon replaced by one of outright hatred when he sets eyes on your face.\n\nAyisha kisses the Caliph. \"Father, I have returned.\"\n\nThe Caliph is almost speechless with amazement. \"My heart is brimming with joy. But, Ayisha, who is this you've brought with you?\"";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -10810,6 +10854,8 @@ public:
 
         Text = "The chamberlain returns and leads you down a long corridor to the throne room. Here the Caliph is sprawled on thick cushions, occasionally plucking a sweetmeat from the tray at his elbow.\n\nJafar is also here, and you sense his glare of hatred out of the corner of your eye, but you ignore him. Bowing to the Caliph, you say, \"O Prince of the Faith, I have travelled far and endured many hardships in order to warn you of the danger that threatens you.\"";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -10853,6 +10899,8 @@ public:
         ID = 428;
 
         Text = "Your jinni emerges from the ring in a swirl of purple smoke. A single disdainful sweep of his gleaming eyes tells him what is going on. \"Shall I bring you armour and a hero's blade, that you may fight these snapping curs, esteemed one?\" he suggests in a voice like breaking rocks.\n\n\"I don't have the time for such nonsense,\" you reply curtly. \"Whisk me to the gatehouse roof, yonder.\"\n\nHe raises eyebrows like tufts of dried moss. \"You wish to flee? To turn tail and run from those puny wretches? Where is your bold heart?\"\n\n\"In my chest, where I'd like it to remain.\" The guards are just a few paces away. You scream at the jinni, \"Do it now!\"\n\nIn a whoosh of air you are plucked from the rooftop, tumbled through empty air, and deposited unceremoniously on the battlements of the gatehouse. With a sour grunt of disapproval, the jinni curls back into your ring, leaving you to race down to street level before the guards can get around to the courtyard and intercept you.";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -10920,6 +10968,8 @@ public:
 
         Text = "You awaken to find you are in shackles. Others are also here, huddled on benches around a narrow room. Before you can question them to find out what is happening, the door is flung open and a tall bald fellow with muscles like iron bars strides in. Giving you a few rough strokes with a whip, he takes you by the arm and hauls you outside.\n\nThe hot dazzling sunlight makes you feel sick. Still dazed from the blow you took earlier, you stumble up onto a wooden platform where a slaver stands waiting. \"What am I bid for this strong young thing?\" he asks the crowd.\n\nThere is a confused babble of haggling, and before you can gather your wits to speak you have been sold to a merchant with sleek good looks that mark him out as an Egyptian. \"You will do to carry my wares back to Cairo,\" he says as he leads you away.\n\n\"There has been a mistake!\" you protest. \"I am no slave. I am a true believer, and whoever has shackled me thus has committed a crime against the laws of man and God.\"\n\nHe shows you a smile without humour. \"How often do you think I have heard that tale?\" he says. \"I'll tell you: every time I buy a new slave. Now come, wretch, and I'll assign you your chores.\"\n\nYou have LOST all your MONEY and all your BELONGINGS. You have only the SHACKLES on your wrists. It would give you no comfort. They announce to all who see you that you are a slave, and to try to escape now would only earn you a lingering death by crucifixion.\n\nYou gained the codeword MORDANT.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -10943,6 +10993,8 @@ public:
         ID = 433;
 
         Text = "You stay out of sight until the last rug has been carried in to the next room. Padding softly forward, you flit through the doorway with the swiftness of a shadow. The islanders are all on their knees with their foreheads pressed to the floorboards, facing away from you towards the far end of the room. One man at the back seems to sense something and turns for a quick glance, but by this time you are already out of sight behind a stout hardwood pillar.\n\n\"Why have you brought me here, you fiends?\" rings out a familiar growling voice.\n\nIt is Captain Ibrahim. You take a look out from behind the pillar. As your eyes adjust to the smoky torch-lit gloom, you see your captain standing against the far wall. To either side of him are ornately carved benches where tall silent figures sit as if in judgement. Each of the figures wears a rug wrapped around him and drawn up like a cowl across his head.\n\nNow another voice can be heard in the room. It is a dry hollow whisper, and the sound of it makes your skin crawl. It is coming from one of the figures on the bench. \"You stand before the Council of Ancestors. What plunder did you mean to take from our people?\"\n\n\"Plunder?\" demands Ibrahim, fighting to keep a nervous tremor out of his voice. \"I came not to plunder, but to trade. The Chinese silks and Indian spices in my ship's hold in return for gold and ivory.\"\n\nA soft murmuring ensues as the rug-cloaked figures lean their heads slightly together like seaweed fronds in a slow current. Other things are said, but too faintly for you to hear. Then the spokesman speaks again: \"We find you guilty. Tomorrow you shall be executed.\"";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -10970,6 +11022,8 @@ public:
         Image = "images/filler2.png";
 
         Text = "With Jumail's help you soon overpower the other guard. Stepping over their senseless bodies, you approach the door of the hut. The lock gives way to several hard kicks. Captain Ibrahim is standing inside with his hands on his hips, beard jutting at a magisterial angle. \"About time you got here, you sons of sea cooks!\" he thunders. \"Now let's be off before the rest of those cursed natives arrive.\"";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -11002,6 +11056,8 @@ public:
         ID = 436;
 
         Text = "The Sultan sees your green turban, which marks you out as one who has undergone the pilgrimage to the holy city. Raising his hand to halt the procession, he dismounts and lifts you to your feet. \"I never pass a pilgrim without asking advice,\" he says with a warm smile. \"It is by God's grace that I sit on the throne of Cairo, after all.\"\n\nThis is one of those situations where it is worth coming straight to the point. You're not sure how long you could play the part of a pious savant anyhow. \"It is the lot of kings to be beset by many cares,\" you say, \"and no doubt you will find it so to the end of your days. But, O Sultan, I can rid you of at least one worry. I speak of the pirates of the Red Sea.\"\n\nHe gives you a keen thoughtful look. \"Speak on.\"";
+
+        Choices.clear();
 
         Controls = Story::Controls::STANDARD;
     }
@@ -11098,6 +11154,8 @@ public:
 
         Text = "Cupping your hands, you throw your voice to the far end of the chamber. The Lord of the Desert looks back over his shoulder as he hears muffled sounds outside the great iron-bound door.\n\n\"It must be a buried treasure vault,\" one voice apparently says.\n\n\"See if you can pick the lock, then,\" replies another.\n\nWith a perplexed frown, he strides over to the door and flings it open. Of course there is no one there. While his attention is distracted, you leave the alcove and hide yourself in one of the tall stone jars. Then you throw your voice back to the alcove you've just vacated, \"Hey, I'm getting peckish! Got anything to eat down here, you daft old goat?\"\n\nHis head snaps around with a look of fierce white fury. Stamping back to the curtain, he raises his sword and cries, \"Put out your hand, impertinent wretch! I'll slice you five fat sausages to fill your complaining belly.\"\n\nIn his anger, he forgot to lock the door. You slip out of the jar and tiptoe over to it, making sure to help yourself to a handful of gold before you go.\n\nYou OBTAINED 50 dinars.";
 
+        Choices.clear();
+
         Controls = Story::Controls::STANDARD;
     }
 
@@ -11107,6 +11165,275 @@ public:
     }
 
     int Continue(Character::Base &player) { return 459; }
+};
+
+class Story440 : public Story::Base
+{
+public:
+    Story440()
+    {
+        ID = 440;
+
+        Text = "The jinni unfurls himself smokily from your ring, congealing like a blot of shadow in the low glancing rays of the setting sun. \"When you speak, I hear the voice of command,\" he says with careful courtesy.\n\n\"This door deters us. Open it.\"\n\nThe jinni looks at the portal, then turns a dubious glance from one massive statue to the other. Uncoiling his limbs in a long leap, he clings to the cliff beside one of the statues' ears and whispers something to it. When he springs back down to the deck, you glare at him and say, \"Well? You've heard my wish. Treat it as a command!\"\n\nThe jinni presses his hands together and gives an embarrassed half-bow. \"It is not so easy as that, O conjurer of marvels. The lion- headed sentinels will take umbrage if I break their door. Still, perhaps there is another way.\"\n\nThe first mate taps you on the shoulder. \"Do you mean to let this impertinent jinni tell you what you may wish for?\" he says. \"Show him who's in charge!\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Order the jinni to open the door", 460));
+        Choices.push_back(Choice::Base("Ask him what else he can suggest", 196));
+        Choices.push_back(Choice::Base("Dismiss him: use the Jericho HORN", 457, {Item::JERICHO_HORN}));
+        Choices.push_back(Choice::Base("Use [FOLKLORE]", 437, Skill::Type::FOLKLORE));
+        Choices.push_back(Choice::Base("You have the codeword SESAME", 437, {Codeword::Type::SESAME}));
+        Choices.push_back(Choice::Base("Find another way to open the door", 415));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story441 : public Story::Base
+{
+public:
+    Story441()
+    {
+        ID = 441;
+
+        Text = "\"You are free to leave,\" declares the dwarf.\n\nCaptain Ibrahim has too much pride to let it go at that. \"In fact we never had any intention of landing at your cursed little island,\" he snorts. \"I had hoped it would be one of those fabled shores where lapiz lazuli streaks the beaches, or where the giant rokh lays its DIAMOND eggs.\"\n\nThe dwarf smiles at some private joke. \"There are no DIAMOND eggs here. You should seek the source of the Nile if that's what you're after.\"\n\nThe captain looks as though he would like to argue further. You drag him back to the ship and put to sea before the dwarf turns nasty. However, as the island dwindles into the distance, an ominous rumble shakes the sky. \"A storm in the offing,\" warns Yussuf, who is at the helm. \"We're in for a rough ride.\"\n\nYou gained the codeword KISMET.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::SEAFARING))
+        {
+            return 16;
+        }
+        else
+        {
+            return 131;
+        }
+    }
+};
+
+class Story442 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story442()
+    {
+        ID = 442;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "";
+
+        if (Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        {
+            Character::REFILL(player, Item::Type::WATER_BOTTLE);
+
+            PreText += "You refill your WATER BOTTLE here. ";
+        }
+
+        PreText += "This city has nothing else to offer you. Passage on a ship back to Iraq will cost you 50 dinars.";
+
+        Choices.clear();
+
+        if (player.Money < 50)
+        {
+            PreText += " You don't have enough money and must resort to your skills.";
+
+            Choices.push_back(Choice::Base("Resort to [STREETWISE]", 421, Skill::Type::STREETWISE));
+            Choices.push_back(Choice::Base("Use [ROGUERY]", 481, Skill::Type::ROGUERY));
+            Choices.push_back(Choice::Base("You have none of those skills", 461));
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 399; }
+};
+
+class Story443 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story443()
+    {
+        ID = 443;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The chamberlain considers your request. ";
+
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAJJI}))
+        {
+            PreText += "He is moved by your piety and leads you to the throne room where the Caliph, waving asides Jafar's protests, beckons you forward.";
+        }
+        else
+        {
+            PreText += "The chamberlain is unmoved by your piety and summons the guards.";
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAJJI}))
+        {
+            return 477;
+        }
+        else
+        {
+            return 405;
+        }
+    }
+};
+
+class Story444 : public Story::Base
+{
+public:
+    Story444()
+    {
+        ID = 444;
+
+        Text = "You find him in the highest chamber of the palace. He is younger than you imagined, and much less sinister in bearing than the fearsome wizards of folklore. He is clad all in blue, with an azure cloak over sky-coloured robes, rings of indigo and cobalt, sapphire-hued turban clasped by an actinic jewel. His eyes also are blue, though he is not pale-complexioned like a Christian.\n\nYou bow to him. \"I have you to thank for my health -- and perhaps for my life. May I know my benefactor's name?\"\n\nInstead of answering directly, he says, \"I am only an apprentice. Not the master of this palace, but its custodian.\" The blue eyes crinkle in a smile. \"You interest me. It's rare I can see into the future. The weave of Fate's tapestry is intricate and richly-dyed where it surrounds you.\"\n\n\"As to that, I cannot say. I have had my share of interesting adventures, certainly.\"\n\n\"And you have more to come. The curtain of time, opaque to other men, sometimes seems as a gauze veil to my eyes. I see you the victim of injustice. You will have sinister friends and unwitting foes. I see you ascending to the nest of the great rokh, the bird that lays eggs with DIAMOND shells. You'll ride on horseback through the air. Those are robes of honour that you wear. Or...\"\n\n\"Go on.\"\n\nHe shakes his head. \"I cannot tell if you will live. But I can give you a single gift that may help you.\" He brings forth a pair of embroidered SLIPPERS. \"Whoever wears these becomes weightless. You can use them to ascend to the rokh's lair.\"\n\nYou RECEIVED a pair of MAGIC SLIPPERS.";
+
+        Bye = "Thanking the wizard, you rejoin the others. It is only after you've set sail that you realize you never found out his name.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::MAGIC_SLIPPERS});
+    }
+
+    int Continue(Character::Base &player) { return 389; }
+};
+
+class Story445 : public Story::Base
+{
+public:
+    Story445()
+    {
+        ID = 445;
+
+        Choices.clear();
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::LUCK))
+        {
+            return 97;
+        }
+        else
+        {
+            return 126;
+        }
+    }
+};
+
+class Story446 : public Story::Base
+{
+public:
+    Story446()
+    {
+        ID = 446;
+
+        Text = "You race up the stairs with the soldiers in hot pursuit. They think they have you, but you run out onto the terrace and vault down to the street below, leaving them to gawp like beached fishes. None of them cares to attempt such a daring leap. By the time they get back downstairs and out into the street, you are long gone.\n\nSheltering in a doorway, you watch a patrol of guards go tramping past. Your only chance now is to find the Caliph while he prowls the streets in disguise.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 182; }
+};
+
+class Story447 : public Story::Base
+{
+public:
+    Story447()
+    {
+        ID = 447;
+
+        Text = "There is nowhere you can run. Surrounded by the palace guards, you struggle valiantly but in vain. You are cut down under a dozen scything scimitars. As you flop weakly like a landed fish, blood spurting from your wounds, Jafar looks down at you with a rejoicing smile. You will take your hatred of him to the grave.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story448 : public Story::Base
+{
+public:
+    Story448()
+    {
+        ID = 448;
+
+        Text = "The old man rocks back on his heels and gives a peal of cackling laughter. \"It is unwise to forget your manners,\" he says. \"Now you'll learn a lesson.\"\n\nYou take a step forward, intending to seize him, but he throws his cloak over the flickering coals and you are plunged into sudden darkness. Yussuf blunders into you.\n\n\"Careful, or we might step off the ledge.\"\n\nYou hear him groping around in the dark. \"Er... I don't think we're on the ledge any more,\" he stammers.\n\n\"Then where are we?\"\n\n\"Here's a taper. Let me light it.\"\n\nThere is the clatter of stone on stone as he strikes a spark, then the taper catches. It gives only a faint nimbus of light, but that is enough to tell that you are in an underground cave. Yussuf starts to say something, but panic makes his voice catch in his throat. He can only tug your sleeve and point.\n\nYou turn, and in the dim light of the taper you see a horde of beasts that must have issued from the steaming pits of Hell.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 200; }
+};
+
+class Story449 : public Story::Base
+{
+public:
+    Story449()
+    {
+        ID = 449;
+
+        Text = "The old man rocks back on his heels and gives a peal of cackling laughter. \"It is unwise to forget your manners,\" he says. \"Now you'll learn a lesson.\"\n\nYou take a step forward, intending to seize him, but he throws his cloak over the flickering coals and you are plunged into sudden darkness. Yussuf blunders into you.\n\n\"Careful, or we might step off the ledge.\"\n\nYou hear him groping around in the dark. \"Er... I don't think we're on the ledge any more,\" he stammers.\n\n\"Then where are we?\"\n\n\"Here's a taper. Let me light it.\"\n\nThere is the clatter of stone on stone as he strikes a spark, then the taper catches. It gives only a faint nimbus of light, but that is enough to tell that you are in an underground cave. Yussuf starts to say something, but panic makes his voice catch in his throat. He can only tug your sleeve and point.\n\nYou turn, and in the dim light of the taper you see a horde of beasts that must have issued from the steaming pits of Hell.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 28;
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            return 51;
+        }
+        else
+        {
+            return 73;
+        }
+    }
 };
 
 auto prologue = Prologue();
@@ -11549,6 +11876,16 @@ auto story436 = Story436();
 auto story437 = Story437();
 auto story438 = Story438();
 auto story439 = Story439();
+auto story440 = Story440();
+auto story441 = Story441();
+auto story442 = Story442();
+auto story443 = Story443();
+auto story444 = Story444();
+auto story445 = Story445();
+auto story446 = Story446();
+auto story447 = Story447();
+auto story448 = Story448();
+auto story449 = Story449();
 
 void InitializeStories()
 {
@@ -11596,7 +11933,8 @@ void InitializeStories()
         &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409,
         &story410, &story411, &story412, &story413, &story414, &story415, &story416, &story417, &story418, &story419,
         &story420, &story421, &story422, &story423, &story424, &story425, &story426, &story427, &story428, &story429,
-        &story430, &story431, &story432, &story433, &story434, &story435, &story436, &story437, &story438, &story439};
+        &story430, &story431, &story432, &story433, &story434, &story435, &story436, &story437, &story438, &story439,
+        &story440, &story441, &story442, &story443, &story444, &story445, &story446, &story447, &story448, &story449};
 }
 
 #endif
