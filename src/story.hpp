@@ -696,6 +696,8 @@ public:
     {
         Character::GAIN_LIFE(player, 1);
 
+        Character::LOSE_ITEMS(player, {Item::Type::GOLDEN_APPLE});
+
         Shop.clear();
 
         if (Character::VERIFY_ITEMS_ANY(player, {Item::CLOAK, Item::JEWELLED_SWORD, Item::BLACK_JEWEL, Item::HAWK}))
@@ -1192,7 +1194,7 @@ public:
     {
         ID = 32;
 
-        Text = "Each of the GOLDEN APPLEs will heal 1 lost Life Point when eaten. You cannot eat APPLEs to bring you back from the dead, of course -- if you go below zero Life Points at any stage of the adventure then you are dead, regardless of whether you may have magic APPLEs still uneaten in your backpack.";
+        Text = "Each of the GOLDEN APPLEs will HEAL 1 LOST Life Point when eaten. You cannot eat APPLEs to bring you back from the dead, of course -- if you go below zero Life Points at any stage of the adventure then you are dead, regardless of whether you may have magic APPLEs still uneaten in your backpack.";
 
         Bye = "Thanking the fruit seller, you head back to the ship.";
 
@@ -11712,6 +11714,249 @@ public:
     }
 };
 
+class Story460 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story460()
+    {
+        ID = 460;
+
+        Bye = "Your marines join you and help you to swiftly overcome the remaining pirates.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "The jinni plants his shoulder against the stone door and strains using all his strength. With a ponderous grinding noise, the door slowly slides up. Beyond you can see a hidden cove where the docks are piled with overflowing chests of gold and jewels.\n\nBefore the gap is quite wide enough for your ship to sail through, the two colossal statues leap up with roars of outrage. Stamping their feet, they send waves swamping up over the bows. They plunge thigh-deep through the water, seize your ship and spin it around, then propel it hard through the narrow gap in the door. There is a crunch as the timbers split. The ship breaks apart. You jump out onto the jetty to find yourself surrounded by pirates. Your marines are floundering in the water. Once they swim to the jetty, you are sure they'll be able to beat the pirates. But in the meantime you are left facing a dozen of these cut-throats on your own.\n\n";
+
+        auto DAMAGE = -7;
+
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
+        {
+            DAMAGE = -3;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -5;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 372; }
+};
+
+class Story461 : public Story::Base
+{
+public:
+    Story461()
+    {
+        ID = 461;
+
+        Text = "Your fingers close on something half-buried in the soil where you are kneeling. You smooth away the muck. It is a MIRROR.\n\nThe Sultan's knights have completed their grisly work. Abdullah and his servants lie scattered around the clearing. Severed limbs and gore cover the surrounding bushes. The bodies look as though they've been slashed with a hundred scythes.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[ROGUERY] Creep off before you're spotted", 154, Skill::Type::ROGUERY));
+        Choices.push_back(Choice::Base("Otherwise", 79));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Take = {Item::MIRROR};
+
+        Limit = 1;
+    }
+};
+
+class Story462 : public Story::Base
+{
+public:
+    Story462()
+    {
+        ID = 462;
+
+        Text = "You visit the market -- not to buy, but to sell. You must raise at least 50 dinars to get back home. With heavy heart, you survey your belongings and see how much each will fetch. A SWORD (ordinary and JEWELLED), CLOAK, RING, BOW, BLACK JEWEL, LAMP OF Antar, and an INDIAN ROPE are the only items that are of interest to anyone.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Buy passage on a ship (50 dinars)", 399, Choice::Type::MONEY, 50));
+        Choices.push_back(Choice::Base("You do not have enough moeny or refuse to pay", 149));
+
+        Controls = Story::Controls::SELL;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Sell = {{Item::SWORD, 20}, {Item::JEWELLED_SWORD, 50}, {Item::CLOAK, 20}, {Item::RING, 50}, {Item::BOW, 20}, {Item::BLACK_JEWEL, 50}, {Item::LAMP_OF_ANTAR, 90}, {Item::INDIAN_ROPE, 80}};
+    }
+};
+
+class Story463 : public Story::Base
+{
+public:
+    Story463()
+    {
+        ID = 463;
+
+        Text = "The servants bring you a cup of sherbet laced with cinnamon. Glutted by all the rich food you have eaten, you fail to notice a curious chalky aftertaste until it is too late. As you slump drowsily across the table, you are dimly aware of the three old men entering the room.\n\n\"Prepare the altar,\" one of them says, his words thudding like lead weights inside your skull. \"The gods will look on us with great favour after this sacrifice.\"\n\nYou black out, never to awaken.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story464 : public Story::Base
+{
+public:
+    Story464()
+    {
+        ID = 464;
+
+        Text = "You once heard a tale concerning a well like this one. Racking your brains, you finally remember the details. It was a story about a man who wandered for his whole life in the desert. He never escaped because he kept coming across the well, and each drop drawn from the well doubled the distance to the desert's edge.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 71; }
+};
+
+class Story465 : public Story::Base
+{
+public:
+    Story465()
+    {
+        ID = 465;
+
+        Text = "The Caliph, Harun al-Rashid, is fond of entering the city in disguise by night. In this way, by mingling on the streets in the clothes of a common trader, he gets to learn the true feelings of the populace. It is rumoured that he uses a concealed tunnel to get in and out of the Palace on these excursions. Fortunately your headlong flight has brought you to the secret entrance to that tunnel. Dipping your hand inside the stem of the jar, you find a lever. You tug it and the back of the alcove slides up, admitting you to the tunnel. It closes behind you an instant before the guards round the corner.\n\nChuckling at the thought of how it will seem you have vanished into thin air, you lope along the tunnel until you feel fresh air in your face and see the glitter of starlight ahead.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 383; }
+};
+
+class Story466 : public Story::Base
+{
+public:
+    Story466()
+    {
+        ID = 466;
+
+        Text = "You search high and low, but the harbour is large and filled with ships. Soon you realize you are lost.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::GEMINI}))
+        {
+            return 6;
+        }
+        else
+        {
+            return 29;
+        }
+    }
+};
+
+class Story467 : public Story::Base
+{
+public:
+    Story467()
+    {
+        ID = 467;
+
+        Text = "You took note of the GOLDEN APPLEs you have bought. Each counts as one possession.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (player.Life < player.MAX_LIFE_LIMIT)
+        {
+            Choices.push_back(Choice::Base("Bite into one", 9, {Item::GOLDEN_APPLE}));
+        }
+
+        Choices.push_back(Choice::Base("Ask about the GOLDEN APPLE", 32));
+    }
+};
+
+class Story468 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story468()
+    {
+        ID = 468;
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Execute jab to his face", 288));
+        Choices.push_back(Choice::Base("Do a low sweeping kick", 242));
+        Choices.push_back(Choice::Base("Evade his attack", 219));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "Your knuckles crack against the hard ridge of his jaw. At the same instant, you feel the blade of his sword scraping against your ribs.\n\nYou LOSE 3 Life Points.";
+
+        Character::GAIN_LIFE(player, -3);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou jump away from your opponent and prepare for another exchange of blows. You are now in position...";
+        }
+
+        Text = PreText.c_str();
+    }
+};
+
+class Story469 : public Story::Base
+{
+public:
+    Story469()
+    {
+        ID = 469;
+
+        Text = "Looking along the trail, you say, \"I think you ought to give me a head start.\"\n\n\"Pah!\" retorts one of the brothers. \"You're all full of bluster after all.\"\n\n\"It's not that. It's just that we mortals don't see so well in the dark. You want the race to be fair, don't you?\"\n\n\"Fair?\" The two ghouls look at each other, mouths sagging like sheep. \"What does that mean?\"\n\n\"Or maybe you're afraid I'll beat you.\"\n\nWith their witless pride at stake, they agree to give you a minute's head start. You race off and conceal yourself behind some rocks. Much less than a minute later, you see the two ghouls go hurtling past on strong thudding feet. Once they are out of sight, you emerge from the rocks.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go back to the hut and deal with the she-ghoul", 34));
+        Choices.push_back(Choice::Base("Try to get back to the merchant caravan", 57));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -12172,6 +12417,16 @@ auto story456 = Story456();
 auto story457 = Story457();
 auto story458 = Story458();
 auto story459 = Story459();
+auto story460 = Story460();
+auto story461 = Story461();
+auto story462 = Story462();
+auto story463 = Story463();
+auto story464 = Story464();
+auto story465 = Story465();
+auto story466 = Story466();
+auto story467 = Story467();
+auto story468 = Story468();
+auto story469 = Story469();
 
 void InitializeStories()
 {
@@ -12221,7 +12476,8 @@ void InitializeStories()
         &story420, &story421, &story422, &story423, &story424, &story425, &story426, &story427, &story428, &story429,
         &story430, &story431, &story432, &story433, &story434, &story435, &story436, &story437, &story438, &story439,
         &story440, &story441, &story442, &story443, &story444, &story445, &story446, &story447, &story448, &story449,
-        &story450, &story451, &story452, &story453, &story454, &story455, &story456, &story457, &story458, &story459};
+        &story450, &story451, &story452, &story453, &story454, &story455, &story456, &story457, &story458, &story459,
+        &story460, &story461, &story462, &story463, &story464, &story465, &story466, &story467, &story468, &story469};
 }
 
 #endif
