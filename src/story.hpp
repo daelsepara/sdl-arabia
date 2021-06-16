@@ -1255,7 +1255,7 @@ public:
     {
         ID = 35;
 
-        Text = "You go and shelter in a cave, after first checking that it isn't already occupied. A raw wind howls outside, but you are snug inside your woollen cloak. Even so, you get very little sleep after your horrific experience. Rising with the first silver light of the predawn, you head down out of the hills to join the others.";
+        Text = "You go and shelter in a cave, after first checking that it isn't already occupied. A raw wind howls outside, but you are snug inside your woollen CLOAK. Even so, you get very little sleep after your horrific experience. Rising with the first silver light of the predawn, you head down out of the hills to join the others.";
 
         Choices.clear();
 
@@ -3484,7 +3484,7 @@ public:
     {
         ID = 124;
 
-        Text = "One of the ghoul brothers gives the signal and they go charging off down the path like a pair of stampeding elephants. You stand watching them in the moonlight. After fifty metres or so, one of them glances back and laughs, saying, \"Haw! You forgot to start at the signal. You don't have a chance of catching us now!\"\n\n\"You're right,\" you reply, \"I don't.\" And you shoot him through the heart.\n\nThe other ghoul skids to a halt, stares at his brother's corpse in shock, then glowers at you. He takes a step back along the trail, sees you nocking another arrow, and starts to back away.\n\nYou release the second arrow and watch it streak to find its mark. You give a sad shake of the head as you turn away. They were almost too easy. Now to deal with the vile monster that spawned them.\n\nShe looks up from tasting a ladle of stew as you kick the door in. Her slack blue-lipped mouth starts to frame a quizzical frown. The expression turns to a death grimace as your arrow splits her throat. Stepping over the body, you make a quick search of the hut, finding 15 dinars in a jar.\n\nYou also take a warm woollen cloak. You have no desire to spend the night here, and you will need something to keep warm while sheltering amid the rocks. The cloak is crawling with lice, but you hold it over the fire for a few minutes so that the smoke drives most of them out.";
+        Text = "One of the ghoul brothers gives the signal and they go charging off down the path like a pair of stampeding elephants. You stand watching them in the moonlight. After fifty metres or so, one of them glances back and laughs, saying, \"Haw! You forgot to start at the signal. You don't have a chance of catching us now!\"\n\n\"You're right,\" you reply, \"I don't.\" And you shoot him through the heart.\n\nThe other ghoul skids to a halt, stares at his brother's corpse in shock, then glowers at you. He takes a step back along the trail, sees you nocking another arrow, and starts to back away.\n\nYou release the second arrow and watch it streak to find its mark. You give a sad shake of the head as you turn away. They were almost too easy. Now to deal with the vile monster that spawned them.\n\nShe looks up from tasting a ladle of stew as you kick the door in. Her slack blue-lipped mouth starts to frame a quizzical frown. The expression turns to a death grimace as your arrow splits her throat. Stepping over the body, you make a quick search of the hut, finding 15 dinars in a jar.\n\nYou also take a warm woollen CLOAK. You have no desire to spend the night here, and you will need something to keep warm while sheltering amid the rocks. The CLOAK is crawling with lice, but you hold it over the fire for a few minutes so that the smoke drives most of them out.";
 
         Choices.clear();
 
@@ -7117,7 +7117,7 @@ public:
     {
         ID = 273;
 
-        Text = "As Jafar makes his throw, you sweep the cloak around, sweeping the deadly blade out of the air before it reaches its target.\n\nThe Caliph, recovering from his shock, calls for his guards. Jafar turns and flees.";
+        Text = "As Jafar makes his throw, you sweep the CLOAK around, sweeping the deadly blade out of the air before it reaches its target.\n\nThe Caliph, recovering from his shock, calls for his guards. Jafar turns and flees.";
 
         Controls = Story::Controls::STANDARD;
     }
@@ -8034,7 +8034,7 @@ public:
     {
         ID = 313;
 
-        Text = "Just as the Sultan removes his mask, you step forward and fling the cloak across his face. He claws at it, blinded for an instant. The three knights growl deep in their throats and go for their swords.";
+        Text = "Just as the Sultan removes his mask, you step forward and fling the CLOAK across his face. He claws at it, blinded for an instant. The three knights growl deep in their throats and go for their swords.";
 
         Choices.clear();
 
@@ -8820,7 +8820,7 @@ public:
     {
         Choices.clear();
 
-        PreText = "You fling the cloak over the nearest warrior's head. While he is struggling blindly to get free, you kick his legs out from under him and stoop to whack his head against the ground. The iron helmet rings like an anvil under a hammer. The effect on the warrior must be rather the same as putting his head inside a bell. He squirms away, clutching his ears and writhing in pain.\n\nThe other two rush in to attack. As they step onto the cloak, you whisk it out from under them and they go sprawling. Glancing at Yussuf, you see that he will be of no use in this fight. He is cowering wide-eyed at the end of the gallery with his fist stuffed into his mouth. Still, you seem to be getting the better of the three warriors with just your bare hands.\n\nThe battle is brief.";
+        PreText = "You fling the CLOAK over the nearest warrior's head. While he is struggling blindly to get free, you kick his legs out from under him and stoop to whack his head against the ground. The iron helmet rings like an anvil under a hammer. The effect on the warrior must be rather the same as putting his head inside a bell. He squirms away, clutching his ears and writhing in pain.\n\nThe other two rush in to attack. As they step onto the CLOAK, you whisk it out from under them and they go sprawling. Glancing at Yussuf, you see that he will be of no use in this fight. He is cowering wide-eyed at the end of the gallery with his fist stuffed into his mouth. Still, you seem to be getting the better of the three warriors with just your bare hands.\n\nThe battle is brief.";
 
         if (!Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
         {
@@ -10243,6 +10243,192 @@ public:
     int Continue(Character::Base &player) { return 104; }
 };
 
+class Story401 : public Story::Base
+{
+public:
+    Story401()
+    {
+        ID = 401;
+
+        Text = "Azenomei lends you his bunch of keys. Donning the slippers, you rise up to the grille and soon have it unlocked. Perched on the edge of the pit, you take a gulp of clean air -- your first in over a week. \n\n\"Come on!\" hisses Azenomei's voice from the darkness of the pit. \"Toss the slippers down.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Do as he asks", 358));
+        Choices.push_back(Choice::Base("Leave him where he is", 422));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story402 : public Story::Base
+{
+public:
+    Story402()
+    {
+        ID = 402;
+
+        Text = "Fleeing from the city with your hands pressed to your ears to shut out the terrible din of the fight, you return to the ship and tell them what you saw.\n\n\"What dreadful place have you brought us with your wizardry?\" laments the captain, pulling off his turban and tearing his hair.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 144; }
+};
+
+class Story403 : public Story::Base
+{
+public:
+    Story403()
+    {
+        ID = 403;
+
+        Choices.clear();
+
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::HAREM}))
+        {
+            return 4;
+        }
+        else
+        {
+            return 19;
+        }
+    }
+};
+
+class Story404 : public Story::Base
+{
+public:
+    Story404()
+    {
+        ID = 404;
+
+        Text = "As you look around, Masrur gives a roar and charges forward, raising his sword with both hands for a mighty cleaving blow.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_ANY_SKILLS(player, {Skill::Type::AGILITY, Skill::Type::LUCK}))
+        {
+            Choices.push_back(Choice::Base("Use a HAWK", 139, {Item::HAWK}));
+            Choices.push_back(Choice::Base("Otherwise", 161));
+        }
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 70;
+        }
+        else
+        {
+            return 116;
+        }
+    }
+};
+
+class Story405 : public Story::Base
+{
+public:
+    Story405()
+    {
+        ID = 405;
+
+        Text = "You are thrown into prison. This time there will be no escape. A stake is already being sharpened. Tomorrow at dawn you will be impaled, and your warnings against Jafar will just be put down to the frantic last gambit of a convicted criminal.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story406 : public Story::Base
+{
+public:
+    Story406()
+    {
+        ID = 406;
+
+        Text = "You dive off the parapet. From where the guards are standing, it looks as if you have simply jumped to your doom. You hear a gasp of horror escape their throats, then the clatter of footsteps as they run to look down.\n\nYou are in fact clinging to the gonfalon. Sliding down hastily, you swing to safety on the balcony and press back into the shadow of a leafy trellis. A moment later, a row of pale astonished faces appear at the edge of the roof above. \"The fool jumped -- must've been insane,\" says one guard.\n\n\"I don't call that insanity,\" says another grimly. \"Better a quick death than face the Caliph's torturers.\"\n\nThe captain of the guards peers down through the darkness. \"I can't see a body,\" he mutters, voice tinged with the first stirrings of doubt. \"You two, get down there and make sure of it.\"\n\nYou waste no more time. When no corpse is found, they'll scour the palace looking for you. By that time you mean to be long gone. Letting yourself in through the balcony window, you steal a brocade CLOAK and slip unnoticed past the guards on the gate.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::CLOAK});
+    }
+
+    int Continue(Character::Base &player) { return 383; }
+};
+
+class Story407 : public Story::Base
+{
+public:
+    Story407()
+    {
+        ID = 407;
+
+        Text = "It is an easy climb up the cliffs, with many jutting rocks and clumps of grass for you to hang on to. Yussuf follows with much mumbling and grumbling under his breath. He thinks you are foolhardy, but he will not abandon you to face danger alone.\n\nReaching a ledge, you see a small cave where a spindly old man sits huddled beside a bowl of red glowing charcoal. A lurid light lies across his face as he shows you a long-toothed smile and says, \"Peace be upon you, my friends.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Greet him in return", 429));
+        Choices.push_back(Choice::Base("First demand to be told what he is doing here", 448));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story408 : public Story::Base
+{
+public:
+    Story408()
+    {
+        ID = 408;
+
+        Text = "You retrace your steps, watching the taper burn steadily down. At last, when its light has dimmed to just a dying red ember and you are on the point of giving up hope, Yussuf gives a whoop of joy.\n\n\"Starlight!\" he cries, clasping your arm and dragging you along. \"We've found the way out!\"\n\nYou emerge onto the ledge above the river and lose no time returning to the ship. It seems as though you have been blundering through underground tunnels for hours, so you are surprised to find that no one on board even noticed you were missing.\n\nThe others listen as you tell your story over supper. The captain gives a gruff sceptical laugh and says, \"Bah, you fell asleep and dreamed this nonsense.\" But you can tell from the crew's faces that they believe you.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 375; }
+};
+
+class Story409 : public Story::Base
+{
+public:
+    Story409()
+    {
+        ID = 409;
+
+        Image = "images/filler4.png";
+
+        Text = "You set sail with the morning tide, steering under the magnificent crescent arch at the harbour mouth and onto the open expanse of the ocean. Sunlight skitters like strings of pearls in the azure clefts of the sea.\n\nFor a week you hug the coast, watching the fishing villages glide by. Gulls shriek and circle overhead, excited at the prospect of fish stirred up by your passage. You watch each day as the dusky olive-green groves of the Hadramaut gradually give way to the stern ochre cliffs of south-west Araby.\n\nYou RECOVER 1 Life Point.\n\nArriving at the port of Raysut, you learn of pirates who have been preying on shipping in the Red Sea. \"They swoop down without warning in black-sailed ships,\" a longshoreman tells you as he helps load your cargo.\n\n\"Why doesn't the Sultan of Cairo order his fleets against them?\" asks your captain.\n\n\"After their raids, they vanish like the dew in the gardens of Baghdad with the coming of dawn,\" vows a sailor who claims to have seen them. \"One minute we had only empty sea ahead, then they were there. I alone escaped to tell the tale.\"\n\n\"And how did you manage that?\" one of the crew asks him.\n\n\"Ah, there is a tale...\" begins the man.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Stay to hear his story", 453));
+        Choices.push_back(Choice::Base("Do some shopping in the market", 350));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_LIFE(player, 1);
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -10644,6 +10830,15 @@ auto story397 = Story397();
 auto story398 = Story398();
 auto story399 = Story399();
 auto story400 = Story400();
+auto story401 = Story401();
+auto story402 = Story402();
+auto story403 = Story403();
+auto story404 = Story404();
+auto story405 = Story405();
+auto story406 = Story406();
+auto story407 = Story407();
+auto story408 = Story408();
+auto story409 = Story409();
 
 void InitializeStories()
 {
@@ -10688,7 +10883,7 @@ void InitializeStories()
         &story370, &story371, &story372, &story373, &story374, &story375, &story376, &story377, &story378, &story379,
         &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389,
         &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399,
-        &story400};
+        &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409};
 }
 
 #endif

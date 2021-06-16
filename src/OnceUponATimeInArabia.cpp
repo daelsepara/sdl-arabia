@@ -4109,13 +4109,23 @@ Story::Base *processChoices(SDL_Window *window, SDL_Renderer *renderer, Characte
             if (!splash || (splash && splash_h < (text_bounds - (boxh + infoh))))
             {
                 putText(renderer, "Life", font, text_space, clrWH, player.Life > 0 ? intYW : intRD, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (boxh + infoh));
-                putText(renderer, (std::to_string(player.Life)).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
+
+                SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+                putText(renderer, (std::to_string(player.Life)).c_str(), font, text_space, clrBK, BE_50, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - boxh);
+
+                SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
             }
 
             if (!splash || (splash && splash_h < text_bounds - (2 * (boxh + infoh) + box_space)))
             {
                 putText(renderer, "Money", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, infoh, startx, starty + text_bounds - (2 * (boxh + infoh) + box_space));
-                putText(renderer, (std::to_string(player.Money) + std::string(" dinars")).c_str(), font, text_space, clrBK, intBE, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+
+                SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+                putText(renderer, (std::to_string(player.Money) + std::string(" dinars")).c_str(), font, text_space, clrBK, BE_50, TTF_STYLE_NORMAL, splashw, boxh, startx, starty + text_bounds - (2 * boxh + infoh + box_space));
+
+                SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
             }
 
             if (error)
