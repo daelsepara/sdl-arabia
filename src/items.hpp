@@ -37,8 +37,9 @@ namespace Item
         CANDLE,
         BUNCH_OF_KEYS,
         SHACKLES,
+        EVER_FULL_BOTTLE,
         First = BOW,
-        Last = SHACKLES
+        Last = EVER_FULL_BOTTLE
     };
 
     class Base
@@ -101,6 +102,7 @@ namespace Item
     auto CANDLE = Item::Base("CANDLE", "CANDLE", Item::Type::CANDLE);
     auto BUNCH_OF_KEYS = Item::Base("BUNCH OF KEYS", "BUNCH OF KEYS", Item::Type::BUNCH_OF_KEYS);
     auto SHACKLES = Item::Base("SHACKLES", "SHACKLES", Item::Type::SHACKLES);
+    auto EVER_FULL_BOTTLE = Item::Base("EVER-FULL BOTTLE", "EVER-FULL BOTTLE", Item::Type::EVER_FULL_BOTTLE);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::LONG_TAILED_CAT,

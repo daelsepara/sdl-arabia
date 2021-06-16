@@ -846,7 +846,7 @@ public:
     {
         PreText = "Another few days brings you to Zeila, a medium-sized port on the west coast of the Gulf of Adan. The journey has been arduous, and it has been a long time since you had a drink of water.";
 
-        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS_ANY(player, {Item::WATER_BOTTLE, Item::EVER_FULL_BOTTLE}))
         {
             Character::GAIN_LIFE(player, -1);
 
@@ -855,7 +855,7 @@ public:
 
         if (player.Life > 0)
         {
-            PreText += "\n\nRefreshing yourself at a fountain by the city gates, where you can refill any bottles you are carrying, you hear a sublimely beautiful song wafting through the dusk. It is the call to prayer from the high minaret you can see above the rooftops. Kneeling where you are, you give thanks to heaven for seeing you safely through the desert.";
+            PreText += "\n\nRefreshing yourself at a fountain by the city gates, where you can REFILL any bottles you are carrying, you hear a sublimely beautiful song wafting through the dusk. It is the call to prayer from the high minaret you can see above the rooftops. Kneeling where you are, you give thanks to heaven for seeing you safely through the desert.";
 
             Character::REFILL(player, Item::Type::WATER_BOTTLE);
         }
@@ -2037,7 +2037,7 @@ public:
     {
         ID = 65;
 
-        Text = "Drawing a deep breath just before the smoke cloud reaches you, you stumble blindly forward to the middle of the room. The hubble-bubble pipe is still there. Pushing the tube into your mouth, you draw air into your lungs. You guessed right. The noxious smoke, in passing through the water of the pipe, is rendered harmless.\n\nThe three sorcerers are calling to each other, but they cannot see what's happening because of the cloud of smoke. You scoop up the chart they were looking at and tuck the hubble-bubble pipe under your arm, then grope your way to the back of the room. There you find a doorway that leads out of the citadel, and you make your escape.";
+        Text = "Drawing a deep breath just before the smoke cloud reaches you, you stumble blindly forward to the middle of the room. The hubble-bubble pipe is still there. Pushing the tube into your mouth, you draw air into your lungs. You guessed right. The noxious smoke, in passing through the water of the pipe, is rendered harmless.\n\nThe three sorcerers are calling to each other, but they cannot see what's happening because of the cloud of smoke. You scoop up the CHART they were looking at and tuck the hubble-bubble pipe under your arm, then grope your way to the back of the room. There you find a doorway that leads out of the citadel, and you make your escape.";
 
         Choices.clear();
 
@@ -2076,13 +2076,16 @@ public:
 
         auto DAMAGE = -2;
 
-        if (Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        if (Character::VERIFY_ITEMS_ANY(player, {Item::WATER_BOTTLE, Item::EVER_FULL_BOTTLE}))
         {
             DAMAGE = -1;
 
-            PreText += "Your WATER BOTTLE has been EMPTIED. ";
+            if (!Character::VERIFY_ITEMS(player, {Item::Type::EVER_FULL_BOTTLE}))
+            {
+                PreText += "Your WATER BOTTLE has been EMPTIED. ";
 
-            Character::EMPTY(player, Item::Type::WATER_BOTTLE);
+                Character::EMPTY(player, Item::Type::WATER_BOTTLE);
+            }
         }
 
         if (Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
@@ -2214,11 +2217,18 @@ public:
 
         auto DAMAGE = -2;
 
-        if (Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        if (Character::VERIFY_ITEMS_ANY(player, {Item::WATER_BOTTLE, Item::EVER_FULL_BOTTLE}))
         {
             DAMAGE = -1;
 
-            PreText += "[Item: WATER BOTTLE]";
+            if (Character::VERIFY_ITEMS(player, {Item::Type::EVER_FULL_BOTTLE}))
+            {
+                PreText += "[Item: EVER-FULL BOTTLE]";
+            }
+            else
+            {
+                PreText += "[Item: WATER BOTTLE]";
+            }
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -2581,11 +2591,18 @@ public:
             PreText += "[WILDERNESS LORE] ";
         }
 
-        if (Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        if (Character::VERIFY_ITEMS_ANY(player, {Item::WATER_BOTTLE, Item::EVER_FULL_BOTTLE}))
         {
             DAMAGE++;
 
-            PreText += "[Item: WATER BOTTLE] ";
+            if (Character::VERIFY_ITEMS(player, {Item::Type::EVER_FULL_BOTTLE}))
+            {
+                PreText += "[Item: EVER-FULL BOTTLE] ";
+            }
+            else
+            {
+                PreText += "[Item: WATER BOTTLE] ";
+            }
         }
 
         Character::GAIN_LIFE(player, DAMAGE);
@@ -2660,7 +2677,7 @@ public:
     {
         ID = 88;
 
-        Text = "A bank of green vapour conceals you from the three sorcerers. Darting forward, you snatch up the chart they were discussing. Your eyes begin to sting, but you grope your way to one wall and climb up one of the long tapestries until you reach the balcony above. You glance down to see the sorcerers standing in the midst of the green murk. It does not have any effect on them, although you are in no doubt that it would have poisoned you in seconds.\n\nThey don't think to look up. You make your way to the end of the balcony and find a window to the outside. Climbing down, you hurry off down the hillside to safety.";
+        Text = "A bank of green vapour conceals you from the three sorcerers. Darting forward, you snatch up the CHART they were discussing. Your eyes begin to sting, but you grope your way to one wall and climb up one of the long tapestries until you reach the balcony above. You glance down to see the sorcerers standing in the midst of the green murk. It does not have any effect on them, although you are in no doubt that it would have poisoned you in seconds.\n\nThey don't think to look up. You make your way to the end of the balcony and find a window to the outside. Climbing down, you hurry off down the hillside to safety.";
 
         Choices.clear();
 
@@ -4336,7 +4353,7 @@ public:
 
         Image = "images/filler3.png";
 
-        Text = "To your own amazement as much as that of the evil sorcerers, the cloud of green gas is absorbed by the black jewel you are carrying. You waste no time wondering about it, but launch yourself forward and snatch up the chart before racing from the room.\n\nThe sorcerers come tottering after you, but they are old and you soon outdistance them. Retrieving your belongings, you find the door and hurry down the hillside away from the fearful citadel.\n\nThe BLACK JEWEL has LOST its power.";
+        Text = "To your own amazement as much as that of the evil sorcerers, the cloud of green gas is absorbed by the black jewel you are carrying. You waste no time wondering about it, but launch yourself forward and snatch up the CHART before racing from the room.\n\nThe sorcerers come tottering after you, but they are old and you soon outdistance them. Retrieving your belongings, you find the door and hurry down the hillside away from the fearful citadel.\n\nThe BLACK JEWEL has LOST its power.";
 
         Choices.clear();
 
@@ -4542,7 +4559,7 @@ public:
     {
         ID = 165;
 
-        Text = "The captain glowers as you kneel on the deck and unroll the mat. \"Save your prayers for later,\" he snarls. \"God is compassionate, but we cannot look to Him to guide us from this fog bank.\"\n\nThe mat falls with its gold fringe towards Mecca. You scan the charts, pointing to a jagged line that the map-maker has labelled with a warning. \"See this coral reef?\" you say to the captain. \"If I'm right as to our heading, it lies just a few leagues to starboard. I counsel you to steer well clear, or we'll run aground.\"\n\nHe stares at your prayer-mat, then tries it for himself. No matter how he unrolls it, it always falls the same way. \"It must be magical,\" he grumbles suspiciously.\n\n\"It is pious magic, at least. As reliable as any compass.\"\n\nFinally he agrees to steer the course you set. Slowly the current carries you clear of the dismal fog, and when the crew see the sun again they raise you on their shoulders with a cheer.";
+        Text = "The captain glowers as you kneel on the deck and unroll the mat. \"Save your prayers for later,\" he snarls. \"God is compassionate, but we cannot look to Him to guide us from this fog bank.\"\n\nThe mat falls with its gold fringe towards Mecca. You scan the CHARTs, pointing to a jagged line that the map-maker has labelled with a warning. \"See this coral reef?\" you say to the captain. \"If I'm right as to our heading, it lies just a few leagues to starboard. I counsel you to steer well clear, or we'll run aground.\"\n\nHe stares at your prayer-mat, then tries it for himself. No matter how he unrolls it, it always falls the same way. \"It must be magical,\" he grumbles suspiciously.\n\n\"It is pious magic, at least. As reliable as any compass.\"\n\nFinally he agrees to steer the course you set. Slowly the current carries you clear of the dismal fog, and when the crew see the sun again they raise you on their shoulders with a cheer.";
 
         Choices.clear();
 
@@ -4946,7 +4963,7 @@ public:
     {
         ID = 184;
 
-        Text = "You can hear murmuring and the rustling of silks as Jafar changes his robe in the next room. Since he is boasting loudly to the timid slave about his plans, it's unlikely he will hear you. Even so, you are careful to pad as quietly as a cat over to the table where the chart lies. Scanning it quickly, you see that the rokh's nest is marked close to the source of the Nile river.\n\nYou gained the codeword KISMET.\n\n\"These green slippers will not do!\" you hear Jafar hissing at his slave. \"Have you no sense at all, you curd-faced girl? Fetch the red pair from the other room.\"\n\nYou glance down. The red slippers are beside the table. You see the slave girl's swaying silhouette as she approaches the curtained archway. You must get away fast, or she will raise the alarm. Hastily you retrace your steps.";
+        Text = "You can hear murmuring and the rustling of silks as Jafar changes his robe in the next room. Since he is boasting loudly to the timid slave about his plans, it's unlikely he will hear you. Even so, you are careful to pad as quietly as a cat over to the table where the CHART lies. Scanning it quickly, you see that the rokh's nest is marked close to the source of the Nile river.\n\nYou gained the codeword KISMET.\n\n\"These green slippers will not do!\" you hear Jafar hissing at his slave. \"Have you no sense at all, you curd-faced girl? Fetch the red pair from the other room.\"\n\nYou glance down. The red slippers are beside the table. You see the slave girl's swaying silhouette as she approaches the curtained archway. You must get away fast, or she will raise the alarm. Hastily you retrace your steps.";
 
         Choices.clear();
 
@@ -7064,7 +7081,7 @@ public:
     {
         PreText = "Azenomei leads you into the wasteland, where the hot air rasps your throat and each footstep raises a cloud of acrid dust. For days you travel without seeing any sign of life. From dawn to dusk you feel as though your flesh is being dried on your bones. Night makes the rocks colder than ice.";
 
-        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS_ANY(player, {Item::WATER_BOTTLE, Item::EVER_FULL_BOTTLE}))
         {
             Character::GAIN_LIFE(player, -2);
 
@@ -7072,7 +7089,7 @@ public:
         }
         else
         {
-            if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+            if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS(player, {Item::Type::EVER_FULL_BOTTLE}))
             {
                 Character::EMPTY(player, Item::Type::WATER_BOTTLE);
 
@@ -9003,7 +9020,7 @@ public:
     {
         PreText = "Leaving Cairo on foot, you head along the banks of the Nile. Soon you have left the fertile farmland behind, and you head on into wild territory where the Sultan's rule of law does not extend. Crocodiles splash the dun-coloured water, sliding down off the sun-drenched banks as you pass. You see boats plying their trade, but they stay in midstream. A lone traveller in these parts might easily be a brigand or a mad wizard, and the few peasants you see are fearful of approaching you.\n\nBeyond the river-bank lies a waterless wasteland. Soon the soles of your feet are hardened like leather and your tongue sticks to the roof of your mouth. In all directions the horizon is lost in a hot flat haze.";
 
-        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS_ANY(player, {Item::WATER_BOTTLE, Item::EVER_FULL_BOTTLE}))
         {
             Character::GAIN_LIFE(player, -1);
 
@@ -9011,7 +9028,7 @@ public:
         }
         else
         {
-            if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+            if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE) && !Character::VERIFY_ITEMS(player, {Item::Type::EVER_FULL_BOTTLE}))
             {
                 Character::EMPTY(player, Item::Type::WATER_BOTTLE);
 
@@ -9375,7 +9392,7 @@ public:
     {
         ID = 362;
 
-        Text = "\"The other reason? It is here,\" says Jafar, pulling a scroll from his sleeve. \"This CHART was brought to me by my loyal henchman, who got it from an African trader. It shows where I can find the nest of the great rokh, the bird with wings longer than a city's streets. It lays eggs of DIAMOND, and with just a few fragments of such an egg I could bribe the army and make myself Caliph.\"\n\nThe slave's eyes are wide with wonder. \"When will you set out to seek this treasure, lord?\" she asks.\n\nJafar snorts. \"Me, risk my life climbing to the rokh's nest? I have no intention of doing so. I employ others for those tasks. Even now, my agents are combing the sordid dives and dens of a dozen cities searching for the famous thief Shazir.\"\n\n\"Shazir!\" The slave gasps. \"I have heard of that one's daring exploits. It was Shazir who stole the ruby known as Iblis's Eye from the treasury of the Sultan of Nishapur.\"\n\nJafar nods impatiently. \"Yes, and it will be the same Shazir who steals a piece of the rokh's egg for me. Now, come and help me change. This Robe of Honour is elegant, but it is also rather uncomfortable.\" He puts the chart down on a table and goes through a curtained archway into an inner room. The slave glides dutifully after him.\n\nYou look at the CHART and lick your lips. Just a few quick strides and you would hold the key to great treasure in your hands. But if you are discovered here, you will be beheaded as a common thief.";
+        Text = "\"The other reason? It is here,\" says Jafar, pulling a scroll from his sleeve. \"This CHART was brought to me by my loyal henchman, who got it from an African trader. It shows where I can find the nest of the great rokh, the bird with wings longer than a city's streets. It lays eggs of DIAMOND, and with just a few fragments of such an egg I could bribe the army and make myself Caliph.\"\n\nThe slave's eyes are wide with wonder. \"When will you set out to seek this treasure, lord?\" she asks.\n\nJafar snorts. \"Me, risk my life climbing to the rokh's nest? I have no intention of doing so. I employ others for those tasks. Even now, my agents are combing the sordid dives and dens of a dozen cities searching for the famous thief Shazir.\"\n\n\"Shazir!\" The slave gasps. \"I have heard of that one's daring exploits. It was Shazir who stole the ruby known as Iblis's Eye from the treasury of the Sultan of Nishapur.\"\n\nJafar nods impatiently. \"Yes, and it will be the same Shazir who steals a piece of the rokh's egg for me. Now, come and help me change. This Robe of Honour is elegant, but it is also rather uncomfortable.\" He puts the CHART down on a table and goes through a curtained archway into an inner room. The slave glides dutifully after him.\n\nYou look at the CHART and lick your lips. Just a few quick strides and you would hold the key to great treasure in your hands. But if you are discovered here, you will be beheaded as a common thief.";
 
         Choices.clear();
         Choices.push_back(Choice::Base("Creep over for a closer look at the CHART", 184));
@@ -11238,11 +11255,11 @@ public:
     {
         PreText = "";
 
-        if (Character::VERIFY_ITEMS(player, {Item::Type::WATER_BOTTLE}))
+        if (Item::COUNT_TYPES(player.Items, Item::Type::WATER_BOTTLE) > 0)
         {
             Character::REFILL(player, Item::Type::WATER_BOTTLE);
 
-            PreText += "You refill your WATER BOTTLE here. ";
+            PreText += "You REFILL your WATER BOTTLE here. ";
         }
 
         PreText += "This city has nothing else to offer you. Passage on a ship back to Iraq will cost you 50 dinars.";
@@ -11957,6 +11974,247 @@ public:
     }
 };
 
+class Story470 : public Story::Base
+{
+public:
+    Story470()
+    {
+        ID = 470;
+
+        Text = "You cannot help grinning at the old man. \"Well, you certainly seem to have a fund of strange stories.\"\n\n\"You doubt them?\" he leaps to his scrawny feet, eyes flashing. \"Watch, as I prove the truth of all I've said. You see my cat, Shahrazad? She has heard my words, yet you'll note her tail is not an inch longer than before.\"\n\nYou bite your lip and take half a step backwards. The old man is undeniably mad. \"Incontrovertible proof,\" you say to humour him. \"I no longer doubt you at all.\"\n\n\"Don't talk to me like I'm daft, you young sprat. Now watch the cat's tail while I tell her a few lies. Shahrazad, it's my birthday today and I'm just ten years old. This morning the gaoler gave me a fine confection of dates, saffron rice, spiced mutton and buttermilk for breakfast. I ate so much my belly ached! The Caliph is my second cousin and I myself heard the Prophet's last sermon, peace be upon him.\"\n\nYou blink and rub your eyes, but there can be no doubt. With each lie, the cat's tail grows a couple of inches, then after a few seconds it returns to its normal length.\n\n\"What a miraculous animal,\" is all you can say.\n\n\"She's a sure indicator of when people are telling the truth,\" agrees the old man.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::INDIAN_ROPE}))
+        {
+            return 41;
+        }
+        else if (Character::VERIFY_ITEMS(player, {Item::Type::MAGIC_SLIPPERS}))
+        {
+            return 18;
+        }
+        else
+        {
+            return 61;
+        }
+    }
+};
+
+class Story471 : public Story::Base
+{
+public:
+    Story471()
+    {
+        ID = 471;
+
+        Text = "You shadow the three men along a gallery whose alabaster pillars provide ample cover. Reaching the end, they enter a high ceilinged hall surrounded by a balcony. Tapestries the colour of flames hang down the walls. You press yourself into the edge of the doorway and watch what they do.\n\nOne of the three fetches a hubble-bubble pipe and sets it between some cushions. You tiptoe closer, concealing yourself behind one of the drapes so you can eavesdrop on them. They sit, and for a time smoke in silence. Then one of them says, \"The traveller should be ideal for our purposes. Do you agree, my brothers?\"\n\n\"Yes,\" says one of the others. \"Then, with our spell complete, the gods will grant us the power of flight. Brother, do you have the CHART?\"\n\nThe third man nods and unfurls a piece of parchment. \"It is here. It shows the Peak of Hara where the rokh nests. Its DIAMOND egg can make us immortal.\"\n\nFor several minutes more they pass around the pipe, and the only sound in the room is of cool smoke bubbling through water. \"It's time to get things ready,\" announces the first man at last. \"Our unwitting sacrifice should have drunk the drugged sherbet by now.\"\n\nHe gets to his feet.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            return 484;
+        }
+        else
+        {
+            return 150;
+        }
+    }
+};
+
+class Story472 : public Story::Base
+{
+public:
+    Story472()
+    {
+        ID = 472;
+
+        Text = "Refreshing yourself with the cool delicious water, you journey on. With each day you grow weaker, losing a little more of your strength under the sun's enervating heat and the life-sapping chill of the night wind. At last you can go no further. You slump to the ground. Soon the wind will scour your bones to add to the great white dunes that stretch all around you to infinity.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story473 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story473()
+    {
+        ID = 473;
+
+        Image = "images/filler1.png";
+
+        Bye = "Bidding the nomads farewell, you continue south on foot across the desert.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::SHOP;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "A nomadic tribe have made their camp here. The tents nestle like white doves in the cool shade under the trees. The tribesmen watch as you quench your thirst at the oasis, then several of them come forward and invite you to look over some goods they have for sale.\n\n\"Here is an ANTIDOTE against all poisons,\" says one, holding up a small glass vial. \"Here a WATER BOTTLE that is NEVER EMPTY. And here, a MAGIC ROPE from INDIA.\"\n\nYou smile, not sure if he means it as a joke. To openly suggest that he is lying would provoke a fight. \"Great marvels indeed. I doubt if I could afford these treasures.\"\n\n\"We have other things to show you,\" he replies, unruffled. \"Not all are so expensive.\"\n\nYou look over their wares and find the following for sale: ANTIDOTE, EVER-FULL BOTTLE, INDIAN ROPE, RING, BOW, MIRROR, SWORD, and BLACK JEWEL.";
+
+        Shop = {{Item::ANTIDOTE, 90}, {Item::EVER_FULL_BOTTLE, 100}, {Item::INDIAN_ROPE, 300}, {Item::RING, 80}, {Item::BOW, 50}, {Item::MIRROR, 40}, {Item::SWORD, 20}, {Item::BLACK_JEWEL, 90}};
+
+        if (Item::COUNT_TYPES(player.Items, Item::Type::WATER_BOTTLE) > 0)
+        {
+            Character::REFILL(player, Item::Type::WATER_BOTTLE);
+
+            PreText += "\n\nYou REFILL your WATER BOTTLE here at the oasis.";
+        }
+
+        PreText += "\n\nThe EVER-FULL BOTTLE is exactly as he claimed, and will always contain water when you need it.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 15; }
+};
+
+class Story474 : public Story::Base
+{
+public:
+    Story474()
+    {
+        ID = 474;
+
+        Text = "Yussuf swims to the bottom of a cliff beside the river. You follow him and chat as night draws a veil of purple across the sky. As the heat of day gives way to a cold breeze, you both start to shiver and Yussuf suggests going back to the ship. You are about to dive into the river when, happening to glance up, you see the glimmer of firelight marking out a cave in the cliff face.\n\nYussuf mutters a prayer when you point it out to him. \"A ghoul's lair, perhaps,\" he says with a shudder of unease. \"Come, let us go back.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go back to the ship", 375));
+        Choices.push_back(Choice::Base("Insist on investigating the cave", 407));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story475 : public Story::Base
+{
+public:
+    Story475()
+    {
+        ID = 475;
+
+        Text = "The sailor greets you in the name of God and walks beside you across the plaza. \"Ah, I am glad to be back in the City of Peace after my long travels,\" he says. \"And on such a night, when merriment fills the air from dusk to dawn. But what of you, my friend? Your face seems a stranger to joy. Are sighs and long looks your stock-in-trade? If so, you'll find no taker for your wares in fair Baghdad.\"\n\nDespite your woes, you muster a smile at his whimsical way of speaking. \"Yesterday I was as light of heart as you, my friend,\" you say, and before long you have blurted out your tale.\n\nWhen you mention what the dervish said, the sailor claps you on the back and gives a whoop of jovial laughter. \"Why, these holy beggars are truly steeped in wisdom!\" Seeing your blank look, he goes on, \"Surely you realize what he meant. Why, he has gifted you with the key to restoring your fortunes -- and all for a mere dinar. Oh, for such a bargain to enrich my own business!\"\n\nYou are getting quite tetchy by now. \"Enlighten me, O Vessel of Profundity,\" you say through gritted teeth. \"In what way can I profit by the dervish's words?\"\n\n\"He spoke of the stars, which guide those like myself who venture out onto the ocean in search of distant ports. You seek treasure? Then you have only to go to the docks, take ship, and sail to find your destiny.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Accompany the sailor to the docks", 138));
+        Choices.push_back(Choice::Base("Take your leave of him", 92));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story476 : public Story::Base
+{
+public:
+    Story476()
+    {
+        ID = 476;
+
+        Text = "At noon your lookout reports seeing the black sails of the pirates. They are off the starboard bow, closing like a raptor on their sluggish prey.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Order your vessel to close in and engage the pirates at once", 262));
+        Choices.push_back(Choice::Base("Stand off and watch their attack on the merchant ship", 285));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story477 : public Story::Base
+{
+public:
+    Story477()
+    {
+        ID = 477;
+
+        Image = "images/filler2.png";
+
+        Text = "You tell the Caliph the whole story. As he listens, his countenance darkens with rage. At first you feared he might not believe you, but so many elements add up. Now he understands the true source of rebellion was never his loyal subjects, but the detestable Vizier in whom he placed his trust.\n\n\"Jafar!\" roars the Caliph. \"At last the hours of your worthless life have run out!\"\n\nFreezing in the act of sidling from the room, Jafar raises a knife. The blade drips with toxic green fluid. \"It is your own life that will end now, al-Rashid,\" he replies.\n\nJafar is about to throw the knife.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        if (!Character::VERIFY_SKILL(player, Skill::Type::AGILITY) && !Character::HAS_SKILL(player, Skill::Type::ARCHERY))
+        {
+            Choices.push_back(Choice::Base("Use a CLOAK", 273, {Item::CLOAK}));
+            Choices.push_back(Choice::Base("Leap bravely in front of the Caliph", 295));
+            Choices.push_back(Choice::Base("Do nothing", 317));
+        }
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::AGILITY))
+        {
+            return 228;
+        }
+        else
+        {
+            return 494;
+        }
+    }
+};
+
+class Story478 : public Story::Base
+{
+public:
+    Story478()
+    {
+        ID = 478;
+
+        Text = "You go up into the pass. Reaching a ridge of rocks, you glance back to see the others watching you nervously. Hakim gives you a wave which is obviously meant to be reassuring. It only serves to make you all the more resentful that he has sent you on ahead as bait for bandits.\n\nClimbing cautiously among the ridges, though, you find no sign of bandits. You are returning to call the caravan on when you are overtaken by the dusk. While up on the higher slopes, you hadn't realized it was so close to sunset. Soon you are engulfed in darkness. It would be foolhardy to go any further now. You could easily trip in the dark and break your leg. But if you stay put there are other dangers -- the chill of night and the wild creatures that might be even now emerging to hunt. You do not relish the idea of spending the night unsheltered in these hills.\n\nThen you see a light. Going closer, you discover a hut perched on a crag above the pass.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Knock at the door", 425));
+        Choices.push_back(Choice::Base("You think that might be more dangerous than sleeping in the open", 260));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story479 : public Story::Base
+{
+public:
+    Story479()
+    {
+        ID = 479;
+
+        Image = "images/filler4.png";
+
+        Text = "Dropping a line, you make careful note of the ocean currents. A master navigator like you can read them as clearly as the stars. Having determined your position and consulted the CHARTs, you are able to warn the captain about a coral reef that lies just a few leagues off the starboard bow. You set the course the ship must steer, and within an hour the glint of sunbeams pierces the haze. As the ship breaks clear of the enshrouding mist, every voice on board is raised in a cheer.\n\n\"That fog was nothing natural,\" vows Jumail the cook.\n\nYou laugh and shake your head. \"Do not look for supernatural threats where there are none, my friend. The sea has many perils, but all of them can be handled with a calm nerve and a modicum of experience.\"";
+
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 234; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -12427,6 +12685,16 @@ auto story466 = Story466();
 auto story467 = Story467();
 auto story468 = Story468();
 auto story469 = Story469();
+auto story470 = Story470();
+auto story471 = Story471();
+auto story472 = Story472();
+auto story473 = Story473();
+auto story474 = Story474();
+auto story475 = Story475();
+auto story476 = Story476();
+auto story477 = Story477();
+auto story478 = Story478();
+auto story479 = Story479();
 
 void InitializeStories()
 {
@@ -12477,7 +12745,8 @@ void InitializeStories()
         &story430, &story431, &story432, &story433, &story434, &story435, &story436, &story437, &story438, &story439,
         &story440, &story441, &story442, &story443, &story444, &story445, &story446, &story447, &story448, &story449,
         &story450, &story451, &story452, &story453, &story454, &story455, &story456, &story457, &story458, &story459,
-        &story460, &story461, &story462, &story463, &story464, &story465, &story466, &story467, &story468, &story469};
+        &story460, &story461, &story462, &story463, &story464, &story465, &story466, &story467, &story468, &story469,
+        &story470, &story471, &story472, &story473, &story474, &story475, &story476, &story477, &story478, &story479};
 }
 
 #endif
