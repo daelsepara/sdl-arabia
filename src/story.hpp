@@ -10877,6 +10877,238 @@ public:
     }
 };
 
+class Story430 : public Story::Base
+{
+public:
+    Story430()
+    {
+        ID = 430;
+
+        Text = "Quelling a shiver of nervousness, you begin the long descent. Yussuf watches you with a queasy look, then follows on his bottom, sliding carefully from step to step. You think he is being unnecessarily timid -- until your foot slips on the dank stone and you almost fall headlong. Then you too opt for the undignified but safer means of descent.\n\nYou soon lose sight of the tunnel mouth above. Now you feel as though you are suspended in a black void. You are uncomfortably aware of the long drop on either side, and the staircase seems narrower than ever.\n\nYou hear something that makes the hairs rise at the back of your neck. It is a soft ragged flapping. Dimly you can see shapes gliding down out of the dark recesses above. The forms are indistinct, but you see the faceted jewel-like glint of their predatory eyes.\n\n\"They're attracted by the light,\" you call back to Yussuf.\n\nThere is a moment as your words sink in. \"But -- but I can't put it out,\" he wails. \"Then we'd have to descend in pitch darkness.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Insist that he snuffs out the taper", 449));
+        Choices.push_back(Choice::Base("Agree that it would be certain death", 5));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story431 : public Story::Base
+{
+public:
+    Story431()
+    {
+        ID = 431;
+
+        Text = "You set sail with the morning tide, passing under the magnificent crescent arch at the harbour mouth and onto the open expanse of the ocean. Sunlight skitters like strings of pearls in the azure clefts of the sea. Braced with one hand on the rail and the other on the main halyard, you suck the fresh salt-laced air into your lungs and gaze keenly into the east, where your destiny awaits.\n\nSix days out from Suhar, the lookout reports an island with white cliffs a few points off the port bow. The captain studies his charts and then looks up with a piqued expression. \"No such isle is marked here,\" he says. \"I wonder if it's worth investigating?\"\n\nYou can tell that the captain is torn between curiosity and the desire to get his cargo to the Indies without delay.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Encourage him to put in at the uncharted island", 75));
+        Choices.push_back(Choice::Base("Urge him to keep your present course", 84));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story432 : public Story::Base
+{
+public:
+    Story432()
+    {
+        ID = 432;
+
+        Text = "You awaken to find you are in shackles. Others are also here, huddled on benches around a narrow room. Before you can question them to find out what is happening, the door is flung open and a tall bald fellow with muscles like iron bars strides in. Giving you a few rough strokes with a whip, he takes you by the arm and hauls you outside.\n\nThe hot dazzling sunlight makes you feel sick. Still dazed from the blow you took earlier, you stumble up onto a wooden platform where a slaver stands waiting. \"What am I bid for this strong young thing?\" he asks the crowd.\n\nThere is a confused babble of haggling, and before you can gather your wits to speak you have been sold to a merchant with sleek good looks that mark him out as an Egyptian. \"You will do to carry my wares back to Cairo,\" he says as he leads you away.\n\n\"There has been a mistake!\" you protest. \"I am no slave. I am a true believer, and whoever has shackled me thus has committed a crime against the laws of man and God.\"\n\nHe shows you a smile without humour. \"How often do you think I have heard that tale?\" he says. \"I'll tell you: every time I buy a new slave. Now come, wretch, and I'll assign you your chores.\"\n\nYou have LOST all your MONEY and all your BELONGINGS. You have only the SHACKLES on your wrists. It would give you no comfort. They announce to all who see you that you are a slave, and to try to escape now would only earn you a lingering death by crucifixion.\n\nYou gained the codeword MORDANT.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::LOSE_ALL(player);
+
+        Character::GET_ITEMS(player, {Item::SHACKLES});
+
+        Character::GET_CODEWORDS(player, {Codeword::Type::MORDANT});
+    }
+
+    int Continue(Character::Base &player) { return 400; }
+};
+
+class Story433 : public Story::Base
+{
+public:
+    Story433()
+    {
+        ID = 433;
+
+        Text = "You stay out of sight until the last rug has been carried in to the next room. Padding softly forward, you flit through the doorway with the swiftness of a shadow. The islanders are all on their knees with their foreheads pressed to the floorboards, facing away from you towards the far end of the room. One man at the back seems to sense something and turns for a quick glance, but by this time you are already out of sight behind a stout hardwood pillar.\n\n\"Why have you brought me here, you fiends?\" rings out a familiar growling voice.\n\nIt is Captain Ibrahim. You take a look out from behind the pillar. As your eyes adjust to the smoky torch-lit gloom, you see your captain standing against the far wall. To either side of him are ornately carved benches where tall silent figures sit as if in judgement. Each of the figures wears a rug wrapped around him and drawn up like a cowl across his head.\n\nNow another voice can be heard in the room. It is a dry hollow whisper, and the sound of it makes your skin crawl. It is coming from one of the figures on the bench. \"You stand before the Council of Ancestors. What plunder did you mean to take from our people?\"\n\n\"Plunder?\" demands Ibrahim, fighting to keep a nervous tremor out of his voice. \"I came not to plunder, but to trade. The Chinese silks and Indian spices in my ship's hold in return for gold and ivory.\"\n\nA soft murmuring ensues as the rug-cloaked figures lean their heads slightly together like seaweed fronds in a slow current. Other things are said, but too faintly for you to hear. Then the spokesman speaks again: \"We find you guilty. Tomorrow you shall be executed.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player)
+    {
+        if (Character::VERIFY_SKILL(player, Skill::Type::ROGUERY))
+        {
+            return 77;
+        }
+        else
+        {
+            return 99;
+        }
+    }
+};
+
+class Story434 : public Story::Base
+{
+public:
+    Story434()
+    {
+        ID = 434;
+
+        Image = "images/filler2.png";
+
+        Text = "With Jumail's help you soon overpower the other guard. Stepping over their senseless bodies, you approach the door of the hut. The lock gives way to several hard kicks. Captain Ibrahim is standing inside with his hands on his hips, beard jutting at a magisterial angle. \"About time you got here, you sons of sea cooks!\" he thunders. \"Now let's be off before the rest of those cursed natives arrive.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 412; }
+};
+
+class Story435 : public Story::Base
+{
+public:
+    Story435()
+    {
+        ID = 435;
+
+        Text = "You snatch up the wooden stick lying beside the door. As you throw yourself forward to strike, the she-ghoul's bony fingers are already closing around the handle of the meat cleaver. You stumble off-balance against the table. Everything seems to be in slow motion.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Lash her across the knuckles to stop her getting the cleaver", 455));
+        Choices.push_back(Choice::Base("Wait until you are in position to give her a more solid blow", 33));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story436 : public Story::Base
+{
+public:
+    Story436()
+    {
+        ID = 436;
+
+        Text = "The Sultan sees your green turban, which marks you out as one who has undergone the pilgrimage to the holy city. Raising his hand to halt the procession, he dismounts and lifts you to your feet. \"I never pass a pilgrim without asking advice,\" he says with a warm smile. \"It is by God's grace that I sit on the throne of Cairo, after all.\"\n\nThis is one of those situations where it is worth coming straight to the point. You're not sure how long you could play the part of a pious savant anyhow. \"It is the lot of kings to be beset by many cares,\" you say, \"and no doubt you will find it so to the end of your days. But, O Sultan, I can rid you of at least one worry. I speak of the pirates of the Red Sea.\"\n\nHe gives you a keen thoughtful look. \"Speak on.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 193; }
+};
+
+class Story437 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story437()
+    {
+        ID = 437;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        PreText = "You have heard the story of this ancient place. Addressing the two lion-headed statues, you call out, \"Meow, meow, open now!\"\n\nThe statues nod to show they understand. Your sailors wail in terror to see them flex their masonry muscles, but there is no danger. Now that you've spoken the magic formula, the statues are obedient to your will. They reach out and take hold of the door. There is a heavy grinding sound and slowly they slide it open, revealing a hidden cove massed with glittering treasures.\n\nThe pirates, halfway through unloading their latest plunder, are taken by surprise. They snatch up their swords and snarl defiantly as your marines swarm among them, but the outcome of the battle is in no doubt.\n\n";
+
+        auto DAMAGE = -4;
+
+        if (Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
+        {
+            DAMAGE = -1;
+
+            PreText += "[SWORDPLAY] ";
+        }
+        else if (Character::VERIFY_SKILL(player, Skill::Type::WRESTLING))
+        {
+            DAMAGE = -2;
+
+            PreText += "[WRESTLING] ";
+        }
+
+        Character::GAIN_LIFE(player, DAMAGE);
+
+        PreText += "You LOSE " + std::to_string(-DAMAGE) + " Life Points.";
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 372; }
+};
+
+class Story438 : public Story::Base
+{
+public:
+    std::string PreText = "";
+
+    Story438()
+    {
+        ID = 438;
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Choices.clear();
+
+        PreText = "You soon regret the decision. All the waterskins are empty. Scanning the horizon, you see no sign of life -- just the endless shimmering waves of heat rising off bare dusty rock. Everyone walks stiffly, hollow eyes fixed on the far distance, knowing that to falter would spell their death. Even the camels move with a wearily splayed gait, heads hung low, morose expressions on their drooping mouths.\n\nNight falls. You LOSE 1 Life Point.";
+
+        Character::GAIN_LIFE(player, -1);
+
+        if (player.Life > 0)
+        {
+            PreText += "\n\nYou see a low dark cloud descend across the bright disc of the moon. \"God have mercy,\" groans Hakim through dry swollen lips. \"Not another sandstorm.\"";
+
+            if (!Character::VERIFY_SKILL(player, Skill::Type::WILDERNESS_LORE))
+            {
+                Choices.push_back(Choice::Base("Press on towards the mysterious cloud", 354));
+                Choices.push_back(Choice::Base("Skirt around it", 376));
+            }
+        }
+
+        Text = PreText.c_str();
+    }
+
+    int Continue(Character::Base &player) { return 310; }
+};
+
+class Story439 : public Story::Base
+{
+public:
+    Story439()
+    {
+        ID = 439;
+
+        Text = "Cupping your hands, you throw your voice to the far end of the chamber. The Lord of the Desert looks back over his shoulder as he hears muffled sounds outside the great iron-bound door.\n\n\"It must be a buried treasure vault,\" one voice apparently says.\n\n\"See if you can pick the lock, then,\" replies another.\n\nWith a perplexed frown, he strides over to the door and flings it open. Of course there is no one there. While his attention is distracted, you leave the alcove and hide yourself in one of the tall stone jars. Then you throw your voice back to the alcove you've just vacated, \"Hey, I'm getting peckish! Got anything to eat down here, you daft old goat?\"\n\nHis head snaps around with a look of fierce white fury. Stamping back to the curtain, he raises his sword and cries, \"Put out your hand, impertinent wretch! I'll slice you five fat sausages to fill your complaining belly.\"\n\nIn his anger, he forgot to lock the door. You slip out of the jar and tiptoe over to it, making sure to help yourself to a handful of gold before you go.\n\nYou OBTAINED 50 dinars.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 50);
+    }
+
+    int Continue(Character::Base &player) { return 459; }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -11307,6 +11539,16 @@ auto story426 = Story426();
 auto story427 = Story427();
 auto story428 = Story428();
 auto story429 = Story429();
+auto story430 = Story430();
+auto story431 = Story431();
+auto story432 = Story432();
+auto story433 = Story433();
+auto story434 = Story434();
+auto story435 = Story435();
+auto story436 = Story436();
+auto story437 = Story437();
+auto story438 = Story438();
+auto story439 = Story439();
 
 void InitializeStories()
 {
@@ -11353,7 +11595,8 @@ void InitializeStories()
         &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399,
         &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409,
         &story410, &story411, &story412, &story413, &story414, &story415, &story416, &story417, &story418, &story419,
-        &story420, &story421, &story422, &story423, &story424, &story425, &story426, &story427, &story428, &story429};
+        &story420, &story421, &story422, &story423, &story424, &story425, &story426, &story427, &story428, &story429,
+        &story430, &story431, &story432, &story433, &story434, &story435, &story436, &story437, &story438, &story439};
 }
 
 #endif

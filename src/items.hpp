@@ -36,8 +36,9 @@ namespace Item
         VEIL,
         CANDLE,
         BUNCH_OF_KEYS,
+        SHACKLES,
         First = BOW,
-        Last = BUNCH_OF_KEYS
+        Last = SHACKLES
     };
 
     class Base
@@ -99,6 +100,7 @@ namespace Item
     auto VEIL = Item::Base("VEIL", "VEIL", Item::Type::VEIL);
     auto CANDLE = Item::Base("CANDLE", "CANDLE", Item::Type::CANDLE);
     auto BUNCH_OF_KEYS = Item::Base("BUNCH OF KEYS", "BUNCH OF KEYS", Item::Type::BUNCH_OF_KEYS);
+    auto SHACKLES = Item::Base("SHACKLES", "SHACKLES", Item::Type::SHACKLES);
 
     std::vector<Item::Type> UniqueItems = {
         Item::Type::LONG_TAILED_CAT,
