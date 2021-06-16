@@ -10679,6 +10679,204 @@ public:
     int Continue(Character::Base &player) { return 356; }
 };
 
+class Story420 : public Story::Base
+{
+public:
+    Story420()
+    {
+        ID = 420;
+
+        Text = "At a signal from the masked Sultan, his knights ride forward and start to put Abdullah and the others to the sword. You quake in horror, fearing they will notice you at any moment.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("[ROGUERY] Sneak off", 154, Skill::Type::ROGUERY));
+        Choices.push_back(Choice::Base("Try your [LUCK]", 461, Skill::Type::LUCK));
+        Choices.push_back(Choice::Base("You have neither of those skills", 79));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story421 : public Story::Base
+{
+public:
+    Story421()
+    {
+        ID = 421;
+
+        Text = "You loiter for a while in the marketplace, pretending to take note of the prices but making no purchase. After a while you wander away and sit in a thoughtful posture on the edge of a fountain. It is not long before a merchant approaches and strikes up a conversation. At first he talks of trifling matters, but at last a keen look comes into his eye and he says, \"Unless I am mistaken, you have been scouting out the market prices.\"\n\nYou adopt a smile that suggests grudging admiration. \"You are very perceptive. I have come here ahead of my master, who has three ships full of goods to sell. But he knows that as soon as people see he is a wealthy man, the asking prices will go up. Hence I am here to make purchases on his behalf.\"\n\nThe merchant licks his lips. \"Hmm. Well, what is your master interested in buying, if I may ask?\"\n\nYou take a sidelong glance at the stall the merchant was sitting in. \"He hopes to buy amber, which is in short supply back in Baghdad at the moment. Do you know anyone I could suggest he talks to?\"\n\nThe merchant throws up his hands in delight. \"What a coincidence! I myself trade in amber, and my prices are very reasonable.\" \n\n\"Well, as to that...\" You rub your jaw. \"I'd have to look around the market a bit more.\"\n\nHe takes out a bag of gold and presses it into your hands. \"Take my word for it. Just tell your master to come to Hisham al-Din -- that's me.\"\n\nYou nod sagely, assuring him you will do as he asks, and stroll away from the marketplace. The bribe he gave you is 200 dinars.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GAIN_MONEY(player, 200);
+    }
+
+    int Continue(Character::Base &player) { return 399; }
+};
+
+class Story422 : public Story::Base
+{
+public:
+    Story422()
+    {
+        ID = 422;
+
+        Text = "How can you know who to trust? Leaving Azenomei to fend for himself, you hasten away across the courtyard.\n\nYou OBTAINED a BUNCH OF KEYS.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_ITEMS(player, {Item::BUNCH_OF_KEYS});
+    }
+
+    int Continue(Character::Base &player) { return 223; }
+};
+
+class Story423 : public Story::Base
+{
+public:
+    Story423()
+    {
+        ID = 423;
+
+        Text = "You seize a candelabrum and raise it above your head. Azenomei looks up at the last moment, his mouth opening to start a spell. He is too late. The candelabrum falls, breaking open his skull.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 89; }
+};
+
+class Story424 : public Story::Base
+{
+public:
+    Story424()
+    {
+        ID = 424;
+
+        Text = "You turn the key and the lock drops from Ayisha's shackles. She springs up at once with a cry of delight. \"Excellent! Now we can return home.\"\n\n\"And we must make all speed. I have to warn the Caliph about his evil vizier, Jafar, who has been plotting to overthrow him.\"\n\nShe nods thoughtfully. \"I believe it was Jafar who summoned the jinni to abduct me. Prepare yourself...\"\n\nRaising her hands and chanting the words of a spell, she conjures another whirlwind that whisks the two of you halfway across the world in the blink of an eye. As the wind dies down, you stagger giddily out of the vortex to see that you are now in the Caliph's throne room. Jafar is also here, and his look of astonishment is soon replaced by one of outright hatred when he sets eyes on your face.\n\nAyisha kisses the Caliph. \"Father, I have returned.\"\n\nThe Caliph is almost speechless with amazement. \"My heart is brimming with joy. But, Ayisha, who is this you've brought with you?\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 477; }
+};
+
+class Story425 : public Story::Base
+{
+public:
+    Story425()
+    {
+        ID = 425;
+
+        Image = "images/ghouls.png";
+
+        Text = "The door is thrown open and you are dragged inside. Your first impression is the stench. It is as vile as a charnel house, and your guts bubble in turmoil. The sight of the hut's occupants is even worse: a morbidly pallid old she-ghoul and her two sons with faces of doltish evil. One of them holds you while the other gives you a painful poke in the ribs and says, \"A fine morsel for the supper-table.\"\n\n\"It's a mortal, Ma,\" says the other son.\n\n\"I can see that, you stupid boy,\" replies the mother with a voice like a goat being strangled. \"What's it doing here?\"\n\n\"Probably looking for the rokh's DIAMOND eggs,\" suggests the first son.\n\nShe shakes her head. \"No, wrong side of the Red Sea for that. Don't you boys listen to a word your old ma tells you? Oh well, get it trussed up. I'll stoke the fire.\"\n\nThey mean to eat you!\n\nYou gained the codeword KISMET.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Fight", 305));
+        Choices.push_back(Choice::Base("Use [MAGIC]", 327, Skill::Type::MAGIC));
+        Choices.push_back(Choice::Base("Try to trick your way out of this somehow", 348));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    void Event(Character::Base &player)
+    {
+        Character::GET_CODEWORDS(player, {Codeword::Type::KISMET});
+
+        if (Character::VERIFY_SKILL(player, Skill::Type::FOLKLORE))
+        {
+            Choices[0].Destination = 370;
+        }
+        else
+        {
+            Choices[0].Destination = 305;
+        }
+    }
+};
+
+class Story426 : public Story::Base
+{
+public:
+    Story426()
+    {
+        ID = 426;
+
+        Text = "The chamberlain returns and leads you down a long corridor to the throne room. Here the Caliph is sprawled on thick cushions, occasionally plucking a sweetmeat from the tray at his elbow.\n\nJafar is also here, and you sense his glare of hatred out of the corner of your eye, but you ignore him. Bowing to the Caliph, you say, \"O Prince of the Faith, I have travelled far and endured many hardships in order to warn you of the danger that threatens you.\"";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 477; }
+};
+
+class Story427 : public Story::Base
+{
+public:
+    Story427()
+    {
+        ID = 427;
+
+        Text = "How will you press on with your attack?";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Keep your guard up", 297));
+        Choices.push_back(Choice::Base("Forget about parrying and just fight furiously in an attempt to force Masrur back", 276));
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (!Character::VERIFY_SKILL_ANY_ITEMS(player, Skill::Type::SWORDPLAY, {Item::Type::SWORD, Item::Type::JEWELLED_SWORD}))
+        {
+            return 161;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+};
+
+class Story428 : public Story::Base
+{
+public:
+    Story428()
+    {
+        ID = 428;
+
+        Text = "Your jinni emerges from the ring in a swirl of purple smoke. A single disdainful sweep of his gleaming eyes tells him what is going on. \"Shall I bring you armour and a hero's blade, that you may fight these snapping curs, esteemed one?\" he suggests in a voice like breaking rocks.\n\n\"I don't have the time for such nonsense,\" you reply curtly. \"Whisk me to the gatehouse roof, yonder.\"\n\nHe raises eyebrows like tufts of dried moss. \"You wish to flee? To turn tail and run from those puny wretches? Where is your bold heart?\"\n\n\"In my chest, where I'd like it to remain.\" The guards are just a few paces away. You scream at the jinni, \"Do it now!\"\n\nIn a whoosh of air you are plucked from the rooftop, tumbled through empty air, and deposited unceremoniously on the battlements of the gatehouse. With a sour grunt of disapproval, the jinni curls back into your ring, leaving you to race down to street level before the guards can get around to the courtyard and intercept you.";
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 383; }
+};
+
+class Story429 : public Story::Base
+{
+public:
+    Story429()
+    {
+        ID = 429;
+
+        Text = "\"And may you know the mercy and blessings of God, venerable one,\" you reply, touching your brow and bowing.\n\n\"Live a hundred years, if it be God's will!\" says Yussuf rather more fulsomely as he scrambles onto the ledge beside you. You can tell from the wild look in his eyes that he believes the old man to be a wizard or ifrit.\n\nThe strange old man nods, the light of the coals sketching him like a figure of blood against the shadows. \"You have spoken well,\" he says, \"and now I shall speak. You see this cave? Within it are three treasures. Many have sought these treasures, and now their bones are the sand under our feet.\"\n\nYou kneel beside him. Your blood is quickened with excitement. \"You seem to know something more,\" you prompt him.\n\n\"I know much. I know how the treasure may be reached. There are three obstacles. The first is a hall of one-eyed monsters. Merely to look upon them means death. Next comes the gallery of warriors whom no weapon can harm. Swords they spurn, clubs cause them no concern -- \"\n\n\"What about knives?\" puts in Yussuf.\n\n\"Knives?\" The old man shakes his head. \"No good. Lastly there is the causeway where the light of hope can only bring doom.\" \n\nThere is a long moment of silence while you consider what the old man has told you. Yussuf, seeing the look in your eyes, grabs your arm imploringly. \"No, I beg you. It would be suicide! Forget this talk of treasure, and let's be on our way.\"";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Return to the ship", 375));
+        Choices.push_back(Choice::Base("Enter the cave", 483));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -11099,6 +11297,16 @@ auto story416 = Story416();
 auto story417 = Story417();
 auto story418 = Story418();
 auto story419 = Story419();
+auto story420 = Story420();
+auto story421 = Story421();
+auto story422 = Story422();
+auto story423 = Story423();
+auto story424 = Story424();
+auto story425 = Story425();
+auto story426 = Story426();
+auto story427 = Story427();
+auto story428 = Story428();
+auto story429 = Story429();
 
 void InitializeStories()
 {
@@ -11144,7 +11352,8 @@ void InitializeStories()
         &story380, &story381, &story382, &story383, &story384, &story385, &story386, &story387, &story388, &story389,
         &story390, &story391, &story392, &story393, &story394, &story395, &story396, &story397, &story398, &story399,
         &story400, &story401, &story402, &story403, &story404, &story405, &story406, &story407, &story408, &story409,
-        &story410, &story411, &story412, &story413, &story414, &story415, &story416, &story417, &story418, &story419};
+        &story410, &story411, &story412, &story413, &story414, &story415, &story416, &story417, &story418, &story419,
+        &story420, &story421, &story422, &story423, &story424, &story425, &story426, &story427, &story428, &story429};
 }
 
 #endif

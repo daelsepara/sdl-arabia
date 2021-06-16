@@ -5207,7 +5207,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
 
                 if (story->Type == Story::Type::DOOM)
                 {
-                    putText(renderer, "The adventure is over.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
+                    putText(renderer, "This adventure is over.", font, text_space, clrWH, intRD, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
                 }
                 else if (player.Life <= 0)
                 {
