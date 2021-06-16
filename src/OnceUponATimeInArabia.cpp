@@ -5219,7 +5219,7 @@ bool processStory(SDL_Window *window, SDL_Renderer *renderer, Character::Base &p
                 }
                 else if (story->Type == Story::Type::GOOD)
                 {
-                    putText(renderer, "Further adventure awaits!", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
+                    putText(renderer, "You have become the Grand Vizier! Further adventure awaits!", font, text_space, clrWH, intYW, TTF_STYLE_NORMAL, splashw, boxh, startx, starty);
                 }
 
                 renderButtons(renderer, controls, current, intYW, border_space, border_pts);

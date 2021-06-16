@@ -3829,17 +3829,33 @@ public:
     {
         ID = 137;
 
-        Text = "Consider the following points in turn.";
-
         Choices.clear();
-        Choices.push_back(Choice::Base("You have a CHART", 203, {Item::CHART}));
-        Choices.push_back(Choice::Base("You have the codeword FABRIC", 203, {Codeword::Type::FABRIC}));
-        Choices.push_back(Choice::Base("Try using [FOLKLORE]", 226, Skill::Type::FOLKLORE));
-        Choices.push_back(Choice::Base("Try using [SEAFARING]", 226, Skill::Type::SEAFARING));
-        Choices.push_back(Choice::Base("You have the codeword KISMET", 271, {Codeword::Type::KISMET}));
-        Choices.push_back(Choice::Base("You have none of those", 248));
 
-        Controls = Story::Controls::STANDARD;
+        Controls = Story::Controls::NONE;
+    }
+
+    int Background(Character::Base &player)
+    {
+        if (Character::VERIFY_ITEMS(player, {Item::Type::CHART}))
+        {
+            return 203;
+        }
+        else if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::FABRIC}))
+        {
+            return 203;
+        }
+        else if (Character::VERIFY_ANY_SKILLS(player, {Skill::Type::FOLKLORE, Skill::Type::SEAFARING}))
+        {
+            return 226;
+        }
+        else if (Character::VERIFY_CODEWORDS(player, {Codeword::Type::KISMET}))
+        {
+            return 271;
+        }
+        else
+        {
+            return 248;
+        }
     }
 };
 
@@ -12480,6 +12496,125 @@ public:
     }
 };
 
+class Story490 : public Story::Base
+{
+public:
+    Story490()
+    {
+        ID = 490;
+
+        Text = "You have heard a tale which described just such a creature as this. In the tale, it proved an unbeatable foe because of its ability to regenerate. Every time the hero injured it, it rose into the air and hovered until its wounds had healed.\n\nYou can think of one way to prevent it doing that here. You back off into the covered passage just behind you.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 46; }
+};
+
+class Story491 : public Story::Base
+{
+public:
+    Story491()
+    {
+        ID = 491;
+
+        Text = "You claw madly at thin air, but of course there is no purchase to be had there. You are too startled to scream. The ground comes up out of the darkness and slams into you with the force of a falling drawbridge. Your life is snuffed out at once.";
+
+        Type = Story::Type::DOOM;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story492 : public Story::Base
+{
+public:
+    Story492()
+    {
+        ID = 492;
+
+        Text = "You find that one of the fishermen intends to sail to Baghdad to visit his cousin, who works as a street-porter there. When he learns that you are also a native of Baghdad, he offers to take you along. \"I would welcome some company on the voyage,\" he says.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Go with him", 113));
+        Choices.push_back(Choice::Base("Have one last stab at finding great treasure", 137));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story493 : public Story::Base
+{
+public:
+    Story493()
+    {
+        ID = 493;
+
+        Text = "As a slave you are not granted the right to enter Mecca. Instead you are given the task of guarding the caravan goods while your owner and his camel-drivers wash and shave in preparation for the rituals.\n\nA few minutes after Hakim has left, you notice that he has left his woollen CLOAK in his saddlebag. Nights in the desert can get bitterly cold, and he will regret not having taken it.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Hurry after him with the CLOAK", 14));
+        Choices.push_back(Choice::Base("Otherwise", 170));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story494 : public Story::Base
+{
+public:
+    Story494()
+    {
+        ID = 494;
+
+        Text = "Even if you still have your BOW, there is no time to string and draw it. Instead, you whip an arrow out of the quiver on your back and cast it at the evil vizier.\n\nYour aim is true. The arrow impales Jafar's wrist and with a yelp of pain he drops the knife. As the Caliph shouts for guards, Jafar runs out through an arch at the back of the room.";
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+
+    int Continue(Character::Base &player) { return 339; }
+};
+
+class Story495 : public Story::Base
+{
+public:
+    Story495()
+    {
+        ID = 495;
+
+        Text = "You can use the LAMP to turn invisible and creep off to the ship, but it would mean leaving your friends behind on the island. Steering the ship on your own would be virtually impossible. Also, there is only enough oil in the LAMP for a few minutes of invisibility. After that it is useless.";
+
+        Choices.clear();
+        Choices.push_back(Choice::Base("Use the LAMP", 266, Choice::Type::LOSE_ITEMS, {Item::LAMP_OF_ANTAR}));
+        Choices.push_back(Choice::Base("You think there must be a better plan", 311));
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
+class Story496 : public Story::Base
+{
+public:
+    Story496()
+    {
+        ID = 496;
+
+        Text = "At dusk some days later, outside the Great Mosque, you spot the dervish whose words set you on your quest. \"Ah, it's you,\" he says. \"I remember you.\"\n\n\"I'm Grand Vizier now,\" you tell him, indicating your robe of honour.\n\n\"It's all the same to me.\" He moves to go past you into the mosque.\n\n\"Wait, I didn't mean to boast. I'm just curious to know what you meant all those months ago. Did you intend that my life was governed by the stars, or to advise me to navigate across the ocean, or did you foresee other fabulous adventures?\"\n\n\"None of those,\" says the dervish with a delighted laugh. \"Did you think I could see the future, when God alone knows all that has happened or ever will happen?\"\n\n\"Then what..?\"\n\nHe points, and you look up at the canopy of stars emerging from the jade-green twilight.\n\n\"I meant only that when you reside in the City of Peace, under this glorious heaven, in the comfort and majesty of the Law -- why, then you dwell always in an age of miracles. That is all.\"\n\nHe goes through the door and then looks back, smiling at your dumbstruck face, and adds, \"Whatever you heard in my remarks, you put there yourself. Everyone makes their own destiny, everyone finds their own truth. When others look at you, they see a noble person dressed in fine robes of honour. But only you know whether those robes clothe the Grand Vizier -- or merely the wiliest thief of Baghdad.\"\n\nAnd, with a wink, he turns and hobbles off.\n\nTHE END";
+
+        Type = Story::Type::GOOD;
+
+        Choices.clear();
+
+        Controls = Story::Controls::STANDARD;
+    }
+};
+
 auto prologue = Prologue();
 auto story001 = Story001();
 auto story002 = Story002();
@@ -12970,6 +13105,13 @@ auto story486 = Story486();
 auto story487 = Story487();
 auto story488 = Story488();
 auto story489 = Story489();
+auto story490 = Story490();
+auto story491 = Story491();
+auto story492 = Story492();
+auto story493 = Story493();
+auto story494 = Story494();
+auto story495 = Story495();
+auto story496 = Story496();
 
 void InitializeStories()
 {
@@ -13022,7 +13164,8 @@ void InitializeStories()
         &story450, &story451, &story452, &story453, &story454, &story455, &story456, &story457, &story458, &story459,
         &story460, &story461, &story462, &story463, &story464, &story465, &story466, &story467, &story468, &story469,
         &story470, &story471, &story472, &story473, &story474, &story475, &story476, &story477, &story478, &story479,
-        &story480, &story481, &story482, &story483, &story484, &story485, &story486, &story487, &story488, &story489};
+        &story480, &story481, &story482, &story483, &story484, &story485, &story486, &story487, &story488, &story489,
+        &story490, &story491, &story492, &story493, &story494, &story495, &story496};
 }
 
 #endif
