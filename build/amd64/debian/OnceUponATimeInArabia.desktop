@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Once Upon A Time in Arabia
+Comment=Once Upon A Time in Arabia
+Version=1.0.0
+TryExec=/usr/local/games/OnceUponATimeInArabia/OnceUponATimeInArabia.exe
+Exec=/usr/local/games/OnceUponATimeInArabia/OnceUponATimeInArabia.exe
+Icon=/usr/local/games/OnceUponATimeInArabia/icons/lamp.png
+Path=/usr/local/games/OnceUponATimeInArabia
+Terminal=false
+Categories=Game
+Type=Application
+
+Name[en_DK]=Once Upon A Time in Arabia
+Name[en_US]=Once Upon A Time in Arabia
