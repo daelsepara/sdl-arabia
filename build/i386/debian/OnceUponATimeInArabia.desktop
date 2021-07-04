@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Once Upon A Time in Arabia
 Comment=Once Upon A Time in Arabia
-Version=1.0.0
+Version=1.0.1
 TryExec=/usr/local/games/OnceUponATimeInArabia/OnceUponATimeInArabia.exe
 Exec=/usr/local/games/OnceUponATimeInArabia/OnceUponATimeInArabia.exe
 Icon=/usr/local/games/OnceUponATimeInArabia/icons/lamp.png
