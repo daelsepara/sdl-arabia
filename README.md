@@ -1,6 +1,8 @@
 # Once Upon a Time in Arabia (Critical IF Gamebooks)
 [![C/C++ CI](https://github.com/daelsepara/sdl-arabia/actions/workflows/OnceUponATimeInArabia.yml/badge.svg)](https://github.com/daelsepara/sdl-arabia/actions/workflows/OnceUponATimeInArabia.yml)
-
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+ [![Release](https://img.shields.io/github/v/release/daelsepara/sdl-arabia.svg)](https://img.shields.io/github/v/release/daelsepara/sdl-arabia.svg)
+ 
 This is an implementation of the **Once Upon a Time in Arabia** game book (Critical IF Gamebooks) by [Dave Morris](https://fabledlands.blogspot.com/). The game is written in C/C++ and uses the [Simple DirectMedia Library (SDL)](https://www.libsdl.org/).
 
 # Planned Features
