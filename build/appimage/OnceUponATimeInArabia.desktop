@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Once Upon a Time in Arabia
+Exec=OnceUponATimeInArabia.exe
+TryExec=OnceUponATimeInArabia.exe
+Icon=lamp
+Terminal=false
+Categories=Game;
+Type=Application
+Name[en_DK]=Once Upon a Time in Arabia
+Name[en_US]=Once Upon a Time in Arabia
